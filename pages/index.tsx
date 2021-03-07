@@ -4,6 +4,7 @@ import Layout, { siteTitle } from '../components/layout'
 import Link from 'next/link'
 import { GetStaticProps } from 'next'
 import { getSortedPostsData } from '../lib/posts'
+import Date from '../components/date'
 
 export const getStaticProps: GetStaticProps = async () => {
   const allPostsData = getSortedPostsData()
@@ -34,7 +35,7 @@ export default function Home({
           <li key={'idN'} className="my-3 bg-gray-100 rounded-sm shadow-sm hover:shadow-lg h-24">
             <Link href={`/posts/${idN}`}>
               <a className="flex flex-col h-full m-4">
-                <span className="text-xs">{idN}</span>
+                <Date dateString={String(idN)} />
                 <span className="text-xl">{title}</span>
               </a>
             </Link>

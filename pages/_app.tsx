@@ -1,6 +1,7 @@
 import { AppProps } from 'next/app'
 import '../styles/globals.css'
 import {MDXProvider} from '@mdx-js/react'
+import Link from 'next/link'
 
 const mdComponents = {
   h2: (props) => <h2 className="hidden">{props.children}</h2>,
@@ -9,6 +10,7 @@ const mdComponents = {
   p: (props) => <p className="text-base py-2">{props.children}</p>,
   h4: (props) => <h3 className="text-2xl py-2">{props.children}</h3>,
   ul: (props) => <ul className="list-disc ml-6 py-2">{props.children}</ul>,
+  a: (props) => <a className="text-blue-500" {...props} />,
 }
 
 function App({ Component, pageProps }: AppProps) {

@@ -14,6 +14,7 @@ export default function Layout({
   home?: boolean
   meta: {
     title: string
+    date: string
   }
 }) {
 
@@ -54,6 +55,7 @@ export default function Layout({
       </Head>
       <Header />
       <main className="flex flex-col max-w-3xl mx-auto p-10">
+        <span className="text-sm">{meta.date}</span>
         <h1 className="text-4xl my-4">{meta.title}</h1>
         {children}
       </main>
