@@ -2,6 +2,7 @@ import Head from 'next/head'
 import Image from 'next/image'
 import Link from 'next/link'
 import Header from '../components/header'
+import Footer from '../components/footer'
 
 export const siteTitle = "ゆるふわインターネット"
 
@@ -35,6 +36,7 @@ export default function Layout({
       </Head>
       <Header />
       <main>{children}</main>
+      <Footer />
     </div>
     )
   }
@@ -59,6 +61,7 @@ export default function Layout({
         <h1 className="text-4xl my-4">{meta.title}</h1>
         {children}
       </main>
+      <Footer />
     </div>
   )
 }

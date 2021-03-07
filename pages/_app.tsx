@@ -2,6 +2,10 @@ import { AppProps } from 'next/app'
 import '../styles/globals.css'
 import {MDXProvider} from '@mdx-js/react'
 import Link from 'next/link'
+import { library } from '@fortawesome/fontawesome-svg-core'
+import { fab } from '@fortawesome/free-brands-svg-icons'
+
+library.add(fab)
 
 const mdComponents = {
   h2: (props) => <h2 className="hidden">{props.children}</h2>,
