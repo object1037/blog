@@ -27,20 +27,20 @@ export default function Home({
     <Head>
       <title>{siteTitle}</title>
     </Head>
-    <header className="flex flex-row space-x-4 p-4 bg-gray-300 items-center h-16">
-      <Link href="https://object1037.vercel.app">
-        <a>About</a>
-      </Link>
-    </header>
-    <ul>
-      {allPostsData.map(({ idN, title }) => (
-        <li key={'idN'}>
-          <Link href={`/posts/${idN}`}>
-            <a>{title}</a>
-          </Link>
-        </li>
-      ))}
-    </ul>
+    <section className="flex flex-col justify-center">
+      <ul className="flex flex-col justify-center p-10 max-w-3xl text-gray-900 mx-auto w-full">
+        {allPostsData.map(({ idN, title }) => (
+          <li key={'idN'} className="my-3 bg-gray-100 rounded-sm shadow-sm hover:shadow-lg h-24">
+            <Link href={`/posts/${idN}`}>
+              <a className="flex flex-col h-full m-4">
+                <span className="text-xs">{idN}</span>
+                <span className="text-xl">{title}</span>
+              </a>
+            </Link>
+          </li>
+        ))}
+      </ul>
+    </section>
     </Layout>
   )
 }

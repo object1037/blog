@@ -1,6 +1,7 @@
 import Head from 'next/head'
 import Image from 'next/image'
 import Link from 'next/link'
+import Header from '../components/header'
 
 export const siteTitle = "object_1037's blog"
 
@@ -31,8 +32,8 @@ export default function Layout({
         <meta property="og:description" content={siteTitle} />
         <meta property="og:image" content="" />
       </Head>
+      <Header />
       <main>{children}</main>
-      <div>this is home</div>
     </div>
     )
   }
@@ -51,6 +52,7 @@ export default function Layout({
         <meta property="og:image" content="" />
         <title>{meta.title} | {siteTitle}</title>
       </Head>
+      <Header />
       <h1>{meta.title}</h1>
       <main>{children}</main>
       <div>
