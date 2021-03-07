@@ -14,7 +14,7 @@ const mdComponents = {
   p: (props) => <p className="text-base py-2">{props.children}</p>,
   h4: (props) => <h3 className="text-2xl py-2">{props.children}</h3>,
   ul: (props) => <ul className="list-disc ml-6 py-2">{props.children}</ul>,
-  a: (props) => <a className="text-blue-500" {...props} />,
+  a: (props) => <a className="text-Blue-500" {...props} />,
 }
 
 function App({ Component, pageProps }: AppProps) {

@@ -1,4 +1,4 @@
-import Account from '../components/accounts'
+import Account from './accounts'
 
 export default function Footer() {
   return (
