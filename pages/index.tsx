@@ -20,6 +20,7 @@ export default function Home({
 }: {
   allPostsData: {
     title: string
+    description: string
     idN: number
   }[]
 }) {
@@ -31,12 +32,13 @@ export default function Home({
     <section className="flex flex-col justify-center">
       <span className="text-center text-xl pb-10 pt-12">object_1037のブログです</span>
       <ul className="flex flex-col justify-center px-10 max-w-3xl text-gray-900 mx-auto w-full">
-        {allPostsData.map(({ idN, title }) => (
-          <li key={'idN'} className="my-3 bg-gray-100 rounded-sm shadow-sm hover:shadow-lg h-24">
+        {allPostsData.map(({ idN, title, description }) => (
+          <li key={'idN'} className="my-3 bg-gray-100 rounded-sm shadow-sm hover:shadow-lg h-32">
             <Link href={`/posts/${idN}`}>
               <a className="flex flex-col h-full m-4">
                 <Date dateString={String(idN)} />
-                <span className="text-xl">{title}</span>
+                <span className="text-xl mb-4">{title}</span>
+                <span className="truncate">{description}</span>
               </a>
             </Link>
           </li>
