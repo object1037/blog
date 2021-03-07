@@ -28,7 +28,8 @@ export default function Home({
       <title>{siteTitle}</title>
     </Head>
     <section className="flex flex-col justify-center">
-      <ul className="flex flex-col justify-center p-10 max-w-3xl text-gray-900 mx-auto w-full">
+      <span className="text-center text-xl pb-10 pt-12">object_1037のブログです</span>
+      <ul className="flex flex-col justify-center px-10 max-w-3xl text-gray-900 mx-auto w-full">
         {allPostsData.map(({ idN, title }) => (
           <li key={'idN'} className="my-3 bg-gray-100 rounded-sm shadow-sm hover:shadow-lg h-24">
             <Link href={`/posts/${idN}`}>

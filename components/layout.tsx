@@ -3,7 +3,7 @@ import Image from 'next/image'
 import Link from 'next/link'
 import Header from '../components/header'
 
-export const siteTitle = "object_1037's blog"
+export const siteTitle = "ゆるふわインターネット"
 
 export default function Layout({
   children,
@@ -53,13 +53,10 @@ export default function Layout({
         <title>{meta.title} | {siteTitle}</title>
       </Head>
       <Header />
-      <h1>{meta.title}</h1>
-      <main>{children}</main>
-      <div>
-        <Link href="/">
-          <a>Back Home</a>
-        </Link>
-      </div>
+      <main className="flex flex-col max-w-3xl mx-auto p-10">
+        <h1 className="text-4xl my-4">{meta.title}</h1>
+        {children}
+      </main>
     </div>
   )
 }
