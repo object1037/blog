@@ -15,6 +15,11 @@ export const getStaticProps: GetStaticProps = async () => {
   }
 }
 
+export const meta = {
+  title: '',
+  date: ''
+}
+
 export default function Home({
   allPostsData
 }: {
@@ -25,7 +30,7 @@ export default function Home({
   }[]
 }) {
   return (
-    <Layout home>
+    <Layout home meta={meta}>
     <Head>
       <title>{siteTitle}</title>
     </Head>
