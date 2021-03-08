@@ -3,11 +3,11 @@ import Image from 'next/image'
 
 export default function Header () {
   return (
-    <header className="flex flex-row bg-gray-100 items-center h-20 pl-16 text-gray-900">
+    <header className="flex flex-col md:flex-row bg-gray-100 items-center h-32 md:h-20 md:pl-16 text-gray-900">
       <Link href="/">
         <a className="h-full flex flex-row items-center space-x-2 hover:bg-gray-200 px-3">
           <div className="rounded-full shadow-lg w-12 h-12">
-            <Image src="/images/profile.jpg" alt="picture of me" width={48} height={48} className="rounded-full" />
+            <Image priority src="/images/profile.jpg" alt="picture of me" width={48} height={48} className="rounded-full" />
           </div>
           <span>ゆるふわインターネット</span>
         </a>
