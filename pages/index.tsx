@@ -35,15 +35,15 @@ export default function Home({
       <title>{siteTitle}</title>
     </Head>
     <section className="flex flex-col justify-center">
-      <span className="text-center text-xl pb-10 pt-12 text-gray-900">object_1037のブログです</span>
-      <ul className="flex flex-col justify-center px-10 max-w-3xl text-gray-900 mx-auto w-full">
+      <span className="text-center text-xl pb-10 pt-12 text-gray-900 dark:text-gray-100">object_1037のブログです</span>
+      <ul className="flex flex-col justify-center px-10 max-w-3xl mx-auto w-full">
         {allPostsData.map(({ idN, title, description }) => (
-          <li key={'idN'} className="my-3 bg-gray-100 rounded-sm shadow-sm hover:shadow-lg h-32">
+          <li key={'idN'} className="my-3 bg-gray-100 dark:bg-gray-800 rounded-sm shadow-sm hover:shadow-lg h-30">
             <Link href={`/posts/${idN}`}>
-              <a className="flex flex-col h-full m-4">
+              <a className="flex flex-col h-24 m-4">
                 <Date dateString={String(idN)} />
-                <span className="text-xl mb-4 text-gray-900">{title}</span>
-                <span className="truncate text-gray-900">{description}</span>
+                <span className="text-xl mb-4 text-gray-900 dark:text-gray-100">{title}</span>
+                <span className="truncate text-gray-900 dark:text-gray-100">{description}</span>
               </a>
             </Link>
           </li>

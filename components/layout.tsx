@@ -57,8 +57,8 @@ export default function Layout({
       </Head>
       <Header />
       <main className="flex flex-col max-w-3xl mx-auto p-10">
-        <span className="text-sm">{meta.date}</span>
-        <h1 className="text-4xl my-4">{meta.title}</h1>
+        <span className="text-sm text-gray-900 dark:text-gray-200">{meta.date}</span>
+        <h1 className="text-4xl my-4 text-gray-900 dark:text-gray-100">{meta.title}</h1>
         {children}
       </main>
       <Footer />
