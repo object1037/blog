@@ -32,7 +32,7 @@ export default function Layout({
         <meta property="og:url" content="" />
         <meta property="og:title" content={siteTitle} />
         <meta property="og:description" content={siteTitle} />
-        <meta property="og:image" content="" />
+        <meta property="og:image" content="/images/profile.jpg" />
       </Head>
       <Header />
       <main>{children}</main>
@@ -52,7 +52,7 @@ export default function Layout({
         <meta property="og:url" content="" />
         <meta property="og:title" content={siteTitle} />
         <meta property="og:description" content={siteTitle} />
-        <meta property="og:image" content="" />
+        <meta property="og:image" content="/images/profile.jpg" />
         <title>{meta.title} | {siteTitle}</title>
       </Head>
       <Header />
