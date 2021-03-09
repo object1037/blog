@@ -31,7 +31,7 @@ export default function Layout({
         <meta name="twitter:creator" content="@object_1037" />
         <meta property="og:url" content={siteUrl} />
         <meta property="og:title" content={siteTitle} />
-        <meta property="og:description" content={siteTitle} />
+        <meta property="og:description" content="object_1037のブログ" />
         <meta property="og:image" content="https://blog1037.vercel.app/_next/image?url=%2Fimages%2Fprofile.jpg&w=96&q=75" />
         <meta name="google-site-verification" content="NE6TDGJcUUnRDHmhTZdMo8rFYwP97C3w8rYSXMI3wyo" />
       </Head>
@@ -52,7 +52,7 @@ export default function Layout({
         <meta name="twitter:creator" content="@object_1037" />
         <meta property="og:url" content={`${siteUrl}/posts/${meta.date}`} />
         <meta property="og:title" content={`${meta.title} | ${siteTitle}`} />
-        <meta property="og:description" content={siteTitle} />
+        <meta property="og:description" content="object_1037のブログ" />
         <meta property="og:image" content="https://blog1037.vercel.app/_next/image?url=%2Fimages%2Fprofile.jpg&w=96&q=75" />
         <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/prism/1.23.0/themes/prism-tomorrow.min.css" />
         <title>{meta.title} | {siteTitle}</title>
