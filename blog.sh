@@ -8,7 +8,7 @@ title: "'$title'" description: ""
 
 export const meta = {
   title: "'$title'",
-  date: "'(date +%Y/%m/%d)'"
+  date: "'(date +%Y%m%d)'"
 }
 
 import Layout from "../../components/layout"
