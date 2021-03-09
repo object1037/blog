@@ -32,7 +32,7 @@ export default function Layout({
         <meta property="og:url" content="" />
         <meta property="og:title" content={siteTitle} />
         <meta property="og:description" content={siteTitle} />
-        <meta property="og:image" content="" />
+        <meta property="og:image" content="/images/profile.jpg" />
       </Head>
       <Header />
       <main>{children}</main>
@@ -52,7 +52,8 @@ export default function Layout({
         <meta property="og:url" content="" />
         <meta property="og:title" content={siteTitle} />
         <meta property="og:description" content={siteTitle} />
-        <meta property="og:image" content="" />
+        <meta property="og:image" content="/images/profile.jpg" />
+        <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/prism/1.23.0/themes/prism-tomorrow.min.css" />
         <title>{meta.title} | {siteTitle}</title>
       </Head>
       <Header />
@@ -62,6 +63,8 @@ export default function Layout({
         {children}
       </main>
       <Footer />
+      <script src="https://cdnjs.cloudflare.com/ajax/libs/prism/1.23.0/components/prism-core.min.js" />
+      <script src="https://cdnjs.cloudflare.com/ajax/libs/prism/1.23.0/plugins/autoloader/prism-autoloader.min.js" />
     </div>
   )
 }
