@@ -41,7 +41,7 @@ export default function Home({
           <li key={'idN'} className="my-3 bg-gray-100 dark:bg-gray-800 rounded-sm shadow-sm hover:shadow-lg h-30">
             <Link href={`/posts/${idN}`}>
               <a className="flex flex-col h-32 p-4">
-                <Date dateString={String(idN)} />
+                <span className="text-xs text-gray-800 dark:text-gray-200"><Date dateString={String(idN)} /></span>
                 <span className="text-xl mb-4 text-gray-900 dark:text-gray-100">{title}</span>
                 <span className="truncate text-gray-900 dark:text-gray-100">{description}</span>
               </a>

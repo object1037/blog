@@ -1,10 +1,10 @@
 import Head from 'next/head'
-import Image from 'next/image'
-import Link from 'next/link'
 import Header from '../components/header'
 import Footer from './Footer'
+import Date from './date'
 
 export const siteTitle = "ゆるふわインターネット"
+export const siteUrl = "https://blog1037.vercel.app"
 
 export default function Layout({
   children,
@@ -29,7 +29,7 @@ export default function Layout({
         <meta name="description" content="object_1037のブログです。" />
         <meta name="twitter:card" content="summary" />
         <meta name="twitter:creator" content="@object_1037" />
-        <meta property="og:url" content="" />
+        <meta property="og:url" content={siteUrl} />
         <meta property="og:title" content={siteTitle} />
         <meta property="og:description" content={siteTitle} />
         <meta property="og:image" content="/images/profile.jpg" />
@@ -49,7 +49,7 @@ export default function Layout({
         <meta name="description" content="object_1037のブログです。" />
         <meta name="twitter:card" content="summary" />
         <meta name="twitter:creator" content="@object_1037" />
-        <meta property="og:url" content="" />
+        <meta property="og:url" content={`${siteUrl}/posts/${meta.date}`} />
         <meta property="og:title" content={siteTitle} />
         <meta property="og:description" content={siteTitle} />
         <meta property="og:image" content="/images/profile.jpg" />
@@ -58,7 +58,7 @@ export default function Layout({
       </Head>
       <Header />
       <main className="flex flex-col max-w-3xl mx-auto p-10">
-        <span className="text-sm text-gray-900 dark:text-gray-200">{meta.date}</span>
+        <span className="text-sm text-gray-900 dark:text-gray-200"><Date dateString={meta.date} /></span>
         <h1 className="text-4xl my-4 text-gray-900 dark:text-gray-100">{meta.title}</h1>
         {children}
       </main>
