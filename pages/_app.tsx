@@ -12,7 +12,7 @@ const mdComponents = {
   hr: (props) => <hr className="hidden" />,
   h3: (props) => <h2 className="text-3xl mt-4 mb-2 py-2 border-b-2 border-gray-300 text-gray-900 dark:text-gray-100">{props.children}</h2>,
   p: (props) => <p className="text-base py-2 text-gray-900 dark:text-gray-100">{props.children}</p>,
-  h4: (props) => <h3 className="text-2xl py-2">{props.children}</h3>,
+  h4: (props) => <h3 className="text-2xl py-2 text-gray-900 dark:text-gray-100">{props.children}</h3>,
   ul: (props) => <ul className="list-disc ml-6 py-2 text-gray-900 dark:text-gray-100">{props.children}</ul>,
   a: (props) => <a className="text-Blue-500 dark:text-Blue-400" {...props} />,
 }
