@@ -14,7 +14,7 @@ const mdComponents = {
   p: (props) => <p className="text-base py-2 text-gray-900 dark:text-gray-100">{props.children}</p>,
   h4: (props) => <h3 className="text-2xl py-2 text-gray-900 dark:text-gray-100">{props.children}</h3>,
   ul: (props) => <ul className="list-disc ml-6 py-2 text-gray-900 dark:text-gray-100">{props.children}</ul>,
-  a: (props) => <a className="text-Blue-500 dark:text-Blue-400" {...props} />,
+  a: (props) => <a target="_blank" rel="noopener" className="text-Blue-500 dark:text-Blue-400" {...props} />,
 }
 
 function App({ Component, pageProps }: AppProps) {
