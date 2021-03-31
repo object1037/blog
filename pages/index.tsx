@@ -38,7 +38,7 @@ export default function Home({
       <span className="text-center text-xl pb-10 pt-12 text-gray-900 dark:text-gray-100">{handleName}のブログです</span>
       <ul className="flex flex-col justify-center px-10 max-w-3xl mx-auto w-full">
         {allPostsData.map(({ idN, title, description }) => (
-          <li key={idN.toString()} className="my-3 bg-gray-100 dark:bg-gray-800 rounded-sm shadow-sm hover:shadow-lg h-30">
+          <li key={idN.toString()} className="my-3 bg-gray-100 dark:bg-gray-800 rounded-sm shadow-sm hover:shadow h-30">
             <Link href={`/posts/${idN}`}>
               <a className="flex flex-col h-32 p-4">
                 <span className="text-xs text-gray-800 dark:text-gray-200"><Date dateString={String(idN)} /></span>
