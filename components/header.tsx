@@ -13,7 +13,7 @@ export default function Header () {
         </a>
       </Link>
 
-      <Link href="https://object1037.vercel.app">
+      <Link href="https://object1037.dev">
         <a target="_blank" rel="noopener" className="h-full hover:bg-gray-200 dark:hover:bg-gray-900">
           <div className="flex items-center px-3 h-full">About</div>
         </a>

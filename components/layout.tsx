@@ -4,7 +4,7 @@ import Footer from './Footer'
 import Date from './date'
 
 export const siteTitle = "ゆるふわインターネット"
-export const siteUrl = "https://blog1037.vercel.app"
+export const siteUrl = "https://blog.object1037.dev"
 export const handleName = "object1037"
 
 export default function Layout({
@@ -33,7 +33,7 @@ export default function Layout({
         <meta property="og:url" content={siteUrl} />
         <meta property="og:title" content={siteTitle} />
         <meta property="og:description" content={`${handleName}のブログ`} />
-        <meta property="og:image" content="https://object1037.vercel.app/_next/image?url=%2Fimages%2Fprofile.jpg&w=640&q=75" />
+        <meta property="og:image" content="https://object1037.dev/_next/image?url=%2Fimages%2Fprofile.jpg&w=640&q=75" />
       </Head>
       <Header />
       <main>{children}</main>
@@ -53,7 +53,7 @@ export default function Layout({
         <meta property="og:url" content={`${siteUrl}/posts/${meta.date}`} />
         <meta property="og:title" content={`${meta.title} | ${siteTitle}`} />
         <meta property="og:description" content={`${handleName}のブログ`} />
-        <meta property="og:image" content="https://object1037.vercel.app/_next/image?url=%2Fimages%2Fprofile.jpg&w=640&q=75" />
+        <meta property="og:image" content="https://object1037.dev/_next/image?url=%2Fimages%2Fprofile.jpg&w=640&q=75" />
         <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/prism/1.23.0/themes/prism-tomorrow.min.css" />
         <title>{meta.title} | {siteTitle}</title>
       </Head>
