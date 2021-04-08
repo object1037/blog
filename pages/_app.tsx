@@ -1,5 +1,6 @@
 import { AppProps } from 'next/app'
 import '../styles/globals.css'
+import '../styles/prism.css'
 import {MDXProvider} from '@mdx-js/react'
 import { library } from '@fortawesome/fontawesome-svg-core'
 import { fab } from '@fortawesome/free-brands-svg-icons'
