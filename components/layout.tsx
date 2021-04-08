@@ -54,7 +54,6 @@ export default function Layout({
         <meta property="og:title" content={`${meta.title} | ${siteTitle}`} />
         <meta property="og:description" content={`${handleName}のブログ`} />
         <meta property="og:image" content="https://object1037.dev/_next/image?url=%2Fimages%2Fprofile.jpg&w=640&q=75" />
-        <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/prism/1.23.0/themes/prism-tomorrow.min.css" />
         <title>{meta.title} | {siteTitle}</title>
       </Head>
       <Header />
