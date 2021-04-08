@@ -8,7 +8,7 @@ export const meta = {
 }
 
 import Layout from "../../components/layout"
-import Image from "next/image"
+import Im from "../../components/im"
 
 ### test
 
@@ -32,6 +32,6 @@ int main() {
 
 image test
 
-<div className="flex-grow-0"><Image src="/images/profile.jpg" width="180" height="180" /></div>
+<Im src="/images/profile.jpg" width="180" height="180" />
 
 export default ({ children }) => <Layout meta={meta}>{children}</Layout>
