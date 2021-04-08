@@ -9,12 +9,14 @@ library.add(fab)
 const mdComponents = {
   h2: (props) => <h2 className="hidden">{props.children}</h2>,
   hr: (props) => <hr className="hidden" />,
-  h3: (props) => <h2 className="text-3xl mt-4 mb-2 py-2 border-b-2 border-gray-300 text-gray-900 dark:text-gray-100">{props.children}</h2>,
-  p: (props) => <p className="text-base py-2 text-gray-900 dark:text-gray-100">{props.children}</p>,
-  h4: (props) => <h3 className="text-2xl py-2 text-gray-900 dark:text-gray-100">{props.children}</h3>,
-  ul: (props) => <ul className="list-disc ml-6 py-2 text-gray-900 dark:text-gray-100">{props.children}</ul>,
+  h3: (props) => <h2 className="text-3xl mt-4 mb-2 py-2 border-b-2 border-gray-300">{props.children}</h2>,
+  p: (props) => <p className="text-base py-2">{props.children}</p>,
+  h4: (props) => <h3 className="text-2xl py-2">{props.children}</h3>,
+  ul: (props) => <ul className="list-disc ml-6 py-2">{props.children}</ul>,
   a: (props) => <a target="_blank" rel="noopener" className="text-Blue-500 dark:text-Blue-300" {...props} />,
   code: (props) => <code className="text-sm">{props.children}</code>,
+  blockquote: (props) => <blockquote className="italic text-gray-500 dark:text-gray-300 border-l-4 pl-4">{props.children}</blockquote>,
+  img: (props) => <img className="bg-red-400" {...props} />,
 }
 
 function App({ Component, pageProps }: AppProps) {

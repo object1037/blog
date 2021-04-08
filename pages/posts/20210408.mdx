@@ -1,0 +1,37 @@
+---
+title: "test" description: ""
+---
+
+export const meta = {
+  title: "test",
+  date: "20210408"
+}
+
+import Layout from "../../components/layout"
+import Image from "next/image"
+
+### test
+
+>this is a test quote
+
+this is a normal text
+
+```cpp
+#include <bits/stdc++.h>
+using namespace std;
+
+int main() {
+  int a;
+  cin >> a;
+  for (int i; i < 100; i++) {
+    a /= 2;
+  }
+  return a;
+}
+```
+
+image test
+
+<div className="flex-grow-0"><Image src="/images/profile.jpg" width="180" height="180" /></div>
+
+export default ({ children }) => <Layout meta={meta}>{children}</Layout>
