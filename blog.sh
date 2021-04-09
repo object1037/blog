@@ -13,6 +13,7 @@ export const meta = {
 
 import Layout from "../../components/layout"
 import Im from "../../components/im"
+import TweetEmbed from "react-tweet-embed"
 
 
 
