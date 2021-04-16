@@ -17,7 +17,6 @@ const mdComponents = {
   a: (props) => <a target="_blank" rel="noopener" className="text-Blue-500 dark:text-Blue-300" {...props} />,
   code: (props) => <code className="text-sm">{props.children}</code>,
   blockquote: (props) => <blockquote className="italic text-gray-500 dark:text-gray-300 border-l-4 pl-4 py-4 my-3">{props.children}</blockquote>,
-  img: (props) => <img className="bg-red-400" {...props} />,
 }
 
 function App({ Component, pageProps }: AppProps) {
