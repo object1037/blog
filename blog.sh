@@ -23,3 +23,5 @@ export default ({ children }) => <Layout meta={meta}>{children}</Layout>' > page
 open -a "Visual Studio Code" pages/posts/(date +%Y%m%d).mdx
 
 npm run dev
+
+open 'http://localhost:3000'
