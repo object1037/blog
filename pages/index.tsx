@@ -1,5 +1,4 @@
 import Head from 'next/head'
-import Image from 'next/image'
 import Layout, { siteTitle, handleName } from '../components/layout'
 import Link from 'next/link'
 import { GetStaticProps } from 'next'
