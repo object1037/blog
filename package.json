@@ -23,7 +23,7 @@
     "react-tweet-embed": "^1.2.2"
   },
   "devDependencies": {
-    "@types/node": "^15.0.1",
+    "@types/node": "^15.0.2",
     "@types/react": "^17.0.4",
     "autoprefixer": "^10.2.5",
     "postcss": "^8.2.13",
