@@ -1,0 +1,63 @@
+export const meta = {
+  title: "投稿テスト",
+  description: "テスト",
+  date: "20210518",
+}
+
+import Layout from "../components/layout"
+import Im from "../components/im"
+import Code from "../components/inlineCode"
+import TweetEmbed from 'react-tweet-embed'
+
+# 見出し1
+
+先月末に東京で一人暮らしを初めてからもう2週間が経とうとしています。さすがに家事には慣れてきたところですが、実はまだ机と椅子が来ていないので落ち着かない感じです。
+
+## 見出し2
+
+仕方ないので段ボール箱を机にして小さい踏み台(に掛け布団を載せてクッション性を加えたもの)を椅子にしています。
+
+## 見出し3
+
+机と椅子、早く来て乁(˙꒳˙乁)ｸﾚﾖ...←来たよ（よかったね）
+
+# ソースコード
+
+ソースコードの表示は以下の通り
+
+```javascript
+import useSWR from 'swr';
+
+async function fetcher(url) {
+  const res = await window.fetch(url);
+  return await res.json();
+}
+
+export function useReservations() {
+  const { data, error } = useSWR(`/api/get-reservations`, fetcher)
+
+  return {
+    reservations: data,
+    isLoading: !error && !data,
+    isError: error,
+  }
+}
+```
+
+## inline-code
+
+インラインコードは<Code code="hoge" />とするとよいぞい
+
+# 画像
+
+画像は以下の通り
+
+<Im src="/images/profile.jpg" w={350} h={350} />
+
+↑かわいいね
+
+# ツイート
+
+<TweetEmbed id="340640143058825216" />
+
+export default ({ children }) => <Layout meta={meta}>{children}</Layout>
