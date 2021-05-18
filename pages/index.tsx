@@ -3,7 +3,7 @@ import Layout, { siteTitle, handleName } from '../components/layout'
 import Link from 'next/link'
 import { GetStaticProps } from 'next'
 import { getSortedPostsData } from '../lib/posts'
-import Date from '../components/date'
+import PostCard from '../components/postCard'
 import { useEffect, useState } from 'react'
 
 export const getStaticProps: GetStaticProps = async () => {
@@ -58,13 +58,7 @@ export default function Home({
       <ul className="flex flex-col justify-center px-10 max-w-3xl mx-auto w-full">
         {allPostsData.map(({idN}, index) => (
           <li key={idN.toString()} className="my-3 bg-gray-100 dark:bg-gray-800 rounded-sm shadow-sm hover:shadow-lg h-30">
-            <Link href={`/posts/${idN}`}>
-              <a className="flex flex-col h-32 p-4">
-                <span className="text-xs text-gray-800 dark:text-gray-200"><Date dateString={String(idN)} /></span>
-                <span className="text-xl mb-4 text-gray-900 dark:text-gray-100">{metas[index].title}</span>
-                <span className="truncate text-gray-900 dark:text-gray-100">{metas[index].description}</span>
-              </a>
-            </Link>
+            <PostCard idN={idN} title={metas[index].title} description={metas[index].description} />
           </li>
         ))}
       </ul>
