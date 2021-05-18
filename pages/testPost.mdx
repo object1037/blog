@@ -9,6 +9,8 @@ import Im from "../components/im"
 import Code from "../components/inlineCode"
 import TweetEmbed from 'react-tweet-embed'
 
+これは投稿テストです。
+
 # 見出し1
 
 先月末に東京で一人暮らしを初めてからもう2週間が経とうとしています。さすがに家事には慣れてきたところですが、実はまだ机と椅子が来ていないので落ち着かない感じです。
@@ -17,9 +19,21 @@ import TweetEmbed from 'react-tweet-embed'
 
 仕方ないので段ボール箱を机にして小さい踏み台(に掛け布団を載せてクッション性を加えたもの)を椅子にしています。
 
-## 見出し3
+### 見出し3
 
 机と椅子、早く来て乁(˙꒳˙乁)ｸﾚﾖ...←来たよ（よかったね）
+
+# リスト
+
+ * 項目1
+ * 項目2
+ * 項目3
+
+## 数字付きリスト
+
+ 1. aaaa
+ 2. bbbbb
+ 3. ccccc
 
 # ソースコード
 
@@ -55,9 +69,5 @@ export function useReservations() {
 <Im src="/images/profile.jpg" w={350} h={350} />
 
 ↑かわいいね
-
-# ツイート
-
-<TweetEmbed id="340640143058825216" />
 
 export default ({ children }) => <Layout meta={meta}>{children}</Layout>

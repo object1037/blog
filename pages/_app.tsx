@@ -1,6 +1,6 @@
 import { AppProps } from 'next/app'
 import '../styles/globals.css'
-import '../styles/prism.css'
+import "../styles/prism.css";
 import {MDXProvider} from '@mdx-js/react'
 import { library } from '@fortawesome/fontawesome-svg-core'
 import { fab } from '@fortawesome/free-brands-svg-icons'
@@ -8,9 +8,10 @@ import { fab } from '@fortawesome/free-brands-svg-icons'
 library.add(fab)
 
 const mdComponents = {
-  h3: (props) => <h2 className="text-3xl mt-4 mb-2 py-2 border-b-2 border-gray-300">{props.children}</h2>,
-  p: (props) => <p className="text-base py-2">{props.children}</p>,
-  h4: (props) => <h3 className="text-2xl py-2">{props.children}</h3>,
+  h1: (props) => <h1 className="text-3xl font-semibold mb-6 mt-8 py-2 border-b border-gray-400">{props.children}</h1>,
+  h2: (props) => <h2 className="text-2xl font-semibold mt-4 py-2">{props.children}</h2>,
+  h3: (props) => <h3 className="text-xl font-medium mt-2 py-2">{props.children}</h3>,
+  p: (props) => <p className="text-base leading-relaxed">{props.children}</p>,
   ul: (props) => <ul className="list-disc ml-6 py-2">{props.children}</ul>,
   a: (props) => <a target="_blank" rel="noopener" className="text-Blue-500 dark:text-Blue-300" {...props} />,
   code: (props) => <code className="text-sm">{props.children}</code>,
