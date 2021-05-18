@@ -16,10 +16,10 @@ export default function Layout({
   home?: boolean
   meta: {
     title: string
+    description: string
     date: string
   }
 }) {
-
   if (home) {
     return (
       <div>

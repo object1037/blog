@@ -17,6 +17,7 @@ export const getStaticProps: GetStaticProps = async () => {
 
 export const metaH = {
   title: '',
+  description: '',
   date: ''
 }
 
@@ -30,8 +31,7 @@ export default function Home({
   const postsCount = allPostsData.length
   let articles = new Array
   let initArr = new Array(postsCount)
-  let testa = [{title: "test"}, {title: "test2"}, {title: "test23"}]
-  initArr.fill({title: "loading", date: "loading"})
+  initArr.fill({title: "loading...", description: "loading...", date: ''})
 
   const [metas, setMetas] = useState(initArr)
 
@@ -62,7 +62,7 @@ export default function Home({
               <a className="flex flex-col h-32 p-4">
                 <span className="text-xs text-gray-800 dark:text-gray-200"><Date dateString={String(idN)} /></span>
                 <span className="text-xl mb-4 text-gray-900 dark:text-gray-100">{metas[index].title}</span>
-                <span className="truncate text-gray-900 dark:text-gray-100">{}</span>
+                <span className="truncate text-gray-900 dark:text-gray-100">{metas[index].description}</span>
               </a>
             </Link>
           </li>
