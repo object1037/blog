@@ -57,10 +57,14 @@ export default function Layout({
         <title>{meta.title} | {siteTitle}</title>
       </Head>
       <Header />
-      <main className="flex flex-col max-w-3xl mx-auto p-10">
-        <span className="text-sm text-gray-900 dark:text-gray-200"><Date dateString={meta.date} /></span>
-        <h1 className="text-4xl my-4 text-gray-900 dark:text-gray-100">{meta.title}</h1>
-        {children}
+      <main className="flex flex-col max-w-5xl mx-auto">
+        <div className="flex flex-col w-full py-8 border-gray-600 dark:border-gray-200 border-b">
+          <h1 className="text-4xl py-4 text-gray-900 dark:text-gray-100 text-center font-bold">{meta.title}</h1>
+          <span className="font-light py-3 text-gray-600 dark:text-gray-200 text-center"><Date dateString={meta.date} /></span>
+        </div>
+        <div className="max-w-3xl mx-auto py-10">
+          {children}
+        </div>
       </main>
       <Footer />
       <script src="https://cdnjs.cloudflare.com/ajax/libs/prism/1.23.0/components/prism-core.min.js" />
