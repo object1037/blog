@@ -8,12 +8,10 @@ export function getSortedPostsData() {
 
   const allPostsData = fileNames.map(fileName => {
     const id = fileName.replace(/\.mdx$/, '')
-    const fullPath = path.join(postsDirectory, fileName)
-    const fileContents = fs.readFileSync(fullPath, 'utf8')
     const idN = +id
 
     return {
-      idN,
+      idN
     }
   })
 

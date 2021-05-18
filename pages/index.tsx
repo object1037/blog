@@ -4,9 +4,7 @@ import Link from 'next/link'
 import { GetStaticProps } from 'next'
 import { getSortedPostsData } from '../lib/posts'
 import Date from '../components/date'
-
-let articles = new Array
-let promises = new Array
+import { useEffect, useState } from 'react'
 
 export const getStaticProps: GetStaticProps = async () => {
   const allPostsData = getSortedPostsData()
@@ -26,26 +24,50 @@ export default function Home({
   allPostsData
 }: {
   allPostsData: {
-    title: string
-    description: string
     idN: number
   }[]
 }) {
   const postsCount = allPostsData.length
-  for (let i = 0; i < postsCount; i++) {
-    let fileName = allPostsData[i].idN;
-    promises.push(import(`./posts/${fileName}.mdx`)
-      .then((mod) => articles.push(mod.meta))
-    )
-  }
-  Promise.all(promises).then(() => console.log(articles))
+  let articles = new Array
+  let initArr = new Array(postsCount)
+  let testa = [{title: "test"}, {title: "test2"}, {title: "test23"}]
+  initArr.fill({title: "loading", date: "loading"})
+
+  const [metas, setMetas] = useState(initArr)
+
+  useEffect(() => {
+    let promises = new Array
+    for (let i = 0; i < postsCount; i++) {
+      let fileName = allPostsData[i].idN;
+      promises.push(import(`./posts/${fileName}.mdx`)
+        .then((mod) => articles.push(mod.meta))
+      )
+    }
+    Promise.all(promises).then(() => {
+      setMetas(articles)
+    })
+  }, []);
+
   return (
     <Layout home meta={metaH}>
     <Head>
       <title>{siteTitle}</title>
     </Head>
     <section className="flex flex-col justify-center">
-      <span className="text-center text-xl pb-10 pt-12 text-gray-900 dark:text-gray-100"></span>
+      <span className="text-center text-xl pb-10 pt-12 text-gray-900 dark:text-gray-100">{handleName}のブログです</span>
+      <ul className="flex flex-col justify-center px-10 max-w-3xl mx-auto w-full">
+        {allPostsData.map(({idN}, index) => (
+          <li key={idN.toString()} className="my-3 bg-gray-100 dark:bg-gray-800 rounded-sm shadow-sm hover:shadow-lg h-30">
+            <Link href={`/posts/${idN}`}>
+              <a className="flex flex-col h-32 p-4">
+                <span className="text-xs text-gray-800 dark:text-gray-200"><Date dateString={String(idN)} /></span>
+                <span className="text-xl mb-4 text-gray-900 dark:text-gray-100">{metas[index].title}</span>
+                <span className="truncate text-gray-900 dark:text-gray-100">{}</span>
+              </a>
+            </Link>
+          </li>
+        ))}
+      </ul>
     </section>
     </Layout>
   )
