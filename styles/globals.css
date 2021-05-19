@@ -6,6 +6,15 @@
   font-family: -apple-system, BlinkMacSystemFont, "Helvetica Neue", "Segoe UI", YuGothic, "Yu Gothic Medium", "Yu Gothic", sans-serif;
 }
 
+.post-area {
+  min-height: calc(100vh - 10rem);
+}
+@media (min-width: 768px) {
+  .post-area {
+    min-height: calc(100vh - 13rem);
+  }
+}
+
 .circle {
   border-width: 1.5rem;
   animation: animation 5s linear infinite;
