@@ -11,7 +11,7 @@ interface accountIcon {
 export default function Account (account: accountIcon) {
   return (
     <Link href={account.link}>
-      <a target="_blank" rel="noopener" className={'justify-center text-white inline-block p-6' + ' ' + account.hover}>
+      <a target="_blank" rel="noopener" aria-label={account.icon} className={'justify-center text-white inline-block p-6' + ' ' + account.hover}>
         <div className="w-8 h-8"><FontAwesomeIcon icon={['fab', account.icon]} /></div>
       </a>
     </Link>
