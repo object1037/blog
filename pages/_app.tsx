@@ -11,7 +11,7 @@ const mdComponents = {
   h1: (props) => <h1 className="text-3xl font-semibold mb-6 mt-8 py-2 border-b border-gray-400">{props.children}</h1>,
   h2: (props) => <h2 className="text-2xl font-semibold mt-4 py-2">{props.children}</h2>,
   h3: (props) => <h3 className="text-xl font-medium mt-2 py-2">{props.children}</h3>,
-  p: (props) => <p className="text-base leading-relaxed">{props.children}</p>,
+  p: (props) => <p className="text-base leading-relaxed pt-2">{props.children}</p>,
   ul: (props) => <ul className="list-disc ml-6 py-2">{props.children}</ul>,
   ol: (props) => <ol className="list-decimal ml-6 py-2">{props.children}</ol>,
   a: (props) => <a target="_blank" rel="noopener" className="text-Blue-500 dark:text-Blue-300" {...props} />,

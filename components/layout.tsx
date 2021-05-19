@@ -58,9 +58,9 @@ export default function Layout({
       </Head>
       <Header />
       <main className="flex flex-col w-screen px-10 justify-center">
-        <div className="flex flex-col max-w-5xl py-8 border-gray-600 dark:border-gray-200 border-b w-full mx-auto">
+        <div className="flex flex-col max-w-5xl pt-8 pb-6 border-gray-600 dark:border-gray-200 border-b w-full mx-auto">
           <h1 className="text-4xl py-4 text-gray-900 dark:text-gray-100 text-center font-bold">{meta.title}</h1>
-          <span className="font-light py-3 text-gray-600 dark:text-gray-200 text-center"><Date dateString={meta.date} /></span>
+          <span className="font-light py-3 text-gray-600 dark:text-gray-300 text-center"><Date dateString={meta.date} /></span>
         </div>
         <div className="mx-auto max-w-3xl py-10 w-full">
           {children}
