@@ -13,6 +13,7 @@ const mdComponents = {
   h3: (props) => <h3 className="text-xl font-medium mt-2 py-2">{props.children}</h3>,
   p: (props) => <p className="text-base leading-relaxed">{props.children}</p>,
   ul: (props) => <ul className="list-disc ml-6 py-2">{props.children}</ul>,
+  ol: (props) => <ol className="list-decimal ml-6 py-2">{props.children}</ol>,
   a: (props) => <a target="_blank" rel="noopener" className="text-Blue-500 dark:text-Blue-300" {...props} />,
   code: (props) => <code className="text-sm">{props.children}</code>,
   blockquote: (props) => <blockquote className="italic text-gray-500 dark:text-gray-300 border-l-4 pl-4 py-4 my-3">{props.children}</blockquote>,
