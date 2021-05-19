@@ -36,7 +36,7 @@ export default function Layout({
         <meta property="og:image" content="https://object1037.dev/_next/image?url=%2Fimages%2Fprofile.jpg&w=640&q=75" />
       </Head>
       <Header />
-      <main>{children}</main>
+      <main className="mb-20">{children}</main>
       <Footer />
     </div>
     )
@@ -57,7 +57,7 @@ export default function Layout({
         <title>{meta.title} | {siteTitle}</title>
       </Head>
       <Header />
-      <main className="flex flex-col w-screen px-10 justify-center">
+      <main className="flex flex-col w-screen px-6 post-area mb-20">
         <div className="flex flex-col max-w-5xl pt-8 pb-6 border-gray-600 dark:border-gray-200 border-b w-full mx-auto">
           <h1 className="text-4xl py-4 text-gray-900 dark:text-gray-100 text-center font-bold">{meta.title}</h1>
           <span className="font-light py-3 text-gray-600 dark:text-gray-300 text-center"><Date dateString={meta.date} /></span>
