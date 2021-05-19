@@ -2,6 +2,10 @@
 @tailwind components;
 @tailwind utilities;
 
+* {
+  font-family: -apple-system, BlinkMacSystemFont, "Helvetica Neue", "Segoe UI", YuGothic, "Yu Gothic Medium", "Yu Gothic", sans-serif;
+}
+
 .circle {
   border-width: 1.5rem;
   animation: animation 5s linear infinite;
