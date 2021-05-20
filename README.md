@@ -4,7 +4,7 @@ My blog
 
 ## 執筆用スクリプト
 
-```shell
+```fish
 #!/usr/local/bin/fish
 
 read --prompt='printf \'\\033[1;32m%s\\033[m\\033[1m%s\\033[m\\n\' \' ? \' \'Title : \'' title
