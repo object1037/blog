@@ -46,7 +46,7 @@ export default function Home({
     Promise.all(promises).then(() => {
       setMetas(articles)
     })
-  }, []);
+  });
 
   return (
     <Layout home meta={metaH}>
