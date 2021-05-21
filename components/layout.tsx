@@ -24,8 +24,6 @@ export default function Layout({
     return (
       <div>
       <Head>
-        <link rel="icon" href="/favicon.ico" />
-        <link rel="apple-touch-icon" sizes="180x180" href="/images/profile.jpg" />
         <meta name="viewport" content="initial-scale=1.0, width=device-width" />
         <meta name="description" content={`${handleName}のブログです`} />
         <meta name="twitter:card" content="summary" />
@@ -44,8 +42,6 @@ export default function Layout({
   return (
     <div>
       <Head>
-        <link rel="icon" href="/favicon.ico" />
-        <link rel="apple-touch-icon" sizes="180x180" href="/images/profile.jpg" />
         <meta name="viewport" content="initial-scale=1.0, width=device-width" />
         <meta name="description" content={`${handleName}のブログです`} />
         <meta name="twitter:card" content="summary" />
