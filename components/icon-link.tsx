@@ -3,8 +3,8 @@ import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
 import Link from 'next/link'
 
 interface accountIcon {
-  icon: IconName;
-  link: string;
+  icon: IconName
+  link: string
 }
 
 export default function IconLink(account: accountIcon) {
