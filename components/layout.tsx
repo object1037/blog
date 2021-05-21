@@ -22,25 +22,25 @@ export default function Layout({
 }) {
   if (home) {
     return (
-      <div>
-      <Head>
-        <meta name="viewport" content="initial-scale=1.0, width=device-width" />
-        <meta name="description" content={`${handleName}のブログです`} />
-        <meta name="twitter:card" content="summary" />
-        <meta name="twitter:creator" content="@object1037" />
-        <meta property="og:url" content={siteUrl} />
-        <meta property="og:title" content={siteTitle} />
-        <meta property="og:description" content={`${handleName}のブログ`} />
-        <meta property="og:image" content="https://object1037.dev/_next/image?url=%2Fimages%2Fprofile.jpg&w=640&q=75" />
-      </Head>
-      <Header />
-      <main className="mb-20">{children}</main>
-      <Footer />
-    </div>
+      <>
+        <Head>
+          <meta name="viewport" content="initial-scale=1.0, width=device-width" />
+          <meta name="description" content={`${handleName}のブログです`} />
+          <meta name="twitter:card" content="summary" />
+          <meta name="twitter:creator" content="@object1037" />
+          <meta property="og:url" content={siteUrl} />
+          <meta property="og:title" content={siteTitle} />
+          <meta property="og:description" content={`${handleName}のブログ`} />
+          <meta property="og:image" content="https://object1037.dev/_next/image?url=%2Fimages%2Fprofile.jpg&w=640&q=75" />
+        </Head>
+        <Header />
+        <main className="mb-20">{children}</main>
+        <Footer />
+      </>
     )
   }
   return (
-    <div>
+    <>
       <Head>
         <meta name="viewport" content="initial-scale=1.0, width=device-width" />
         <meta name="description" content={`${handleName}のブログです`} />
@@ -63,6 +63,6 @@ export default function Layout({
         </div>
       </main>
       <Footer />
-    </div>
+    </>
   )
 }

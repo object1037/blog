@@ -43,17 +43,17 @@ export default function Home({
 
   return (
     <Layout home>
-    <Head>
-      <title>{siteTitle}</title>
-    </Head>
-    <section className="flex flex-col justify-center">
-      <span className="text-center text-xl pb-10 pt-12 text-gray-900 dark:text-gray-100">{handleName}のブログです</span>
-      <ul className="flex flex-col justify-center px-10 max-w-3xl mx-auto w-full">
-        {allPostsData.map(({id}, index) => (
-          <PostCard key={String(id)} id={id} title={metas[index].title} description={metas[index].description} />
-        ))}
-      </ul>
-    </section>
+      <Head>
+        <title>{siteTitle}</title>
+      </Head>
+      <section className="flex flex-col justify-center">
+        <span className="text-center text-xl pb-10 pt-12 text-gray-900 dark:text-gray-100">{handleName}のブログです</span>
+        <ul className="flex flex-col justify-center px-10 max-w-3xl mx-auto w-full">
+          {allPostsData.map(({id}, index) => (
+            <PostCard key={String(id)} id={id} title={metas[index].title} description={metas[index].description} />
+          ))}
+        </ul>
+      </section>
     </Layout>
   )
 }

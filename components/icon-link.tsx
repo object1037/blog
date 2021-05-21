@@ -7,11 +7,11 @@ interface accountIcon {
   link: string;
 }
 
-export default function IconLink (account: accountIcon) {
+export default function IconLink(account: accountIcon) {
   return (
     <Link href={account.link}>
-      <a target="_blank" rel="noopener" aria-label={account.icon} className="justify-center text-white inline-block p-6 hover:text-gray-400">
-        <div className="w-8 h-8"><FontAwesomeIcon icon={['fab', account.icon]} /></div>
+      <a target="_blank" rel="noopener noreferrer" aria-label={account.icon} className="p-6 text-white hover:text-gray-400">
+        <p className="w-8 h-8"><FontAwesomeIcon icon={['fab', account.icon]} /></p>
       </a>
     </Link>
   )
