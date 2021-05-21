@@ -2,7 +2,7 @@ import Head from 'next/head'
 import Layout, { siteTitle, handleName } from '../components/layout'
 import { GetStaticProps } from 'next'
 import { getSortedPostsData } from '../lib/posts'
-import PostCard from '../components/postCard'
+import PostCard from '../components/post-card'
 import { useEffect, useState } from 'react'
 
 export const getStaticProps: GetStaticProps = async () => {
@@ -18,7 +18,7 @@ export default function Home({
   allPostsData
 }: {
   allPostsData: {
-    idN: number
+    id: number
   }[]
 }) {
   const postsCount = allPostsData.length
@@ -31,7 +31,7 @@ export default function Home({
   useEffect(() => {
     let promises = new Array
     for (let i = 0; i < postsCount; i++) {
-      let fileName = allPostsData[i].idN;
+      let fileName = allPostsData[i].id;
       promises.push(import(`./posts/${fileName}.mdx`)
         .then((mod) => articles.push(mod.meta))
       )
@@ -49,10 +49,8 @@ export default function Home({
     <section className="flex flex-col justify-center">
       <span className="text-center text-xl pb-10 pt-12 text-gray-900 dark:text-gray-100">{handleName}のブログです</span>
       <ul className="flex flex-col justify-center px-10 max-w-3xl mx-auto w-full">
-        {allPostsData.map(({idN}, index) => (
-          <li key={idN.toString()} className="my-3 bg-gray-100 dark:bg-gray-800 rounded-sm shadow-sm hover:shadow-lg h-30">
-            <PostCard idN={idN} title={metas[index].title} description={metas[index].description} />
-          </li>
+        {allPostsData.map(({id}, index) => (
+          <PostCard key={String(id)} id={id} title={metas[index].title} description={metas[index].description} />
         ))}
       </ul>
     </section>

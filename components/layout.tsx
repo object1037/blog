@@ -1,6 +1,6 @@
 import Head from 'next/head'
 import Header from '../components/header'
-import Footer from './Footer'
+import Footer from './footer'
 import Date from './date'
 
 export const siteTitle = "ゆるふわインターネット"
