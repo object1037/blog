@@ -7,16 +7,15 @@ export function getSortedPostsData() {
   const fileNames = fs.readdirSync(postsDirectory)
 
   const allPostsData = fileNames.map(fileName => {
-    const id = fileName.replace(/\.mdx$/, '')
-    const idN = +id
+    const id = +fileName.replace(/\.mdx$/, '')
 
     return {
-      idN
+      id
     }
   })
 
   return allPostsData.sort((a, b) => {
-    if (a.idN < b.idN) {
+    if (a.id < b.id) {
       return 1
     } else {
       return -1

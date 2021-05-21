@@ -1,6 +1,6 @@
 import Head from 'next/head'
 import Header from '../components/header'
-import Footer from './Footer'
+import Footer from './footer'
 import Date from './date'
 
 export const siteTitle = "ゆるふわインターネット"
@@ -14,7 +14,7 @@ export default function Layout({
 }: {
   children: React.ReactNode
   home?: boolean
-  meta: {
+  meta?: {
     title: string
     description: string
     date: string
@@ -22,30 +22,26 @@ export default function Layout({
 }) {
   if (home) {
     return (
-      <div>
-      <Head>
-        <link rel="icon" href="/favicon.ico" />
-        <link rel="apple-touch-icon" sizes="180x180" href="/images/profile.jpg" />
-        <meta name="viewport" content="initial-scale=1.0, width=device-width" />
-        <meta name="description" content={`${handleName}のブログです`} />
-        <meta name="twitter:card" content="summary" />
-        <meta name="twitter:creator" content="@object1037" />
-        <meta property="og:url" content={siteUrl} />
-        <meta property="og:title" content={siteTitle} />
-        <meta property="og:description" content={`${handleName}のブログ`} />
-        <meta property="og:image" content="https://object1037.dev/_next/image?url=%2Fimages%2Fprofile.jpg&w=640&q=75" />
-      </Head>
-      <Header />
-      <main className="mb-20">{children}</main>
-      <Footer />
-    </div>
+      <>
+        <Head>
+          <meta name="viewport" content="initial-scale=1.0, width=device-width" />
+          <meta name="description" content={`${handleName}のブログです`} />
+          <meta name="twitter:card" content="summary" />
+          <meta name="twitter:creator" content="@object1037" />
+          <meta property="og:url" content={siteUrl} />
+          <meta property="og:title" content={siteTitle} />
+          <meta property="og:description" content={`${handleName}のブログ`} />
+          <meta property="og:image" content="https://object1037.dev/_next/image?url=%2Fimages%2Fprofile.jpg&w=640&q=75" />
+        </Head>
+        <Header />
+        <main className="mb-20">{children}</main>
+        <Footer />
+      </>
     )
   }
   return (
-    <div>
+    <>
       <Head>
-        <link rel="icon" href="/favicon.ico" />
-        <link rel="apple-touch-icon" sizes="180x180" href="/images/profile.jpg" />
         <meta name="viewport" content="initial-scale=1.0, width=device-width" />
         <meta name="description" content={`${handleName}のブログです`} />
         <meta name="twitter:card" content="summary" />
@@ -67,6 +63,6 @@ export default function Layout({
         </div>
       </main>
       <Footer />
-    </div>
+    </>
   )
 }
