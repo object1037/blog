@@ -1,6 +1,5 @@
 import Head from 'next/head'
 import Layout, { siteTitle, handleName } from '../components/layout'
-import Link from 'next/link'
 import { GetStaticProps } from 'next'
 import { getSortedPostsData } from '../lib/posts'
 import PostCard from '../components/postCard'
