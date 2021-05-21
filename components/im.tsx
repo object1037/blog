@@ -8,5 +8,5 @@ interface Info {
 }
 
 export default function Im(info: Info) {
-  return <div className="flex-grow-0"><Image src={info.src} width={info.w} height={info.h} alt={info.alt} /></div>
+  return <div className="flex-grow-0"><Image src={`/images/${info.src}`} width={info.w} height={info.h} alt={info.alt} /></div>
 }
