@@ -70,6 +70,16 @@ export function useReservations() {
   }
 }
 
+export function useAllReservations(loggedIn) {
+  const { data, error } = useSWR(loggedIn ? '/api/get-alldata' : null, fetcher)
+
+  return {
+    reservations: data,
+    isLoading: !error && !data,
+    isError: error,
+  }
+}
+console.log(1 + 2)
 console.log("veryLongTextHere : aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa")
 ```
 
