@@ -14,7 +14,7 @@ export default function Layout({
 }: {
   children: React.ReactNode
   home?: boolean
-  meta: {
+  meta?: {
     title: string
     description: string
     date: string
