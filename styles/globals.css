@@ -30,7 +30,7 @@ body {
   left: calc(0% - 2rem);
 }
 .triangle {
-  border-bottom: solid 1.5rem #ff0f53;
+  border-bottom: solid 1.5rem #fd2e7a;
   border-left: solid 0.375rem transparent;
   border-right: solid 2rem transparent;
   position: relative;
@@ -38,7 +38,7 @@ body {
   left: calc(0.625rem);
 }
 .triangle2 {
-  border-top: solid 1.5rem #ff0f53;
+  border-top: solid 1.5rem #fd2e7a;
   border-right: solid 0.375rem transparent;
   border-left: solid 2rem transparent;
   position: relative;
