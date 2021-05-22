@@ -39,7 +39,7 @@ export default function Home({
     Promise.all(promises).then(() => {
       setMetas(articles)
     })
-  });
+  }, [allPostsData]);
 
   return (
     <Layout home>
