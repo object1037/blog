@@ -16,7 +16,7 @@ const mdComponents = {
   ol: (props) => <ol className="list-decimal ml-6 py-2">{props.children}</ol>,
   a: (props) => <a target="_blank" rel="noopener noreferrer" className="text-blue-500 dark:text-blue-300 hover:underline" {...props} />,
   code: (props) => <code className="text-sm">{props.children}</code>,
-  blockquote: (props) => <blockquote className="italic text-gray-500 dark:text-gray-300 border-l-4 pl-4 py-4 my-3">{props.children}</blockquote>,
+  blockquote: (props) => <blockquote className="italic text-gray-500 dark:text-gray-300 border-l-4 pl-4 pb-4 pt-2 my-3">{props.children}</blockquote>,
 }
 
 function App({ Component, pageProps }: AppProps) {
