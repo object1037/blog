@@ -28,18 +28,30 @@ export default function Home({
 
   const [metas, setMetas] = useState(initArr)
 
+  let updateFlag = false
+
   useEffect(() => {
-    let promises = new Array
+    let promises = new Array(postsCount)
     for (let i = 0; i < postsCount; i++) {
       let fileName = allPostsData[i].id;
       promises.push(import(`./posts/${fileName}.mdx`)
-        .then((mod) => articles.push(mod.meta))
+        .then((mod) => {
+          articles.push(mod.meta)
+        })
       )
     }
     Promise.all(promises).then(() => {
-      setMetas(articles)
+      for (let j = 0; j < postsCount; j++) {
+        if (metas[j] != articles[j]) {
+          updateFlag = true
+        }
+      }
+      if (updateFlag) {
+        setMetas(articles)
+      }
     })
-  });
+  }, [metas]);
+
 
   return (
     <Layout home>
