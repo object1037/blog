@@ -7,7 +7,7 @@ module.exports = {
     extend: {
       colors: {
         gray: colors.trueGray,
-        ppink: '#ff0f53',
+        ppink: '#fd2e7a',
       },
     },
   },
