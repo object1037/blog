@@ -19,7 +19,6 @@ echo 'export const meta = {
 }
 import Layout from "../../components/layout"
 //import Im from "../../components/im"
-//import Code from "../../components/inline-code"
 //import TweetEmbed from "react-tweet-embed"
 
 
