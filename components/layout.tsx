@@ -43,12 +43,12 @@ export default function Layout({
     <>
       <Head>
         <meta name="viewport" content="initial-scale=1.0, width=device-width" />
-        <meta name="description" content={`${handleName}のブログです`} />
+        <meta name="description" content={`${meta.description} | ${handleName}のブログ`} />
         <meta name="twitter:card" content="summary" />
         <meta name="twitter:creator" content="@object1037" />
         <meta property="og:url" content={`${siteUrl}/posts/${meta.date}`} />
         <meta property="og:title" content={`${meta.title} | ${siteTitle}`} />
-        <meta property="og:description" content={`${handleName}のブログ`} />
+        <meta property="og:description" content={meta.description} />
         <meta property="og:image" content="https://object1037.dev/_next/image?url=%2Fimages%2Fprofile.jpg&w=640&q=75" />
         <title>{meta.title} | {siteTitle}</title>
       </Head>
