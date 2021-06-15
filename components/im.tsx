@@ -10,7 +10,7 @@ interface Info {
 
 export default function Im(info: Info) {
   return (
-    <div className="flex flex-col items-center my-4 space-y-4">
+    <div className="flex flex-col items-center mt-6 mb-4 space-y-4">
       <div className="flex-grow-0">
         <Image src={`/images/${info.src}`} width={info.w} height={info.h} alt={info.alt} />
       </div>
