@@ -1,8 +1,12 @@
+/* eslint-disable @next/next/no-page-custom-font */
+import Head from 'next/head'
+
 export default function Custom404() {
   return (
     <>
-    <link rel="preconnect" href="https://fonts.gstatic.com" />
-    <link href="https://fonts.googleapis.com/css2?family=Comfortaa&display=swap" rel="stylesheet" />
+    <Head>
+      <link href="https://fonts.googleapis.com/css2?family=Comfortaa&display=swap" rel="stylesheet" />
+    </Head>
     <div className="circle rounded-full border-ppink border-solid w-60 h-60 mx-auto my-8">
       <div className="bar h-6 bg-white dark:bg-gray-900">
         <div className="triangle border-solid w-0 h-0"></div>
