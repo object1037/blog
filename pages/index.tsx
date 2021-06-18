@@ -23,6 +23,7 @@ export default function Home({
 }) {
   const postsCount = allPostsData.length
   let articles = new Array
+  let promises = new Array(postsCount)
   let initArr = new Array(postsCount)
   initArr.fill({title: "loading...", description: "loading...", date: ''})
 
@@ -31,7 +32,6 @@ export default function Home({
   let updateFlag = false
 
   useEffect(() => {
-    let promises = new Array(postsCount)
     for (let i = 0; i < postsCount; i++) {
       let fileName = allPostsData[i].id;
       promises.push(import(`./posts/${fileName}.mdx`)
