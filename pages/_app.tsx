@@ -4,21 +4,29 @@ import "../styles/prism.css";
 import {MDXProvider} from '@mdx-js/react'
 import { library } from '@fortawesome/fontawesome-svg-core'
 import { fab } from '@fortawesome/free-brands-svg-icons'
-import InlineCode from '../components/inline-code'
-
+import H1 from '../components/mdComponents/H1'
+import H2 from '../components/mdComponents/H2'
+import H3 from '../components/mdComponents/H3'
+import Paragraph from '../components/mdComponents/Paragraph';
+import Ul from '../components/mdComponents/Ul'
+import Ol from '../components/mdComponents/Ol'
+import Anchor from '../components/mdComponents/Anchor'
+import Code from '../components/mdComponents/Code'
+import InlineCode from '../components/mdComponents/inline-code'
+import Blockquote from '../components/mdComponents/Blockquote'
 library.add(fab)
 
 const mdComponents = {
-  h1: (props) => <h1 className="text-3xl font-semibold mb-6 mt-8 py-2 border-b border-gray-400">{props.children}</h1>,
-  h2: (props) => <h2 className="text-2xl font-semibold mt-4 py-2">{props.children}</h2>,
-  h3: (props) => <h3 className="text-xl font-medium mt-2 py-2">{props.children}</h3>,
-  p: (props) => <p className="text-base leading-relaxed pt-2">{props.children}</p>,
-  ul: (props) => <ul className="list-disc ml-6 py-2">{props.children}</ul>,
-  ol: (props) => <ol className="list-decimal ml-6 py-2">{props.children}</ol>,
-  a: (props) => <a target="_blank" rel="noopener noreferrer" className="text-blue-500 dark:text-blue-300 hover:underline" {...props} />,
-  code: (props) => <code className="text-sm">{props.children}</code>,
-  inlineCode: (props) => <InlineCode>{props.children}</InlineCode>,
-  blockquote: (props) => <blockquote className="italic text-gray-500 dark:text-gray-300 border-l-4 pl-4 pb-4 pt-2 my-3">{props.children}</blockquote>,
+  h1: (props: HTMLElement) => H1(props), 
+  h2: (props: HTMLElement) => H2(props),
+  h3: (props: HTMLElement) => H3(props),
+  p: (props: HTMLElement) => Paragraph(props),
+  ul: (props: HTMLElement) => Ul(props),
+  ol: (props: HTMLElement) => Ol(props),
+  a: (props: HTMLAnchorElement) => Anchor(props),
+  code: (props: HTMLElement) => Code(props),
+  inlineCode: (props: HTMLElement) => InlineCode(props),
+  blockquote: (props: HTMLElement) => Blockquote(props),
 }
 
 function App({ Component, pageProps }: AppProps) {
