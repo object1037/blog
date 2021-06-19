@@ -20,6 +20,7 @@ echo 'export const meta = {
 import Layout from "../../components/layout"
 //import Im from "../../components/im"
 //import TweetEmbed from "react-tweet-embed"
+//import imageName from "../../public/images/'(date +%Y%m%d)'/imageName.jpg"
 
 
 

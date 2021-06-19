@@ -6,7 +6,8 @@ export const meta = {
 
 import Layout from "../components/layout"
 import Im from "../components/im"
-import TweetEmbed from 'react-tweet-embed'
+//import TweetEmbed from 'react-tweet-embed'
+import ponpokoInamenn from "../public/images/testPost/ponpoko-inamenn.jpg"
 
 これは投稿テストです。
 
@@ -90,7 +91,7 @@ console.log("veryLongTextHere : aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa
 
 画像は以下の通り
 
-<Im src="testPost/ponpoko-inamenn.PNG" w={1334} h={750} alt="ガチ恋ぽんぽこの画像" cap="否めん！(これは画像のキャプション)" />
+<Im src={ponpokoInamenn} alt="ガチ恋ぽんぽこの画像" cap="否めん！(これは画像のキャプション)" />
 
 あ～う〜♡
 
