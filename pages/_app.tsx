@@ -10,6 +10,7 @@ import H3 from '../components/mdComponents/H3'
 import Paragraph from '../components/mdComponents/Paragraph';
 import Ul from '../components/mdComponents/Ul'
 import Ol from '../components/mdComponents/Ol'
+import Li from '../components/mdComponents/Li'
 import Anchor from '../components/mdComponents/Anchor'
 import Code from '../components/mdComponents/Code'
 import InlineCode from '../components/mdComponents/inline-code'
@@ -23,6 +24,7 @@ const mdComponents = {
   p: (props: HTMLElement) => Paragraph(props),
   ul: (props: HTMLElement) => Ul(props),
   ol: (props: HTMLElement) => Ol(props),
+  li: (props: HTMLElement) => Li(props),
   a: (props: HTMLAnchorElement) => Anchor(props),
   code: (props: HTMLElement) => Code(props),
   inlineCode: (props: HTMLElement) => InlineCode(props),

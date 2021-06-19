@@ -1,0 +1,102 @@
+export const meta = {
+  title: "自作キーボードはじめました",
+  description: "自作キーボードキット Nomu30を組み立てた話",
+  date: "20210619"
+}
+import Layout from "../../components/layout"
+import Im from "../../components/im"
+//import TweetEmbed from "react-tweet-embed"
+import diode_complete from "../../public/images/20210619/diode_complete.jpg"
+import switch_complete from "../../public/images/20210619/switch_complete.jpg"
+import coincellholder from "../../public/images/20210619/coincellholder.jpg"
+import nomu30_complete from "../../public/images/20210619/nomu30_complete.jpg"
+
+大学生になって自由時間が増えたので、以前からやりたいと思っていた自作キーボードに手を出してみました。
+
+自作キーボードというのは文字通りキーボードを自作することなのですが、自作の度合いにも色々あって、
+他の人が設計したキーボードをパーツから組み立てることもあれば、基板の設計から組み立てまで全部自分でやることもあります。
+
+今回私は[Nomu30](https://keys.recompile.net/projects/nomu30/)という自作キーボードキットを組み立てました。
+
+# 道具を揃える
+
+今回Nomu30を組み立てるに当たり、以下のものを購入しました。
+
+ * [Nomu30のキット](https://shop.yushakobo.jp/products/nomu30kit)
+ * [Kailh BOXスイッチ(Red Pro)](https://shop.yushakobo.jp/products/kailh-box)
+ * [4000円ぐらいのキーキャップ](https://shop.yushakobo.jp/products/pbt-gray-dye-sub-keycaps)
+ * [半田ごて等の工具](https://shop.yushakobo.jp/products/a9900to)
+ * [BLE Micro Pro](https://shop.yushakobo.jp/products/ble-micro-pro)と[電池基板](https://shop.yushakobo.jp/products/ble-micro-pro-battery-board)
+ * [コンスルー](https://shop.yushakobo.jp/products/a01mc-00)
+ * [M2 8mmスペーサー](https://shop.yushakobo.jp/products/a0800r2)
+
+Nomu30を組み立てるだけなら最初の4つだけで十分なのですが、無線化したかったのでBLE Micro ProというPro Micro互換のマイコンとその取付に必要な部品を追加で購入しました。
+
+# 組み立てる
+
+組み立ては[Nomu30のビルドガイド](https://keys.recompile.net/docs/nomu30-build-guide/)に従って進めます。
+
+## ファームウェアを書き込む
+
+まずBLE Micro Pro(以降BMPと表記)にファームウェアを書き込みます。[ドキュメント](https://sekigon-gonnoc.github.io/BLE-Micro-Pro/#/getting_started)に沿って進めるのですが、
+全部Web上で完結する(感動)のでとても簡単です。
+
+キーマップの書き込みには[QMK Configurator](https://sekigon-gonnoc.github.io/qmk_configurator/)を使いました。
+
+## ダイオードのはんだ付け
+
+次にダイオードをはんだ付けします。向きさえ気をつければ簡単です。
+
+私はこれが人生初はんだ付けだったのですが、換気の必要性を知らなかったため頭痛に見舞われる事になりました。 (ヽ´ω`)ﾄﾎﾎ･･
+
+<Im src={diode_complete} alt="ダイオードの取り付けが終わった状態" cap="ダイオードのはんだ付けが終わった様子"/>
+
+ダイオードのはんだ付けが終わったら一度コンスルーでBMPを基板に取り付け、ピンセットでスイッチの部分をショートさせることでキーが入力できるかどうか確認します。
+
+## 諸々の取り付け
+
+リセットスイッチをはんだ付けし、スタビライザーを向きに注意して取り付けます。
+
+その後、トッププレートをネジとスペーサーで固定します。BMPの電池基板を入れる都合上、PCBとボトムプレートの間のスペーサーは8mmのものを使用します。
+
+## キースイッチの取り付け
+
+キースイッチをプレートにはめ込みます。結構力がいるのでプレートを割らないよう注意します。
+
+<Im src={switch_complete} alt="スイッチの取り付けが終わった様子" />
+
+はめ終わったらBMPと重なる位置にあるスイッチの足を切り、スイッチをはんだ付けします。一部のスイッチがBMPと干渉するのでテープで絶縁します。
+
+## BMPの電池基板の組み立て
+
+BMPの電源供給用の電池基板を組み立てます。[ドキュメント](https://github.com/sekigon-gonnoc/BLE-Micro-Pro/tree/master/CoinCellHolder#readme)に沿って進めます。
+小さい部品が多いのでやや難しかったです。
+
+電池基板の組み立てが終わったら導線でBMPと繋ぎ、(厚めの)両面テープでPCBに貼り付けます。
+電池基板の上にあるスライドスイッチが後から操作できるような場所に固定するようにします。
+
+<Im src={coincellholder} alt="電池基板の取り付けが終わった様子" cap="電池基板の取り付けが終わった様子(電池ホルダ間がショートしそうだったのでテープで絶縁した)" />
+
+## 仕上げ
+
+最後にボトムプレートをねじで止め、キーキャップをはめれば完成です。
+
+# 完成
+
+<Im src={nomu30_complete} alt="Nomu30" />
+
+やった〜
+
+## 問題点
+
+完成してから気づいたんですが、エンターキーの戻りが悪いです。おそらくキースイッチに35gの比較的軽いものを使ったのが原因だと思います。(Kailh BOXの赤軸は45g)
+
+10gのバネを入れて解決したことにしています。
+
+## 感想
+
+キー数が非常に少ない30%キーボードですが、レイヤー機能があるので慣れれば結構使えるのではないかと思います。(当然慣れるのにかなり時間がかかりそうではある)
+
+次は60%ぐらいのキーボードを作ってみたいですが、金銭的理由からかなり先のことになりそうです。
+
+export default ({ children }) => <Layout meta={meta}>{children}</Layout>
