@@ -4,6 +4,7 @@ export const meta = {
   date: "20210308",
 }
 import Layout from "../../components/layout"
+import { useEffect } from 'react'
 
 # はじめに
 
@@ -23,4 +24,10 @@ CSSは[tailwindcss](https://tailwindcss.com/)というフレームワークを�
 
 ではまた〜
 
-export default ({ children }) => <Layout meta={meta}>{children}</Layout>
+export default ({ children }) => {
+  useEffect(() => {
+    let hs = document.getElementsByTagName("h1")
+    //console.log(hs)
+  })
+  return <Layout meta={meta}>{children}</Layout>
+}
