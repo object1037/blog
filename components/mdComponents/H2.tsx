@@ -1,5 +1,5 @@
 export default function H2(props: HTMLElement) {
   return (
-    <h2 className="text-2xl font-semibold mt-4 py-2">{props.children}</h2>
+    <h2 className="text-3xl font-semibold mb-6 mt-8 py-2 border-b border-gray-400">{props.children}</h2>
   )
 }

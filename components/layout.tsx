@@ -2,6 +2,7 @@ import Head from 'next/head'
 import Header from '../components/header'
 import Footer from './footer'
 import Date from './date'
+import { useEffect } from 'react'
 
 export const siteTitle = "ゆるふわインターネット"
 export const siteUrl = "https://blog.object1037.dev"
@@ -20,6 +21,17 @@ export default function Layout({
     date: string
   }
 }) {
+  useEffect(() => {
+    const h2s = document.getElementsByTagName("h2")
+    let scrollPositions: DOMRect[] = new Array(h2s.length)
+    
+    for (let i = 0; i < h2s.length; i++) {
+      //console.log(h2s[i].innerText)
+      scrollPositions[i] = h2s[i].getBoundingClientRect()
+    }
+    //console.log(scrollPositions)
+  })
+
   if (home) {
     return (
       <>
@@ -53,15 +65,15 @@ export default function Layout({
         <title>{meta.title} | {siteTitle}</title>
       </Head>
       <Header />
-      <main className="flex flex-col w-screen px-6 post-area mb-20">
-        <div className="flex flex-col max-w-5xl pt-8 pb-6 border-gray-600 dark:border-gray-200 border-b w-full mx-auto">
+      <article className="flex flex-col w-screen px-6 post-area mb-20">
+        <header className="flex flex-col max-w-5xl pt-8 pb-6 border-gray-600 dark:border-gray-200 border-b w-full mx-auto">
           <h1 className="text-4xl py-4 text-gray-900 dark:text-gray-100 text-center font-bold">{meta.title}</h1>
           <span className="font-light py-3 text-gray-600 dark:text-gray-300 text-center"><Date dateString={meta.date} /></span>
-        </div>
+        </header>
         <div className="mx-auto max-w-3xl py-10 w-full">
           {children}
         </div>
-      </main>
+      </article>
       <Footer />
     </>
   )
