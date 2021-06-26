@@ -2,6 +2,7 @@ import Head from 'next/head'
 import Header from '../components/header'
 import Footer from './footer'
 import Date from './date'
+import { useEffect } from 'react'
 
 export const siteTitle = "ゆるふわインターネット"
 export const siteUrl = "https://blog.object1037.dev"
@@ -20,6 +21,17 @@ export default function Layout({
     date: string
   }
 }) {
+  useEffect(() => {
+    const h2s = document.getElementsByTagName("h2")
+    let scrollPositions: DOMRect[] = new Array(h2s.length)
+    
+    for (let i = 0; i < h2s.length; i++) {
+      //console.log(h2s[i].innerText)
+      scrollPositions[i] = h2s[i].getBoundingClientRect()
+    }
+    //console.log(scrollPositions)
+  })
+
   if (home) {
     return (
       <>
