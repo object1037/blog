@@ -26,8 +26,9 @@ CSSは[tailwindcss](https://tailwindcss.com/)というフレームワークを�
 
 export default ({ children }) => {
   useEffect(() => {
-    let hs = document.getElementsByTagName("h1")
-    //console.log(hs)
+    const h2s = document.getElementsByTagName("h2")
+    const h3s = document.getElementsByTagName("h3")
+    console.log(h2s)
   })
   return <Layout meta={meta}>{children}</Layout>
 }
