@@ -28,7 +28,12 @@ export default ({ children }) => {
   useEffect(() => {
     const h2s = document.getElementsByTagName("h2")
     const h3s = document.getElementsByTagName("h3")
-    console.log(h2s)
+    let scrollPositions = new Array(h2s.length)
+    for (let i = 0; i < h2s.length; i++) {
+      //console.log(h2s[i].innerText)
+      scrollPositions[i] = h2s[i].getBoundingClientRect()
+    }
+    //console.log(scrollPositions)
   })
   return <Layout meta={meta}>{children}</Layout>
 }
