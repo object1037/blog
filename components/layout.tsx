@@ -2,21 +2,27 @@ import Head from 'next/head'
 import Header from '../components/header'
 import Footer from './footer'
 import Date from './date'
-import { useEffect } from 'react'
+import ToC from '../components/toc'
+import { useEffect, useState } from 'react'
 
 export const siteTitle = "ゆるふわインターネット"
 export const siteUrl = "https://blog.object1037.dev"
 export const handleName = "object1037"
 
-interface tocElement {
+export interface tocElement {
   scrollPos: number,
   title: string,
 }
 
+let initArr: tocElement[] = new Array({
+  scrollPos: 0,
+  title: "",
+})
+
 export default function Layout({
   children,
   home,
-  meta
+  meta,
 }: {
   children: React.ReactNode
   home?: boolean
@@ -26,18 +32,18 @@ export default function Layout({
     date: string
   }
 }) {
+  const [tocElements, setTocElements] = useState(initArr)
   useEffect(() => {
     const h2s = document.getElementsByTagName("h2")
-    let tocElements: tocElement[] = new Array(h2s.length)
-    
+    const tocEls: tocElement[] = new Array(h2s.length)
     for (let i = 0; i < h2s.length; i++) {
-      tocElements[i] = {
+      tocEls[i] = {
         scrollPos: h2s[i].getBoundingClientRect().top,
         title: h2s[i].innerText
       }
     }
-    console.log(tocElements)
-  })
+    setTocElements(tocEls)
+  }, [])
 
   if (home) {
     return (
@@ -58,6 +64,7 @@ export default function Layout({
       </>
     )
   }
+  console.log(tocElements)
   return (
     <>
       <Head>
@@ -77,6 +84,7 @@ export default function Layout({
           <h1 className="text-4xl py-4 text-gray-900 dark:text-gray-100 text-center font-bold">{meta.title}</h1>
           <span className="font-light py-3 text-gray-600 dark:text-gray-300 text-center"><Date dateString={meta.date} /></span>
         </header>
+        <ToC tocElements={tocElements} />
         <div className="mx-auto max-w-3xl py-10 w-full">
           {children}
         </div>
