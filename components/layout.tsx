@@ -64,7 +64,6 @@ export default function Layout({
       </>
     )
   }
-  console.log(tocElements)
   return (
     <>
       <Head>
@@ -85,9 +84,9 @@ export default function Layout({
           <span className="font-light py-3 text-gray-600 dark:text-gray-300 text-center"><Date dateString={meta.date} /></span>
         </header>
         <ToC tocElements={tocElements} />
-        <div className="mx-auto max-w-3xl py-10 w-full">
+        <section className="mx-auto max-w-3xl py-10 w-full">
           {children}
-        </div>
+        </section>
       </article>
       <Footer />
     </>
