@@ -8,6 +8,11 @@ export const siteTitle = "ゆるふわインターネット"
 export const siteUrl = "https://blog.object1037.dev"
 export const handleName = "object1037"
 
+interface tocElement {
+  scrollPos: number,
+  title: string,
+}
+
 export default function Layout({
   children,
   home,
@@ -23,13 +28,15 @@ export default function Layout({
 }) {
   useEffect(() => {
     const h2s = document.getElementsByTagName("h2")
-    let scrollPositions: DOMRect[] = new Array(h2s.length)
+    let tocElements: tocElement[] = new Array(h2s.length)
     
     for (let i = 0; i < h2s.length; i++) {
-      //console.log(h2s[i].innerText)
-      scrollPositions[i] = h2s[i].getBoundingClientRect()
+      tocElements[i] = {
+        scrollPos: h2s[i].getBoundingClientRect().top,
+        title: h2s[i].innerText
+      }
     }
-    //console.log(scrollPositions)
+    console.log(tocElements)
   })
 
   if (home) {
