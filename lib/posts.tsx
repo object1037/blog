@@ -1,24 +1,10 @@
-import fs from 'fs'
-import path from 'path'
+export function getAllPostsData() {
+  let metas = new Array
 
-const postsDirectory = path.join(process.cwd(), 'pages/posts')
-
-export function getSortedPostsData() {
-  const fileNames = fs.readdirSync(postsDirectory)
-
-  const allPostsData = fileNames.map(fileName => {
-    const id = +fileName.replace(/\.mdx$/, '')
-
-    return {
-      id
-    }
+  const contexts = require.context('../pages/posts/', false, /\.mdx$/)
+  contexts.keys().map((path: string) => {
+    metas.push(contexts(path).meta)
   })
 
-  return allPostsData.sort((a, b) => {
-    if (a.id < b.id) {
-      return 1
-    } else {
-      return -1
-    }
-  })
+  return metas.reverse()
 }
