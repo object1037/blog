@@ -12,11 +12,13 @@ export const handleName = "object1037"
 export interface tocElement {
   scrollPos: number,
   title: string,
+  level: string
 }
 
 let initArr: tocElement[] = new Array({
   scrollPos: 0,
   title: "",
+  level: "H2"
 })
 
 export default function Layout({
@@ -34,14 +36,23 @@ export default function Layout({
 }) {
   const [tocElements, setTocElements] = useState(initArr)
   useEffect(() => {
-    const h2s = document.getElementsByTagName("h2")
-    const tocEls: tocElement[] = new Array(h2s.length)
-    for (let i = 0; i < h2s.length; i++) {
+    const h2s = Array.from(document.getElementsByTagName("h2"))
+    const h3s = Array.from(document.getElementsByTagName("h3"))
+    const headings = h2s.concat(h3s)
+
+    headings.sort(function(a, b) {
+      return a.getBoundingClientRect().top - b.getBoundingClientRect().top
+    })
+
+    const tocEls: tocElement[] = new Array(headings.length)
+    for (let i = 0; i < headings.length; i++) {
       tocEls[i] = {
-        scrollPos: h2s[i].getBoundingClientRect().top,
-        title: h2s[i].innerText
+        scrollPos: headings[i].getBoundingClientRect().top,
+        title: headings[i].innerText,
+        level: headings[i].tagName
       }
     }
+    console.log(tocEls)
     setTocElements(tocEls)
   }, [])
 
