@@ -106,14 +106,18 @@ export default function Layout({
       </Head>
       <Header />
       <article className="flex flex-col w-screen px-6 post-area mb-20">
-        <header className="flex flex-col max-w-5xl pt-8 pb-6 border-gray-600 dark:border-gray-200 border-b w-full mx-auto">
+        <header className="flex flex-col max-w-6xl pt-8 pb-6 border-gray-600 dark:border-gray-200 border-b w-full mx-auto">
           <h1 className="text-4xl py-4 text-gray-900 dark:text-gray-100 text-center font-bold">{meta.title}</h1>
           <span className="font-light py-3 text-gray-600 dark:text-gray-300 text-center"><Date dateString={meta.date} /></span>
         </header>
-        <ToC tocElements={tocElements} />
-        <section className="mx-auto max-w-3xl py-10 w-full">
-          {children}
-        </section>
+        <div className="max-w-6xl w-full flex flex-row-reverse justify-between mx-auto">
+          <aside className="py-12">
+            <ToC tocElements={tocElements} />
+          </aside>
+          <section className="max-w-3xl m-10 w-full">
+            {children}
+          </section>
+        </div>
       </article>
       <Footer />
     </>
