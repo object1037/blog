@@ -109,8 +109,7 @@ export default function Layout({
           <h1 className="text-4xl py-4 text-gray-900 dark:text-gray-100 text-center font-bold">{meta.title}</h1>
           <span className="font-light py-3 text-gray-600 dark:text-gray-300 text-center"><Date dateString={meta.date} /></span>
         </header>
-        {//<ToC tocElements={tocElements} />
-}
+        <ToC tocElements={tocElements} />
         <section className="mx-auto max-w-3xl py-10 w-full">
           {children}
         </section>
