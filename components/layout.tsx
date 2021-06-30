@@ -13,7 +13,7 @@ export interface tocElement {
   scrollPos: number,
   title: string,
   level: string,
-  childEls?: tocElement[]
+  childEls: tocElement[]
 }
 
 export interface metaData {
@@ -25,7 +25,8 @@ export interface metaData {
 let initArr: tocElement[] = new Array({
   scrollPos: 0,
   title: "",
-  level: "H2"
+  level: "H2",
+  childEls: []
 })
 
 export default function Layout({
@@ -61,13 +62,13 @@ export default function Layout({
           tocEls[h2Index].childEls.push({
             scrollPos: headings[i + 1].getBoundingClientRect().top,
             title: headings[i + 1].innerText,
-            level: headings[i + 1].tagName
+            level: headings[i + 1].tagName,
+            childEls: []
           })
           i++
         }
       }
     }
-    console.log(tocEls)
     setTocElements(tocEls)
   }, [])
 
