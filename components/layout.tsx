@@ -15,6 +15,12 @@ export interface tocElement {
   level: string
 }
 
+export interface metaData {
+  title: string,
+  description: string,
+  date: string
+}
+
 let initArr: tocElement[] = new Array({
   scrollPos: 0,
   title: "",
@@ -28,11 +34,7 @@ export default function Layout({
 }: {
   children: React.ReactNode
   home?: boolean
-  meta?: {
-    title: string
-    description: string
-    date: string
-  }
+  meta?: metaData
 }) {
   const [tocElements, setTocElements] = useState(initArr)
   useEffect(() => {
