@@ -12,7 +12,8 @@ export const handleName = "object1037"
 export interface tocElement {
   scrollPos: number,
   title: string,
-  level: string
+  level: string,
+  childEls?: tocElement[]
 }
 
 export interface metaData {
@@ -46,12 +47,24 @@ export default function Layout({
       return a.getBoundingClientRect().top - b.getBoundingClientRect().top
     })
 
-    const tocEls: tocElement[] = new Array(headings.length)
+    const tocEls: tocElement[] = new Array
     for (let i = 0; i < headings.length; i++) {
-      tocEls[i] = {
-        scrollPos: headings[i].getBoundingClientRect().top,
-        title: headings[i].innerText,
-        level: headings[i].tagName
+      if (headings[i].tagName === "H2") {
+        const h2Index = tocEls.push({
+          scrollPos: headings[i].getBoundingClientRect().top,
+          title: headings[i].innerText,
+          level: headings[i].tagName,
+          childEls: []
+        }) - 1
+
+        while (headings[i + 1] && headings[i + 1].tagName === "H3") {
+          tocEls[h2Index].childEls.push({
+            scrollPos: headings[i + 1].getBoundingClientRect().top,
+            title: headings[i + 1].innerText,
+            level: headings[i + 1].tagName
+          })
+          i++
+        }
       }
     }
     console.log(tocEls)
@@ -96,7 +109,8 @@ export default function Layout({
           <h1 className="text-4xl py-4 text-gray-900 dark:text-gray-100 text-center font-bold">{meta.title}</h1>
           <span className="font-light py-3 text-gray-600 dark:text-gray-300 text-center"><Date dateString={meta.date} /></span>
         </header>
-        <ToC tocElements={tocElements} />
+        {//<ToC tocElements={tocElements} />
+}
         <section className="mx-auto max-w-3xl py-10 w-full">
           {children}
         </section>
