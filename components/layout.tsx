@@ -114,7 +114,7 @@ export default function Layout({
           <aside className="py-12">
             <ToC tocElements={tocElements} />
           </aside>
-          <section className="max-w-3xl m-10 w-full">
+          <section className="max-w-3xl my-10 mx-auto lg:mx-10 w-full">
             {children}
           </section>
         </div>

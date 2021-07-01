@@ -13,7 +13,7 @@ export default function PostCard(postData: postData) {
       <Link href={`/posts/${postData.date}`}>
         <a className="flex flex-col h-32 p-4">
           <span className="text-xs text-gray-800 dark:text-gray-200"><Date dateString={postData.date} /></span>
-          <span className="text-xl mb-4 text-gray-900 dark:text-gray-100">{postData.title}</span>
+          <span className="truncate text-xl mb-4 text-gray-900 dark:text-gray-100">{postData.title}</span>
           <span className="truncate text-gray-900 dark:text-gray-100">{postData.description}</span>
         </a>
       </Link>
