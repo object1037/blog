@@ -43,7 +43,7 @@ export default function Layout({
 
   useEffect(() => {
     const IOOptions = {
-      rootMargin: '-25% 0px -75% 0px'
+      rootMargin: '0px 0px -90% 0px'
     }
     let IOCallback = (entries: IntersectionObserverEntry[], observer: IntersectionObserver) => {
       entries.forEach(entry => {
