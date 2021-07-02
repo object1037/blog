@@ -21,10 +21,10 @@ export default function TocAnchor({
   return (
     <a href={`#${title}`} className={clsx(
       'text-gray-500',
-      'dark:text-gray-400',
       hoverStyle,
       isH2 && 'font-semibold',
       isIntersectingElement && intersectingStyle,
+      !isIntersectingElement && 'dark:text-gray-400'
       )}>{title}</a>
   )
 }
