@@ -9,6 +9,9 @@ module.exports = {
         gray: colors.trueGray,
         ppink: '#fd2e7a',
       },
+      maxHeight: {
+        'screen-12': 'calc(100vh - 3rem)',
+      },
     },
   },
   variants: {
