@@ -39,7 +39,21 @@ export default function Layout({
   meta?: metaData
 }) {
   const [tocElements, setTocElements] = useState(initArr)
+  const [intersectingElementId, setIntersectingElementId] = useState("")
+
   useEffect(() => {
+    const IOOptions = {
+      rootMargin: '-25% 0px -75% 0px'
+    }
+    let IOCallback = (entries: IntersectionObserverEntry[], observer: IntersectionObserver) => {
+      entries.forEach(entry => {
+        if (entry.isIntersecting) {
+          setIntersectingElementId(entry.target.id)
+        }
+      });
+    }
+    let observer = new IntersectionObserver(IOCallback, IOOptions)
+
     const h2s = Array.from(document.getElementsByTagName("h2"))
     const h3s = Array.from(document.getElementsByTagName("h3"))
     const headings = h2s.concat(h3s)
@@ -47,6 +61,10 @@ export default function Layout({
     headings.sort(function(a, b) {
       return a.getBoundingClientRect().top - b.getBoundingClientRect().top
     })
+
+    for (let i = 0; i < headings.length; i++) {
+      observer.observe(headings[i])
+    }
 
     const tocEls: tocElement[] = new Array
     for (let i = 0; i < headings.length; i++) {
@@ -113,7 +131,7 @@ export default function Layout({
         </header>
         <div className="max-w-6xl w-full flex flex-row-reverse justify-between mx-auto">
           <aside className="py-12">
-            <ToC tocElements={tocElements} />
+            <ToC tocElements={tocElements} intersectingElementId={intersectingElementId} />
           </aside>
           <section className="max-w-3xl my-10 mx-auto lg:mx-10 w-full">
             {children}

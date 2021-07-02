@@ -2,19 +2,29 @@ import clsx from 'clsx'
 
 export default function TocAnchor({
   title,
-  isH2
+  isH2,
+  isIntersectingElement,
 }: {
   title: string,
-  isH2?: boolean
+  isH2?: boolean,
+  isIntersectingElement: boolean,
 }) {
+  const hoverStyle = [
+    'hover:text-gray-900',
+    'dark:hover:text-gray-100',
+    'hover:underline',
+  ]
+  const intersectingStyle = [
+    'text-gray-900',
+    'dark:text-gray-100',
+  ]
   return (
     <a href={`#${title}`} className={clsx(
-      'text-gray-500', 
-      'dark:text-gray-400', 
-      'hover:text-gray-900', 
-      'dark:hover:text-gray-100', 
-      'hover:underline', 
-      isH2 && 'font-semibold'
+      'text-gray-500',
+      'dark:text-gray-400',
+      hoverStyle,
+      isH2 && 'font-semibold',
+      isIntersectingElement && intersectingStyle,
       )}>{title}</a>
   )
 }
