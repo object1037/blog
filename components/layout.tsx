@@ -84,6 +84,7 @@ export default function Layout({
           <meta property="og:title" content={siteTitle} />
           <meta property="og:description" content={`${handleName}のブログ`} />
           <meta property="og:image" content="https://object1037.dev/_next/image?url=%2Fimages%2Fprofile.jpg&w=640&q=75" />
+          <title>{siteTitle}</title>
         </Head>
         <Header />
         <main className="mb-20">{children}</main>
