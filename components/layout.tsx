@@ -3,6 +3,7 @@ import Header from '../components/header'
 import Footer from './footer'
 import Date from './date'
 import ToC from '../components/toc'
+import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
 import { useEffect, useState } from 'react'
 
 export const siteTitle = "ゆるふわインターネット"
@@ -124,7 +125,7 @@ export default function Layout({
         <title>{meta.title} | {siteTitle}</title>
       </Head>
       <Header />
-      <article className="flex flex-col w-screen px-6 post-area mb-20">
+      <article className="flex flex-col w-screen px-6 post-area">
         <header className="flex flex-col max-w-6xl pt-8 pb-6 border-gray-600 dark:border-gray-300 border-b w-full mx-auto">
           <h1 className="text-4xl py-4 text-gray-900 dark:text-gray-100 text-center font-bold">{meta.title}</h1>
           <span className="font-light py-3 text-gray-600 dark:text-gray-300 text-center"><Date dateString={meta.date} /></span>
@@ -133,8 +134,14 @@ export default function Layout({
           <aside className="py-12">
             <ToC tocElements={tocElements} intersectingElementId={intersectingElementId} />
           </aside>
-          <section className="max-w-3xl my-10 mx-auto lg:mx-10 w-full">
+          <section className="max-w-3xl mt-10 mb-16 mx-auto lg:mx-10 w-full dark:border-gray-600 border-gray-300 border-b">
             {children}
+            <div className="flex flex-row-reverse mt-12 mb-6">
+              <a href={`https://twitter.com/share?url=https://blog.object1037.dev/posts/${meta.date}&text=${meta.title}｜${siteTitle}`}
+                className="text-gray-400 hover:text-gray-900" target="_blank" rel="noopener noreferrer" aria-label="Twitter Share Button">
+                <p className="w-6 h-6"><FontAwesomeIcon icon={['fab', 'twitter']} /></p>
+              </a>
+            </div>
           </section>
         </div>
       </article>
