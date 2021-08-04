@@ -3,6 +3,7 @@ import Header from '../components/header'
 import Footer from './footer'
 import DateDisplay from './date'
 import ToC from '../components/toc'
+import ElapsedYear from './elapsedYear'
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
 import { useEffect, useState } from 'react'
 
@@ -92,7 +93,7 @@ export default function Layout({
 
   useEffect(() => {
     const dateNow = new Date().getTime();
-    //const dateNow = new Date(2023, 5, 20).getTime();
+    //const dateNow = new Date(2022, 3, 20).getTime();
     const datePublished = new Date(+meta.date.substr(0, 4), +meta.date.substr(4, 2) - 1, +meta.date.substr(6, 2)).getTime();
     if (dateNow - datePublished < 157766400000) {
       const elapsedYearsF = (dateNow - datePublished)/31536000000;
@@ -120,6 +121,7 @@ export default function Layout({
         <header className="flex flex-col max-w-6xl pt-8 pb-6 border-gray-600 dark:border-gray-300 border-b w-full mx-auto">
           <h1 className="text-4xl py-4 text-gray-900 dark:text-gray-100 text-center font-bold">{meta.title}</h1>
           <span className="font-light py-3 text-gray-600 dark:text-gray-300 text-center"><DateDisplay dateString={meta.date} /></span>
+          <ElapsedYear yearNum={elapsedYears} />
         </header>
         <div className="max-w-6xl w-full flex flex-row-reverse justify-between mx-auto">
           <aside className="py-12">
