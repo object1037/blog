@@ -21,7 +21,8 @@ export interface tocElement {
 export interface metaData {
   title: string,
   description: string,
-  date: string
+  date: string,
+  tags: string[]
 }
 
 let initArr: tocElement[] = new Array({
@@ -101,6 +102,7 @@ export default function Layout({
     } else {
       setElapsedYears(5);
     }
+    console.log(meta.tags)
   }, [meta])
 
   return (

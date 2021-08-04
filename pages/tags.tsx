@@ -3,23 +3,27 @@ import Head from 'next/head'
 import Header from '../components/header'
 import Footer from '../components/footer'
 import { GetStaticProps } from 'next'
-import { getAllPostsData } from '../lib/getAllPostsMetas'
-import PostCard from '../components/post-card'
+import { getAllTags } from '../lib/getAllPostsTags'
+import { useEffect } from 'react'
 
 export const getStaticProps: GetStaticProps = async () => {
-  const allPostsMetas = getAllPostsData()
+  const allTags = getAllTags()
   return {
     props: {
-      allPostsMetas
+      allTags
     }
   }
 }
 
 export default function Home({
-  allPostsMetas
+  allTags
 }: {
-  allPostsMetas: metaData[]
+  allTags: string[]
 }) {
+  useEffect(() => {
+    console.log(allTags)
+  })
+
   return (
     <>
     <Head>
@@ -38,9 +42,7 @@ export default function Home({
       <section className="flex flex-col justify-center">
         <h1 className="text-center text-xl pb-10 pt-12 text-gray-900 dark:text-gray-100">{handleName}のブログです</h1>
         <ul className="flex flex-col justify-center px-10 max-w-3xl mx-auto w-full">
-          {allPostsMetas.map(({date}, index) => (
-            <PostCard key={date} date={date} title={allPostsMetas[index].title} description={allPostsMetas[index].description} />
-          ))}
+          
         </ul>
       </section>
     </main>
