@@ -5,7 +5,6 @@ import Link from 'next/link'
 import Layout from '../components/layout'
 import { GetStaticProps } from 'next'
 import { getAllTags } from '../lib/getAllPostsTags'
-import { useEffect } from 'react'
 
 export const getStaticProps: GetStaticProps = async () => {
   const allTags = getAllTags()
@@ -21,9 +20,6 @@ export default function Home({
 }: {
   allTags: tagData[]
 }) {
-  useEffect(() => {
-    console.log(allTags)
-  })
   return (
     <>
     <Layout>

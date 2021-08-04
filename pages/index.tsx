@@ -33,8 +33,8 @@ export default function Home({
       </Head>
       <h1 className="text-center text-xl pb-10 pt-12 text-gray-900 dark:text-gray-100">{handleName}のブログです</h1>
       <ul className="flex flex-col justify-center px-10 max-w-3xl mx-auto w-full">
-        {allPostsMetas.map(({date}, index) => (
-          <PostCard key={date} date={date} title={allPostsMetas[index].title} description={allPostsMetas[index].description} />
+        {allPostsMetas.map((meta) => (
+          <PostCard key={meta.date} date={meta.date} title={meta.title} description={meta.description} />
         ))}
       </ul>
     </Layout>

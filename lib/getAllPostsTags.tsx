@@ -1,6 +1,8 @@
+import { metaData } from "../components/articleLayout"
+
 export interface tagData {
   name: string,
-  articleIds: string[] 
+  articles: metaData[]
 }
 
 export function getAllTags() {
@@ -22,13 +24,15 @@ export function getAllTags() {
     metas.push(contexts(path).meta)
   })
 
+  metas.reverse()
+
   metas.forEach(meta => {
     for (let i = 0; i < meta.tags.length; i++) {
       let tagName = meta.tags[i]
       if (!articles[tagName]) {
         articles[tagName] = []
       }
-      articles[tagName].push(meta.date)
+      articles[tagName].push(meta)
     }
   })
 
@@ -37,7 +41,7 @@ export function getAllTags() {
   function convertToArr(value: string) {
     let tagD: tagData = {
       name: value,
-      articleIds: articles[value]
+      articles: articles[value]
     }
     tags.push(tagD)
   }
