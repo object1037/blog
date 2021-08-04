@@ -102,7 +102,6 @@ export default function Layout({
     } else {
       setElapsedYears(5);
     }
-    console.log(meta.tags)
   }, [meta])
 
   return (
