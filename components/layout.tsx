@@ -1,9 +1,10 @@
 import Head from 'next/head'
 import Header from '../components/header'
 import Footer from './footer'
-import Date from './date'
+import DateDisplay from './date'
 import ToC from '../components/toc'
-import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
+import ElapsedYear from './elapsedYear'
+import Share from './share'
 import { useEffect, useState } from 'react'
 
 export const siteTitle = "ゆるふわインターネット"
@@ -32,15 +33,14 @@ let initArr: tocElement[] = new Array({
 
 export default function Layout({
   children,
-  home,
   meta,
 }: {
   children: React.ReactNode
-  home?: boolean
-  meta?: metaData
+  meta: metaData
 }) {
   const [tocElements, setTocElements] = useState(initArr)
   const [intersectingElementId, setIntersectingElementId] = useState("")
+  const [elapsedYears, setElapsedYears] = useState(0)
 
   useEffect(() => {
     const IOOptions = {
@@ -91,26 +91,18 @@ export default function Layout({
     setTocElements(tocEls)
   }, [])
 
-  if (home) {
-    return (
-      <>
-        <Head>
-          <meta name="viewport" content="initial-scale=1.0, width=device-width" />
-          <meta name="description" content={`${handleName}のブログです`} />
-          <meta name="twitter:card" content="summary" />
-          <meta name="twitter:creator" content="@object1037" />
-          <meta property="og:url" content={siteUrl} />
-          <meta property="og:title" content={siteTitle} />
-          <meta property="og:description" content={`${handleName}のブログ`} />
-          <meta property="og:image" content="https://object1037.dev/_next/image?url=%2Fimages%2Fprofile.jpg&w=640&q=75" />
-          <title>{siteTitle}</title>
-        </Head>
-        <Header />
-        <main className="mb-20">{children}</main>
-        <Footer />
-      </>
-    )
-  }
+  useEffect(() => {
+    const dateNow = new Date().getTime();
+    //const dateNow = new Date(2022, 3, 20).getTime();
+    const datePublished = new Date(+meta.date.substr(0, 4), +meta.date.substr(4, 2) - 1, +meta.date.substr(6, 2)).getTime();
+    if (dateNow - datePublished < 157766400000) {
+      const elapsedYearsF = (dateNow - datePublished)/31536000000;
+      setElapsedYears(Math.floor(elapsedYearsF));
+    } else {
+      setElapsedYears(5);
+    }
+  }, [meta])
+
   return (
     <>
       <Head>
@@ -128,7 +120,8 @@ export default function Layout({
       <article className="flex flex-col w-screen px-6 post-area">
         <header className="flex flex-col max-w-6xl pt-8 pb-6 border-gray-600 dark:border-gray-300 border-b w-full mx-auto">
           <h1 className="text-4xl py-4 text-gray-900 dark:text-gray-100 text-center font-bold">{meta.title}</h1>
-          <span className="font-light py-3 text-gray-600 dark:text-gray-300 text-center"><Date dateString={meta.date} /></span>
+          <span className="font-light py-3 text-gray-600 dark:text-gray-300 text-center"><DateDisplay dateString={meta.date} /></span>
+          <ElapsedYear yearNum={elapsedYears} />
         </header>
         <div className="max-w-6xl w-full flex flex-row-reverse justify-between mx-auto">
           <aside className="py-12">
@@ -136,12 +129,7 @@ export default function Layout({
           </aside>
           <section className="max-w-3xl mt-10 mb-16 mx-auto lg:mx-10 w-full dark:border-gray-600 border-gray-300 border-b">
             {children}
-            <div className="flex flex-row-reverse mt-12 mb-6">
-              <a href={`https://twitter.com/share?url=https://blog.object1037.dev/posts/${meta.date}&text=${meta.title}｜${siteTitle}`}
-                className="text-gray-400 hover:text-gray-900 dark:hover:text-gray-100" target="_blank" rel="noopener noreferrer" aria-label="Twitter Share Button">
-                <p className="w-6 h-6"><FontAwesomeIcon icon={['fab', 'twitter']} /></p>
-              </a>
-            </div>
+            <Share date={meta.date} title={meta.title} siteTitle={siteTitle} />
           </section>
         </div>
       </article>

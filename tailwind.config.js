@@ -8,6 +8,7 @@ module.exports = {
       colors: {
         gray: colors.trueGray,
         ppink: '#fd2e7a',
+        rose: colors.rose,
       },
       maxHeight: {
         'screen-12': 'calc(100vh - 3rem)',
