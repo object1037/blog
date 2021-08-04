@@ -1,4 +1,4 @@
-import { siteTitle, siteUrl } from '../components/layout'
+import { siteTitle, siteUrl } from '../components/articleLayout'
 import Head from 'next/head'
 import Link from 'next/link'
 import Header from '../components/header'

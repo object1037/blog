@@ -5,7 +5,7 @@ export const meta = {
   tags: ["test2"],
 }
 
-import Layout from "../../components/layout"
+import ArticleLayout from "../../components/articleLayout"
 
 昨日4/9で19歳になりました。18歳や20歳はいろいろな年齢制限が解除されるのに19歳で解除される制限ってあんまりない(というか0では?)ですよね。
 
@@ -17,4 +17,4 @@ import Layout from "../../components/layout"
 
 机と椅子、早く来て乁(˙꒳˙乁)ｸﾚﾖ...
 
-export default ({ children }) => <Layout meta={meta}>{children}</Layout>
+export default ({ children }) => <ArticleLayout meta={meta}>{children}</ArticleLayout>
