@@ -39,7 +39,7 @@ export default function Home({
         <h1 className="text-center text-xl pb-10 pt-12 text-gray-900 dark:text-gray-100">タグ一覧</h1>
         <div className="mx-6 flex flex-row flex-wrap justify-center">
           {allTags.map((tag) => (
-            <div className="bg-gray-200 px-4 py-2 m-2 rounded-md" key={tag}>
+            <div className="bg-gray-200 dark:bg-gray-700 px-4 py-2 m-2 rounded-md" key={tag}>
               <Link href={`/tags/${tag}`}>
                 <a>
                   # {tag}
