@@ -4,7 +4,7 @@ import Footer from './footer'
 import DateDisplay from './date'
 import ToC from '../components/toc'
 import ElapsedYear from './elapsedYear'
-import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
+import Share from './share'
 import { useEffect, useState } from 'react'
 
 export const siteTitle = "ゆるふわインターネット"
@@ -129,12 +129,7 @@ export default function Layout({
           </aside>
           <section className="max-w-3xl mt-10 mb-16 mx-auto lg:mx-10 w-full dark:border-gray-600 border-gray-300 border-b">
             {children}
-            <div className="flex flex-row-reverse mt-12 mb-6">
-              <a href={`https://twitter.com/share?url=https://blog.object1037.dev/posts/${meta.date}&text=${meta.title}｜${siteTitle}`}
-                className="text-gray-400 hover:text-gray-900 dark:hover:text-gray-100" target="_blank" rel="noopener noreferrer" aria-label="Twitter Share Button">
-                <p className="w-6 h-6"><FontAwesomeIcon icon={['fab', 'twitter']} /></p>
-              </a>
-            </div>
+            <Share date={meta.date} title={meta.title} siteTitle={siteTitle} />
           </section>
         </div>
       </article>
