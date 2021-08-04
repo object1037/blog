@@ -18,9 +18,7 @@ export const getStaticProps: GetStaticProps = async () => {
 
 export async function getStaticPaths() {
   return {
-    paths: [
-      { params: { tag: "test1" } },
-    ],
+    paths: [],
     fallback: true
   };
 }
@@ -34,6 +32,10 @@ export default function TagPage({
   const { tag } = router.query
 
   const searchByTag = (element: tagData) => element.name === tag
+
+  if (router.isFallback) {
+    return <div>Loading...</div>
+  }
 
   return (
     <Layout>
