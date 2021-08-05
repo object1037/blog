@@ -15,16 +15,17 @@ cd $HOME/blog
 echo 'export const meta = {
   title: "'$title'",
   description: "'$description'",
-  date: "'(date +%Y%m%d)'"
+  date: "'(date +%Y%m%d)'",
+  tags: [""]
 }
-import Layout from "../../components/layout"
+import ArticleLayout from "../../components/articleLayout"
 //import Im from "../../components/im"
 //import TweetEmbed from "react-tweet-embed"
 //import imageName from "../../public/images/'(date +%Y%m%d)'/imageName.jpg"
 
 
 
-export default ({ children }) => <Layout meta={meta}>{children}</Layout>' > pages/posts/(date +%Y%m%d).mdx
+export default ({ children }) => <ArticleLayout meta={meta}>{children}</ArticleLayout>' > pages/posts/(date +%Y%m%d).mdx
 
 open -a "Visual Studio Code" pages/posts/(date +%Y%m%d).mdx
 
