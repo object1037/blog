@@ -1,7 +1,6 @@
 import { siteTitle, siteUrl } from '../components/articleLayout'
 import { tagData } from '../lib/getAllPostsTags'
 import Head from 'next/head'
-import Link from 'next/link'
 import Layout from '../components/layout'
 import Tag from '../components/tag'
 import { GetStaticProps } from 'next'

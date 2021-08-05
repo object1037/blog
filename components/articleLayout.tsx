@@ -1,6 +1,7 @@
 import Head from 'next/head'
 import Header from './header'
 import Footer from './footer'
+import Tag from './tag'
 import DateDisplay from './date'
 import ToC from './toc'
 import ElapsedYear from './elapsedYear'
@@ -119,9 +120,14 @@ export default function ArticleLayout({
       </Head>
       <Header />
       <article className="flex flex-col w-screen px-6 post-area">
-        <header className="flex flex-col max-w-6xl pt-8 pb-6 border-gray-600 dark:border-gray-300 border-b w-full mx-auto">
+        <header className="flex flex-col max-w-6xl pt-8 pb-5 border-gray-600 dark:border-gray-300 border-b w-full mx-auto">
           <h1 className="text-4xl py-4 text-gray-900 dark:text-gray-100 text-center font-bold">{meta.title}</h1>
           <span className="font-light py-3 text-gray-600 dark:text-gray-300 text-center"><DateDisplay dateString={meta.date} /></span>
+          <div className="flex flex-row flex-wrap justify-center">
+            {meta.tags.map((tag) => (
+              <Tag name={tag} key={tag} />
+            ))}
+          </div>
           <ElapsedYear yearNum={elapsedYears} />
         </header>
         <div className="max-w-6xl w-full flex flex-row-reverse justify-between mx-auto">
