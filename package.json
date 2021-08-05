@@ -27,7 +27,7 @@
   "devDependencies": {
     "@babel/cli": "^7.14.8",
     "@babel/core": "^7.15.0",
-    "@babel/preset-env": "^7.14.9",
+    "@babel/preset-env": "^7.15.0",
     "@types/mdx-js__react": "^1.5.4",
     "@types/node": "^16.4.12",
     "@types/prismjs": "^1.16.6",
