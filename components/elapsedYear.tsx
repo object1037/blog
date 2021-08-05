@@ -11,10 +11,11 @@ export default function ElapsedYear({
   if (yearNum > 0) {
     elapsedYearStyle = [
       'bg-rose-100',
-      'dark:bg-rose-900',
+      'dark:bg-pink-900',
       'p-5',
       'mt-2',
-      'font-semibold'
+      'font-semibold',
+      'rounded-md'
     ]
   }
   return (
