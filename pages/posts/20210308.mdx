@@ -2,8 +2,9 @@ export const meta = {
   title: "初投稿",
   description: "ブログを作ってみました",
   date: "20210308",
+  tags: ["Web"],
 }
-import Layout from "../../components/layout"
+import ArticleLayout from "../../components/articleLayout"
 
 # はじめに
 
@@ -23,4 +24,4 @@ CSSは[tailwindcss](https://tailwindcss.com/)というフレームワークを�
 
 ではまた〜
 
-export default ({ children }) => <Layout meta={meta}>{children}</Layout>
+export default ({ children }) => <ArticleLayout meta={meta}>{children}</ArticleLayout>

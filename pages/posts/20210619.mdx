@@ -1,9 +1,10 @@
 export const meta = {
   title: "自作キーボードはじめました",
   description: "自作キーボードキット Nomu30を組み立てた話",
-  date: "20210619"
+  date: "20210619",
+  tags: ["自作キーボード"],
 }
-import Layout from "../../components/layout"
+import ArticleLayout from "../../components/articleLayout"
 import Im from "../../components/im"
 //import TweetEmbed from "react-tweet-embed"
 import diode_complete from "../../public/images/20210619/diode_complete.jpg"
@@ -99,4 +100,4 @@ BMPの電源供給用の電池基板を組み立てます。[ドキュメント]
 
 次は60%ぐらいのキーボードを作ってみたいですが、金銭的理由からかなり先のことになりそうです。
 
-export default ({ children }) => <Layout meta={meta}>{children}</Layout>
+export default ({ children }) => <ArticleLayout meta={meta}>{children}</ArticleLayout>

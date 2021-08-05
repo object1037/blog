@@ -1,20 +1,15 @@
 import Link from 'next/link'
 import DateDisplay from './date'
+import { metaData } from './articleLayout'
 
-interface postData {
-  date: string;
-  title: string;
-  description: string;
-}
-
-export default function PostCard(postData: postData) {
+export default function PostCard(meta: metaData) {
   return (
     <li className="my-3 bg-gray-100 dark:bg-gray-800 rounded-sm shadow-sm hover:shadow-lg h-30">
-      <Link href={`/posts/${postData.date}`}>
+      <Link href={`/posts/${meta.date}`}>
         <a className="flex flex-col h-32 p-4">
-          <span className="text-xs text-gray-800 dark:text-gray-200"><DateDisplay dateString={postData.date} /></span>
-          <span className="truncate text-xl mb-4 text-gray-900 dark:text-gray-100">{postData.title}</span>
-          <span className="truncate text-gray-900 dark:text-gray-100">{postData.description}</span>
+          <span className="text-xs text-gray-800 dark:text-gray-200"><DateDisplay dateString={meta.date} /></span>
+          <span className="truncate text-xl mb-4 text-gray-900 dark:text-gray-100">{meta.title}</span>
+          <span className="truncate text-gray-900 dark:text-gray-100">{meta.description}</span>
         </a>
       </Link>
     </li>

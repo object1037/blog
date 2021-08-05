@@ -1,4 +1,4 @@
-import { tocElement } from "./layout"
+import { tocElement } from "./articleLayout"
 import TocAnchor from "./tocAnchor"
 
 export default function ToC({
