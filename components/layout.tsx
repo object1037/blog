@@ -14,7 +14,7 @@ export default function Layout({
       <meta property="og:image" content="https://object1037.dev/_next/image?url=%2Fimages%2Fprofile.jpg&w=640&q=75" />
     </Head>
     <Header />
-    <main className="mb-20">
+    <main className="post-area mb-20">
       <section className="flex flex-col justify-center">
         {children}
       </section>
