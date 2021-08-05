@@ -2,9 +2,10 @@ export const meta = {
   title: "投稿テスト",
   description: "テスト",
   date: "20210518",
+  tags: ["テスト", "タグ2"],
 }
 
-import Layout from "../components/layout"
+import ArticleLayout from "../components/articleLayout"
 import Im from "../components/im"
 //import TweetEmbed from 'react-tweet-embed'
 import ponpokoInamenn from "../public/images/testPost/ponpoko-inamenn.jpg"
@@ -95,4 +96,4 @@ console.log("veryLongTextHere : aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa
 
 あ～う〜♡
 
-export default ({ children }) => <Layout meta={meta}>{children}</Layout>
+export default ({ children }) => <ArticleLayout meta={meta}>{children}</ArticleLayout>
