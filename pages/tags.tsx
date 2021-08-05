@@ -35,13 +35,11 @@ export default function Home({
       <h1 className="text-center text-xl pb-10 pt-12 text-gray-900 dark:text-gray-100">タグ一覧</h1>
       <div className="mx-6 flex flex-row flex-wrap justify-center">
         {allTags.map((tag) => (
-          <div className="m-2" key={tag.name}>
-            <Link href={`/tags/${tag.name}`}>
-              <a className="bg-gray-200 dark:bg-gray-700 px-4 py-2 rounded-md">
-                # {tag.name}
-              </a>
-            </Link>
-          </div>
+          <Link href={`/tags/${tag.name}`} key={tag.name}>
+            <a className="bg-gray-200 dark:bg-gray-700 px-4 py-2 m-2 rounded-md">
+              # {tag.name}
+            </a>
+          </Link>
         ))}
       </div>
     </Layout>

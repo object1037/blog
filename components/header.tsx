@@ -13,11 +13,18 @@ export default function Header () {
         </a>
       </Link>
 
-      <Link href="https://object1037.dev">
-        <a target="_blank" rel="noopener" className="h-full hover:bg-gray-200 dark:hover:bg-gray-700">
-          <div className="flex items-center px-3 h-full">About</div>
-        </a>
-      </Link>
+      <div className="flex flex-row h-full">
+        <Link href="/tags">
+          <a className="h-full hover:bg-gray-200 dark:hover:bg-gray-700">
+            <div className="flex items-center px-3 h-full">Tags</div>
+          </a>
+        </Link>
+        <Link href="https://object1037.dev">
+          <a target="_blank" rel="noopener" className="h-full hover:bg-gray-200 dark:hover:bg-gray-700">
+            <div className="flex items-center px-3 h-full">About</div>
+          </a>
+        </Link>
+      </div>
     </header>
   )
 }
