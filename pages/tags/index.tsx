@@ -1,4 +1,4 @@
-import { siteTitle, handleName } from '../../components/articleLayout'
+import { siteTitle, handleName, siteUrl} from '../../components/articleLayout'
 import { tagData } from '../../lib/getAllPostsTags'
 import Layout from '../../components/layout'
 import Tag from '../../components/tag'
@@ -21,7 +21,7 @@ export default function Home({
 }) {
   return (
     <>
-    <Layout title={`タグ一覧 | ${siteTitle}`} description={`タグ一覧 | ${handleName}のブログ`}>
+    <Layout title={`タグ一覧 | ${siteTitle}`} description={`タグ一覧 | ${handleName}のブログ`} url={`${siteUrl}/tags`}>
       <h1 className="text-center text-xl pb-10 pt-12 text-gray-900 dark:text-gray-100">タグ一覧</h1>
       <div className="mx-6 flex flex-row flex-wrap justify-center">
         {allTags.map((tag) => (

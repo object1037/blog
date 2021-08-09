@@ -1,17 +1,19 @@
 import Head from 'next/head'
 import Header from './header'
 import Footer from './footer'
-import { siteTitle, handleName } from './articleLayout'
+import { siteTitle, handleName, siteUrl } from './articleLayout'
 
 export default function Layout({
   title = siteTitle,
   description = `${handleName}のブログです`,
   imgUrl = "https://object1037.dev/images/profile.jpg",
+  url = siteUrl,
   children,
 }: {
   title?: string,
   description?: string,
   imgUrl?: string,
+  url?: string,
   children: React.ReactNode,
 }) {
   return (
@@ -22,6 +24,7 @@ export default function Layout({
       <meta name="twitter:card" content="summary" />
       <meta name="twitter:creator" content="@object1037" />
       <meta property="og:title" content={title} />
+      <meta property="og:url" content={url} />
       <meta property="og:description" content={description} />
       <meta property="og:image" content={imgUrl} />
       <title>{title}</title>

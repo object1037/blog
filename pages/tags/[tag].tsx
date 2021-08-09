@@ -1,6 +1,6 @@
 import { useRouter } from 'next/router'
 import { tagData } from '../../lib/getAllPostsTags'
-import { siteTitle, handleName, metaData } from '../../components/articleLayout'
+import { siteTitle, handleName, siteUrl, metaData } from '../../components/articleLayout'
 import Layout from '../../components/layout'
 import { GetStaticProps } from 'next'
 import { getAllTags } from '../../lib/getAllPostsTags'
@@ -39,7 +39,7 @@ export default function TagPage({
 
   if (router.isFallback) {
     return (
-    <Layout title={`「${tag}」に関する記事一覧 | ${siteTitle}`} description={`「${tag}」に関する記事一覧 | ${handleName}のブログ`}>
+    <Layout title={`「${tag}」に関する記事一覧 | ${siteTitle}`} description={`「${tag}」に関する記事一覧 | ${handleName}のブログ`} url={`${siteUrl}/tags/${tag}`}>
       <h1 className="text-center text-xl pb-10 pt-12 text-gray-900 dark:text-gray-100">「 {tag} 」に関する記事一覧</h1>
       <h2 className="text-center">Loading...</h2>
     </Layout>
@@ -47,7 +47,7 @@ export default function TagPage({
   }
 
   return (
-    <Layout title={`「${tag}」に関する記事一覧 | ${siteTitle}`} description={`「${tag}」に関する記事一覧 | ${handleName}のブログ`}>
+    <Layout title={`「${tag}」に関する記事一覧 | ${siteTitle}`} description={`「${tag}」に関する記事一覧 | ${handleName}のブログ`} url={`${siteUrl}/tags/${tag}`}>
       <h1 className="text-center text-xl pb-10 pt-12 text-gray-900 dark:text-gray-100">「 {tag} 」に関する記事一覧</h1>
       <ul className="flex flex-col justify-center px-10 max-w-3xl mx-auto w-full">
         {postsWithTag.map((meta) => (
