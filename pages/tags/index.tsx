@@ -25,7 +25,7 @@ export default function Home({
       <h1 className="text-center text-xl pb-10 pt-12 text-gray-900 dark:text-gray-100">タグ一覧</h1>
       <div className="mx-6 flex flex-row flex-wrap justify-center">
         {allTags.map((tag) => (
-          <Tag name={tag.name} key={tag.name}/>
+          <Tag name={tag.name} postsCount={tag.articles.length} key={tag.name}/>
         ))}
       </div>
     </Layout>
