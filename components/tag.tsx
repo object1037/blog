@@ -18,10 +18,11 @@ export default function Tag({
           'dark:bg-gray-800',
           'group-hover:bg-gray-200',
           'dark:group-hover:bg-gray-700',
+          'transition',
           'rounded-l-md',
           !postsCount && 'rounded-r-md'
         )}># {name}</div>
-        {postsCount && <div className="flex items-center text-center bg-gray-200 dark:bg-gray-700 group-hover:bg-gray-300 dark:group-hover:bg-gray-600 px-4 rounded-r-md">{postsCount}</div>}
+        {postsCount && <div className="flex items-center text-center bg-gray-200 dark:bg-gray-700 group-hover:bg-gray-300 dark:group-hover:bg-gray-600 px-4 rounded-r-md transition">{postsCount}</div>}
       </a>
     </Link>
   )

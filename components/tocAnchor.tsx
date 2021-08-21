@@ -22,6 +22,7 @@ const TocAnchor = memo(function TocAnchor({
   return (
     <a href={`#${title}`} className={clsx(
       'text-gray-500',
+      'transition',
       hoverStyle,
       isH2 && 'font-semibold',
       isIntersectingElement && intersectingStyle,
