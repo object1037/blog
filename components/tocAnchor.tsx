@@ -1,6 +1,7 @@
 import clsx from 'clsx'
+import { memo } from 'react'
 
-export default function TocAnchor({
+const TocAnchor = memo(function TocAnchor({
   title,
   isH2,
   isIntersectingElement,
@@ -21,10 +22,13 @@ export default function TocAnchor({
   return (
     <a href={`#${title}`} className={clsx(
       'text-gray-500',
+      'transition',
       hoverStyle,
       isH2 && 'font-semibold',
       isIntersectingElement && intersectingStyle,
       !isIntersectingElement && 'dark:text-gray-400'
       )}>{title}</a>
   )
-}
+})
+
+export default TocAnchor

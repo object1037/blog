@@ -10,7 +10,7 @@ interface accountIcon {
 export default function IconLink(account: accountIcon) {
   return (
     <Link href={account.link}>
-      <a target="_blank" rel="noopener noreferrer" aria-label={account.icon} className="p-6 text-white hover:text-gray-400">
+      <a target="_blank" rel="noopener noreferrer" aria-label={account.icon} className="p-6 text-white hover:text-gray-400 transition">
         <p className="w-8 h-8"><FontAwesomeIcon icon={['fab', account.icon]} /></p>
       </a>
     </Link>
