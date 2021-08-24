@@ -1,6 +1,5 @@
 import { useRouter } from 'next/router'
-import { tagData } from '../../lib/getAllPostsTags'
-import { siteTitle, handleName, siteUrl, metaData } from '../../components/articleLayout'
+import { siteTitle, handleName, siteUrl } from '../../components/articleLayout'
 import Layout from '../../components/layout'
 import { GetStaticProps } from 'next'
 import { getAllTags } from '../../lib/getAllPostsTags'
@@ -8,7 +7,8 @@ import PostCard from '../../components/post-card'
 
 export const getStaticProps: GetStaticProps = async ({ params }) => {
   const allTags = getAllTags()
-  const searchByTag = (element: tagData) => element.name === params.tag
+  const tag = params?.tag as string
+  const searchByTag = (element: tagData) => element.name === tag
   if (allTags.findIndex(searchByTag) === -1) {
     return {
       notFound: true,

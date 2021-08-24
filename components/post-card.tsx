@@ -1,6 +1,5 @@
 import Link from 'next/link'
 import DateDisplay from './date'
-import { metaData } from './articleLayout'
 
 export default function PostCard(meta: metaData) {
   return (

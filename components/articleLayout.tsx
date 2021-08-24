@@ -12,20 +12,6 @@ export const siteTitle = "ゆるふわインターネット"
 export const siteUrl = "https://blog.object1037.dev"
 export const handleName = "object1037"
 
-export interface tocElement {
-  scrollPos: number,
-  title: string,
-  level: string,
-  childEls: tocElement[]
-}
-
-export interface metaData {
-  title: string,
-  description: string,
-  date: string,
-  tags: string[]
-}
-
 let initArr: tocElement[] = new Array({
   scrollPos: 0,
   title: "",

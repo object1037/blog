@@ -1,4 +1,4 @@
-import { handleName, metaData } from '../components/articleLayout'
+import { handleName } from '../components/articleLayout'
 import Layout from '../components/layout'
 import { GetStaticProps } from 'next'
 import { getAllPostsData } from '../lib/getAllPostsMetas'

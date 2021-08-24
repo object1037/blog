@@ -1,16 +1,11 @@
-import { metaData } from "../components/articleLayout"
-
-export interface tagData {
-  name: string,
-  articles: metaData[]
-}
-
 export function getAllTags() {
 
-  let tagsSet = new Set()
+  let tagsSet = new Set<string>()
   let tags: tagData[] = new Array()
-  let metas = new Array()
-  let articles = {}
+  let metas: metaData[] = new Array()
+  let articles: {
+    [key: string]: metaData[]
+  } = {}
 
   const contexts = require.context('../pages/posts/', false, /\.mdx$/)
 
