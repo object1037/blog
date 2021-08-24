@@ -1,5 +1,4 @@
-import { siteTitle, handleName, siteUrl} from '../../components/articleLayout'
-import { tagData } from '../../lib/getAllPostsTags'
+import { siteTitle, handleName, siteUrl } from '../../components/articleLayout'
 import Layout from '../../components/layout'
 import Tag from '../../components/tag'
 import { GetStaticProps } from 'next'

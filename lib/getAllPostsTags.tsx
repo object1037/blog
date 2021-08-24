@@ -1,10 +1,3 @@
-import { metaData } from "../components/articleLayout"
-
-export interface tagData {
-  name: string,
-  articles: metaData[]
-}
-
 export function getAllTags() {
 
   let tagsSet = new Set()
