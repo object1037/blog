@@ -1,4 +1,5 @@
 import clsx from 'clsx'
+import { FiAlertCircle } from 'react-icons/fi'
 
 export default function ElapsedYear({
   yearNum
@@ -6,16 +7,19 @@ export default function ElapsedYear({
   yearNum: number
 }) {
   const elapsedYearStyle = [
-    'bg-rose-100',
-    'dark:bg-pink-900',
-    'p-5',
+    'border',
+    'border-warnred',
+    'text-warnred',
+    'p-4',
     'mt-2',
-    'font-semibold',
     'rounded-md',
+    'flex',
+    'flex-row',
+    'items-center'
   ]
   return (
     <div className={clsx(yearNum === 0 ? 'hidden' : elapsedYearStyle)}>
-      この記事は公開から{yearNum}年以上経過しています
+      <span className="text-lg mr-2"><FiAlertCircle /></span>この記事は公開から{yearNum}年以上が経過しています
     </div>
   )
 }
