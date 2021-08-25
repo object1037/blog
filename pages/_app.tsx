@@ -2,8 +2,6 @@ import { AppProps } from 'next/app'
 import '../styles/globals.css'
 import "../styles/prism.css";
 import {MDXProvider} from '@mdx-js/react'
-import { library } from '@fortawesome/fontawesome-svg-core'
-import { fab } from '@fortawesome/free-brands-svg-icons'
 import H2 from '../components/mdComponents/H2'
 import H3 from '../components/mdComponents/H3'
 import H4 from '../components/mdComponents/H4'
@@ -15,7 +13,6 @@ import Anchor from '../components/mdComponents/Anchor'
 import Code from '../components/mdComponents/Code'
 import InlineCode from '../components/mdComponents/inline-code'
 import Blockquote from '../components/mdComponents/Blockquote'
-library.add(fab)
 
 const mdComponents = {
   h1: (props: HTMLElement) => H2(props), 

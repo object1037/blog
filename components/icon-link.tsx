@@ -1,17 +1,18 @@
-import { IconName } from '@fortawesome/fontawesome-common-types'
-import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
 import Link from 'next/link'
 
-interface accountIcon {
-  icon: IconName
-  link: string
-}
-
-export default function IconLink(account: accountIcon) {
+export default function IconLink({
+  link,
+  label,
+  children,
+}: {
+  link: string,
+  label: string,
+  children: React.ReactNode,
+}) {
   return (
-    <Link href={account.link}>
-      <a target="_blank" rel="noopener noreferrer" aria-label={account.icon} className="p-6 text-white hover:text-gray-400 transition">
-        <p className="w-8 h-8"><FontAwesomeIcon icon={['fab', account.icon]} /></p>
+    <Link href={link}>
+      <a target="_blank" rel="noopener noreferrer" aria-label={label} className="p-4 text-white hover:text-gray-400 transition">
+        <p className="text-3xl">{children}</p>
       </a>
     </Link>
   )
