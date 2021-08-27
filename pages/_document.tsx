@@ -9,7 +9,15 @@ class MyDocument extends Document {
   render() {
     return (
       <Html lang="ja" className="text-gray-900 dark:text-gray-100 dark:bg-gray-900">
-        <Head />
+        <Head>
+          <link
+            rel="preload"
+            href="/fonts/Inter-var.woff2"
+            as="font"
+            type="font/woff2"
+            crossOrigin="anonymous"
+          />
+        </Head>
         <body>
           <Main />
           <NextScript />

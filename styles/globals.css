@@ -1,11 +1,6 @@
 @tailwind base;
 @tailwind components;
 @tailwind utilities;
-/*
-body {
-  font-family: -apple-system, BlinkMacSystemFont, "Inter", "Helvetica", "Segoe UI", YuGothic, "Yu Gothic Medium", "Yu Gothic", sans-serif;
-}
-*/
 
 @font-face {
   font-family: 'Inter';
@@ -21,7 +16,6 @@ body {
   font-display: optional;
   src: url(/fonts/LVDC-Polly.woff2) format('woff2');
 }
-
 
 .post-area {
   min-height: calc(100vh - 10rem);
