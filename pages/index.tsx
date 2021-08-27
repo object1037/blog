@@ -1,4 +1,3 @@
-import { handleName } from '../components/articleLayout'
 import Layout from '../components/layout'
 import { GetStaticProps } from 'next'
 import { getAllPostsData } from '../lib/getAllPostsMetas'
@@ -21,7 +20,7 @@ export default function Home({
   return (
     <>
     <Layout>
-      <h1 className="text-center text-xl pb-10 pt-12 text-gray-900 dark:text-gray-100">{handleName}のブログです</h1>
+      <h1 className="text-center text-xl pb-10 pt-12 text-gray-900 dark:text-gray-100">ゆるふわインターネット</h1>
       <ul className="flex flex-col justify-center px-10 max-w-3xl mx-auto w-full">
         {allPostsMetas.map((meta) => (
           <PostCard key={meta.date} date={meta.date} title={meta.title} description={meta.description} tags={meta.tags} />
