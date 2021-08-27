@@ -1,10 +1,27 @@
 @tailwind base;
 @tailwind components;
 @tailwind utilities;
-
+/*
 body {
-  font-family: -apple-system, BlinkMacSystemFont, "Helvetica Neue", "Segoe UI", YuGothic, "Yu Gothic Medium", "Yu Gothic", sans-serif;
+  font-family: -apple-system, BlinkMacSystemFont, "Inter", "Helvetica", "Segoe UI", YuGothic, "Yu Gothic Medium", "Yu Gothic", sans-serif;
 }
+*/
+
+@font-face {
+  font-family: 'Inter';
+  font-style: normal;
+  font-weight: 100 900;
+  font-display: optional;
+  src: url(/fonts/Inter-var.woff2) format('woff2');
+}
+
+@font-face {
+  font-family: 'Polly';
+  font-style: normal;
+  font-display: optional;
+  src: url(/fonts/LVDC-Polly.woff2) format('woff2');
+}
+
 
 .post-area {
   min-height: calc(100vh - 10rem);
@@ -17,7 +34,6 @@ body {
 
 .circle {
   border-width: 1.5rem;
-  animation: animation 5s linear infinite;
 }
 @keyframes animation {
   0% { transform: rotate(0deg); }
@@ -25,35 +41,26 @@ body {
 }
 .bar {
   width: 16rem;
-  position: relative;
   top: calc(50% - 0.75rem);
   left: calc(0% - 2rem);
+  animation: animation 5s linear infinite;
 }
 .triangle {
   border-bottom: solid 1.5rem #fd2e7a;
   border-left: solid 0.375rem transparent;
   border-right: solid 2rem transparent;
-  position: relative;
-  top: calc(50% - 2.25rem);
   left: calc(0.625rem);
 }
 .triangle2 {
   border-top: solid 1.5rem #fd2e7a;
   border-right: solid 0.375rem transparent;
   border-left: solid 2rem transparent;
-  position: relative;
-  top: calc(50% - 0.75rem);
   left: calc(100% - 3rem);
 }
 .errorCode {
-  width: 20rem;
-  text-align: center;
-  font-size: 5rem;
-  position: absolute;
-  top: calc(6.125rem);
-  left: calc(50% - 10rem);
-  font-family: 'Comfortaa', cursive;
+  font-size: 6.25rem;
+  font-family: 'Polly', sans-serif;
 }
 .errorSentence {
-  font-family: 'Comfortaa', cursive;
+  font-family: 'Polly', sans-serif;
 }
