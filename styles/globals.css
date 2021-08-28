@@ -15,7 +15,7 @@
 @font-face {
   font-family: 'Polly';
   font-style: normal;
-  font-display: optional;
+  font-display: block;
   src: url(/fonts/LVDC-Polly.woff2) format('woff2');
 }
 
