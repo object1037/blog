@@ -15,7 +15,7 @@ export default function Header () {
   ]
   return (
     <header className={clsx(headerStyle)}>
-      <div className="flex flex-col md:flex-row items-stretch justify-start max-w-5xl mx-auto">
+      <div className="flex flex-col md:flex-row items-center md:items-stretch justify-start max-w-5xl mx-auto">
         <Link href="/">
           <a className="h-full py-3 md:py-4 flex flex-row items-center justify-center space-x-2 hover:bg-gray-100 dark:hover:bg-gray-800 px-3">
             <div className="rounded-full overflow-hidden shadow-lg w-12 h-12">
