@@ -15,18 +15,25 @@ const TocAnchor = memo(function TocAnchor({
     'dark:hover:text-gray-100',
     'hover:underline',
   ]
-  const intersectingStyle = [
+  const intersectingColorStyle = [
     'text-gray-900',
     'dark:text-gray-100',
   ]
+  const h2ColorStyle = [
+    'text-gray-500',
+    'dark:text-gray-400',
+  ]
+  const h3ColorStyle = [
+    'text-gray-400',
+    'dark:text-gray-500',
+  ]
+  const colorStyle = isH2 ? h2ColorStyle : h3ColorStyle
   return (
     <a href={`#${title}`} className={clsx(
-      'text-gray-500',
       'transition',
       hoverStyle,
       isH2 && 'font-semibold',
-      isIntersectingElement && intersectingStyle,
-      !isIntersectingElement && 'dark:text-gray-400'
+      isIntersectingElement ? intersectingColorStyle : colorStyle,
       )}>{title}</a>
   )
 })
