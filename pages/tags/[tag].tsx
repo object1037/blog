@@ -38,10 +38,12 @@ export default function TagPage({
   const router = useRouter()
   const { tag } = router.query
   const hashTag = 
-  <span className="inline-flex flex-row items-center leading-none">
-    <FiHash className="inline-block w-16 h-16 p-3 mr-3 rounded-full bg-gray-100 dark:bg-gray-800"/>
+  <p className="inline-flex flex-row items-center leading-none">
+    <span className="w-16 h-16 flex justify-center content-center items-center p-3 mr-3 rounded-full bg-gray-100 dark:bg-gray-800">
+      <FiHash className="inline-block"/>
+    </span>
     {tag}
-  </span>
+  </p>
 
   if (router.isFallback) {
     return (
