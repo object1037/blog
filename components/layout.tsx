@@ -33,7 +33,7 @@ export default function Layout({
       <title>{title}</title>
     </Head>
     <Header />
-    <main className="post-area mb-20 px-6 sm:px-12">
+    <main className="mb-20 px-6 sm:px-12">
       <section className="flex flex-col justify-center items-center max-w-4xl mx-auto">
         <h1 className={clsx(
           'self-start',
