@@ -2,6 +2,7 @@ import Head from 'next/head'
 import Header from './header'
 import Footer from './footer'
 import { siteTitle, handleName, siteUrl } from './articleLayout'
+import clsx from 'clsx'
 
 export default function Layout({
   title = siteTitle,
@@ -15,7 +16,7 @@ export default function Layout({
   description?: string,
   imgUrl?: string,
   url?: string,
-  h1: string,
+  h1: string | JSX.Element,
   children: React.ReactNode,
 }) {
   return (
@@ -34,7 +35,15 @@ export default function Layout({
     <Header />
     <main className="post-area mb-20 px-6 sm:px-12">
       <section className="flex flex-col justify-center items-center max-w-4xl mx-auto">
-        <h1 className="self-start text-4xl font-bold pb-10 pt-12 text-gray-900 dark:text-gray-100">{h1}</h1>
+        <h1 className={clsx(
+          'self-start',
+          'text-4xl',
+          'font-bold',
+          'text-gray-900',
+          'dark:text-gray-100',
+          'pt-12',
+          'pb-10'
+        )}>{h1}</h1>
         {children}
       </section>
     </main>

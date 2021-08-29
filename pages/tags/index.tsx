@@ -21,7 +21,7 @@ export default function Home({
   return (
     <>
     <Layout h1="Tags" title={`Tags | ${siteTitle}`} description={`タグ一覧 | ${handleName}のブログ`} url={`${siteUrl}/tags`}>
-      <div className="flex flex-row flex-wrap justify-center">
+      <div className="flex flex-row flex-wrap w-full">
         {allTags.map((tag) => (
           <Tag name={tag.name} postsCount={tag.articles.length} key={tag.name}/>
         ))}
