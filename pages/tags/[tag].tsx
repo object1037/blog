@@ -45,14 +45,14 @@ export default function TagPage({
 
   if (router.isFallback) {
     return (
-    <Layout h1={hashTag} title={`# ${tag} | ${siteTitle}`} description={`# ${tag} | ${handleName}のブログ`} url={`${siteUrl}/tags/${tag}`}>
+    <Layout h1={hashTag} title={`${tag}に関する投稿 | ${siteTitle}`} description={`${tag}に関する投稿一覧 | ${handleName}のブログ`} url={`${siteUrl}/tags/${tag}`}>
       <h2 className="text-center">Loading...</h2>
     </Layout>
     )
   }
 
   return (
-    <Layout h1={hashTag} title={`# ${tag} | ${siteTitle}`} description={`# ${tag} | ${handleName}のブログ`} url={`${siteUrl}/tags/${tag}`}>
+    <Layout h1={hashTag} title={`${tag}に関する投稿 | ${siteTitle}`} description={`${tag}に関する投稿一覧 | ${handleName}のブログ`} url={`${siteUrl}/tags/${tag}`}>
       <ul className="flex flex-col justify-center max-w-3xl mx-auto w-full">
         {postsWithTag.map((meta) => (
           <PostCard key={meta.date} date={meta.date} title={meta.title} description={meta.description} tags={meta.tags} />
