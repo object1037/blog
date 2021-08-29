@@ -39,17 +39,15 @@ export default function TagPage({
 
   if (router.isFallback) {
     return (
-    <Layout title={`「${tag}」に関する記事一覧 | ${siteTitle}`} description={`「${tag}」に関する記事一覧 | ${handleName}のブログ`} url={`${siteUrl}/tags/${tag}`}>
-      <h1 className="text-center text-xl pb-10 pt-12 text-gray-900 dark:text-gray-100">「 {tag} 」に関する記事一覧</h1>
+    <Layout h1={`#${tag}`} title={`#${tag} | ${siteTitle}`} description={`#${tag} | ${handleName}のブログ`} url={`${siteUrl}/tags/${tag}`}>
       <h2 className="text-center">Loading...</h2>
     </Layout>
     )
   }
 
   return (
-    <Layout title={`「${tag}」に関する記事一覧 | ${siteTitle}`} description={`「${tag}」に関する記事一覧 | ${handleName}のブログ`} url={`${siteUrl}/tags/${tag}`}>
-      <h1 className="text-center text-xl pb-10 pt-12 text-gray-900 dark:text-gray-100">「 {tag} 」に関する記事一覧</h1>
-      <ul className="flex flex-col justify-center px-10 max-w-3xl mx-auto w-full">
+    <Layout h1={`#${tag}`} title={`#${tag} | ${siteTitle}`} description={`#${tag} | ${handleName}のブログ`} url={`${siteUrl}/tags/${tag}`}>
+      <ul className="flex flex-col justify-center max-w-3xl mx-auto w-full">
         {postsWithTag.map((meta) => (
           <PostCard key={meta.date} date={meta.date} title={meta.title} description={meta.description} tags={meta.tags} />
         ))}
