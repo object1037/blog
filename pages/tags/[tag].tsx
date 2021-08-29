@@ -4,6 +4,7 @@ import Layout from '../../components/layout'
 import { GetStaticProps } from 'next'
 import { getAllTags } from '../../lib/getAllPostsTags'
 import PostCard from '../../components/post-card'
+import { FiHash } from 'react-icons/fi'
 
 export const getStaticProps: GetStaticProps = async ({ params }) => {
   const allTags = getAllTags()
@@ -36,20 +37,23 @@ export default function TagPage({
 }) {
   const router = useRouter()
   const { tag } = router.query
+  const hashTag = 
+  <span className="inline-flex flex-row items-center leading-none">
+    <FiHash className="inline-block w-16 h-16 p-3 mr-3 rounded-full bg-gray-100 dark:bg-gray-800"/>
+    {tag}
+  </span>
 
   if (router.isFallback) {
     return (
-    <Layout title={`「${tag}」に関する記事一覧 | ${siteTitle}`} description={`「${tag}」に関する記事一覧 | ${handleName}のブログ`} url={`${siteUrl}/tags/${tag}`}>
-      <h1 className="text-center text-xl pb-10 pt-12 text-gray-900 dark:text-gray-100">「 {tag} 」に関する記事一覧</h1>
+    <Layout h1={hashTag} title={`${tag}に関する投稿 | ${siteTitle}`} description={`${tag}に関する投稿一覧 | ${handleName}のブログ`} url={`${siteUrl}/tags/${tag}`}>
       <h2 className="text-center">Loading...</h2>
     </Layout>
     )
   }
 
   return (
-    <Layout title={`「${tag}」に関する記事一覧 | ${siteTitle}`} description={`「${tag}」に関する記事一覧 | ${handleName}のブログ`} url={`${siteUrl}/tags/${tag}`}>
-      <h1 className="text-center text-xl pb-10 pt-12 text-gray-900 dark:text-gray-100">「 {tag} 」に関する記事一覧</h1>
-      <ul className="flex flex-col justify-center px-10 max-w-3xl mx-auto w-full">
+    <Layout h1={hashTag} title={`${tag}に関する投稿 | ${siteTitle}`} description={`${tag}に関する投稿一覧 | ${handleName}のブログ`} url={`${siteUrl}/tags/${tag}`}>
+      <ul className="flex flex-col justify-center max-w-3xl mx-auto w-full">
         {postsWithTag.map((meta) => (
           <PostCard key={meta.date} date={meta.date} title={meta.title} description={meta.description} tags={meta.tags} />
         ))}
