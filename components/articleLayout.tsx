@@ -106,15 +106,17 @@ export default function ArticleLayout({
       </Head>
       <Header />
       <article className="flex flex-col w-screen px-6">
-        <header className="flex flex-col max-w-6xl pt-8 pb-5 border-gray-600 dark:border-gray-300 border-b w-full mx-auto">
-          <h1 className="text-4xl py-4 text-gray-900 dark:text-gray-100 text-center font-bold">{meta.title}</h1>
-          <span className="font-normal text-sm py-3 text-gray-600 dark:text-gray-300 text-center"><DateDisplay dateString={meta.date} /></span>
-          <div className="flex flex-row flex-wrap justify-center">
-            {meta.tags.map((tag) => (
-              <Tag name={tag} key={tag} />
-            ))}
+        <header className="max-w-6xl pt-8 pb-4 border-gray-600 dark:border-gray-300 border-b w-full mx-auto">
+          <div className="max-w-5xl mx-auto w-full">
+            <h1 className="text-4xl sm:text-4.5xl py-4 text-gray-900 dark:text-gray-100 font-bold">{meta.title}</h1>
+            <span className="font-normal text-sm text-gray-600 dark:text-gray-300"><DateDisplay dateString={meta.date} /></span>
+            <div className="-ml-3 mt-4 flex flex-row flex-wrap">
+              {meta.tags.map((tag) => (
+                <Tag name={tag} key={tag} />
+              ))}
+            </div>
+            <ElapsedYear yearNum={elapsedYears} />
           </div>
-          <ElapsedYear yearNum={elapsedYears} />
         </header>
         <div className="max-w-6xl w-full flex flex-row-reverse justify-between mx-auto">
           <aside className="py-12">

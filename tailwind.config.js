@@ -19,6 +19,9 @@ module.exports = {
       fontFamily: {
         sans: ['Inter', 'YuGothic', "Yu Gothic Medium", "Yu Gothic", ...fontFamily.sans]
       },
+      fontSize: {
+        '4.5xl': '2.5rem',
+      },
     },
   },
   variants: {
