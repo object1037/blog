@@ -5,36 +5,72 @@ import profileImg from '../public/images/profile.jpg'
 
 export default function Header () {
   const headerStyle = [
-    'px-6',
-    'sm:px-12',
+    'py-2',
+    'px-4',
+    'md:px-8',
     'border-b',
     'border-gray-200',
     'dark:border-gray-700',
-    'text-gray-900',
-    'dark:text-gray-100',
+    'sticky',
+    'sticky',
+    '-top-16',
+    'bg-white',
+    'dark:bg-gray-900',
+    'z-50'
+  ]
+  const headerWrapperStyle = [
+    'max-w-5xl',
+    'mx-auto',
+    'flex',
+    'flex-col',
+    'space-y-4',
+    'sticky',
+    'top-0'
+  ]
+  const logoStyle = [
+    'flex',
+    'items-center',
+    'space-x-3',
+    'text-sm',
+    'font-bold',
+    'px-3',
+    'pt-2'
+  ]
+  const navStyle = [
+    'flex',
+    'items-center',
+    'space-x-1',
+  ]
+  const navLinkStyle = [
+    'px-3',
+    'py-2',
+    'rounded-md',
+    'font-medium',
+    'hover:bg-gray-100',
+    'dark:hover:bg-gray-800',
+    'transition'
   ]
   return (
     <header className={clsx(headerStyle)}>
-      <div className="flex flex-col md:flex-row items-center md:items-stretch justify-start max-w-5xl mx-auto">
+      <div className={clsx(headerWrapperStyle)}>
         <Link href="/">
-          <a className="h-full py-3 md:py-4 flex flex-row items-center justify-center space-x-2 hover:bg-gray-100 dark:hover:bg-gray-800 px-3">
-            <div className="rounded-full overflow-hidden shadow-lg w-12 h-12">
+          <a className={clsx(logoStyle)}>
+            <div className="rounded-full overflow-hidden shadow-lg w-10 h-10">
               <Image priority src={profileImg} alt="picture of me" className="rounded-full" placeholder="blur"/>
             </div>
             <span>ゆるふわインターネット</span>
           </a>
         </Link>
-        <div className="flex flex-row justify-center">
-          <Link href="/tags">
-            <a className="hover:bg-gray-100 dark:hover:bg-gray-800 py-5 md:py-4">
-              <div className="flex items-center h-full px-3">Tags</div>
-            </a>
-          </Link>
-          <Link href="https://object1037.dev">
-            <a target="_blank" rel="noopener" className="hover:bg-gray-100 dark:hover:bg-gray-800 py-5 md:py-4">
-              <div className="flex items-center h-full px-3">About</div>
-            </a>
-          </Link>
+        <div className="sticky top-0">
+          <div className={clsx(navStyle)}>
+            <Link href="/">
+              <a className={clsx(navLinkStyle)}>Posts</a>
+            </Link>
+            <Link href="/tags">
+              <a className={clsx(navLinkStyle)}>Tags</a>
+            </Link>
+            <a href="https://object1037.dev" className={clsx(navLinkStyle)}>About</a>
+          </div>
         </div>
       </div>
     </header>
