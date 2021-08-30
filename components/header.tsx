@@ -40,6 +40,7 @@ export default function Header () {
     'flex',
     'items-center',
     'space-x-1',
+    'md:space-x-2'
   ]
   const navLinkStyle = [
     'px-3',
