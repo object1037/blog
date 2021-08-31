@@ -77,7 +77,7 @@ export default function Header ({
           <Link href="/tags">
             <a className={clsx(navLinkStyle)}>Tags</a>
           </Link>
-          <a href="https://object1037.dev" className={clsx(navLinkStyle)}>About</a>
+          <a href="https://object1037.dev" target="_blank" rel="noopenner noreferrer" className={clsx(navLinkStyle)}>About</a>
         </div>
       </div>
     </nav>
