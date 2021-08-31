@@ -1,14 +1,16 @@
 import clsx from 'clsx'
-import { memo } from 'react'
+import { Dispatch, memo, SetStateAction } from 'react'
 
 const TocAnchor = memo(function TocAnchor({
   title,
   isH2,
   isIntersectingElement,
+  setIsOpen
 }: {
   title: string,
   isH2?: boolean,
   isIntersectingElement: boolean,
+  setIsOpen?: Dispatch<SetStateAction<boolean>>
 }) {
   const hoverStyle = [
     'hover:text-gray-900',
@@ -28,13 +30,14 @@ const TocAnchor = memo(function TocAnchor({
     'dark:text-gray-500',
   ]
   const colorStyle = isH2 ? h2ColorStyle : h3ColorStyle
+  const anchorStyle = [
+    'transition',
+    hoverStyle,
+    isH2 && 'font-semibold',
+    isIntersectingElement ? intersectingColorStyle : colorStyle,
+  ]
   return (
-    <a href={`#${title}`} className={clsx(
-      'transition',
-      hoverStyle,
-      isH2 && 'font-semibold',
-      isIntersectingElement ? intersectingColorStyle : colorStyle,
-    )}>
+    <a href={`#${title}`} className={clsx(anchorStyle)} onClick={setIsOpen ? () => setIsOpen(false) : undefined}>
       {title}
     </a>
   )
