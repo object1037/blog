@@ -1,4 +1,5 @@
 import TocAnchor from "./tocAnchor"
+import { FiList } from "react-icons/fi"
 
 export default function ToC({
   tocElements,
@@ -10,7 +11,12 @@ export default function ToC({
   return (
     <>
     <nav className="sticky top-6 right-0 max-h-screen-12 pl-4 py-4 text-sm dark:border-gray-600 border-gray-300 border-l leading-loose w-64">
-      <div className="text-gray-900 dark:text-gray-100 text-lg mb-4 font-semibold">目次</div>
+      <div className="-ml-1 inline-flex flex-row items-center text-lg mb-4 font-semibold">
+        <span className="w-9 h-9 flex justify-center content-center items-center p-1 mr-2 rounded-full bg-gray-100 dark:bg-gray-800">
+          <FiList className="inline-block" />
+        </span>
+        目次
+      </div>
       <ol className="ml-2">
         {tocElements.map((element) => {
           let isIntersectingElement = false
