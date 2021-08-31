@@ -9,7 +9,7 @@ export default function ToC({
 }) {
   return (
     <>
-    <nav className="hidden lg:block sticky top-20 right-0 max-h-screen-12 pl-4 py-4 text-sm dark:border-gray-600 border-gray-300 border-l leading-loose w-64">
+    <nav className="sticky top-6 right-0 max-h-screen-12 pl-4 py-4 text-sm dark:border-gray-600 border-gray-300 border-l leading-loose w-64">
       <div className="text-gray-900 dark:text-gray-100 text-lg mb-4 font-semibold">目次</div>
       <ol className="ml-2">
         {tocElements.map((element) => {

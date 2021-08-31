@@ -62,7 +62,7 @@ export default function Header ({
         </Link>
       </div>
     </header>
-    <header className={clsx(
+    <nav className={clsx(
       headerStyle,
       'border-b',
       'border-gray-200',
@@ -80,7 +80,7 @@ export default function Header ({
           <a href="https://object1037.dev" className={clsx(navLinkStyle)}>About</a>
         </div>
       </div>
-    </header>
+    </nav>
     </>
   )
 }
