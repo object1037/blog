@@ -14,7 +14,6 @@ export default function Header ({
     'md:px-8',
     'bg-white',
     'dark:bg-gray-900',
-    'z-50'
   ]
   const headerWrapperStyle = [
     'max-w-5xl',
@@ -47,6 +46,7 @@ export default function Header ({
   const stickyStyle = [
     'sticky',
     'top-0',
+    'z-50'
   ]
   return (
     <>
