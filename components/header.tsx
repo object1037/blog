@@ -54,7 +54,7 @@ export default function Header ({
       <div className={clsx(headerWrapperStyle)}>
         <Link href="/">
           <a className={clsx(logoStyle)}>
-            <div className="rounded-full overflow-hidden shadow-lg w-10 h-10">
+            <div className="rounded-full overflow-hidden shadow-sm w-10 h-10">
               <Image priority src={profileImg} alt="picture of me" className="rounded-full" placeholder="blur"/>
             </div>
             <span>ゆるふわインターネット</span>

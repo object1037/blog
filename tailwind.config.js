@@ -22,6 +22,9 @@ module.exports = {
       fontSize: {
         '4.5xl': '2.5rem',
       },
+      scale: {
+        '80': '.8',
+      },
     },
   },
   variants: {
