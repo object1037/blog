@@ -32,54 +32,81 @@ export default function ToCMobile({
     'scale-80',
     'opacity-0',
   ]
+  const menuWrapperStyle = [
+    'z-40',
+    'flex',
+    'fixed',
+    'pr-8',
+    'pl-4',
+    'pt-6',
+    'pb-16',
+    'inset-0',
+  ]
+  const menuStyle = [
+    'flex-grow',
+    'max-h-full',
+    'overflow-y-auto',
+    'overflow-hidden',
+    'max-w-sm',
+    'rounded-md',
+    'border',
+    'border-gray-300',
+    'dark:border-gray-600',
+    'ml-auto',
+    'mt-auto',
+    'text-sm',
+    'leading-loose',
+  ]
 
   return (
     <>
-    <button className="z-50 fixed bottom-4 right-4 shadow-xl block lg:hidden text-gray-100 dark:text-gray-900 bg-gray-900 dark:bg-gray-100 rounded-full w-16 h-16" onClick={isOpen ? () => closeMenu() : () => openMenu()}>
+    <button className="z-50 fixed bottom-12 right-4 ml-auto shadow-xl block lg:hidden text-gray-100 dark:text-gray-900 bg-gray-900 dark:bg-gray-100 rounded-full w-16 h-16" onClick={isOpen ? () => closeMenu() : () => openMenu()}>
       <span className="text-2xl">
         <FiList className={clsx(iconStyle, isOpen && fadeOutStyle)} />
         <FiX className={clsx(iconStyle, !isOpen && fadeOutStyle)} />
       </span>
     </button>
     {isOpen && (
-      <nav className="z-40 fixed left-8 right-8 bottom-8 ml-auto leading-loose text-sm max-w-sm">
-      <ol className="border border-gray-300 dark:border-gray-600 shadow-2xl bg-white dark:bg-gray-900 rounded-md p-4">
-        {tocElements.map((element) => {
-          let isIntersectingElement = false
-          if (element.title === intersectingElementId) {
-            isIntersectingElement = true
-          }
+      <aside className={clsx(menuWrapperStyle)}>
+        <nav className={clsx(menuStyle)}>
+          <ol className="shadow-2xl bg-white dark:bg-gray-900 p-4">
+            {tocElements.map((element) => {
+              let isIntersectingElement = false
+              if (element.title === intersectingElementId) {
+                isIntersectingElement = true
+              }
 
-          if (element.childEls.length > 0) {
-            return (
-              <li key={element.scrollPos}>
-                <TocAnchor title={element.title} isH2 isIntersectingElement={isIntersectingElement} setIsOpen={setIsOpen} />
-                <ol className="ml-2">
-                  {element.childEls.map((childEl) => {
-                    let isIntersectingChildElement = false
-                    if (childEl.title === intersectingElementId) {
-                      isIntersectingChildElement = true
-                    }
+              if (element.childEls.length > 0) {
+                return (
+                  <li key={element.scrollPos}>
+                    <TocAnchor title={element.title} isH2 isIntersectingElement={isIntersectingElement} setIsOpen={setIsOpen} />
+                    <ol className="ml-2">
+                      {element.childEls.map((childEl) => {
+                        let isIntersectingChildElement = false
+                        if (childEl.title === intersectingElementId) {
+                          isIntersectingChildElement = true
+                        }
 
-                    return (
-                      <li key={childEl.scrollPos}>
-                        <TocAnchor title={childEl.title} isIntersectingElement={isIntersectingChildElement} setIsOpen={setIsOpen} />
-                      </li>
-                    )
-                  })}
-                </ol>
-              </li>
-            )
-          } else if (element.childEls.length === 0) {
-            return (
-              <li key={element.scrollPos}>
-                <TocAnchor title={element.title} isH2 isIntersectingElement={isIntersectingElement} setIsOpen={setIsOpen} />
-              </li>
-            )
-          }
-        })}
-      </ol>
-    </nav>
+                        return (
+                          <li key={childEl.scrollPos}>
+                            <TocAnchor title={childEl.title} isIntersectingElement={isIntersectingChildElement} setIsOpen={setIsOpen} />
+                          </li>
+                        )
+                      })}
+                    </ol>
+                  </li>
+                )
+              } else if (element.childEls.length === 0) {
+                return (
+                  <li key={element.scrollPos}>
+                    <TocAnchor title={element.title} isH2 isIntersectingElement={isIntersectingElement} setIsOpen={setIsOpen} />
+                  </li>
+                )
+              }
+            })}
+          </ol>
+        </nav>
+      </aside>
     )}
     </>
   )
