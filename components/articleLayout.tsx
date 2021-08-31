@@ -4,6 +4,7 @@ import Footer from './footer'
 import Tag from './tag'
 import DateDisplay from './date'
 import ToC from './toc'
+import ToCMobile from './tocMobile'
 import ElapsedYear from './elapsedYear'
 import Share from './share'
 import { useEffect, useState } from 'react'
@@ -105,6 +106,9 @@ export default function ArticleLayout({
         <title>{meta.title} | {siteTitle}</title>
       </Head>
       <Header />
+      <aside className="z-50 sticky top-0 block lg:hidden border-b border-gray-200 dark:border-gray-700">
+        <ToCMobile tocElements={tocElements} intersectingElementId={intersectingElementId} />
+      </aside>
       <article className="flex flex-col w-screen px-6">
         <header className="max-w-6xl pt-10 pb-8 border-gray-600 dark:border-gray-300 border-b w-full mx-auto">
           <div className="max-w-3xl mx-auto lg:mx-10 w-full">
@@ -119,7 +123,7 @@ export default function ArticleLayout({
           </div>
         </header>
         <div className="max-w-6xl w-full flex flex-row-reverse justify-between mx-auto">
-          <aside className="py-12">
+          <aside className="py-12 hidden lg:block ">
             <ToC tocElements={tocElements} intersectingElementId={intersectingElementId} />
           </aside>
           <section className="max-w-3xl mt-10 mb-16 mx-auto lg:mx-10 w-full dark:border-gray-600 border-gray-300 border-b">

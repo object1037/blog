@@ -34,7 +34,9 @@ const TocAnchor = memo(function TocAnchor({
       hoverStyle,
       isH2 && 'font-semibold',
       isIntersectingElement ? intersectingColorStyle : colorStyle,
-      )}>{title}</a>
+    )}>
+      {title}
+    </a>
   )
 })
 
