@@ -32,7 +32,7 @@ export default function Layout({
       <meta property="og:image" content={imgUrl} />
       <title>{title}</title>
     </Head>
-    <Header />
+    <Header sticky/>
     <main className="mb-20 px-6 sm:px-12">
       <section className="flex flex-col justify-center items-center max-w-4xl mx-auto">
         <h1 className={clsx(
