@@ -20,7 +20,7 @@ export default function Home({
   return (
     <>
     <Layout h1="Posts">
-      <ul className="flex flex-col justify-center max-w-3xl w-full">
+      <ul className="flex flex-col justify-center max-w-4xl w-full">
         {allPostsMetas.map((meta) => (
           <PostCard key={meta.date} date={meta.date} title={meta.title} description={meta.description} tags={meta.tags} />
         ))}
