@@ -106,7 +106,7 @@ export default function ArticleLayout({
         <title>{meta.title} | {siteTitle}</title>
       </Head>
       <Header />
-      <article className="flex flex-col px-6">
+      <article className="flex flex-col px-6 sm:px-12">
         <header className="max-w-6xl pt-10 pb-8 border-gray-600 dark:border-gray-300 border-b w-full mx-auto">
           <div className="max-w-3xl mx-auto lg:mx-10 w-full">
             <span className="font-normal text-sm text-gray-600 dark:text-gray-300"><DateDisplay dateString={meta.date} /></span>
