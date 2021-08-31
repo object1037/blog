@@ -106,11 +106,11 @@ export default function ArticleLayout({
       </Head>
       <Header />
       <article className="flex flex-col w-screen px-6">
-        <header className="max-w-6xl pt-8 pb-4 border-gray-600 dark:border-gray-300 border-b w-full mx-auto">
-          <div className="max-w-5xl mx-auto w-full">
-            <h1 className="text-4xl sm:text-4.5xl py-4 text-gray-900 dark:text-gray-100 font-bold">{meta.title}</h1>
+        <header className="max-w-6xl pt-10 pb-8 border-gray-600 dark:border-gray-300 border-b w-full mx-auto">
+          <div className="max-w-3xl mx-auto lg:mx-10 w-full">
             <span className="font-normal text-sm text-gray-600 dark:text-gray-300"><DateDisplay dateString={meta.date} /></span>
-            <div className="-ml-3 mt-4 flex flex-row flex-wrap">
+            <h1 className="text-4xl sm:text-4.5xl py-6 text-gray-900 dark:text-gray-100 font-bold">{meta.title}</h1>
+            <div className="-ml-2 flex flex-row flex-wrap">
               {meta.tags.map((tag) => (
                 <Tag name={tag} key={tag} />
               ))}
