@@ -106,9 +106,7 @@ export default function ArticleLayout({
         <title>{meta.title} | {siteTitle}</title>
       </Head>
       <Header />
-      <aside className="z-50 sticky top-0 block lg:hidden border-b border-gray-200 dark:border-gray-700">
-        <ToCMobile tocElements={tocElements} intersectingElementId={intersectingElementId} />
-      </aside>
+      <ToCMobile tocElements={tocElements} intersectingElementId={intersectingElementId} />
       <article className="flex flex-col w-screen px-6">
         <header className="max-w-6xl pt-10 pb-8 border-gray-600 dark:border-gray-300 border-b w-full mx-auto">
           <div className="max-w-3xl mx-auto lg:mx-10 w-full">
