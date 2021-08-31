@@ -56,11 +56,12 @@ export default function ToCMobile({
     'mt-auto',
     'text-sm',
     'leading-loose',
+    'shadow-2xl'
   ]
 
   return (
     <>
-    <button className="z-50 fixed bottom-12 right-4 ml-auto shadow-xl block lg:hidden text-gray-100 dark:text-gray-900 bg-gray-900 dark:bg-gray-100 rounded-full w-16 h-16" onClick={isOpen ? () => closeMenu() : () => openMenu()}>
+    <button className="z-50 fixed bottom-12 right-4 ml-auto shadow-2xl block lg:hidden text-gray-100 dark:text-gray-900 bg-gray-900 dark:bg-gray-100 rounded-full w-16 h-16" onClick={isOpen ? () => closeMenu() : () => openMenu()}>
       <span className="text-2xl">
         <FiList className={clsx(iconStyle, isOpen && fadeOutStyle)} />
         <FiX className={clsx(iconStyle, !isOpen && fadeOutStyle)} />
