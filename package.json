@@ -21,7 +21,7 @@
     "react-tweet-embed": "^1.2.2"
   },
   "devDependencies": {
-    "@babel/cli": "^7.14.8",
+    "@babel/cli": "^7.15.4",
     "@babel/core": "^7.15.0",
     "@babel/preset-env": "^7.15.0",
     "@types/mdx-js__react": "^1.5.4",
