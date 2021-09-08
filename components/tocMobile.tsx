@@ -69,7 +69,7 @@ export default function ToCMobile({
       </span>
     </button>
     {isOpen && (
-      <aside className={clsx(menuWrapperStyle)}>
+      <aside className={clsx(menuWrapperStyle)} onClick={() => closeMenu()}>
         <nav className={clsx(menuStyle)}>
           <ol className="shadow-2xl bg-white dark:bg-gray-900 p-4">
             {tocElements.map((element) => {
