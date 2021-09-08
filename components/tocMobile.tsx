@@ -35,6 +35,7 @@ export default function ToCMobile({
   const menuWrapperStyle = [
     'z-40',
     'flex',
+    'lg:hidden',
     'fixed',
     'pr-8',
     'pl-4',
@@ -68,7 +69,7 @@ export default function ToCMobile({
       </span>
     </button>
     {isOpen && (
-      <aside className={clsx(menuWrapperStyle)}>
+      <aside className={clsx(menuWrapperStyle)} onClick={() => closeMenu()}>
         <nav className={clsx(menuStyle)}>
           <ol className="shadow-2xl bg-white dark:bg-gray-900 p-4">
             {tocElements.map((element) => {
@@ -79,7 +80,7 @@ export default function ToCMobile({
 
               if (element.childEls.length > 0) {
                 return (
-                  <li key={element.scrollPos}>
+                  <li key={element.scrollPos} className="truncate">
                     <TocAnchor title={element.title} isH2 isIntersectingElement={isIntersectingElement} setIsOpen={setIsOpen} />
                     <ol className="ml-2">
                       {element.childEls.map((childEl) => {
@@ -89,7 +90,7 @@ export default function ToCMobile({
                         }
 
                         return (
-                          <li key={childEl.scrollPos}>
+                          <li key={childEl.scrollPos} className="truncate">
                             <TocAnchor title={childEl.title} isIntersectingElement={isIntersectingChildElement} setIsOpen={setIsOpen} />
                           </li>
                         )
@@ -99,7 +100,7 @@ export default function ToCMobile({
                 )
               } else if (element.childEls.length === 0) {
                 return (
-                  <li key={element.scrollPos}>
+                  <li key={element.scrollPos} className="truncate">
                     <TocAnchor title={element.title} isH2 isIntersectingElement={isIntersectingElement} setIsOpen={setIsOpen} />
                   </li>
                 )

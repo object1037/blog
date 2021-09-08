@@ -36,6 +36,7 @@ pre[class*="language-"] {
 pre[class*="language-"] {
 	background: #282C34;
 	border-radius: 0.25rem;
+	display: flex;
 }
 
 /* Inline code */
