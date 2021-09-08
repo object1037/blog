@@ -1,5 +1,5 @@
 export default function Code(props: HTMLElement) {
   return (
-    <code className="text-sm">{props.children}</code>
+    <code className="text-sm w-10">{props.children}</code>
   )
 }
