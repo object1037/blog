@@ -80,7 +80,7 @@ export default function ToCMobile({
 
               if (element.childEls.length > 0) {
                 return (
-                  <li key={element.scrollPos}>
+                  <li key={element.scrollPos} className="truncate">
                     <TocAnchor title={element.title} isH2 isIntersectingElement={isIntersectingElement} setIsOpen={setIsOpen} />
                     <ol className="ml-2">
                       {element.childEls.map((childEl) => {
@@ -90,7 +90,7 @@ export default function ToCMobile({
                         }
 
                         return (
-                          <li key={childEl.scrollPos}>
+                          <li key={childEl.scrollPos} className="truncate">
                             <TocAnchor title={childEl.title} isIntersectingElement={isIntersectingChildElement} setIsOpen={setIsOpen} />
                           </li>
                         )
@@ -100,7 +100,7 @@ export default function ToCMobile({
                 )
               } else if (element.childEls.length === 0) {
                 return (
-                  <li key={element.scrollPos}>
+                  <li key={element.scrollPos} className="truncate">
                     <TocAnchor title={element.title} isH2 isIntersectingElement={isIntersectingElement} setIsOpen={setIsOpen} />
                   </li>
                 )
