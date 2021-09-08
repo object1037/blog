@@ -35,6 +35,7 @@ export default function ToCMobile({
   const menuWrapperStyle = [
     'z-40',
     'flex',
+    'lg:hidden',
     'fixed',
     'pr-8',
     'pl-4',
