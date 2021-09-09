@@ -123,7 +123,7 @@ export default function ArticleLayout({
           <aside className="py-12 hidden lg:block">
             <ToC tocElements={tocElements} intersectingElementId={intersectingElementId} />
           </aside>
-          <section className="mt-10 mb-16 mr-16 mx-auto w-full dark:border-gray-600 border-gray-300 border-b">
+          <section className="mt-10 mb-16 lg:mr-16 mx-auto w-full dark:border-gray-600 border-gray-300 border-b">
             {children}
             <Share date={meta.date} title={meta.title} siteTitle={siteTitle} />
           </section>
