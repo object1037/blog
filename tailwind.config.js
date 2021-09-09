@@ -13,9 +13,6 @@ module.exports = {
         rose: colors.rose,
         warnred: '#EE0000',
       },
-      maxHeight: {
-        'screen-12': 'calc(100vh - 3rem)',
-      },
       fontFamily: {
         sans: ['Inter', 'YuGothic', "Yu Gothic Medium", "Yu Gothic", ...fontFamily.sans]
       },
