@@ -108,7 +108,7 @@ export default function ArticleLayout({
       <Header />
       <article className="flex flex-col px-6 sm:px-12">
         <header className="max-w-6xl pt-10 pb-8 border-gray-600 dark:border-gray-300 border-b w-full mx-auto">
-          <div className="max-w-3xl mx-auto lg:mx-10 w-full">
+          <div className="max-w-5xl mx-auto w-full">
             <span className="font-normal text-sm text-gray-600 dark:text-gray-300"><DateDisplay dateString={meta.date} /></span>
             <h1 className="text-4xl sm:text-4.5xl py-6 text-gray-900 dark:text-gray-100 font-bold">{meta.title}</h1>
             <div className="-ml-2 flex flex-row flex-wrap">
@@ -119,11 +119,11 @@ export default function ArticleLayout({
             <ElapsedYear yearNum={elapsedYears} />
           </div>
         </header>
-        <div className="max-w-6xl w-full flex flex-row-reverse justify-between mx-auto">
-          <aside className="py-12 hidden lg:block ">
+        <div className="max-w-5xl w-full flex flex-row-reverse justify-between mx-auto">
+          <aside className="py-12 hidden lg:block">
             <ToC tocElements={tocElements} intersectingElementId={intersectingElementId} />
           </aside>
-          <section className="max-w-3xl mt-10 mb-16 mx-auto lg:mx-10 w-full dark:border-gray-600 border-gray-300 border-b">
+          <section className="mt-10 mb-16 mr-16 mx-auto w-full dark:border-gray-600 border-gray-300 border-b">
             {children}
             <Share date={meta.date} title={meta.title} siteTitle={siteTitle} />
           </section>
