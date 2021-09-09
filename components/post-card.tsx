@@ -8,8 +8,8 @@ export default function PostCard(meta: metaData) {
         <a className="flex items-start p-4">
           <div className="flex flex-col w-full">
             <span className="text-xs text-gray-700 dark:text-gray-300 mb-3"><DateDisplay dateString={meta.date} /></span>
-            <span className="truncate text-xl text-gray-900 dark:text-gray-100 mb-4">{meta.title}</span>
-            <span className="truncate text-gray-900 dark:text-gray-100 mb-2">{meta.description}</span>
+            <h2 className="truncate text-xl text-gray-900 dark:text-gray-100 mb-4">{meta.title}</h2>
+            <p className="truncate text-gray-900 dark:text-gray-100 mb-2">{meta.description}</p>
           </div>
         </a>
       </Link>
