@@ -21,15 +21,10 @@ const TocAnchor = memo(function TocAnchor({
     'text-gray-900',
     'dark:text-gray-100',
   ]
-  const h2ColorStyle = [
+  const colorStyle = [
     'text-gray-500',
     'dark:text-gray-400',
   ]
-  const h3ColorStyle = [
-    'text-gray-400',
-    'dark:text-gray-500',
-  ]
-  const colorStyle = isH2 ? h2ColorStyle : h3ColorStyle
   const anchorStyle = [
     'transition',
     hoverStyle,
