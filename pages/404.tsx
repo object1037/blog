@@ -1,4 +1,5 @@
 import Head from "next/head"
+import { siteTitle } from '../components/articleLayout'
 
 export default function Custom404() {
   return (
@@ -11,6 +12,7 @@ export default function Custom404() {
         type="font/woff2"
         crossOrigin="anonymous"
       />
+      <title>{`404 | ${siteTitle}`}</title>
     </Head>
     <main className="flex flex-col justify-center py-6">
       <div className="circle relative rounded-full border-ppink border-solid w-60 h-60 mx-auto my-8">
