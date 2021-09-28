@@ -13,6 +13,7 @@ import Anchor from '../components/mdComponents/Anchor'
 import Code from '../components/mdComponents/Code'
 import InlineCode from '../components/mdComponents/inline-code'
 import Blockquote from '../components/mdComponents/Blockquote'
+import Im from "../components/im"
 
 const mdComponents = {
   h1: (props: HTMLElement) => H2(props), 
@@ -26,6 +27,7 @@ const mdComponents = {
   code: (props: HTMLElement) => Code(props),
   inlineCode: (props: HTMLElement) => InlineCode(props),
   blockquote: (props: HTMLElement) => Blockquote(props),
+  Im,
 }
 
 function App({ Component, pageProps }: AppProps) {
