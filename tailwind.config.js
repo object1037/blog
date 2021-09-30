@@ -9,8 +9,10 @@ module.exports = {
     extend: {
       colors: {
         gray: colors.trueGray,
-        ppink: '#fd2e7a',
-        rose: colors.rose,
+        ppink: {
+          200: '#fd2e7a',
+          300: '#df286c',
+        },
         warnred: '#EE0000',
       },
       fontFamily: {
