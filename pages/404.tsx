@@ -1,5 +1,7 @@
 import Head from "next/head"
+import Link from "next/link"
 import { siteTitle } from '../components/articleLayout'
+import { FiArrowRightCircle } from 'react-icons/fi'
 
 export default function Custom404() {
   return (
@@ -25,6 +27,11 @@ export default function Custom404() {
       <div className="errorSentence text-gray-900 dark:text-gray-100 text-5xl text-center">
         NOT FOUND
       </div>
+      <Link href="/">
+        <a className="text-5xl mx-auto mt-3 hover:text-ppink-200 transition">
+          <FiArrowRightCircle className="inline-block" />
+        </a>
+      </Link>
     </main>
     </>
   )
