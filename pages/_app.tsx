@@ -9,7 +9,7 @@ import Paragraph from '../components/mdComponents/Paragraph';
 import Ul from '../components/mdComponents/Ul'
 import Ol from '../components/mdComponents/Ol'
 import Li from '../components/mdComponents/Li'
-import Anchor from '../components/mdComponents/Anchor'
+import Anchor, { AnchorProps } from '../components/mdComponents/Anchor'
 import Code from '../components/mdComponents/Code'
 import InlineCode from '../components/mdComponents/inline-code'
 import Blockquote from '../components/mdComponents/Blockquote'
@@ -23,7 +23,7 @@ const mdComponents = {
   ul: (props: HTMLElement) => Ul(props),
   ol: (props: HTMLElement) => Ol(props),
   li: (props: HTMLElement) => Li(props),
-  a: (props: HTMLAnchorElement) => Anchor(props),
+  a: (props: AnchorProps) => Anchor(props),
   code: (props: HTMLElement) => Code(props),
   inlineCode: (props: HTMLElement) => InlineCode(props),
   blockquote: (props: HTMLElement) => Blockquote(props),
