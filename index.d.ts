@@ -9,7 +9,8 @@ interface metaData {
   title: string,
   description: string,
   date: string,
-  tags: string[]
+  tags: string[],
+  ogImgUrl?: string
 }
 
 interface tagData {
