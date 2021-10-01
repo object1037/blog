@@ -13,13 +13,13 @@ export default function Im({
   const imWrapperStyle = [
     'flex',
     'overflow-hidden',
-    'rounded',
+    'rounded-t',
     'border-0',
-    'mt-6',
+    'mt-10',
   ]
   return (
     <>
-      <div className={clsx(imWrapperStyle, !cap && 'mb-6')}>
+      <div className={clsx(imWrapperStyle, cap ? 'rounded-t' : 'rounded mb-10')}>
         <Image 
           src={String(src.src)}
           width={src.width}
@@ -27,10 +27,10 @@ export default function Im({
           alt={alt}
           placeholder="blur"
           blurDataURL={src.blurDataURL}
-          className="rounded overflow-hidden"
+          className="overflow-hidden"
         />
       </div>
-      {cap ? <p className="text-gray-500 dark:text-gray-400 text-sm mt-4 mb-6 text-center">{cap}</p> : null}
+      {cap ? <p className="text-gray-500 dark:text-gray-400 text-sm p-3 mb-10 bg-gray-100 dark:bg-gray-800 rounded-b">{cap}</p> : null}
     </>
   )
 }
