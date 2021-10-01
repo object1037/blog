@@ -1,2 +1,3 @@
 User-agent: *
 Disallow: /testPost
+Sitemap: https://blog.object1037.dev/sitemap.xml

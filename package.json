@@ -5,6 +5,7 @@
   "scripts": {
     "dev": "next dev",
     "build": "next build",
+    "postbuild": "node ./lib/generate-sitemap.mjs",
     "start": "next start"
   },
   "dependencies": {
