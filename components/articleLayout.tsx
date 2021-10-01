@@ -8,10 +8,7 @@ import ToCMobile from './tocMobile'
 import ElapsedYear from './elapsedYear'
 import Share from './share'
 import { useEffect, useState } from 'react'
-
-export const siteTitle = "ゆるふわインターネット"
-export const siteUrl = "https://blog.object1037.dev"
-export const handleName = "object1037"
+import { siteTitle, siteUrl, handleName } from '../constants/data'
 
 let initArr: tocElement[] = new Array({
   scrollPos: 0,

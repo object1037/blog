@@ -1,4 +1,4 @@
-import { siteTitle, handleName, siteUrl } from '../../components/articleLayout'
+import { siteTitle, handleName, siteUrl } from '../../constants/data'
 import Layout from '../../components/layout'
 import Tag from '../../components/tag'
 import { GetStaticProps } from 'next'

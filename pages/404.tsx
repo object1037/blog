@@ -1,6 +1,6 @@
 import Head from "next/head"
 import Link from "next/link"
-import { siteTitle } from '../components/articleLayout'
+import { siteTitle } from '../constants/data'
 import { FiArrowRightCircle } from 'react-icons/fi'
 
 export default function Custom404() {

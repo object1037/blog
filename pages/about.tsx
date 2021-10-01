@@ -1,5 +1,5 @@
 import Layout from '../components/layout'
-import { siteTitle, handleName, siteUrl } from '../components/articleLayout'
+import { siteTitle, handleName, siteUrl } from '../constants/data'
 import A from '../components/mdComponents/Anchor'
 
 export default function About() {
