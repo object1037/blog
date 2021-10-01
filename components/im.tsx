@@ -30,7 +30,7 @@ export default function Im({
           className="overflow-hidden"
         />
       </div>
-      {cap ? <p className="text-gray-500 dark:text-gray-400 text-sm p-3 mb-10 bg-gray-100 dark:bg-gray-800 rounded-b">{cap}</p> : null}
+      {cap ? <p className="text-gray-600 dark:text-gray-300 text-sm p-3 mb-10 bg-gray-100 dark:bg-gray-800 rounded-b">{cap}</p> : null}
     </>
   )
 }
