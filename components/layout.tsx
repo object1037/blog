@@ -1,7 +1,7 @@
 import Head from 'next/head'
 import Header from './header'
 import Footer from './footer'
-import { siteTitle, handleName, siteUrl } from './articleLayout'
+import { siteTitle, handleName, siteUrl } from '../constants/data'
 import clsx from 'clsx'
 
 export default function Layout({
