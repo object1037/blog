@@ -5,7 +5,7 @@ import Tag from './tag'
 import DateDisplay from './date'
 import ToC from './toc'
 import ToCMobile from './tocMobile'
-import ElapsedYear from './elapsedYear'
+import { NoteDanger, NoteWarn } from './note'
 import Share from './share'
 import { useEffect, useState } from 'react'
 import { siteTitle, siteUrl, handleName } from '../constants/data'
@@ -27,6 +27,13 @@ export default function ArticleLayout({
   const [tocElements, setTocElements] = useState(initArr)
   const [intersectingElementId, setIntersectingElementId] = useState("")
   const [elapsedYears, setElapsedYears] = useState(0)
+  let elapsedYearDisplay
+
+  if (elapsedYears === 1) {
+    elapsedYearDisplay = <NoteWarn className="mt-6">この記事は公開から{elapsedYears}年以上が経過しています</NoteWarn>
+  } else if (elapsedYears >= 2) {
+    elapsedYearDisplay = <NoteDanger className="mt-6">この記事は公開から{elapsedYears}年以上が経過しています</NoteDanger>
+  }
 
   useEffect(() => {
     const IOOptions = {
@@ -113,7 +120,7 @@ export default function ArticleLayout({
                 <Tag name={tag} key={tag} />
               ))}
             </div>
-            <ElapsedYear yearNum={elapsedYears} />
+            {elapsedYears > 0 && elapsedYearDisplay}
           </div>
         </header>
         <div className="max-w-5xl w-full flex flex-row-reverse justify-between mx-auto">

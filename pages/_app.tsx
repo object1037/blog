@@ -14,6 +14,14 @@ import Code from '../components/mdComponents/Code'
 import InlineCode from '../components/mdComponents/inline-code'
 import Blockquote from '../components/mdComponents/Blockquote'
 import Im from "../components/im"
+import { NoteDanger, NoteWarn, NoteInfo } from '../components/note';
+
+interface noteProps {
+  children: React.ReactNode
+  className?: string
+}
+
+const defaultNoteStyle = "my-8"
 
 const mdComponents = {
   h1: (props: HTMLElement) => H2(props), 
@@ -28,6 +36,18 @@ const mdComponents = {
   inlineCode: (props: HTMLElement) => InlineCode(props),
   blockquote: (props: HTMLElement) => Blockquote(props),
   Im,
+  NoteDanger: ({
+    children,
+    className = defaultNoteStyle
+  }: noteProps) => NoteDanger({children, className}),
+  NoteWarn: ({
+    children,
+    className = defaultNoteStyle
+  }: noteProps) => NoteWarn({children, className}),
+  NoteInfo: ({
+    children,
+    className = defaultNoteStyle
+  }: noteProps) => NoteInfo({children, className})
 }
 
 function App({ Component, pageProps }: AppProps) {
