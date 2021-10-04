@@ -1,7 +1,7 @@
 export const meta = {
   title: "投稿テスト",
   description: "テスト",
-  date: "20210518",
+  date: "20200518",
   tags: ["テスト", "タグ2"],
 }
 
@@ -100,5 +100,25 @@ console.log("veryLongTextHere : aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa
 <Im src={ponpokoInamenn} alt="ガチ恋ぽんぽこの画像" cap="否めん！(これは画像のキャプション)" />
 
 あ～う〜♡
+
+# Note
+
+<NoteInfo>
+  ここにはちょっとした情報を入れる。 モチモチモチモチモﾁﾓﾁﾓﾁﾓ(ﾉ)`ω´(ヾ)
+</NoteInfo>
+
+そうなんだ
+
+<NoteWarn>
+  ここには注意が必要なことを知らせる文を入れる。 モチモチモチモチモﾁﾓﾁﾓﾁﾓ(ﾉ)`ω´(ヾ)
+</NoteWarn>
+
+そうなんだ
+
+<NoteDanger>
+  ここには危険を知らせる文を入れる。 モチモチモチモチモﾁﾓﾁﾓﾁﾓ(ﾉ)`ω´(ヾ)
+</NoteDanger>
+
+そうなんだ
 
 export default ({ children }) => <ArticleLayout meta={meta}>{children}</ArticleLayout>
