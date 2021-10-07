@@ -3,7 +3,7 @@ import DateDisplay from './date'
 
 export default function PostCard(meta: metaData) {
   return (
-    <li className="mb-6 bg-gray-100 dark:bg-gray-800 rounded-md shadow-sm hover:shadow-lg border border-transparent dark:hover:border-gray-600 transition">
+    <li className="mb-7 bg-gray-100 dark:bg-gray-800 rounded-md shadow-sm hover:shadow-lg border border-transparent dark:hover:border-gray-600 transition">
       <Link href={`/posts/${meta.date}`}>
         <a className="flex items-start p-4">
           <div className="flex flex-col w-full">
