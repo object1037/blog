@@ -9,6 +9,7 @@ import Note from './note'
 import Share from './share'
 import { useEffect, useState } from 'react'
 import { siteTitle, siteUrl, handleName } from '../constants/data'
+import clsx from 'clsx'
 
 let initArr: tocElement[] = new Array({
   scrollPos: 0,
@@ -89,6 +90,18 @@ export default function ArticleLayout({
     }
   }, [meta])
 
+  const contentWrapperStyle = [
+    'mt-10',
+    'mb-16',
+    'lg:mr-16',
+    'flex-grow',
+    'max-w-full',
+    'min-w-0',
+    'border-b',
+    'dark:border-gray-600',
+    'border-gray-300'
+  ]
+
   return (
     <>
       <Head>
@@ -118,14 +131,14 @@ export default function ArticleLayout({
             }
           </div>
         </header>
-        <div className="max-w-5xl w-full flex flex-row-reverse justify-between mx-auto">
-          <aside className="py-12 hidden lg:block">
-            <ToC tocElements={tocElements} intersectingElementId={intersectingElementId} />
-          </aside>
-          <section className="mt-10 mb-16 lg:mr-16 mx-auto w-full dark:border-gray-600 border-gray-300 border-b">
+        <div className="max-w-5xl w-full mx-auto flex flex-row justify-between">
+          <section className={clsx(contentWrapperStyle)}>
             {children}
             <Share date={meta.date} title={meta.title} siteTitle={siteTitle} />
           </section>
+          <div className="py-12 hidden lg:block">
+            <ToC tocElements={tocElements} intersectingElementId={intersectingElementId} />
+          </div>
         </div>
       </article>
       <ToCMobile tocElements={tocElements} intersectingElementId={intersectingElementId} />

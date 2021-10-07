@@ -25,6 +25,9 @@ module.exports = {
       scale: {
         '80': '.8',
       },
+      maxWidth: {
+        'toc': '14rem',
+      },
     },
   },
   variants: {
