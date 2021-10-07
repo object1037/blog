@@ -26,7 +26,8 @@ export default function Header ({
     'text-sm',
     'font-bold',
     'px-3',
-    'pt-2'
+    'pt-2',
+    'w-max'
   ]
   const navStyle = [
     'flex',
