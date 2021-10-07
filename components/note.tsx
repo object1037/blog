@@ -33,47 +33,36 @@ const infoStyle = [
   'dark:border-blue-900',
   'dark:text-blue-100'
 ]
+const iconStyle = [
+  'text-xl',
+  'mr-2',
+]
 
-export function NoteDanger({
+export default function Note({
   children,
-  className
+  className,
+  type = "info"
 }: {
   children: React.ReactNode
   className?: string
+  type?: "info" | "warn" | "danger"
 }) {
-  return (
-    <div className={clsx(noteStyle, dangerStyle, [className])}>
-      <span className="text-xl mr-2 text-red-500"><FiAlertCircle /></span>
-      <p>{children}</p>
-    </div>
-  )
-}
+  let colorStyle = infoStyle
+  let iconColor = "text-blue-500"
 
-export function NoteWarn({
-  children,
-  className
-}: {
-  children: React.ReactNode
-  className?: string
-}) {
-  return (
-    <div className={clsx(noteStyle, warnStyle, [className])}>
-      <span className="text-xl mr-2 text-orange-500"><FiAlertCircle /></span>
-      <p>{children}</p>
-    </div>
-  )
-}
+  if (type === "warn") {
+    colorStyle = warnStyle
+    iconColor = "text-orange-500"
+  } else if (type === "danger") {
+    colorStyle = dangerStyle
+    iconColor = "text-red-500"
+  }
 
-export function NoteInfo({
-  children,
-  className
-}: {
-  children: React.ReactNode
-  className?: string
-}) {
   return (
-    <div className={clsx(noteStyle, infoStyle, [className])}>
-      <span className="text-xl mr-2 text-blue-500"><FiInfo /></span>
+    <div className={clsx(noteStyle, colorStyle, [className])}>
+      <span className={clsx(iconStyle, iconColor)}>
+        {type === "info" ? <FiInfo /> : <FiAlertCircle />}
+      </span>
       <p>{children}</p>
     </div>
   )
