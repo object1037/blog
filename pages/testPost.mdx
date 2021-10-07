@@ -95,6 +95,13 @@ console.log("veryLongTextHere : aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa
 
 # 画像
 
+```javascript
+import ponpokoInamenn from "../public/images/testPost/ponpoko-inamenn.jpg"
+
+<Im src={ponpokoInamenn} alt="ガチ恋ぽんぽこの画像" cap="否めん！(これは画像のキャプション)" />
+// captionは省略可
+```
+
 画像は以下の通り
 
 <Im src={ponpokoInamenn} alt="ガチ恋ぽんぽこの画像" cap="否めん！(これは画像のキャプション)" />
@@ -103,21 +110,23 @@ console.log("veryLongTextHere : aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa
 
 # Note
 
-<NoteInfo>
-  ここにはちょっとした情報を入れる。 モチモチモチモチモﾁﾓﾁﾓﾁﾓ(ﾉ)`ω´(ヾ)
-</NoteInfo>
-
-そうなんだ
-
-<NoteWarn>
+```javascript
+<Note type="warn"> // "info" | "warn" | "danger" (デフォルトは"info")
   ここには注意が必要なことを知らせる文を入れる。 モチモチモチモチモﾁﾓﾁﾓﾁﾓ(ﾉ)`ω´(ヾ)
-</NoteWarn>
+</Note>
+```
 
-そうなんだ
+<Note>
+  ここにはちょっとした情報を入れる。 モチモチモチモチモﾁﾓﾁﾓﾁﾓ(ﾉ)`ω´(ヾ)
+</Note>
 
-<NoteDanger>
+<Note type="warn">
+  ここには注意が必要なことを知らせる文を入れる。 モチモチモチモチモﾁﾓﾁﾓﾁﾓ(ﾉ)`ω´(ヾ)
+</Note>
+
+<Note type="danger">
   ここには危険を知らせる文を入れる。 モチモチモチモチモﾁﾓﾁﾓﾁﾓ(ﾉ)`ω´(ヾ)
-</NoteDanger>
+</Note>
 
 そうなんだ
 
