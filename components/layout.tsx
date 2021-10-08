@@ -7,7 +7,7 @@ import clsx from 'clsx'
 export default function Layout({
   title = siteTitle,
   description = `${handleName}のブログです`,
-  imgUrl = "https://object1037.dev/images/profile.jpg",
+  imgUrl = `${siteUrl}/images/profile.jpg`,
   url = siteUrl,
   h1,
   children,
