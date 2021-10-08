@@ -41,5 +41,7 @@ export function getAllTags() {
     tags.push(tagD)
   }
 
+  tags.sort((a, b) => b.articles.length - a.articles.length)
+
   return tags
 }
