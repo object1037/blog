@@ -1,7 +1,7 @@
 import { AppProps } from 'next/app'
 import '../styles/globals.css'
 import "../styles/prism.css";
-import {MDXProvider} from '@mdx-js/react'
+import { MDXProvider } from '@mdx-js/react'
 import H2 from '../components/mdComponents/H2'
 import H3 from '../components/mdComponents/H3'
 import H4 from '../components/mdComponents/H4'
@@ -9,18 +9,12 @@ import Paragraph from '../components/mdComponents/Paragraph';
 import Ul from '../components/mdComponents/Ul'
 import Ol from '../components/mdComponents/Ol'
 import Li from '../components/mdComponents/Li'
-import Anchor, { AnchorProps } from '../components/mdComponents/Anchor'
+import Anchor, { anchorProps } from '../components/mdComponents/Anchor'
 import Code from '../components/mdComponents/Code'
 import InlineCode from '../components/mdComponents/inline-code'
 import Blockquote from '../components/mdComponents/Blockquote'
 import Im from "../components/im"
-import Note from '../components/note';
-
-interface noteProps {
-  children: React.ReactNode
-  className?: string
-  type: "info" | "warn" | "danger"
-}
+import Note, { noteProps } from '../components/note';
 
 const defaultNoteStyle = "my-8"
 
@@ -32,7 +26,7 @@ const mdComponents = {
   ul: (props: HTMLElement) => Ul(props),
   ol: (props: HTMLElement) => Ol(props),
   li: (props: HTMLElement) => Li(props),
-  a: (props: AnchorProps) => Anchor(props),
+  a: (props: anchorProps) => Anchor(props),
   code: (props: HTMLElement) => Code(props),
   inlineCode: (props: HTMLElement) => InlineCode(props),
   blockquote: (props: HTMLElement) => Blockquote(props),

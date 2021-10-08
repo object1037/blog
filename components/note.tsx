@@ -1,6 +1,12 @@
 import clsx from 'clsx'
 import { FiAlertCircle, FiInfo } from 'react-icons/fi'
 
+export interface noteProps {
+  children: React.ReactNode
+  className?: string
+  type?: "info" | "warn" | "danger"
+}
+
 const noteStyle = [
   'flex',
   'items-center',
@@ -42,11 +48,7 @@ export default function Note({
   children,
   className,
   type = "info"
-}: {
-  children: React.ReactNode
-  className?: string
-  type?: "info" | "warn" | "danger"
-}) {
+}: noteProps) {
   let colorStyle = infoStyle
   let iconColor = "text-blue-500"
 
