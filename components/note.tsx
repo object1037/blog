@@ -18,19 +18,19 @@ const noteStyle = [
 const dangerStyle = [
   'bg-red-50',
   'text-red-900',
-  'dark:border-red-900',
+  'dark:border-red-600',
   'dark:text-red-100'
 ]
 const warnStyle = [
   'bg-orange-50',
   'text-orange-900',
-  'dark:border-orange-900',
+  'dark:border-orange-600',
   'dark:text-orange-100'
 ]
 const infoStyle = [
   'bg-blue-50',
   'text-blue-900',
-  'dark:border-blue-900',
+  'dark:border-blue-600',
   'dark:text-blue-100'
 ]
 const iconStyle = [
