@@ -25,7 +25,7 @@ export default function Header ({
     'space-x-3',
     'text-sm',
     'font-bold',
-    'px-2',
+    'px-3',
     'pt-2',
     'w-max'
   ]
