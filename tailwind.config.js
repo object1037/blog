@@ -25,6 +25,9 @@ module.exports = {
       scale: {
         '80': '.8',
       },
+      maxHeight: {
+        'toc': 'calc(100vh - 3rem)'
+      },
     },
   },
   variants: {
