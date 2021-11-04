@@ -1,5 +1,6 @@
 import { writeFileSync } from 'fs'
 import RSS from 'rss'
+import { zonedTimeToUtc } from 'date-fns-tz'
 
 const siteUrl = "https://blog.object1037.dev"
 const siteTitle = "ゆるふわインターネット"
@@ -14,6 +15,7 @@ export function getAllPostsData() {
 
   metas = metas.reverse()
 
+  // ついでにRSS生成
   const feed = new RSS({
     title: siteTitle,
     site_url: siteUrl,
@@ -24,7 +26,7 @@ export function getAllPostsData() {
     feed.item({
       title: post.title,
       url: `${siteUrl}/posts/${post.date}`,
-      date: new Date(+post.date.substr(0, 4), +post.date.substr(4, 2) - 1, +post.date.substr(6, 2)),
+      date: zonedTimeToUtc(new Date(+post.date.substr(0, 4), +post.date.substr(4, 2) - 1, +post.date.substr(6, 2)), "Asia/Tokyo"),
       description: post.description
     })
   })
