@@ -53,9 +53,9 @@ module.exports = withMDX({
   webpack(config, { dev, isServer }) {
     if (isServer) {
       import('./lib/generateSitemap.mjs')
-        .then((mod) => {
-          mod.default()
-        })
+      .then((mod) => {
+        mod.default()
+      })
     }
 
     return config
