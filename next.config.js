@@ -50,6 +50,16 @@ const securityHeaders = [
 
 module.exports = withMDX({
   pageExtensions: ['js', 'jsx', 'mdx', 'ts', 'tsx'],
+  webpack(config, { dev, isServer }) {
+    if (isServer) {
+      import('./lib/generateSitemap.mjs')
+      .then((mod) => {
+        mod.default()
+      })
+    }
+
+    return config
+  },
   async headers() {
     return [
       {
