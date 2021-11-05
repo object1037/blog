@@ -112,7 +112,7 @@ export default function ArticleLayout({
         <meta property="og:url" content={`${siteUrl}/posts/${meta.date}`} />
         <meta property="og:title" content={`${meta.title} | ${siteTitle}`} />
         <meta property="og:description" content={meta.description} />
-        <meta property="og:image" content={meta.ogImgUrl ? meta.ogImgUrl : `https://og-image.object1037.dev/${meta.title}.png?md=1&fontSize=64px`} />
+        <meta property="og:image" content={meta.ogImgUrl ? meta.ogImgUrl : `https://og-image.object1037.dev/${meta.title}.png?fontSize=64px`} />
         <title>{meta.title} | {siteTitle}</title>
       </Head>
       <Header />
