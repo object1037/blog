@@ -20,7 +20,7 @@ function generateRSS(metas: metaData[]) {
     feed.item({
       title: post.title,
       url: `${siteUrl}/posts/${post.date}`,
-      date: zonedTimeToUtc(new Date(+post.date.substr(0, 4), +post.date.substr(4, 2) - 1, +post.date.substr(6, 2)), "Asia/Tokyo"),
+      date: zonedTimeToUtc(new Date(+post.date.substr(0, 4), +post.date.substr(4, 2) - 1, +post.date.substr(6, 2), 23, 59, 59), "Asia/Tokyo"),
       description: post.description,
       enclosure: {
         'url': post.ogImgUrl ? post.ogImgUrl : encodeURI(`https://og-image.object1037.dev/${post.title}.png?fontSize=64px`),
