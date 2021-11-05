@@ -30,6 +30,7 @@ function generateRSS(metas: metaData[]) {
   })
 
   writeFileSync('./public/feed.xml', feed.xml({ indent: true }));
+  console.log("Automatically generated /feed.xml")
 }
 
 export function getAllPostsData() {
