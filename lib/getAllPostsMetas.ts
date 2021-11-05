@@ -5,6 +5,33 @@ import { zonedTimeToUtc } from 'date-fns-tz'
 const siteUrl = "https://blog.object1037.dev"
 const siteTitle = "ゆるふわインターネット"
 
+function generateRSS(metas: metaData[]) {
+  const feed = new RSS({
+    title: siteTitle,
+    site_url: siteUrl,
+    feed_url: `${siteUrl}/feed.xml`
+  });
+
+  metas.map((post) => {
+    let fileType = 'image/png'
+    if (post.ogImgUrl && post.ogImgUrl.substr(post.ogImgUrl.length - 4, 3) != "png") {
+      fileType = 'image/jpeg'
+    }
+    feed.item({
+      title: post.title,
+      url: `${siteUrl}/posts/${post.date}`,
+      date: zonedTimeToUtc(new Date(+post.date.substr(0, 4), +post.date.substr(4, 2) - 1, +post.date.substr(6, 2)), "Asia/Tokyo"),
+      description: post.description,
+      enclosure: {
+        'url': post.ogImgUrl ? post.ogImgUrl : `https://og-image.object1037.dev/${post.title}.png?md=1&fontSize=64px`,
+        'type': fileType
+      }
+    })
+  })
+
+  writeFileSync('./public/feed.xml', feed.xml({ indent: true }));
+}
+
 export function getAllPostsData() {
   let metas: metaData[] = new Array()
 
@@ -16,22 +43,7 @@ export function getAllPostsData() {
   metas = metas.reverse()
 
   // ついでにRSS生成
-  const feed = new RSS({
-    title: siteTitle,
-    site_url: siteUrl,
-    feed_url: `${siteUrl}/feed.xml`
-  });
-
-  metas.map((post) => {
-    feed.item({
-      title: post.title,
-      url: `${siteUrl}/posts/${post.date}`,
-      date: zonedTimeToUtc(new Date(+post.date.substr(0, 4), +post.date.substr(4, 2) - 1, +post.date.substr(6, 2)), "Asia/Tokyo"),
-      description: post.description
-    })
-  })
-
-  writeFileSync('./public/feed.xml', feed.xml({ indent: true }));
+  generateRSS(metas)
 
   return metas
 }
