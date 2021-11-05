@@ -30,6 +30,7 @@ export default function Layout({
       <meta property="og:url" content={url} />
       <meta property="og:description" content={description} />
       <meta property="og:image" content={imgUrl} />
+      <link rel="alternate" type="application/rss+xml" href="/feed.xml" title="ゆるふわインターネット" />
       <title>{title}</title>
     </Head>
     <Header sticky/>
