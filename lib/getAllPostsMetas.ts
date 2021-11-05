@@ -23,7 +23,7 @@ function generateRSS(metas: metaData[]) {
       date: zonedTimeToUtc(new Date(+post.date.substr(0, 4), +post.date.substr(4, 2) - 1, +post.date.substr(6, 2)), "Asia/Tokyo"),
       description: post.description,
       enclosure: {
-        'url': post.ogImgUrl ? post.ogImgUrl : `https://og-image.object1037.dev/${post.title}.png?fontSize=64px`,
+        'url': post.ogImgUrl ? post.ogImgUrl : encodeURI(`https://og-image.object1037.dev/${post.title}.png?fontSize=64px`),
         'type': fileType
       }
     })
