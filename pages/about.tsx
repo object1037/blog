@@ -10,6 +10,9 @@ export default function About() {
         <p className="mb-6">
           <A href="https://object1037.dev">{handleName}</A>のブログです。
         </p>
+        <p className="mb-6">
+          <A href="https://blog.object1037.dev/feed.xml">RSS</A>もあるよ。
+        </p>
         <p>
           <A href="https://github.com/object1037/blog">Source</A>
         </p>
