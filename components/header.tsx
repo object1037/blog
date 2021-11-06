@@ -2,6 +2,7 @@ import Link from 'next/link'
 import Image from 'next/image'
 import clsx from 'clsx'
 import profileImg from '../public/images/profile.jpg'
+import { siteTitle } from '../constants/data'
 
 export default function Header ({
   sticky
@@ -58,7 +59,7 @@ export default function Header ({
             <div className="rounded-full overflow-hidden shadow-sm w-10 h-10">
               <Image priority src={profileImg} alt="picture of me" className="rounded-full" placeholder="blur"/>
             </div>
-            <span>ゆるふわインターネット</span>
+            <span>{siteTitle}</span>
           </a>
         </Link>
       </div>

@@ -1,10 +1,9 @@
 import { writeFileSync } from 'fs'
 import prettier from 'prettier'
 import { globby } from 'globby'
+import { siteUrl } from '../constants/data'
 
-const siteUrl = "https://blog.object1037.dev"
-
-async function generateSitemap() {
+export default async function generateSitemap() {
   const pages = await globby([
     'pages/*.tsx',
     'pages/**/*.{mdx,tsx}',
@@ -63,5 +62,3 @@ async function generateSitemap() {
   writeFileSync('public/sitemap.xml', formatted);
   console.log("Automatically generated /sitemap.xml")
 }
-
-export default generateSitemap
