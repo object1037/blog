@@ -1,7 +1,7 @@
 import { writeFileSync } from 'fs'
 import RSS from 'rss'
 import { zonedTimeToUtc } from 'date-fns-tz'
-import { siteTitle, siteUrl } from '../constants/data';
+import { siteTitle, siteUrl, getOgImageUrl } from '../constants/data';
 
 export default function generateRSS(metas: metaData[]) {
   const feed = new RSS({
@@ -21,7 +21,7 @@ export default function generateRSS(metas: metaData[]) {
       date: zonedTimeToUtc(new Date(+post.date.substr(0, 4), +post.date.substr(4, 2) - 1, +post.date.substr(6, 2), 23, 59, 59), "Asia/Tokyo"),
       description: post.description,
       enclosure: {
-        'url': post.ogImgUrl ? post.ogImgUrl : encodeURI(`https://og-image.object1037.dev/${post.title}.png?fontSize=64px`),
+        'url': post.ogImgUrl ? post.ogImgUrl : getOgImageUrl(post.title),
         'type': fileType
       }
     })

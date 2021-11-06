@@ -1,7 +1,7 @@
 import Head from 'next/head'
 import Header from './header'
 import Footer from './footer'
-import { siteTitle, handleName, siteUrl } from '../constants/data'
+import { siteTitle, handleName, siteUrl, accounts } from '../constants/data'
 import clsx from 'clsx'
 
 export default function Layout({
@@ -25,12 +25,12 @@ export default function Layout({
       <meta name="viewport" content="initial-scale=1.0, width=device-width" />
       <meta name="description" content={description} />
       <meta name="twitter:card" content="summary" />
-      <meta name="twitter:creator" content="@object1037" />
+      <meta name="twitter:creator" content={`@${accounts.twitter}`} />
       <meta property="og:title" content={title} />
       <meta property="og:url" content={url} />
       <meta property="og:description" content={description} />
       <meta property="og:image" content={imgUrl} />
-      <link rel="alternate" type="application/rss+xml" href="/feed.xml" title="ゆるふわインターネット" />
+      <link rel="alternate" type="application/rss+xml" href="/feed.xml" title={siteTitle} />
       <title>{title}</title>
     </Head>
     <Header sticky/>
