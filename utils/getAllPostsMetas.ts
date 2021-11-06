@@ -1,4 +1,5 @@
 import generateRSS from './generateRSS'
+import generateSitemap from './generateSitemap'
 
 export function getAllPostsData() {
   let metas: metaData[] = new Array()
@@ -10,8 +11,9 @@ export function getAllPostsData() {
 
   metas = metas.reverse()
 
-  // ついでにRSS生成
+  // ついでにRSSとSitemap生成
   generateRSS(metas)
+  generateSitemap()
 
   return metas
 }
