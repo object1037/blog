@@ -1,11 +1,9 @@
 import { writeFileSync } from 'fs'
 import RSS from 'rss'
 import { zonedTimeToUtc } from 'date-fns-tz'
+import { siteTitle, siteUrl } from '../constants/data';
 
-const siteUrl = "https://blog.object1037.dev"
-const siteTitle = "ゆるふわインターネット"
-
-function generateRSS(metas: metaData[]) {
+export default function generateRSS(metas: metaData[]) {
   const feed = new RSS({
     title: siteTitle,
     site_url: siteUrl,
@@ -31,20 +29,4 @@ function generateRSS(metas: metaData[]) {
 
   writeFileSync('./public/feed.xml', feed.xml({ indent: true }));
   console.log("Automatically generated /feed.xml")
-}
-
-export function getAllPostsData() {
-  let metas: metaData[] = new Array()
-
-  const contexts = require.context('../pages/posts/', false, /\.mdx$/)
-  contexts.keys().map((path: string) => {
-    metas.push(contexts(path).meta)
-  })
-
-  metas = metas.reverse()
-
-  // ついでにRSS生成
-  generateRSS(metas)
-
-  return metas
 }

@@ -1,6 +1,6 @@
 import Layout from '../components/layout'
 import { GetStaticProps } from 'next'
-import { getAllPostsData } from '../lib/getAllPostsMetas'
+import { getAllPostsData } from '../utils/getAllPostsMetas'
 import PostCard from '../components/post-card'
 
 export const getStaticProps: GetStaticProps = async () => {
