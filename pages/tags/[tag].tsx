@@ -8,13 +8,7 @@ import { FiHash } from 'react-icons/fi'
 
 export const getStaticProps: GetStaticProps = async ({ params }) => {
   const allTags = getAllTags()
-  const tag = params?.tag as string
-  const searchByTag = (element: tagData) => element.name === tag
-  if (allTags.findIndex(searchByTag) === -1) {
-    return {
-      notFound: true,
-    }
-  }
+  const searchByTag = (element: tagData) => element.name === params?.tag
   const postsWithTag = allTags[allTags.findIndex(searchByTag)].articles
   return {
     props: {
@@ -24,9 +18,10 @@ export const getStaticProps: GetStaticProps = async ({ params }) => {
 }
 
 export async function getStaticPaths() {
+  const allTags = getAllTags()
   return {
-    paths: [],
-    fallback: true
+    paths: allTags.map((tagData) => ({ params: { tag: tagData.name } })),
+    fallback: false
   };
 }
 
@@ -44,14 +39,6 @@ export default function TagPage({
     </span>
     {tag}
   </p>
-
-  if (router.isFallback) {
-    return (
-    <Layout h1={hashTag} title={`${tag}に関する投稿 | ${siteTitle}`} description={`${tag}に関する投稿一覧 | ${handleName}のブログ`} url={`${siteUrl}/tags/${tag}`}>
-      <h2 className="text-center">Loading...</h2>
-    </Layout>
-    )
-  }
 
   return (
     <Layout h1={hashTag} title={`${tag}に関する投稿 | ${siteTitle}`} description={`${tag}に関する投稿一覧 | ${handleName}のブログ`} url={`${siteUrl}/tags/${tag}`}>
