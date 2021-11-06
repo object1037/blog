@@ -8,7 +8,7 @@ import ToCMobile from './tocMobile'
 import Note from './note'
 import Share from './share'
 import { useEffect, useState } from 'react'
-import { siteTitle, siteUrl, handleName } from '../constants/data'
+import { siteTitle, siteUrl, handleName, getOgImageUrl, accounts } from '../constants/data'
 import clsx from 'clsx'
 
 let initArr: tocElement[] = new Array({
@@ -108,11 +108,11 @@ export default function ArticleLayout({
         <meta name="viewport" content="initial-scale=1.0, width=device-width" />
         <meta name="description" content={`${meta.description} | ${handleName}のブログ`} />
         <meta name="twitter:card" content="summary_large_image" />
-        <meta name="twitter:creator" content="@object1037" />
+        <meta name="twitter:creator" content={`@${accounts.twitter}`} />
         <meta property="og:url" content={`${siteUrl}/posts/${meta.date}`} />
         <meta property="og:title" content={`${meta.title} | ${siteTitle}`} />
         <meta property="og:description" content={meta.description} />
-        <meta property="og:image" content={meta.ogImgUrl ? meta.ogImgUrl : encodeURI(`https://og-image.object1037.dev/${meta.title}.png?fontSize=64px`)} />
+        <meta property="og:image" content={meta.ogImgUrl ? meta.ogImgUrl : getOgImageUrl(meta.title)} />
         <title>{meta.title} | {siteTitle}</title>
       </Head>
       <Header />
