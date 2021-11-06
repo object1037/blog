@@ -69,4 +69,13 @@ module.exports = withMDX({
       },
     ]
   },
+  async redirects() {
+    return [
+      {
+        source: '/posts',
+        destination: '/',
+        permanent: true,
+      },
+    ]
+  },
 })
