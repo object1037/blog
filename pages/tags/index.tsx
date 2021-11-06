@@ -2,7 +2,7 @@ import { siteTitle, handleName, siteUrl } from '../../constants/data'
 import Layout from '../../components/layout'
 import Tag from '../../components/tag'
 import { GetStaticProps } from 'next'
-import { getAllTags } from '../../lib/getAllPostsTags'
+import { getAllTags } from '../../utils/getAllPostsTags'
 
 export const getStaticProps: GetStaticProps = async () => {
   const allTags = getAllTags()

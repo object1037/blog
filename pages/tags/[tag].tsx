@@ -2,7 +2,7 @@ import { useRouter } from 'next/router'
 import { siteTitle, handleName, siteUrl } from '../../constants/data'
 import Layout from '../../components/layout'
 import { GetStaticProps } from 'next'
-import { getAllTags } from '../../lib/getAllPostsTags'
+import { getAllTags } from '../../utils/getAllPostsTags'
 import PostCard from '../../components/post-card'
 import { FiHash } from 'react-icons/fi'
 
