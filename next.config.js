@@ -32,7 +32,7 @@ const securityHeaders = [
   },
   {
     key: 'Permissions-Policy',
-    value: 'camera=(), microphone=(), geolocation=()'
+    value: 'camera=(), microphone=(), geolocation=(), interest-cohort=()'
   },
   {
     key: 'X-Content-Type-Options',
@@ -52,7 +52,7 @@ module.exports = withMDX({
   pageExtensions: ['js', 'jsx', 'mdx', 'ts', 'tsx'],
   webpack(config, { dev, isServer }) {
     if (isServer) {
-      import('./lib/generateSitemap.mjs')
+      import('./utils/generateSitemap.mjs')
       .then((mod) => {
         mod.default()
       })
@@ -66,6 +66,15 @@ module.exports = withMDX({
         // Apply these headers to all routes in your application.
         source: '/(.*)',
         headers: securityHeaders,
+      },
+    ]
+  },
+  async redirects() {
+    return [
+      {
+        source: '/posts',
+        destination: '/',
+        permanent: true,
       },
     ]
   },
