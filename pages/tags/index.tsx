@@ -2,10 +2,11 @@ import { siteTitle, handleName, siteUrl } from '../../constants/data'
 import Layout from '../../components/layout'
 import Tag from '../../components/tag'
 import { GetStaticProps } from 'next'
-import { getAllTags } from '../../utils/getAllPostsTags'
+import { getAllTagsData } from '../../utils/getAllTagsData'
+import { getAllPostsData } from '../../utils/getAllPostsData'
 
 export const getStaticProps: GetStaticProps = async () => {
-  const allTags = getAllTags()
+  const allTags = getAllTagsData(getAllPostsData())
   return {
     props: {
       allTags

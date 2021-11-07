@@ -1,6 +1,3 @@
-import generateRSS from './generateRSS'
-import generateSitemap from './generateSitemap'
-
 export function getAllPostsData() {
   let metas: metaData[] = new Array()
 
