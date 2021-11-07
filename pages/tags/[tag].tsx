@@ -2,12 +2,13 @@ import { useRouter } from 'next/router'
 import { siteTitle, handleName, siteUrl } from '../../constants/data'
 import Layout from '../../components/layout'
 import { GetStaticProps } from 'next'
-import { getAllTags } from '../../utils/getAllPostsTags'
+import { getAllTagsData } from '../../utils/getAllTagsData'
+import { getAllPostsData } from '../../utils/getAllPostsData'
 import PostCard from '../../components/post-card'
 import { FiHash } from 'react-icons/fi'
 
 export const getStaticProps: GetStaticProps = async ({ params }) => {
-  const allTags = getAllTags()
+  const allTags = getAllTagsData(getAllPostsData())
   const searchByTag = (element: tagData) => element.name === params?.tag
   const postsWithTag = allTags[allTags.findIndex(searchByTag)].articles
   return {
@@ -18,7 +19,7 @@ export const getStaticProps: GetStaticProps = async ({ params }) => {
 }
 
 export async function getStaticPaths() {
-  const allTags = getAllTags()
+  const allTags = getAllTagsData(getAllPostsData())
   return {
     paths: allTags.map((tagData) => ({ params: { tag: tagData.name } })),
     fallback: false
