@@ -11,9 +11,5 @@ export function getAllPostsData() {
 
   metas = metas.reverse()
 
-  // ついでにRSSとSitemap生成
-  generateRSS(metas)
-  generateSitemap()
-
   return metas
 }
