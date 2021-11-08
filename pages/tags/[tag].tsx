@@ -29,7 +29,7 @@ export async function getStaticPaths() {
 export default function TagPage({
   postsWithTag
 }: {
-  postsWithTag: metaData[]
+  postsWithTag: postData[]
 }) {
   const router = useRouter()
   const { tag } = router.query
@@ -44,8 +44,8 @@ export default function TagPage({
   return (
     <Layout h1={hashTag} title={`${tag}に関する投稿 | ${siteTitle}`} description={`${tag}に関する投稿一覧 | ${handleName}のブログ`} url={`${siteUrl}/tags/${tag}`}>
       <ul className="flex flex-col justify-center max-w-4xl mx-auto w-full">
-        {postsWithTag.map((meta) => (
-          <PostCard key={meta.date} date={meta.date} title={meta.title} description={meta.description} tags={meta.tags} />
+        {postsWithTag.map((post) => (
+          <PostCard key={post.date} date={post.date} title={post.title} description={post.description} tags={post.tags} />
         ))}
       </ul>
     </Layout>

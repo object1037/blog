@@ -3,14 +3,14 @@ import RSS from 'rss'
 import { zonedTimeToUtc } from 'date-fns-tz'
 import { siteTitle, siteUrl, getOgImageUrl } from '../constants/data';
 
-export default function generateRSS(metas: metaData[]) {
+export default function generateRSS(posts: postData[]) {
   const feed = new RSS({
     title: siteTitle,
     site_url: siteUrl,
     feed_url: `${siteUrl}/feed.xml`
   });
 
-  metas.map((post) => {
+  posts.map((post) => {
     let fileType = 'image/png'
     if (post.ogImgUrl && post.ogImgUrl.substr(post.ogImgUrl.length - 4, 3) != "png") {
       fileType = 'image/jpeg'

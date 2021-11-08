@@ -5,7 +5,7 @@ interface tocElement {
   childEls: tocElement[]
 }
 
-interface metaData {
+interface postData {
   title: string,
   description: string,
   date: string,
