@@ -1,8 +1,8 @@
-export function getAllTagsData(metas: metaData[]) {
+export function getAllTagsData(posts: postData[]) {
   let tagsSet = new Set<string>()
   let tags: tagData[] = new Array()
   let articles: {
-    [key: string]: metaData[]
+    [key: string]: postData[]
   } = {}
 
   function convertToArr(value: string) {
@@ -13,16 +13,16 @@ export function getAllTagsData(metas: metaData[]) {
     tags.push(tagData)
   }
 
-  metas.forEach(meta => {
-    meta.tags.map((tag) => {
+  posts.forEach(post => {
+    post.tags.map((tag) => {
       tagsSet.add(tag)
     })
-    for (let i = 0; i < meta.tags.length; i++) {
-      let tagName = meta.tags[i]
+    for (let i = 0; i < post.tags.length; i++) {
+      let tagName = post.tags[i]
       if (!articles[tagName]) {
         articles[tagName] = []
       }
-      articles[tagName].push(meta)
+      articles[tagName].push(post)
     }
   })
 
