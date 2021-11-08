@@ -3,7 +3,11 @@ import prettier from 'prettier'
 import { globby } from 'globby'
 import { siteUrl } from '../constants/data'
 
-export default async function generateSitemap() {
+export default async function generateSitemap(tags: string[]) {
+  const tagPages = tags.map((tag) => {
+    return encodeURI(`pages/tags/${tag}.tsx`)
+  })
+
   const pages = await globby([
     'pages/*.tsx',
     'pages/**/*.{mdx,tsx}',
@@ -12,18 +16,20 @@ export default async function generateSitemap() {
     '!pages/404.tsx',
     '!pages/tags/[tag].tsx'
   ]);
-  
+
   const images = await globby([
     'public/images/**/*.{jpg,jpeg,png}',
     '!public/images/testPost/*',
     '!public/images/profile.jpg',
   ])
 
+  const allPages = pages.concat(tagPages)
+
   const sitemap = `
     <?xml version="1.0" encoding="UTF-8"?>
     <urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9"
             xmlns:image="http://www.google.com/schemas/sitemap-image/1.1">
-        ${pages
+        ${allPages
           .map((page) => {
             let imagePaths = ''
             const path = page
