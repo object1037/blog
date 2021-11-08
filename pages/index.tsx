@@ -2,15 +2,13 @@ import Layout from '../components/layout'
 import { GetStaticProps } from 'next'
 import { getAllPostsData } from '../utils/getAllPostsData'
 import generateRSS from '../utils/generateRSS'
-import generateSitemap from '../utils/generateSitemap'
 import PostCard from '../components/post-card'
 
 export const getStaticProps: GetStaticProps = async () => {
   const allPosts = getAllPostsData()
 
-  // ついでにRSSとSitemap生成
+  // ついでにRSS生成
   generateRSS(allPosts)
-  generateSitemap()
 
   return {
     props: {
