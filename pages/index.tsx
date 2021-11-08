@@ -6,30 +6,30 @@ import generateSitemap from '../utils/generateSitemap'
 import PostCard from '../components/post-card'
 
 export const getStaticProps: GetStaticProps = async () => {
-  const allPostsMetas = getAllPostsData()
+  const allPosts = getAllPostsData()
 
   // ついでにRSSとSitemap生成
-  generateRSS(allPostsMetas)
+  generateRSS(allPosts)
   generateSitemap()
 
   return {
     props: {
-      allPostsMetas
+      allPosts
     }
   }
 }
 
 export default function Home({
-  allPostsMetas
+  allPosts
 }: {
-  allPostsMetas: metaData[]
+  allPosts: postData[]
 }) {
   return (
     <>
     <Layout h1="Posts">
       <ul className="flex flex-col justify-center max-w-4xl w-full">
-        {allPostsMetas.map((meta) => (
-          <PostCard key={meta.date} date={meta.date} title={meta.title} description={meta.description} tags={meta.tags} />
+        {allPosts.map((post) => (
+          <PostCard key={post.date} date={post.date} title={post.title} description={post.description} tags={post.tags} />
         ))}
       </ul>
     </Layout>

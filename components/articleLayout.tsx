@@ -23,7 +23,7 @@ export default function ArticleLayout({
   meta,
 }: {
   children: React.ReactNode
-  meta: metaData
+  meta: postData
 }) {
   const [tocElements, setTocElements] = useState(initArr)
   const [intersectingElementId, setIntersectingElementId] = useState("")
