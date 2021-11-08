@@ -4,9 +4,18 @@ import Tag from '../../components/tag'
 import { GetStaticProps } from 'next'
 import { getAllTagsData } from '../../utils/getAllTagsData'
 import { getAllPostsData } from '../../utils/getAllPostsData'
+import generateSitemap from '../../utils/generateSitemap'
 
 export const getStaticProps: GetStaticProps = async () => {
   const allTags = getAllTagsData(getAllPostsData())
+  
+  const tags = allTags.map((tagData) => {
+    return tagData.name
+  })
+
+  // ついでにSitemap生成
+  generateSitemap(tags)
+
   return {
     props: {
       allTags

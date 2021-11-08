@@ -1,12 +1,12 @@
 export function getAllPostsData() {
-  let metas: metaData[] = new Array()
+  let posts: postData[] = new Array()
 
   const contexts = require.context('../pages/posts/', false, /\.mdx$/)
   contexts.keys().map((path: string) => {
-    metas.push(contexts(path).meta)
+    posts.push(contexts(path).meta)
   })
 
-  metas = metas.reverse()
+  posts = posts.reverse()
 
-  return metas
+  return posts
 }
