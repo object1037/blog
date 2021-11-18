@@ -44,7 +44,7 @@ export default async function generateSitemap(tags: string[]) {
               .replace('pages/', '')
               .replace('.tsx', '')
               .replace('.mdx', '')
-              .replace('/index', '');
+              .replace('index', '');
 
             if (path.substr(0, 5) === 'posts') {
               const imagesOfThePage = images.filter(imagePath => imagePath.substr(14, 8) === path.substr(6, 8));
