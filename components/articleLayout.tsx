@@ -113,6 +113,12 @@ export default function ArticleLayout({
         <meta property="og:title" content={`${meta.title} | ${siteTitle}`} />
         <meta property="og:description" content={meta.description} />
         <meta property="og:image" content={meta.ogImgUrl ? meta.ogImgUrl : getOgImageUrl(meta.title)} />
+        <link 
+          rel="stylesheet"
+          href="https://cdn.jsdelivr.net/npm/katex@0.13.13/dist/katex.min.css"
+          integrity="sha384-RZU/ijkSsFbcmivfdRBQDtwuwVqK7GMOw6IMvKyeWL2K5UAlyp6WonmB8m7Jd0Hn"
+          crossOrigin="anonymous"
+        />
         <title>{meta.title} | {siteTitle}</title>
       </Head>
       <Header />

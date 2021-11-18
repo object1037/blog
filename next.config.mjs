@@ -6,11 +6,11 @@ const ContentSecurityPolicy = `
   default-src 'self';
   script-src 'self' 'unsafe-eval' 'unsafe-inline';
   child-src 'none';
-  style-src 'self' 'unsafe-inline';
+  style-src 'self' 'unsafe-inline' https://cdn.jsdelivr.net;
   img-src * blob: data:;
   media-src 'none';
   connect-src *;
-  font-src 'self';
+  font-src 'self' https://cdn.jsdelivr.net;
 `
 
 const securityHeaders = [

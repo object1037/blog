@@ -1,9 +1,16 @@
 import { bundleMDX } from "mdx-bundler"
 import path from 'path'
 import rehypeHighlight from 'rehype-highlight'
+import remarkMath from 'remark-math'
+import rehypeKatex from "rehype-katex"
 
-//const remarkPlugins = []
-const rehypePlugins = [rehypeHighlight]
+const remarkPlugins = [
+  remarkMath,
+]
+const rehypePlugins = [
+  rehypeHighlight,
+  rehypeKatex,
+]
 
 export default async function getBundledMdx(date: string) {
   const result = await bundleMDX<postData>({
@@ -12,7 +19,7 @@ export default async function getBundledMdx(date: string) {
     xdmOptions: options => {
       options.remarkPlugins = [
         ...(options.remarkPlugins ?? []),
-        //...remarkPlugins
+        ...remarkPlugins
       ]
       options.rehypePlugins = [
         ...(options.rehypePlugins ?? []),
