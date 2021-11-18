@@ -1,8 +1,9 @@
 import { bundleMDX } from "mdx-bundler"
 import path from 'path'
+import rehypeHighlight from 'rehype-highlight'
 
 //const remarkPlugins = []
-//const rehypePlugins = []
+const rehypePlugins = [rehypeHighlight]
 
 export default async function getBundledMdx(date: string) {
   const result = await bundleMDX<postData>({
@@ -15,7 +16,7 @@ export default async function getBundledMdx(date: string) {
       ]
       options.rehypePlugins = [
         ...(options.rehypePlugins ?? []),
-        //...rehypePlugins
+        ...rehypePlugins
       ]
   
       return options
