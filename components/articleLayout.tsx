@@ -127,7 +127,9 @@ export default function ArticleLayout({
               ))}
             </div>
             {elapsedYears > 0 && 
-            <Note type={elapsedYears > 1 ? "danger" : "warn"} className="mt-6">この記事は公開から{elapsedYears}年以上が経過しています</Note>
+            <Note type={elapsedYears > 1 ? "danger" : "warn"} className="mt-6">
+              <p className="mb-5">この記事は公開から{elapsedYears}年以上が経過しています</p>
+            </Note>
             }
           </div>
         </header>

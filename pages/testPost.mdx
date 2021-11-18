@@ -1,9 +1,13 @@
----
-title: "投稿テスト"
-description: "テスト"
-date: "20200518"
-tags: ["テスト", "タグ2"]
----
+export const meta = {
+  title: "投稿テスト",
+  description: "テスト",
+  date: "20200518",
+  tags: ["テスト", "タグ2"],
+}
+
+import ArticleLayout from "../components/articleLayout"
+
+import ponpokoInamenn from "../public/images/testPost/ponpoko-inamenn.jpg"
 
 これは投稿テストです。
 
@@ -92,13 +96,15 @@ console.log("veryLongTextHere : aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa
 # 画像
 
 ```javascript
-<Im src="testPost/ponpoko-inamenn.jpg" alt="ガチ恋ぽんぽこの画像" cap="否めん！(これは画像のキャプション)" w={1334} h={750} />
-// capは省略可
+import ponpokoInamenn from "../public/images/testPost/ponpoko-inamenn.jpg"
+
+<Im src={ponpokoInamenn} alt="ガチ恋ぽんぽこの画像" cap="否めん！(これは画像のキャプション)" />
+// captionは省略可
 ```
 
 画像は以下の通り
 
-<Im src="testPost/ponpoko-inamenn.jpg" alt="ガチ恋ぽんぽこの画像" cap="否めん！(これは画像のキャプション)" w={1334} h={750} />
+<Im src={ponpokoInamenn} alt="ガチ恋ぽんぽこの画像" cap="否めん！(これは画像のキャプション)" />
 
 あ～う〜♡
 
@@ -114,11 +120,14 @@ console.log("veryLongTextHere : aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa
   ここにはちょっとした情報を入れる。 モチモチモチモチモﾁﾓﾁﾓﾁﾓ(ﾉ)`ω´(ヾ)
 </Note>
 
-<Note type="warn">ここには注意が必要なことを知らせる文を入れる。 モチモチモチモチモﾁﾓﾁﾓﾁﾓ(ﾉ)`ω´(ヾ)</Note>
+<Note type="warn">
+  ここには注意が必要なことを知らせる文を入れる。 モチモチモチモチモﾁﾓﾁﾓﾁﾓ(ﾉ)`ω´(ヾ)
+</Note>
 
 <Note type="danger">
-  ここには**危険**を知らせる文を入れる。 モチモチモチモチモﾁﾓﾁﾓﾁﾓ(ﾉ)`ω´(ヾ)\
-  [My Website]('https://object1037.dev')
+  ここには危険を知らせる文を入れる。 モチモチモチモチモﾁﾓﾁﾓﾁﾓ(ﾉ)`ω´(ヾ)
 </Note>
 
 そうなんだ
+
+export default ({ children }) => <ArticleLayout meta={meta}>{children}</ArticleLayout>
