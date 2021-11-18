@@ -5,7 +5,7 @@ import generateRSS from '../utils/generateRSS'
 import PostCard from '../components/post-card'
 
 export const getStaticProps: GetStaticProps = async () => {
-  const allPosts = getAllPostsData()
+  const allPosts = await getAllPostsData()
 
   // ついでにRSS生成
   generateRSS(allPosts)

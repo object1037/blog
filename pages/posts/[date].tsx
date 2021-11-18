@@ -1,7 +1,7 @@
 import { GetStaticProps } from 'next'
 import getBundledMdx from '../../lib/getBundledMdx'
 import ArticleLayout from '../../components/articleLayout'
-import {getMDXComponent} from 'mdx-bundler/client'
+import { getMDXComponent } from 'mdx-bundler/client'
 import React from 'react'
 import { getAllPostsPaths } from '../../utils/getAllPostsPaths'
 import H2 from '../../components/mdComponents/H2'
@@ -12,8 +12,6 @@ import Ul from '../../components/mdComponents/Ul'
 import Ol from '../../components/mdComponents/Ol'
 import Li from '../../components/mdComponents/Li'
 import Anchor from '../../components/mdComponents/Anchor'
-import Code from '../../components/mdComponents/Code'
-import InlineCode from '../../components/mdComponents/inline-code'
 import Blockquote from '../../components/mdComponents/Blockquote'
 import Im from "../../components/im"
 import Note, { noteProps } from '../../components/note';
@@ -46,8 +44,6 @@ const mdComponents = {
   ol: Ol,
   li: Li,
   a: Anchor,
-  code: Code,
-  inlineCode: InlineCode,
   blockquote: Blockquote,
   Im,
   Note: ({

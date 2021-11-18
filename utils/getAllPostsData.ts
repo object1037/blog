@@ -1,12 +1,19 @@
-export function getAllPostsData() {
-  let posts: postData[] = new Array()
+import { getAllPostsPaths } from '../utils/getAllPostsPaths'
+import getBundledMdx from '../lib/getBundledMdx'
 
-  const contexts = require.context('../pages/posts/', false, /\.mdx$/)
-  contexts.keys().map((path: string) => {
-    posts.push(contexts(path).meta)
+export async function getAllPostsData() {
+  const allPaths = getAllPostsPaths()
+  const allData = allPaths.map((date) => {
+    return getBundledMdx(date)
   })
 
-  posts = posts.reverse()
-
-  return posts
+  return Promise.all(allData).then((allData) => {
+    const allMatter = allData.map((data) => {
+      return data.frontmatter
+    })
+    allMatter.sort(function(a, b) {
+      return +b.date - +a.date;
+    })
+    return allMatter
+  })
 }

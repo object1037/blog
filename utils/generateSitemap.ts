@@ -3,6 +3,12 @@ import prettier from 'prettier'
 import { globby } from 'globby'
 import { siteUrl } from '../constants/data'
 
+const robots = `
+User-agent: *
+Disallow: /testPost
+Sitemap: ${siteUrl}/sitemap.xml
+`.trim()
+
 export default async function generateSitemap(tags: string[]) {
   const tagPages = tags.map((tag) => {
     return encodeURI(`pages/tags/${tag}.tsx`)
@@ -11,9 +17,11 @@ export default async function generateSitemap(tags: string[]) {
   const pages = await globby([
     'pages/*.tsx',
     'pages/**/*.{mdx,tsx}',
+    'posts/*.mdx',
     '!pages/_*.tsx',
     '!pages/testPost.mdx',
     '!pages/404.tsx',
+    '!pages/posts/[date].tsx',
     '!pages/tags/[tag].tsx'
   ]);
 
@@ -33,13 +41,13 @@ export default async function generateSitemap(tags: string[]) {
           .map((page) => {
             let imagePaths = ''
             const path = page
-              .replace('pages', '')
+              .replace('pages/', '')
               .replace('.tsx', '')
               .replace('.mdx', '')
               .replace('/index', '');
 
-            if (path.substr(1, 5) === 'posts') {
-              const imagesOfThePage = images.filter(imagePath => imagePath.substr(14, 8) === path.substr(7, 8));
+            if (path.substr(0, 5) === 'posts') {
+              const imagesOfThePage = images.filter(imagePath => imagePath.substr(14, 8) === path.substr(6, 8));
               imagePaths = imagesOfThePage.map((imagePath) => {
                 const path = imagePath.replace('public', '');
                 return `
@@ -52,7 +60,7 @@ export default async function generateSitemap(tags: string[]) {
 
             return `
               <url>
-                  <loc>${`${siteUrl}${path}`}</loc>
+                  <loc>${`${siteUrl}/${path}`}</loc>
                   ${imagePaths}
               </url>
             `;
@@ -66,5 +74,6 @@ export default async function generateSitemap(tags: string[]) {
   });
 
   writeFileSync('public/sitemap.xml', formatted);
-  console.log("Automatically generated /sitemap.xml")
+  writeFileSync('public/robots.txt', robots);
+  console.log("Automatically generated /sitemap.xml and /robots.txt")
 }
