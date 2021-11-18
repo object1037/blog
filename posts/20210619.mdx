@@ -1,17 +1,10 @@
-export const meta = {
-  title: "自作キーボードはじめました",
-  description: "自作キーボードキット Nomu30を組み立てた話",
-  date: "20210619",
-  tags: ["自作キーボード"],
-  ogImgUrl: "https://blog.object1037.dev/images/20210619/nomu30_complete.jpg"
-}
-
-import ArticleLayout from "../../components/articleLayout"
-
-import diode_complete from "../../public/images/20210619/diode_complete.jpg"
-import switch_complete from "../../public/images/20210619/switch_complete.jpg"
-import coincellholder from "../../public/images/20210619/coincellholder.jpg"
-import nomu30_complete from "../../public/images/20210619/nomu30_complete.jpg"
+---
+title: "自作キーボードはじめました"
+description: "自作キーボードキット Nomu30を組み立てた話"
+date: "20210619"
+tags: ["自作キーボード"]
+ogImgUrl: "https://blog.object1037.dev/images/20210619/nomu30_complete.jpg"
+---
 
 大学生になって自由時間が増えたので、以前からやりたいと思っていた自作キーボードに手を出してみました。
 
@@ -51,7 +44,7 @@ Nomu30を組み立てるだけなら最初の4つだけで十分なのですが�
 
 私はこれが人生初はんだ付けだったのですが、換気の必要性を知らなかったため頭痛に見舞われる事になりました。 (ヽ´ω`)ﾄﾎﾎ･･
 
-<Im src={diode_complete} alt="ダイオードの取り付けが終わった状態" cap="ダイオードのはんだ付けが終わった様子"/>
+<Im src="20210619/diode_complete.jpg" alt="ダイオードの取り付けが終わった状態" cap="ダイオードのはんだ付けが終わった様子" w={1600} h={641} />
 
 ダイオードのはんだ付けが終わったら一度コンスルーでBMPを基板に取り付け、ピンセットでスイッチの部分をショートさせることでキーが入力できるかどうか確認します。
 
@@ -65,7 +58,7 @@ Nomu30を組み立てるだけなら最初の4つだけで十分なのですが�
 
 キースイッチをプレートにはめ込みます。結構力がいるのでプレートを割らないよう注意します。
 
-<Im src={switch_complete} alt="スイッチの取り付けが終わった様子" />
+<Im src="20210619/switch_complete.jpg" alt="スイッチの取り付けが終わった様子" w={1600} h={628} />
 
 はめ終わったらBMPと重なる位置にあるスイッチの足を切り、スイッチをはんだ付けします。一部のスイッチがBMPと干渉するのでテープで絶縁します。
 
@@ -77,7 +70,13 @@ BMPの電源供給用の電池基板を組み立てます。[ドキュメント]
 電池基板の組み立てが終わったら導線でBMPと繋ぎ、(厚めの)両面テープでPCBに貼り付けます。
 電池基板の上にあるスライドスイッチが後から操作できるような場所に固定するようにします。
 
-<Im src={coincellholder} alt="電池基板の取り付けが終わった様子" cap="電池基板の取り付けが終わった様子(電池ホルダ間がショートしそうだったのでテープで絶縁した)" />
+<Im 
+  src="20210619/coincellholder.jpg"
+  alt="電池基板の取り付けが終わった様子"
+  cap="電池基板の取り付けが終わった様子(電池ホルダ間がショートしそうだったのでテープで絶縁した)"
+  w={1600}
+  h={1200}
+/>
 
 ## 仕上げ
 
@@ -85,7 +84,7 @@ BMPの電源供給用の電池基板を組み立てます。[ドキュメント]
 
 # 完成
 
-<Im src={nomu30_complete} alt="Nomu30" />
+<Im src="20210619/nomu30_complete.jpg" alt="Nomu30" w={1080} h={834} />
 
 やった〜
 
@@ -100,5 +99,3 @@ BMPの電源供給用の電池基板を組み立てます。[ドキュメント]
 キー数が非常に少ない30%キーボードですが、レイヤー機能があるので慣れれば結構使えるのではないかと思います。(当然慣れるのにかなり時間がかかりそうではある)
 
 次は60%ぐらいのキーボードを作ってみたいですが、金銭的理由からかなり先のことになりそうです。
-
-export default ({ children }) => <ArticleLayout meta={meta}>{children}</ArticleLayout>
