@@ -7,7 +7,7 @@ import { getAllPostsData } from '../../utils/getAllPostsData'
 import generateSitemap from '../../utils/generateSitemap'
 
 export const getStaticProps: GetStaticProps = async () => {
-  const allTags = getAllTagsData(getAllPostsData())
+  const allTags = getAllTagsData(await getAllPostsData())
   
   const tags = allTags.map((tagData) => {
     return tagData.name

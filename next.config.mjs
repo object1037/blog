@@ -1,20 +1,16 @@
-const rehypePrism = require('@mapbox/rehype-prism')
-const withMDX = require('@next/mdx')({
-  extension: /\.mdx$/,
-  options: {
-    rehypePlugins: [rehypePrism]
-  },
-})
+/**
+ * @type {import('next').NextConfig}
+ */
 
 const ContentSecurityPolicy = `
   default-src 'self';
   script-src 'self' 'unsafe-eval' 'unsafe-inline';
   child-src 'none';
-  style-src 'self' 'unsafe-inline';
+  style-src 'self' 'unsafe-inline' https://cdn.jsdelivr.net;
   img-src * blob: data:;
   media-src 'none';
   connect-src *;
-  font-src 'self';
+  font-src 'self' https://cdn.jsdelivr.net;
 `
 
 const securityHeaders = [
@@ -48,7 +44,7 @@ const securityHeaders = [
   }
 ];
 
-module.exports = withMDX({
+const nextConfig = {
   pageExtensions: ['js', 'jsx', 'mdx', 'ts', 'tsx'],
   async headers() {
     return [
@@ -68,4 +64,6 @@ module.exports = withMDX({
       },
     ]
   },
-})
+}
+
+export default nextConfig

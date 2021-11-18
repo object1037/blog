@@ -17,7 +17,7 @@ export default function ToC({
         </span>
         目次
       </div>
-      <ol className="ml-2">
+      <ol>
         {tocElements.map((element) => {
           let isIntersectingElement = false
           if (element.title === intersectingElementId) {
@@ -28,7 +28,7 @@ export default function ToC({
             return (
               <li key={element.scrollPos} className="truncate">
                 <TocAnchor title={element.title} isH2 isIntersectingElement={isIntersectingElement} />
-                <ol className="ml-2">
+                <ol className="ml-3">
                   {element.childEls.map((childEl) => {
                     let isIntersectingChildElement = false
                     if (childEl.title === intersectingElementId) {

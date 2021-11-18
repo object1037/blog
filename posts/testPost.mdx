@@ -1,13 +1,9 @@
-export const meta = {
-  title: "投稿テスト",
-  description: "テスト",
-  date: "20200518",
-  tags: ["テスト", "タグ2"],
-}
-
-import ArticleLayout from "../components/articleLayout"
-
-import ponpokoInamenn from "../public/images/testPost/ponpoko-inamenn.jpg"
+---
+title: "投稿テスト"
+description: "テスト"
+date: "20200518"
+tags: ["テスト", "タグ2"]
+---
 
 これは投稿テストです。
 
@@ -96,15 +92,13 @@ console.log("veryLongTextHere : aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa
 # 画像
 
 ```javascript
-import ponpokoInamenn from "../public/images/testPost/ponpoko-inamenn.jpg"
-
-<Im src={ponpokoInamenn} alt="ガチ恋ぽんぽこの画像" cap="否めん！(これは画像のキャプション)" />
-// captionは省略可
+<Im src="testPost/ponpoko-inamenn.jpg" alt="ガチ恋ぽんぽこの画像" cap="否めん！(これは画像のキャプション)" w={1334} h={750} />
+// capは省略可
 ```
 
 画像は以下の通り
 
-<Im src={ponpokoInamenn} alt="ガチ恋ぽんぽこの画像" cap="否めん！(これは画像のキャプション)" />
+<Im src="testPost/ponpoko-inamenn.jpg" alt="ガチ恋ぽんぽこの画像" cap="否めん！(これは画像のキャプション)" w={1334} h={750} />
 
 あ～う〜♡
 
@@ -120,14 +114,20 @@ import ponpokoInamenn from "../public/images/testPost/ponpoko-inamenn.jpg"
   ここにはちょっとした情報を入れる。 モチモチモチモチモﾁﾓﾁﾓﾁﾓ(ﾉ)`ω´(ヾ)
 </Note>
 
-<Note type="warn">
-  ここには注意が必要なことを知らせる文を入れる。 モチモチモチモチモﾁﾓﾁﾓﾁﾓ(ﾉ)`ω´(ヾ)
-</Note>
+<Note type="warn">ここには注意が必要なことを知らせる文を入れる。 モチモチモチモチモﾁﾓﾁﾓﾁﾓ(ﾉ)`ω´(ヾ)</Note>
 
 <Note type="danger">
-  ここには危険を知らせる文を入れる。 モチモチモチモチモﾁﾓﾁﾓﾁﾓ(ﾉ)`ω´(ヾ)
+  ここには**危険**を知らせる文を入れる。 モチモチモチモチモﾁﾓﾁﾓﾁﾓ(ﾉ)`ω´(ヾ)\
+  [My Website]('https://object1037.dev')
 </Note>
 
 そうなんだ
 
-export default ({ children }) => <ArticleLayout meta={meta}>{children}</ArticleLayout>
+# 数式
+
+Lift($L$) can be determined by Lift Coefficient ($C_L$) like the following
+equation.
+
+$$
+L = \frac{1}{2} \rho v^2 S C_L
+$$
