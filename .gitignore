@@ -36,3 +36,4 @@ yarn-error.log*
 # auto-generated files
 /public/sitemap.xml
 /public/feed.xml
+/public/robots.txt

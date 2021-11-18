@@ -25,6 +25,27 @@
   min-height: 100%;
 }
 
+:not(pre) > code {
+  margin-left: 0.25rem/* 4px */;
+  margin-right: 0.25rem/* 4px */;
+  --tw-bg-opacity: 1;
+  background-color: rgba(245, 245, 245, var(--tw-bg-opacity));
+  padding-left: 0.5rem/* 8px */;
+  padding-right: 0.5rem/* 8px */;
+  padding-top: 0.25rem/* 4px */;
+  padding-bottom: 0.25rem/* 4px */;
+  border-radius: 0.375rem/* 6px */;
+  word-break: break-all;
+}
+
+@media (prefers-color-scheme: dark) {
+  :not(pre) > code {
+    --tw-bg-opacity: 1;
+    background-color: rgba(38, 38, 38, var(--tw-bg-opacity));
+  }
+}
+
+/* 404 page */
 .circle {
   border-width: 1.5rem;
 }
