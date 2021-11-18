@@ -1,11 +1,9 @@
-export const meta = {
-  title: "初投稿",
-  description: "ブログを作ってみました",
-  date: "20210308",
-  tags: ["Web"],
-}
-
-import ArticleLayout from "../../components/articleLayout"
+---
+title: "初投稿"
+description: "ブログを作ってみました"
+date: "20210308"
+tags: ["Web"]
+---
 
 # はじめに
 
@@ -24,5 +22,3 @@ CSSは[tailwindcss](https://tailwindcss.com/)というフレームワークを�
 ダークモードに対応していないのでこれを投稿したら対応させる予定です。あと、[ホームページ](https://object1037.vercel.app)も作ったので見てね
 
 ではまた〜
-
-export default ({ children }) => <ArticleLayout meta={meta}>{children}</ArticleLayout>

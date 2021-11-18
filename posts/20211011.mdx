@@ -1,13 +1,9 @@
-export const meta = {
-  title: "WebでSimejiの顔文字変換ができるツールを作った",
-  description: "Simejiのクラウド超変換で顔文字変換をするWebアプリケーションを作った話",
-  date: "20211011",
-  tags: ["Web"]
-}
-
-import ArticleLayout from "../../components/articleLayout"
-import bnaSimeji from "../../public/images/20211011/bnaSimeji.png"
-import proxyman from "../../public/images/20211011/proxyman.png"
+---
+title: "WebでSimejiの顔文字変換ができるツールを作った"
+description: "Simejiのクラウド超変換で顔文字変換をするWebアプリケーションを作った話"
+date: "20211011"
+tags: ["Web"]
+---
 
 [Simeji](https://simeji.me/)というスマホアプリにはキーボードのきせかえ等の機能のほか、**クラウド超変換**というユーザーが登録した単語を変換できる機能があります。
 
@@ -18,7 +14,7 @@ import proxyman from "../../public/images/20211011/proxyman.png"
 
 # できたもの
 
-<Im src={bnaSimeji} alt="bnaSimejiのスクリーンショット" />
+<Im src="20211011/bnaSimeji.png" w={1392} h={699} alt="bnaSimejiのスクリーンショット" />
 
 bnaSimeji: [https://bnasimeji.vercel.app/](https://bnasimeji.vercel.app/)
 
@@ -34,7 +30,7 @@ bnaSimeji: [https://bnasimeji.vercel.app/](https://bnasimeji.vercel.app/)
 
 まず、Simejiのクラウド超変換がどういう通信をしているのか見たかったので、[Proxyman](https://proxyman.io/)でiPhoneの通信を見てみました。
 
-<Im src={proxyman} alt="ProxymanでiPhoneの通信を見る様子" cap="Spotlightを開いて「ねこ」と打ったときの通信の様子"/>
+<Im src="20211011/proxyman.png" w={2128} h={100} alt="ProxymanでiPhoneの通信を見る様子" cap="Spotlightを開いて「ねこ」と打ったときの通信の様子"/>
 
 どうやら`http://cloud.simeji.me/py?ol=1&switch=2&section=1&ver=10.6&api_version=2&web=1&py=変換したいひらがな`にGETリクエストして変換データを取得しているようです。
 
@@ -53,5 +49,3 @@ bnaSimeji: [https://bnasimeji.vercel.app/](https://bnasimeji.vercel.app/)
 # おわりに
 
 結構短い時間で実装できたのでよかったです。みんなも使って乁(˙꒳˙乁)ｸﾚﾖ...
-
-export default ({ children }) => <ArticleLayout meta={meta}>{children}</ArticleLayout>
