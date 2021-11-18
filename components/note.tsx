@@ -13,7 +13,6 @@ const noteStyle = [
   'border',
   'border-transparent',
   'text-base',
-  'py-5',
   'px-4',
   'rounded-md',
   'w-full',
@@ -51,6 +50,7 @@ export default function Note({
 }: noteProps) {
   let colorStyle = infoStyle
   let iconColor = "text-blue-500"
+  const margin = typeof children === "string" && "mb-5"
 
   if (type === "warn") {
     colorStyle = warnStyle
@@ -65,7 +65,7 @@ export default function Note({
       <span className={clsx(iconStyle, iconColor)}>
         {type === "info" ? <FiInfo /> : <FiAlertCircle />}
       </span>
-      <p>{children}</p>
+      <div className={clsx(margin, "mt-5", "leading-7")}>{children}</div>
     </div>
   )
 }
