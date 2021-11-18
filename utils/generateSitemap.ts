@@ -5,7 +5,7 @@ import { siteUrl } from '../constants/data'
 
 const robots = `
 User-agent: *
-Disallow: /testPost
+Disallow: /posts/testPost
 Sitemap: ${siteUrl}/sitemap.xml
 `.trim()
 
@@ -19,7 +19,7 @@ export default async function generateSitemap(tags: string[]) {
     'pages/**/*.{mdx,tsx}',
     'posts/*.mdx',
     '!pages/_*.tsx',
-    '!pages/testPost.mdx',
+    '!posts/testPost.mdx',
     '!pages/404.tsx',
     '!pages/posts/[date].tsx',
     '!pages/tags/[tag].tsx'

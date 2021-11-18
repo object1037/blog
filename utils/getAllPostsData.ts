@@ -2,7 +2,8 @@ import { getAllPostsPaths } from '../utils/getAllPostsPaths'
 import getBundledMdx from '../lib/getBundledMdx'
 
 export async function getAllPostsData() {
-  const allPaths = getAllPostsPaths()
+  const allPaths = getAllPostsPaths().filter(path => path != "testPost")
+  
   const allData = allPaths.map((date) => {
     return getBundledMdx(date)
   })
