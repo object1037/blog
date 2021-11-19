@@ -33,12 +33,17 @@ export default function ArticleLayout({
     const IOOptions = {
       rootMargin: '0px 0px -90% 0px'
     }
+    let intersectingElementExist = false
     let IOCallback = (entries: IntersectionObserverEntry[], observer: IntersectionObserver) => {
       entries.forEach(entry => {
         if (entry.isIntersecting) {
           setIntersectingElementId(entry.target.id)
+          intersectingElementExist = true
         }
       });
+      if (!intersectingElementExist) {
+        setIntersectingElementId(headings[0].id)
+      }
     }
     let observer = new IntersectionObserver(IOCallback, IOOptions)
 
@@ -91,7 +96,7 @@ export default function ArticleLayout({
   }, [meta])
 
   const contentWrapperStyle = [
-    'mt-10',
+    'mt-5',
     'mb-16',
     'lg:mr-16',
     'flex-grow',
@@ -134,7 +139,7 @@ export default function ArticleLayout({
             </div>
             {elapsedYears > 0 && 
             <Note type={elapsedYears > 1 ? "danger" : "warn"} className="mt-6">
-              <p className="mb-5">この記事は公開から{elapsedYears}年以上が経過しています</p>
+              <p className="my-5">この記事は公開から{elapsedYears}年以上が経過しています</p>
             </Note>
             }
           </div>
