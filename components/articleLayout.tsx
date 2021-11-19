@@ -96,7 +96,7 @@ export default function ArticleLayout({
   }, [meta])
 
   const contentWrapperStyle = [
-    'mt-10',
+    'mt-5',
     'mb-16',
     'lg:mr-16',
     'flex-grow',
