@@ -40,15 +40,18 @@ tags: ["テスト", "タグ2"]
 
 # リスト
 
- * 項目1
- * 項目2
- * 項目3
+* 項目1
+* 項目2
+  * nested 1
+  * nested 2
+    * double-nested
+* 項目3
 
 ## 数字付きリスト
 
- 1. aaaa
- 2. bbbbb
- 3. ccccc
+1. aaaa
+2. bbbbb
+3. ccccc
 
 # ソースコード
 
@@ -82,7 +85,7 @@ export function useAllReservations(loggedIn) {
   }
 }
 console.log(1 + 2)
-console.log("veryLongTextHere : aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa")
+console.log("very long text : aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa")
 ```
 
 ## inline-code
@@ -91,7 +94,7 @@ console.log("veryLongTextHere : aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa
 
 # 画像
 
-```javascript
+```jsx
 <Im src="testPost/ponpoko-inamenn.jpg" alt="ガチ恋ぽんぽこの画像" cap="否めん！(これは画像のキャプション)" w={1334} h={750} />
 // capは省略可
 ```
@@ -104,7 +107,7 @@ console.log("veryLongTextHere : aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa
 
 # Note
 
-```javascript
+```jsx
 <Note type="warn"> // "info" | "warn" | "danger" (デフォルトは"info")
   ここには注意が必要なことを知らせる文を入れる。 モチモチモチモチモﾁﾓﾁﾓﾁﾓ(ﾉ)`ω´(ヾ)
 </Note>
@@ -124,6 +127,15 @@ console.log("veryLongTextHere : aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa
 そうなんだ
 
 # 数式
+
+```markdown
+Lift($L$) can be determined by Lift Coefficient ($C_L$) like the following
+equation.
+
+$$
+L = \frac{1}{2} \rho v^2 S C_L
+$$
+```
 
 Lift($L$) can be determined by Lift Coefficient ($C_L$) like the following
 equation.
