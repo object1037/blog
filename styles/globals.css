@@ -57,6 +57,10 @@ pre {
   line-height: 1.5rem;
 }
 
+pre > code {
+  border-radius: 0.25rem;
+}
+
 pre code.hljs {
   padding: 16px;
 }
