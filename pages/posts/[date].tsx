@@ -65,6 +65,7 @@ export default function Post({
     frontmatter: postData
   }
 }) {
+  console.log(bundledMdx.frontmatter)
   const Contents = React.useMemo(() => getMDXComponent(bundledMdx.code), [bundledMdx.code])
   return (
     <>
