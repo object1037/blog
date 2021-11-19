@@ -55,6 +55,7 @@ pre {
   box-sizing: border-box;
   overflow: hidden;
   line-height: 1.5rem;
+  margin-bottom: 2.25rem;
 }
 
 pre > code {
