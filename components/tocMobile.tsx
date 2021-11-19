@@ -57,7 +57,9 @@ export default function ToCMobile({
     'mt-auto',
     'text-sm',
     'leading-loose',
-    'shadow-2xl'
+    'shadow-2xl',
+    'bg-white',
+    'dark:bg-gray-900',
   ]
 
   return (
