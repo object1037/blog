@@ -33,12 +33,17 @@ export default function ArticleLayout({
     const IOOptions = {
       rootMargin: '0px 0px -90% 0px'
     }
+    let intersectingElementExist = false
     let IOCallback = (entries: IntersectionObserverEntry[], observer: IntersectionObserver) => {
       entries.forEach(entry => {
         if (entry.isIntersecting) {
           setIntersectingElementId(entry.target.id)
+          intersectingElementExist = true
         }
       });
+      if (!intersectingElementExist) {
+        setIntersectingElementId(headings[0].id)
+      }
     }
     let observer = new IntersectionObserver(IOCallback, IOOptions)
 
