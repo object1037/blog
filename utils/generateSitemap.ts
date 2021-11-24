@@ -40,11 +40,15 @@ export default async function generateSitemap(tags: string[]) {
         ${allPages
           .map((page) => {
             let imagePaths = ''
-            const path = page
+            let path = page
               .replace('pages/', '')
               .replace('.tsx', '')
               .replace('.mdx', '')
               .replace('index', '');
+
+            if (path.charAt(path.length - 1) === '/') {
+              path = path.slice(0, -1)
+            }
 
             if (path.substr(0, 5) === 'posts') {
               const imagesOfThePage = images.filter(imagePath => imagePath.substr(14, 8) === path.substr(6, 8));
@@ -60,7 +64,7 @@ export default async function generateSitemap(tags: string[]) {
 
             return `
               <url>
-                  <loc>${`${siteUrl}/${path}`}</loc>
+                  <loc>${`${siteUrl}${path ? `/${path}` : ''}`}</loc>
                   ${imagePaths}
               </url>
             `;
