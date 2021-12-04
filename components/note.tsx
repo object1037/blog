@@ -18,25 +18,27 @@ const noteStyle = [
   'w-full',
   'mx-auto',
   'text-gray-800',
-  'dark:bg-transparent',
 ]
 const dangerStyle = [
   'bg-red-50',
   'text-red-900',
-  'dark:border-red-600',
-  'dark:text-red-100'
+  'dark:border-red-900',
+  'dark:text-red-100',
+  'dark:bg-red-1000'
 ]
 const warnStyle = [
   'bg-orange-50',
   'text-orange-900',
-  'dark:border-orange-600',
-  'dark:text-orange-100'
+  'dark:border-orange-900',
+  'dark:text-orange-100',
+  'dark:bg-orange-1000'
 ]
 const infoStyle = [
   'bg-blue-50',
   'text-blue-900',
-  'dark:border-blue-600',
-  'dark:text-blue-100'
+  'dark:border-blue-900',
+  'dark:text-blue-100',
+  'dark:bg-blue-1000'
 ]
 const iconStyle = [
   'text-xl',
