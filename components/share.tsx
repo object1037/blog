@@ -15,15 +15,16 @@ export default function Share({
     navigator.clipboard.writeText(url)
   }
   const shareStyle = [
-    'text-gray-400',
+    'text-gray-500',
     'hover:text-gray-900',
+    'dark:text-gray-400',
     'dark:hover:text-gray-100',
     'transition',
   ]
 
   return (
     <div className="flex flex-row items-center mt-12 mb-5 px-2">
-      <p className="text-gray-500 dark:text-gray-400 mr-5 text-sm tracking-widest">SHARE</p>
+      <p className="text-gray-500 dark:text-gray-400 mr-6 text-sm tracking-widest">SHARE</p>
       <div className="flex justify-start space-x-4">
         <a href={`https://twitter.com/share?url=${siteUrl}/posts/${date}&text=${title}｜${siteTitle}`}
           className={clsx(shareStyle)} target="_blank" rel="noopener noreferrer" aria-label="Twitter Share Button">
