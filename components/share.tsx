@@ -30,7 +30,8 @@ export default function Share({
           className={clsx(shareStyle)} target="_blank" rel="noopener noreferrer" aria-label="Twitter Share Button">
           <span className="text-xl"><FiTwitter /></span>
         </a>
-        <div className={clsx(shareStyle, 'cursor-pointer')} onClick={() => clickHandler(`${siteUrl}/posts/${date}`)} aria-label="URLをコピーする">
+        <div className={clsx(shareStyle, 'cursor-pointer')} onClick={() => clickHandler(`${siteUrl}/posts/${date}`)}
+          aria-label="URLをコピーする" role="button">
           <span className="text-xl"><FiCopy /></span>
         </div>
       </div>
