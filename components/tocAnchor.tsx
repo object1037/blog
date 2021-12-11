@@ -21,7 +21,6 @@ const TocAnchor = memo(function TocAnchor({
   const intersectingColorStyle = [
     'text-gray-900',
     'dark:text-gray-100',
-    'border-ppink-200',
   ]
   const colorStyle = [
     'text-gray-500',
