@@ -86,7 +86,7 @@ export default function ArticleLayout({
   useEffect(() => {
     const dateNow = new Date().getTime();
     //const dateNow = new Date(2022, 3, 20).getTime();
-    const datePublished = new Date(+meta.date.substr(0, 4), +meta.date.substr(4, 2) - 1, +meta.date.substr(6, 2)).getTime();
+    const datePublished = new Date(+meta.date.substring(0, 4), +meta.date.substring(4, 6) - 1, +meta.date.substring(6, 8)).getTime();
     if (dateNow - datePublished < 157766400000) {
       const elapsedYearsF = (dateNow - datePublished)/31536000000;
       setElapsedYears(Math.floor(elapsedYearsF));

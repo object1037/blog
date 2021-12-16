@@ -12,13 +12,13 @@ export default function generateRSS(posts: postData[]) {
 
   posts.map((post) => {
     let fileType = 'image/png'
-    if (post.ogImgUrl && post.ogImgUrl.substr(post.ogImgUrl.length - 4, 3) != "png") {
+    if (post.ogImgUrl && post.ogImgUrl.substring(post.ogImgUrl.length - 3) != "png") {
       fileType = 'image/jpeg'
     }
     feed.item({
       title: post.title,
       url: `${siteUrl}/posts/${post.date}`,
-      date: zonedTimeToUtc(new Date(+post.date.substr(0, 4), +post.date.substr(4, 2) - 1, +post.date.substr(6, 2), 23, 59, 59), "Asia/Tokyo"),
+      date: zonedTimeToUtc(new Date(+post.date.substring(0, 4), +post.date.substring(4, 6) - 1, +post.date.substring(6, 8), 23, 59, 59), "Asia/Tokyo"),
       description: post.description,
       enclosure: {
         'url': post.ogImgUrl ? post.ogImgUrl : getOgImageUrl(post.title),
