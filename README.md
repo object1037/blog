@@ -4,9 +4,11 @@ My blog system created with [Next.js](https://nextjs.org/), [Tailwind CSS](https
 
 ## Usage
 
+Add environment variables referring to `.env.sample`.
+
 ```bash
 npm install
-npm run dev
+vercel dev
 ```
 
 Edit the following files if you need.
