@@ -3,12 +3,16 @@ import { GetStaticProps } from 'next'
 import { getAllPostsData } from '../utils/getAllPostsData'
 import generateRSS from '../utils/generateRSS'
 import PostCard from '../components/post-card'
+import generateSearchIndex from '../lib/generateSearchIndex'
 
 export const getStaticProps: GetStaticProps = async () => {
   const allPosts = await getAllPostsData()
 
-  // ついでにRSS生成
+  // ついでにRSSと検索インデックス(本番時のみ)生成
   generateRSS(allPosts)
+  if (process.env.NODE_ENV === 'production') {
+    generateSearchIndex()
+  }
 
   return {
     props: {
