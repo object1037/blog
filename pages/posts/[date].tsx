@@ -27,7 +27,7 @@ export const getStaticProps: GetStaticProps = async ({ params }) => {
   if (process.env.NODE_ENV === 'production') {
     generateSearchIndex({ plaintext, frontmatter })
   }
-  
+
   return {
     props: {
       code,
