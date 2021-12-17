@@ -9,7 +9,8 @@ export async function getAllPostsData() {
   })
 
   return Promise.all(allData).then((allData) => {
-    const allMatter = allData.map((data) => {
+    const allDataWithoutDraft = allData.filter(data => !data.frontmatter.draft)
+    const allMatter = allDataWithoutDraft.map((data) => {
       return data.frontmatter
     })
     allMatter.sort(function(a, b) {
