@@ -38,6 +38,10 @@ export default function Search() {
     setIsOpen(true);
   }
 
+  function afterOpenModal() {
+    (document.getElementsByClassName("ais-SearchBox-input")[0] as HTMLElement)?.focus();
+  }
+
   function closeModal() {
     setIsOpen(false);
   }
@@ -87,6 +91,7 @@ export default function Search() {
     <Modal
       isOpen={modalIsOpen}
       onRequestClose={closeModal}
+      onAfterOpen={afterOpenModal}
       contentLabel="Delete Confirmation"
       className={clsx(modalStyle)}
       overlayClassName={clsx(overlayStyle)}
