@@ -58,15 +58,12 @@ export default function Search() {
     'dark:border-gray-700',
     'rounded-md',
     'outline-none',
-    'mx-auto',
     'w-full',
-    'absolute',
-    'top-1/4',
-    'md:max-w-md',
-    'min-w-max',
-    'bottom-auto',
-    'left-7',
-    'right-7'
+    'mx-auto',
+    'md:max-w-5xl',
+    'p-8',
+    'max-h-full',
+    'overflow-auto'
   ]
   const overlayStyle = [
     'bg-black',
@@ -75,7 +72,11 @@ export default function Search() {
     'dark:bg-opacity-50',
     'fixed',
     'inset-0',
-    'z-20'
+    'z-20',
+    'px-6',
+    'sm:px-12',
+    'py-12',
+    'sm:py-24',
   ]
 
   return (
@@ -91,7 +92,7 @@ export default function Search() {
       overlayClassName={clsx(overlayStyle)}
     >
     <InstantSearch indexName="blog_datas" searchClient={searchClient}>
-      <Configure hitsPerPage={5} />
+      <Configure hitsPerPage={3} />
       <SearchBox />
       <Hits hitComponent={Hit} />
       <Pagination />
