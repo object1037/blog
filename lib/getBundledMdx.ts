@@ -18,7 +18,7 @@ export default async function getBundledMdx(date: string) {
   const filePath = path.join(process.cwd(), `posts/${date}.mdx`)
   const regex = /---\n[^]*?\n---/
   const markdown = readFileSync(filePath).toString().replace(regex, '').trim()
-  const plainText = removeMd(markdown)
+  const plaintext = removeMd(markdown)
 
   const result = await bundleMDX<postData>({
     file: filePath,
@@ -37,5 +37,5 @@ export default async function getBundledMdx(date: string) {
     },
   })
   const {code, frontmatter} = result
-  return {code, frontmatter, plainText}
+  return {code, frontmatter, plaintext}
 }

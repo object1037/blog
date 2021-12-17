@@ -15,12 +15,19 @@ import Anchor from '../../components/mdComponents/Anchor'
 import Blockquote from '../../components/mdComponents/Blockquote'
 import Im from "../../components/im"
 import Note, { noteProps } from '../../components/note'
+import generateSearchIndex from '../../lib/generateSearchIndex'
 
 export const getStaticProps: GetStaticProps = async ({ params }) => {
   const bundledMdx = await getBundledMdx(params!.date as string)
 
   const code = bundledMdx.code
   const frontmatter = bundledMdx.frontmatter
+  const plaintext = bundledMdx.plaintext
+
+  if (process.env.NODE_ENV === 'production') {
+    generateSearchIndex({ plaintext, frontmatter })
+  }
+  
   return {
     props: {
       code,
