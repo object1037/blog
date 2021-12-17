@@ -10,7 +10,7 @@ export default async function generateSearchIndex({
   if (frontmatter.draft) {
     return
   }
-  if (!process.env.ALGOLIA_APPLICATION_ID || !process.env.ALGOLIA_ADMIN_API_KEY) {
+  if (!process.env.NEXT_PUBLIC_ALGOLIA_APPLICATION_ID || !process.env.ALGOLIA_ADMIN_API_KEY) {
     console.error("Algolia API keys are not found")
     return
   }
@@ -20,7 +20,7 @@ export default async function generateSearchIndex({
     description: frontmatter.description,
     content: plaintext
   }
-  const client = algoliasearch(process.env.ALGOLIA_APPLICATION_ID, process.env.ALGOLIA_ADMIN_API_KEY)
+  const client = algoliasearch(process.env.NEXT_PUBLIC_ALGOLIA_APPLICATION_ID, process.env.ALGOLIA_ADMIN_API_KEY)
   const index = client.initIndex('blog_datas')
   index.saveObject(record).then(() => {
     console.log(`Added post ${frontmatter.date} to the index`)

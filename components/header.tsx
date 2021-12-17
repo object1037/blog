@@ -3,6 +3,7 @@ import Image from 'next/image'
 import clsx from 'clsx'
 import profileImg from '../public/images/profile.jpg'
 import { siteTitle } from '../constants/data'
+import Search from './search'
 
 export default function Header ({
   sticky
@@ -33,12 +34,11 @@ export default function Header ({
   const navStyle = [
     'flex',
     'items-center',
-    'space-x-1',
-    'md:space-x-2'
+    'justify-between',
   ]
   const navLinkStyle = [
     'px-3',
-    'py-2',
+    'py-2.5',
     'rounded-md',
     'font-medium',
     'hover:bg-gray-100',
@@ -48,7 +48,7 @@ export default function Header ({
   const stickyStyle = [
     'sticky',
     'top-0',
-    'z-50'
+    'z-10'
   ]
   return (
     <>
@@ -73,15 +73,22 @@ export default function Header ({
     )}>
       <div className={clsx(headerWrapperStyle, sticky && stickyStyle)}>
         <div className={clsx(navStyle)}>
-          <Link href="/">
-            <a className={clsx(navLinkStyle)}>Posts</a>
-          </Link>
-          <Link href="/tags">
-            <a className={clsx(navLinkStyle)}>Tags</a>
-          </Link>
-          <Link href="/about">
-            <a className={clsx(navLinkStyle)}>About</a>
-          </Link>
+          <div className='space-x-1 md:space-x-2'>
+            <Link href="/">
+              <a className={clsx(navLinkStyle)}>Posts</a>
+            </Link>
+            <Link href="/tags">
+              <a className={clsx(navLinkStyle)}>Tags</a>
+            </Link>
+            <Link href="/about">
+              <a className={clsx(navLinkStyle)}>About</a>
+            </Link>
+          </div>
+          {(process.env.NEXT_PUBLIC_ALGOLIA_APPLICATION_ID && process.env.NEXT_PUBLIC_ALGOLIA_SEARCH_ONLY_API_KEY) &&
+          <div>
+            <Search />
+          </div>
+          }
         </div>
       </div>
     </nav>
