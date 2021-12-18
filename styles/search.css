@@ -1,12 +1,13 @@
 .ais-SearchBox {
   position: sticky;
   background-color: white;
-  top: -1.75rem;
+  top: -1rem;
   margin: -1rem;
   margin-bottom: 0;
   padding: 1rem;
   padding-top: 1.75rem;
   padding-bottom: 1.75rem;
+  border-radius: 0.375rem;
 }
 .ais-SearchBox-form {
   width: 100%;
@@ -29,11 +30,14 @@
 .ais-SearchBox-submit {
   display: none;
 }
+.ais-Hits {
+  margin-top: 0.25rem;
+}
 .ais-Hits-item {
   display: flex;
 }
-.ais-Hits-list {
-  border-top: 1px solid #d4d4d4;
+.ais-Hits-list, .ais-PoweredBy {
+  border-top: 1px solid #e5e5e5;
 }
 .ais-Pagination-list {
   height: 4.5rem;
@@ -67,7 +71,6 @@
   color: #a3a3a3;
 }
 .ais-PoweredBy {
-  border-top: 1px solid #d4d4d4;
   padding-top: 1rem;
   font-size: 0.825rem;
   color: #a3a3a3;
@@ -103,11 +106,14 @@
     color: #737373;
   }
   .ais-Hits-list, .ais-PoweredBy {
-    border-top: 1px solid #525252;
+    border-top: 1px solid #404040;
   }
 }
 
 @media (min-width: 640px) {
+  .ais-Hits {
+    margin-top: 0.5rem;
+  }
   .ais-SearchBox {
     top: -2rem;
     margin: -2rem;
