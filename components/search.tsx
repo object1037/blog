@@ -85,6 +85,7 @@ export default function Search() {
     'text-lg',
     'hover:bg-gray-100',
     'dark:hover:bg-gray-800',
+    'outline-none',
     'transition'
   ]
   const modalStyle = [
@@ -98,7 +99,9 @@ export default function Search() {
     'w-full',
     'mx-auto',
     'md:max-w-5xl',
-    'p-8',
+    'p-4',
+    'sm:px-8',
+    'sm:pt-8',
     'max-h-full',
     'overflow-auto'
   ]
@@ -110,10 +113,12 @@ export default function Search() {
     'fixed',
     'inset-0',
     'z-20',
-    'px-6',
+    'px-5',
     'sm:px-12',
-    'py-12',
-    'sm:py-24',
+    'pt-12',
+    'sm:pt-24',
+    'pb-5',
+    'sm:pb-12'
   ]
 
   return (
