@@ -14,13 +14,13 @@ const TocAnchor = memo(function TocAnchor({
   setIsOpen?: Dispatch<SetStateAction<boolean>>
 }) {
   const hoverStyle = [
-    'hover:text-gray-900',
-    'dark:hover:text-gray-100',
+    'hover:text-black',
+    'dark:hover:text-white',
     'hover:underline'
   ]
   const intersectingColorStyle = [
-    'text-gray-900',
-    'dark:text-gray-100',
+    'text-black',
+    'dark:text-white',
   ]
   const colorStyle = [
     'text-gray-500',
