@@ -10,7 +10,8 @@ interface postData {
   description: string,
   date: string,
   tags: string[],
-  ogImgUrl?: string
+  ogImgUrl?: string,
+  draft?: boolean
 }
 
 interface tagData {

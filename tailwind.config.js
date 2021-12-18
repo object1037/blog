@@ -2,13 +2,11 @@ const colors = require('tailwindcss/colors')
 const { fontFamily } = require('tailwindcss/defaultTheme');
 
 module.exports = {
-  //mode: 'jit',
-  purge: ['./pages/**/*.{js,ts,jsx,tsx,mdx}', './components/**/*.{js,ts,jsx,tsx,mdx}'],
-  darkMode: 'media', // or 'media' or 'class'
+  content: ['./pages/**/*.{js,ts,jsx,tsx,mdx}', './components/**/*.{js,ts,jsx,tsx,mdx}'],
   theme: {
     extend: {
       colors: {
-        gray: colors.trueGray,
+        gray: colors.neutral,
         orange: colors.orange,
         ppink: {
           200: '#fd2e7a',
@@ -41,9 +39,6 @@ module.exports = {
         'toc': 'calc(100vh - 3rem)'
       },
     },
-  },
-  variants: {
-    extend: {},
   },
   plugins: [],
 }

@@ -50,8 +50,8 @@ export default async function generateSitemap(tags: string[]) {
               path = path.slice(0, -1)
             }
 
-            if (path.substr(0, 5) === 'posts') {
-              const imagesOfThePage = images.filter(imagePath => imagePath.substr(14, 8) === path.substr(6, 8));
+            if (path.substring(0, 5) === 'posts') {
+              const imagesOfThePage = images.filter(imagePath => imagePath.substring(14, 22) === path.substring(6, 14));
               imagePaths = imagesOfThePage.map((imagePath) => {
                 const path = imagePath.replace('public', '');
                 return `

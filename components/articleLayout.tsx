@@ -86,7 +86,7 @@ export default function ArticleLayout({
   useEffect(() => {
     const dateNow = new Date().getTime();
     //const dateNow = new Date(2022, 3, 20).getTime();
-    const datePublished = new Date(+meta.date.substr(0, 4), +meta.date.substr(4, 2) - 1, +meta.date.substr(6, 2)).getTime();
+    const datePublished = new Date(+meta.date.substring(0, 4), +meta.date.substring(4, 6) - 1, +meta.date.substring(6, 8)).getTime();
     if (dateNow - datePublished < 157766400000) {
       const elapsedYearsF = (dateNow - datePublished)/31536000000;
       setElapsedYears(Math.floor(elapsedYearsF));
@@ -102,7 +102,6 @@ export default function ArticleLayout({
     'flex-grow',
     'max-w-full',
     'min-w-0',
-    'border-b',
     'dark:border-gray-600',
     'border-gray-300'
   ]
@@ -128,7 +127,7 @@ export default function ArticleLayout({
       </Head>
       <Header />
       <article className="flex flex-col px-6 sm:px-12">
-        <header className="max-w-6xl pt-10 pb-8 border-gray-600 dark:border-gray-300 border-b w-full mx-auto">
+        <header className="max-w-6xl pt-10 pb-8 border-gray-400 dark:border-gray-500 border-b w-full mx-auto">
           <div className="max-w-5xl mx-auto w-full">
             <span className="font-normal text-sm text-gray-600 dark:text-gray-300"><DateDisplay dateString={meta.date} /></span>
             <h1 className="text-4xl sm:text-4.5xl py-6 text-gray-900 dark:text-gray-100 font-bold">{meta.title}</h1>

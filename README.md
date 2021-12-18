@@ -9,6 +9,8 @@ npm install
 npm run dev
 ```
 
+In order to enable the search feature, add environment variables referring to `.env.sample`.
+
 Edit the following files if you need.
 
  * `constants/data.ts`: General data

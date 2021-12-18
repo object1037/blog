@@ -3,6 +3,8 @@ import path from 'path'
 import rehypeHighlight from 'rehype-highlight'
 import remarkMath from 'remark-math'
 import rehypeKatex from "rehype-katex"
+import { readFileSync } from 'fs'
+import removeMd from 'remove-markdown'
 
 const remarkPlugins = [
   remarkMath,
@@ -13,8 +15,13 @@ const rehypePlugins = [
 ]
 
 export default async function getBundledMdx(date: string) {
+  const filePath = path.join(process.cwd(), `posts/${date}.mdx`)
+  const regex = /---\n[^]*?\n---/
+  const markdown = readFileSync(filePath).toString().replace(regex, '').trim()
+  const plaintext = removeMd(markdown)
+
   const result = await bundleMDX<postData>({
-    file: path.join(process.cwd(), `posts/${date}.mdx`),
+    file: filePath,
     cwd: path.join(process.cwd(), "posts"),
     xdmOptions: options => {
       options.remarkPlugins = [
@@ -30,5 +37,5 @@ export default async function getBundledMdx(date: string) {
     },
   })
   const {code, frontmatter} = result
-  return {code, frontmatter}
+  return {code, frontmatter, plaintext}
 }
