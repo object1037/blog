@@ -4,12 +4,12 @@ My blog system created with [Next.js](https://nextjs.org/), [Tailwind CSS](https
 
 ## Usage
 
-Add environment variables referring to `.env.sample`.
-
 ```bash
 npm install
-vercel dev
+npm run dev
 ```
+
+In order to enable the search feature, add environment variables referring to `.env.sample`.
 
 Edit the following files if you need.
 
