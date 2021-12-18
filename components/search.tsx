@@ -6,6 +6,7 @@ import { useState } from 'react'
 import { FiSearch } from 'react-icons/fi'
 import { MultipleQueriesQuery } from '@algolia/client-search'
 import clsx from 'clsx'
+import backfaceFixed from '../utils/backfaceFixed'
 
 Modal.setAppElement('#__next')
 
@@ -36,6 +37,7 @@ export default function Search() {
 
   function openModal() {
     setIsOpen(true);
+    backfaceFixed(true);
   }
 
   function afterOpenModal() {
@@ -44,6 +46,7 @@ export default function Search() {
 
   function closeModal() {
     setIsOpen(false);
+    backfaceFixed(false);
   }
 
   function Hit({
@@ -60,8 +63,8 @@ export default function Search() {
       'hover:bg-gray-100',
       'dark:hover:bg-gray-800',
       'border-b',
-      'border-gray-300',
-      'dark:border-gray-600',
+      'border-gray-200',
+      'dark:border-gray-700',
       'transition',
       'px-5',
       'py-6',
