@@ -35,6 +35,7 @@ export default function Header ({
     'flex',
     'items-center',
     'justify-between',
+    'h-10'
   ]
   const navLinkStyle = [
     'px-3',
