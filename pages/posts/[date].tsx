@@ -24,8 +24,14 @@ export const getStaticProps: GetStaticProps = async ({ params }) => {
   const frontmatter = bundledMdx.frontmatter
   const plaintext = bundledMdx.plaintext
 
-  if (process.env.NODE_ENV === 'production') {
-    generateSearchIndex({ plaintext, frontmatter })
+  if (process.env.VERCEL_ENV) {
+    if (process.env.VERCEL_ENV === 'production') {
+      generateSearchIndex({ plaintext, frontmatter })
+    }
+  } else {
+    if (process.env.NODE_ENV === 'production') {
+      generateSearchIndex({ plaintext, frontmatter })
+    }
   }
 
   return {
