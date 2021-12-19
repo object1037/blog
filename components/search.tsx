@@ -62,7 +62,7 @@ export default function Search() {
     const cardStyle = [
       'hover:bg-gray-100',
       'dark:hover:bg-gray-800',
-      'border-b',
+      'border-t',
       'border-gray-200',
       'dark:border-gray-700',
       'transition',
