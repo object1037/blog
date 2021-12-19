@@ -36,6 +36,9 @@
 .ais-Hits-item {
   display: flex;
 }
+.ais-Snippet-highlighted {
+  background-color: #ffbdd5;
+}
 .ais-PoweredBy {
   border-top: 1px solid #e5e5e5;
 }
@@ -111,6 +114,9 @@
     color: #737373;
   }.ais-PoweredBy {
     border-top: 1px solid #404040;
+  }
+  .ais-Snippet-highlighted {
+    background-color: #df286c;
   }
 }
 
