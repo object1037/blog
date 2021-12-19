@@ -1,4 +1,4 @@
-import { InstantSearch, Hits, SearchBox, Configure, Pagination, PoweredBy } from 'react-instantsearch-dom'
+import { InstantSearch, Hits, SearchBox, Configure, Pagination, PoweredBy, Snippet } from 'react-instantsearch-dom'
 import algoliasearch from 'algoliasearch/lite'
 import Link from 'next/link'
 import Modal from 'react-modal'
@@ -41,7 +41,8 @@ export default function Search() {
   }
 
   function afterOpenModal() {
-    (document.getElementsByClassName("ais-SearchBox-input")[0] as HTMLElement)?.focus();
+    const searchBox = document.getElementsByClassName("ais-SearchBox-input")[0] as HTMLElement
+    searchBox?.focus();
   }
 
   function closeModal() {
@@ -75,7 +76,9 @@ export default function Search() {
       <Link href={`/posts/${hit.objectID}`} >
         <a className={clsx(cardStyle)}  onClick={() => closeModal()}>
           <h2 className="text-lg font-semibold text-gray-900 dark:text-gray-100 mb-3 truncate">{hit.title}</h2>
-          <p className="text-gray-900 dark:text-gray-100 truncate">{hit.description}</p>
+          <p className="text-gray-900 dark:text-gray-100 truncate">
+            <Snippet attribute="content" hit={hit} />
+          </p>
         </a>
       </Link>
       </>
@@ -123,7 +126,6 @@ export default function Search() {
     'pb-5',
     'sm:pb-12'
   ]
-
   return (
     <>
     <button onClick={() => openModal()} aria-label="Search" className={clsx(searchButtonStyle)}>
@@ -138,7 +140,7 @@ export default function Search() {
       overlayClassName={clsx(overlayStyle)}
     >
     <InstantSearch indexName="blog_datas" searchClient={searchClient}>
-      <Configure hitsPerPage={3} />
+      <Configure hitsPerPage={3} attributesToSnippet={['content:20']} />
       <SearchBox />
       <Hits hitComponent={Hit} />
       <Pagination />
