@@ -9,7 +9,7 @@ npm install
 npm run dev
 ```
 
-In order to enable the search feature, add environment variables referring to `.env.sample`.
+In order to enable the search feature, get [Algolia](https://www.algolia.com/)'s API keys and add environment variables referring to `.env.example`.
 
 Edit the following files if you need.
 
