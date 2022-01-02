@@ -14,7 +14,7 @@ export default function Footer() {
           <FiGithub />
         </IconLink>
       </div>
-      <div className="text-gray-800 dark:text-gray-200 font-light text-xs">&copy; 2021 {handleName}</div>
+      <div className="text-gray-800 dark:text-gray-200 font-light text-xs">&copy; 2022 {handleName}</div>
     </div>
   </footer>
   )
