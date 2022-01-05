@@ -40,11 +40,6 @@ export default function Search() {
     backfaceFixed(true);
   }
 
-  function afterOpenModal() {
-    const searchBox = document.getElementsByClassName("ais-SearchBox-input")[0] as HTMLElement
-    searchBox?.focus();
-  }
-
   function closeModal() {
     setIsOpen(false);
     backfaceFixed(false);
@@ -134,14 +129,13 @@ export default function Search() {
     <Modal
       isOpen={modalIsOpen}
       onRequestClose={closeModal}
-      onAfterOpen={afterOpenModal}
       contentLabel="Delete Confirmation"
       className={clsx(modalStyle)}
       overlayClassName={clsx(overlayStyle)}
     >
     <InstantSearch indexName="blog_datas" searchClient={searchClient}>
       <Configure hitsPerPage={3} attributesToSnippet={['content:20']} />
-      <SearchBox />
+      <SearchBox autoFocus />
       <Hits hitComponent={Hit} />
       <Pagination />
       <PoweredBy />
