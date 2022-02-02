@@ -13,7 +13,7 @@
     "algoliasearch": "^4.12.1",
     "clsx": "^1.1.1",
     "date-fns-tz": "^1.2.2",
-    "esbuild": "^0.14.14",
+    "esbuild": "^0.14.16",
     "globby": "^13.1.0",
     "instantsearch.css": "^7.4.5",
     "mdx-bundler": "^8.0.1",
