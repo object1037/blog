@@ -15,6 +15,8 @@ export default function Tag({
         <div className={clsx(
           'px-4',
           'py-2',
+          'flex',
+          'items-center',
           'bg-gray-100',
           'dark:bg-gray-800',
           'group-hover:bg-gray-200',
