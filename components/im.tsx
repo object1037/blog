@@ -1,5 +1,6 @@
 import Image from 'next/image'
 import clsx from 'clsx'
+import { useState } from 'react'
 
 export default function Im({
   src,
@@ -14,12 +15,19 @@ export default function Im({
   h: string | number,
   cap?: string
 }) {
+  const [loading, setLoading] = useState(true)
   const imWrapperStyle = [
     'flex',
     'overflow-hidden',
     'rounded-t',
     'border-0',
     'mt-10',
+  ]
+  const imBgStyle = [
+    'overflow-hidden',
+    'bg-gray-200',
+    'dark:bg-gray-700',
+    loading && 'animate-pulse'
   ]
   return (
     <>
@@ -29,7 +37,8 @@ export default function Im({
           width={w}
           height={h}
           alt={alt}
-          className="overflow-hidden bg-gray-200 dark:bg-gray-700"
+          className={clsx(imBgStyle)}
+          onLoadingComplete={() => setLoading(false)}
         />
       </div>
       {cap ? <p className="text-gray-600 dark:text-gray-300 text-sm p-3 mb-9 bg-gray-100 dark:bg-gray-800 rounded-b">{cap}</p> : null}
