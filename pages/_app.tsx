@@ -30,8 +30,8 @@ export default function App({ Component, pageProps }: AppPropsWithLayout) {
   return (
     getLayout({
       page: <Component {...pageProps} />,
-      tag: tag as string,
-      frontmatter: pageProps.frontmatter
+      tag: tag ? tag as string : '',
+      frontmatter: pageProps.frontmatter ? pageProps.frontmatter : null
     })
   )
 }
