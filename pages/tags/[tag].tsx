@@ -1,6 +1,7 @@
-import { useRouter } from 'next/router'
+import type { ReactElement } from 'react'
 import { siteTitle, handleName, siteUrl } from '../../constants/data'
 import Layout from '../../components/layout'
+import PageLayout from '../../components/pageLayout'
 import { GetStaticProps } from 'next'
 import { getAllTagsData } from '../../utils/getAllTagsData'
 import { getAllPostsData } from '../../utils/getAllPostsData'
@@ -26,13 +27,27 @@ export async function getStaticPaths() {
   };
 }
 
-export default function TagPage({
+export default function Page({
   postsWithTag
 }: {
   postsWithTag: postData[]
 }) {
-  const router = useRouter()
-  const { tag } = router.query
+  return (
+    <ul className="flex flex-col justify-center max-w-4xl mx-auto w-full">
+      {postsWithTag.map((post) => (
+        <PostCard key={post.date} date={post.date} title={post.title} description={post.description} tags={post.tags} />
+      ))}
+    </ul>
+  )
+}
+
+Page.getLayout = function getLayout({
+  page,
+  tag
+}: {
+  page: ReactElement,
+  tag: string
+}) {
   const hashTag = 
   <p className="inline-flex flex-row items-center leading-none">
     <span className="w-16 h-16 flex justify-center content-center items-center p-3 mr-3 rounded-full bg-gray-100 dark:bg-gray-800">
@@ -40,14 +55,11 @@ export default function TagPage({
     </span>
     {tag}
   </p>
-
   return (
-    <Layout h1={hashTag} title={`${tag}に関する投稿 | ${siteTitle}`} description={`${tag}に関する投稿一覧 | ${handleName}のブログ`} url={`${siteUrl}/tags/${tag}`}>
-      <ul className="flex flex-col justify-center max-w-4xl mx-auto w-full">
-        {postsWithTag.map((post) => (
-          <PostCard key={post.date} date={post.date} title={post.title} description={post.description} tags={post.tags} />
-        ))}
-      </ul>
+    <Layout title={`${tag}に関する投稿 | ${siteTitle}`} description={`${tag}に関する投稿一覧 | ${handleName}のブログ`} url={`${siteUrl}/tags/${tag}`}>
+      <PageLayout h1={hashTag}>
+        {page}
+      </PageLayout>
     </Layout>
   )
 }

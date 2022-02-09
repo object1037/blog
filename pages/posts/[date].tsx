@@ -1,5 +1,7 @@
+import type { ReactElement } from 'react'
 import { GetStaticProps } from 'next'
 import getBundledMdx from '../../lib/getBundledMdx'
+import Layout from '../../components/layout'
 import ArticleLayout from '../../components/articleLayout'
 import { getMDXComponent } from 'mdx-bundler/client'
 import React from 'react'
@@ -73,19 +75,29 @@ const mdComponents = {
   }),
 }
 
-export default function Post({
-  code,
-  frontmatter
+export default function Page({
+  code
 }: {
   code: string
-  frontmatter: postData
 }) {
   const Contents = React.useMemo(() => getMDXComponent(code), [code])
   return (
-    <>
-    <ArticleLayout meta={frontmatter}>
-      <Contents components={mdComponents as any} />
-    </ArticleLayout>
-    </>
+    <Contents components={mdComponents as any} />
+  )
+}
+
+Page.getLayout = function getLayout({
+  page,
+  frontmatter
+}: {
+  page: ReactElement,
+  frontmatter: postData
+}) {
+  return (
+    <Layout meta={frontmatter}>
+      <ArticleLayout meta={frontmatter}>
+        {page}
+      </ArticleLayout>
+    </Layout>
   )
 }

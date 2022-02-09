@@ -1,6 +1,3 @@
-import Head from 'next/head'
-import Header from './header'
-import Footer from './footer'
 import Tag from './tag'
 import DateDisplay from './date'
 import ToC from './toc'
@@ -8,7 +5,7 @@ import ToCMobile from './tocMobile'
 import Note from './note'
 import Share from './share'
 import { useEffect, useState } from 'react'
-import { siteTitle, siteUrl, handleName, getOgImageUrl, accounts } from '../constants/data'
+import { siteTitle } from '../constants/data'
 import clsx from 'clsx'
 
 let initArr: tocElement[] = new Array({
@@ -108,24 +105,6 @@ export default function ArticleLayout({
 
   return (
     <>
-      <Head>
-        <meta name="viewport" content="initial-scale=1.0, width=device-width" />
-        <meta name="description" content={`${meta.description} | ${handleName}のブログ`} />
-        <meta name="twitter:card" content="summary_large_image" />
-        <meta name="twitter:creator" content={`@${accounts.twitter}`} />
-        <meta property="og:url" content={`${siteUrl}/posts/${meta.date}`} />
-        <meta property="og:title" content={`${meta.title} | ${siteTitle}`} />
-        <meta property="og:description" content={meta.description} />
-        <meta property="og:image" content={meta.ogImgUrl ? meta.ogImgUrl : getOgImageUrl(meta.title)} />
-        <link 
-          rel="stylesheet"
-          href="https://cdn.jsdelivr.net/npm/katex@0.13.13/dist/katex.min.css"
-          integrity="sha384-RZU/ijkSsFbcmivfdRBQDtwuwVqK7GMOw6IMvKyeWL2K5UAlyp6WonmB8m7Jd0Hn"
-          crossOrigin="anonymous"
-        />
-        <title>{meta.title} | {siteTitle}</title>
-      </Head>
-      <Header />
       <article className="flex flex-col px-6 sm:px-12">
         <header className="max-w-6xl pt-10 pb-8 border-gray-400 dark:border-gray-500 border-b w-full mx-auto">
           <div className="max-w-5xl mx-auto w-full">
@@ -154,7 +133,6 @@ export default function ArticleLayout({
         </div>
       </article>
       <ToCMobile tocElements={tocElements} intersectingElementId={intersectingElementId} />
-      <Footer />
     </>
   )
 }
