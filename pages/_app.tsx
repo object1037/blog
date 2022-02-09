@@ -26,7 +26,7 @@ type AppPropsWithLayout = AppProps & {
 export default function App({ Component, pageProps }: AppPropsWithLayout) {
   const router = useRouter()
   const { tag } = router.query
-  const getLayout = Component.getLayout ?? ((page) => page)
+  const getLayout = Component.getLayout ?? (({ page }: { page: any }) => page)
   return (
     getLayout({
       page: <Component {...pageProps} />,
