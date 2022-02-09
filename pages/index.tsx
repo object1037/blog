@@ -1,5 +1,6 @@
 import type { ReactElement } from 'react'
 import Layout from '../components/layout'
+import PageLayout from '../components/pageLayout'
 import { GetStaticProps } from 'next'
 import { getAllPostsData } from '../utils/getAllPostsData'
 import generateRSS from '../utils/generateRSS'
@@ -34,8 +35,10 @@ export default function Page({
 
 Page.getLayout = function getLayout({ page }: { page: ReactElement }) {
   return (
-    <Layout h1="Posts">
-      {page}
+    <Layout>
+      <PageLayout h1="Posts">
+        {page}
+      </PageLayout>
     </Layout>
   )
 }

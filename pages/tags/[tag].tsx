@@ -1,6 +1,7 @@
 import type { ReactElement } from 'react'
 import { siteTitle, handleName, siteUrl } from '../../constants/data'
 import Layout from '../../components/layout'
+import PageLayout from '../../components/pageLayout'
 import { GetStaticProps } from 'next'
 import { getAllTagsData } from '../../utils/getAllTagsData'
 import { getAllPostsData } from '../../utils/getAllPostsData'
@@ -55,8 +56,10 @@ Page.getLayout = function getLayout({
     {tag}
   </p>
   return (
-    <Layout h1={hashTag} title={`${tag}に関する投稿 | ${siteTitle}`} description={`${tag}に関する投稿一覧 | ${handleName}のブログ`} url={`${siteUrl}/tags/${tag}`}>
-      {page}
+    <Layout title={`${tag}に関する投稿 | ${siteTitle}`} description={`${tag}に関する投稿一覧 | ${handleName}のブログ`} url={`${siteUrl}/tags/${tag}`}>
+      <PageLayout h1={hashTag}>
+        {page}
+      </PageLayout>
     </Layout>
   )
 }

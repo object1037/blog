@@ -1,6 +1,7 @@
 import type { ReactElement } from 'react'
 import { GetStaticProps } from 'next'
 import getBundledMdx from '../../lib/getBundledMdx'
+import Layout from '../../components/layout'
 import ArticleLayout from '../../components/articleLayout'
 import { getMDXComponent } from 'mdx-bundler/client'
 import React from 'react'
@@ -93,8 +94,10 @@ Page.getLayout = function getLayout({
   frontmatter: postData
 }) {
   return (
-    <ArticleLayout meta={frontmatter}>
-      {page}
-    </ArticleLayout>
+    <Layout meta={frontmatter}>
+      <ArticleLayout meta={frontmatter}>
+        {page}
+      </ArticleLayout>
+    </Layout>
   )
 }

@@ -1,5 +1,6 @@
 import type { ReactElement } from 'react'
 import Layout from '../components/layout'
+import PageLayout from '../components/pageLayout'
 import { siteTitle } from '../constants/data'
 
 export default function Custom404() {
@@ -12,8 +13,10 @@ export default function Custom404() {
 
 Custom404.getLayout = function getLayout({ page }: { page: ReactElement }) {
   return (
-    <Layout h1="404" title={`404 | ${siteTitle}`} description={`404 | ${siteTitle}`}>
-      {page}
+    <Layout title={`404 | ${siteTitle}`} description={`404 | ${siteTitle}`}>
+      <PageLayout h1="404">
+        {page}
+      </PageLayout>
     </Layout>
   )
 }
