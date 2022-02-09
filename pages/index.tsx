@@ -1,3 +1,4 @@
+import type { ReactElement } from 'react'
 import Layout from '../components/layout'
 import { GetStaticProps } from 'next'
 import { getAllPostsData } from '../utils/getAllPostsData'
@@ -17,20 +18,24 @@ export const getStaticProps: GetStaticProps = async () => {
   }
 }
 
-export default function Home({
+export default function Page({
   allPosts
 }: {
   allPosts: postData[]
 }) {
   return (
-    <>
+    <ul className="flex flex-col justify-center max-w-4xl w-full">
+      {allPosts.map((post) => (
+        <PostCard key={post.date} date={post.date} title={post.title} description={post.description} tags={post.tags} />
+      ))}
+    </ul>
+  )
+}
+
+Page.getLayout = function getLayout({ page }: { page: ReactElement }) {
+  return (
     <Layout h1="Posts">
-      <ul className="flex flex-col justify-center max-w-4xl w-full">
-        {allPosts.map((post) => (
-          <PostCard key={post.date} date={post.date} title={post.title} description={post.description} tags={post.tags} />
-        ))}
-      </ul>
+      {page}
     </Layout>
-    </>
   )
 }

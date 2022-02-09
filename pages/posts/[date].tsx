@@ -1,3 +1,4 @@
+import type { ReactElement } from 'react'
 import { GetStaticProps } from 'next'
 import getBundledMdx from '../../lib/getBundledMdx'
 import ArticleLayout from '../../components/articleLayout'
@@ -73,19 +74,27 @@ const mdComponents = {
   }),
 }
 
-export default function Post({
-  code,
-  frontmatter
+export default function Page({
+  code
 }: {
   code: string
-  frontmatter: postData
 }) {
   const Contents = React.useMemo(() => getMDXComponent(code), [code])
   return (
-    <>
+    <Contents components={mdComponents as any} />
+  )
+}
+
+Page.getLayout = function getLayout({
+  page,
+  frontmatter
+}: {
+  page: ReactElement,
+  frontmatter: postData
+}) {
+  return (
     <ArticleLayout meta={frontmatter}>
-      <Contents components={mdComponents as any} />
+      {page}
     </ArticleLayout>
-    </>
   )
 }

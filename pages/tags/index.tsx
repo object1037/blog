@@ -1,3 +1,4 @@
+import type { ReactElement } from 'react'
 import { siteTitle, handleName, siteUrl } from '../../constants/data'
 import Layout from '../../components/layout'
 import Tag from '../../components/tag'
@@ -23,20 +24,24 @@ export const getStaticProps: GetStaticProps = async () => {
   }
 }
 
-export default function Home({
+export default function Page({
   allTags
 }: {
   allTags: tagData[]
 }) {
   return (
-    <>
+    <div className="-ml-4 -mt-2 flex flex-row flex-wrap w-full">
+      {allTags.map((tag) => (
+        <Tag name={tag.name} postsCount={tag.articles.length} key={tag.name}/>
+      ))}
+    </div>
+  )
+}
+
+Page.getLayout = function getLayout({ page }: { page: ReactElement }) {
+  return (
     <Layout h1="Tags" title={`タグ一覧 | ${siteTitle}`} description={`タグ一覧 | ${handleName}のブログ`} url={`${siteUrl}/tags`}>
-      <div className="-ml-4 -mt-2 flex flex-row flex-wrap w-full">
-        {allTags.map((tag) => (
-          <Tag name={tag.name} postsCount={tag.articles.length} key={tag.name}/>
-        ))}
-      </div>
+      {page}
     </Layout>
-    </>
   )
 }
