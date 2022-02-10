@@ -83,7 +83,8 @@ const copyButtonStyle = [
   'p-2',
   'rounded',
   'bg-[#282c34]',
-  'text-gray-400',
+  'text-ngray-400',
+  'hover:text-ngray-300',
   'opacity-0',
   'group-hover:opacity-100',
   'transition'
