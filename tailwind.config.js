@@ -6,7 +6,7 @@ module.exports = {
   theme: {
     extend: {
       colors: {
-        gray: colors.neutral,
+        ngray: colors.neutral,
         orange: colors.orange,
         ppink: {
           200: '#fd2e7a',

@@ -13,7 +13,7 @@
     "algoliasearch": "^4.12.1",
     "clsx": "^1.1.1",
     "date-fns-tz": "^1.2.2",
-    "esbuild": "^0.14.20",
+    "esbuild": "^0.14.21",
     "globby": "^13.1.1",
     "instantsearch.css": "^7.4.5",
     "mdx-bundler": "^8.0.1",
@@ -33,7 +33,7 @@
   "devDependencies": {
     "@types/mdx-js__react": "^1.5.5",
     "@types/node": "^17.0.16",
-    "@types/prettier": "^2.4.3",
+    "@types/prettier": "^2.4.4",
     "@types/prismjs": "^1.26.0",
     "@types/react": "^17.0.39",
     "@types/react-instantsearch-dom": "^6.12.2",

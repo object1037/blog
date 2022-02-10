@@ -15,7 +15,7 @@ export default function Header ({
     'px-4',
     'md:px-8',
     'bg-white',
-    'dark:bg-gray-900',
+    'dark:bg-ngray-900',
   ]
   const headerWrapperStyle = [
     'max-w-5xl',
@@ -42,8 +42,8 @@ export default function Header ({
     'py-2.5',
     'rounded-md',
     'font-medium',
-    'hover:bg-gray-100',
-    'dark:hover:bg-gray-800',
+    'hover:bg-ngray-100',
+    'dark:hover:bg-ngray-800',
     'transition'
   ]
   const stickyStyle = [
@@ -68,8 +68,8 @@ export default function Header ({
     <nav className={clsx(
       headerStyle,
       'border-b',
-      'border-gray-200',
-      'dark:border-gray-700',
+      'border-ngray-200',
+      'dark:border-ngray-700',
       sticky && stickyStyle
     )}>
       <div className={clsx(headerWrapperStyle, sticky && stickyStyle)}>

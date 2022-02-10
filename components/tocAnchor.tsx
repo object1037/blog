@@ -23,8 +23,8 @@ const TocAnchor = memo(function TocAnchor({
     'dark:text-white',
   ]
   const colorStyle = [
-    'text-gray-500',
-    'dark:text-gray-400',
+    'text-ngray-500',
+    'dark:text-ngray-400',
   ]
   const anchorStyle = [
     'transition',

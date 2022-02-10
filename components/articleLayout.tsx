@@ -99,17 +99,17 @@ export default function ArticleLayout({
     'flex-grow',
     'max-w-full',
     'min-w-0',
-    'dark:border-gray-600',
-    'border-gray-300'
+    'dark:border-ngray-600',
+    'border-ngray-300'
   ]
 
   return (
     <>
       <article className="flex flex-col px-6 sm:px-12">
-        <header className="max-w-6xl pt-10 pb-8 border-gray-400 dark:border-gray-500 border-b w-full mx-auto">
+        <header className="max-w-6xl pt-10 pb-8 border-ngray-400 dark:border-ngray-500 border-b w-full mx-auto">
           <div className="max-w-5xl mx-auto w-full">
-            <span className="font-normal text-sm text-gray-600 dark:text-gray-300"><DateDisplay dateString={meta.date} /></span>
-            <h1 className="text-4xl sm:text-4.5xl py-6 text-gray-900 dark:text-gray-100 font-bold">{meta.title}</h1>
+            <span className="font-normal text-sm text-ngray-600 dark:text-ngray-300"><DateDisplay dateString={meta.date} /></span>
+            <h1 className="text-4xl sm:text-4.5xl py-6 text-ngray-900 dark:text-ngray-100 font-bold">{meta.title}</h1>
             <div className="-ml-2 flex flex-row flex-wrap">
               {meta.tags.map((tag) => (
                 <Tag name={tag} key={tag} />

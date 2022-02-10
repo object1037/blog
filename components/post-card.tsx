@@ -3,13 +3,13 @@ import DateDisplay from './date'
 
 export default function PostCard(post: postData) {
   return (
-    <li className="mb-8 bg-gray-100 dark:bg-gray-800 rounded-md hover:shadow-lg border border-transparent dark:hover:border-gray-600 transition duration-300">
+    <li className="mb-8 bg-ngray-100 dark:bg-ngray-800 rounded-md hover:shadow-lg border border-transparent dark:hover:border-ngray-600 transition duration-300">
       <Link href={`/posts/${post.date}`}>
         <a className="flex items-start px-6 py-7">
           <div className="flex flex-col w-full">
-            <span className="text-xs text-gray-700 dark:text-gray-300 mb-3"><DateDisplay dateString={post.date} /></span>
-            <h2 className="text-xl font-semibold text-gray-900 dark:text-gray-100 mb-4">{post.title}</h2>
-            <p className="text-gray-900 dark:text-gray-100 mb-2">{post.description}</p>
+            <span className="text-xs text-ngray-700 dark:text-ngray-300 mb-3"><DateDisplay dateString={post.date} /></span>
+            <h2 className="text-xl font-semibold text-ngray-900 dark:text-ngray-100 mb-4">{post.title}</h2>
+            <p className="text-ngray-900 dark:text-ngray-100 mb-2">{post.description}</p>
           </div>
         </a>
       </Link>

@@ -17,10 +17,10 @@ export default function Tag({
           'py-2',
           'flex',
           'items-center',
-          'bg-gray-100',
-          'dark:bg-gray-800',
-          'group-hover:bg-gray-200',
-          'dark:group-hover:bg-gray-700',
+          'bg-ngray-100',
+          'dark:bg-ngray-800',
+          'group-hover:bg-ngray-200',
+          'dark:group-hover:bg-ngray-700',
           'transition',
           'rounded-l-md',
           !postsCount && 'rounded-r-md'
@@ -30,7 +30,7 @@ export default function Tag({
             {name}
           </span>
         </div>
-        {postsCount && <div className="flex items-center text-center bg-gray-200 dark:bg-gray-700 group-hover:bg-gray-300 dark:group-hover:bg-gray-600 px-4 rounded-r-md transition">{postsCount}</div>}
+        {postsCount && <div className="flex items-center text-center bg-ngray-200 dark:bg-ngray-700 group-hover:bg-ngray-300 dark:group-hover:bg-ngray-600 px-4 rounded-r-md transition">{postsCount}</div>}
       </a>
     </Link>
   )
