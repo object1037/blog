@@ -17,7 +17,7 @@ const noteStyle = [
   'rounded-md',
   'w-full',
   'mx-auto',
-  'text-gray-800',
+  'text-ngray-800',
 ]
 const dangerStyle = [
   'bg-red-50',

@@ -56,11 +56,11 @@ export default function Search() {
     }
   }) {
     const cardStyle = [
-      'hover:bg-gray-100',
-      'dark:hover:bg-gray-800',
+      'hover:bg-ngray-100',
+      'dark:hover:bg-ngray-800',
       'border-t',
-      'border-gray-200',
-      'dark:border-gray-700',
+      'border-ngray-200',
+      'dark:border-ngray-700',
       'transition',
       'px-5',
       'py-6',
@@ -70,8 +70,8 @@ export default function Search() {
       <>
       <Link href={`/posts/${hit.objectID}`} >
         <a className={clsx(cardStyle)}  onClick={() => closeModal()}>
-          <h2 className="text-lg font-semibold text-gray-900 dark:text-gray-100 mb-3 truncate">{hit.title}</h2>
-          <p className="text-gray-900 dark:text-gray-100 truncate">
+          <h2 className="text-lg font-semibold text-ngray-900 dark:text-ngray-100 mb-3 truncate">{hit.title}</h2>
+          <p className="text-ngray-900 dark:text-ngray-100 truncate">
             <Snippet attribute="content" hit={hit} />
           </p>
         </a>
@@ -84,17 +84,17 @@ export default function Search() {
     'p-3',
     'rounded-full',
     'text-lg',
-    'hover:bg-gray-100',
-    'dark:hover:bg-gray-800',
+    'hover:bg-ngray-100',
+    'dark:hover:bg-ngray-800',
     'outline-none',
     'transition'
   ]
   const modalStyle = [
     'bg-white',
-    'dark:bg-gray-900',
+    'dark:bg-ngray-900',
     'border',
     'border-transparent',
-    'dark:border-gray-700',
+    'dark:border-ngray-700',
     'rounded-md',
     'outline-none',
     'w-full',

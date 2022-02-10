@@ -8,7 +8,7 @@ class MyDocument extends Document {
 
   render() {
     return (
-      <Html lang="ja" className="h-full flex flex-col text-gray-900 dark:text-gray-100 bg-white dark:bg-gray-900">
+      <Html lang="ja" className="h-full flex flex-col text-ngray-900 dark:text-ngray-100 bg-white dark:bg-ngray-900">
         <Head>
           <link
             rel="preload"

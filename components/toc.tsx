@@ -10,9 +10,9 @@ export default function ToC({
 }) {
   return (
     <>
-    <nav className="sticky top-6 max-h-toc overflow-y-auto right-0 pl-4 py-4 text-sm dark:border-gray-600 border-gray-300 border-l leading-loose w-56">
+    <nav className="sticky top-6 max-h-toc overflow-y-auto right-0 pl-4 py-4 text-sm dark:border-ngray-600 border-ngray-300 border-l leading-loose w-56">
       <div className="-ml-1 inline-flex flex-row items-center text-lg mb-4 font-semibold">
-        <span className="w-9 h-9 flex justify-center content-center items-center p-1 mr-2 rounded-full bg-gray-100 dark:bg-gray-800">
+        <span className="w-9 h-9 flex justify-center content-center items-center p-1 mr-2 rounded-full bg-ngray-100 dark:bg-ngray-800">
           <FiList className="inline-block" />
         </span>
         目次

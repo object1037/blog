@@ -25,8 +25,8 @@ export default function Im({
   ]
   const imBgStyle = [
     'overflow-hidden',
-    'bg-gray-200',
-    'dark:bg-gray-700',
+    'bg-ngray-200',
+    'dark:bg-ngray-700',
     loading && 'animate-pulse'
   ]
   return (
@@ -41,7 +41,7 @@ export default function Im({
           onLoadingComplete={() => setLoading(false)}
         />
       </div>
-      {cap ? <p className="text-gray-600 dark:text-gray-300 text-sm p-3 mb-9 bg-gray-100 dark:bg-gray-800 rounded-b">{cap}</p> : null}
+      {cap ? <p className="text-ngray-600 dark:text-ngray-300 text-sm p-3 mb-9 bg-ngray-100 dark:bg-ngray-800 rounded-b">{cap}</p> : null}
     </>
   )
 }

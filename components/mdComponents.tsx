@@ -1,4 +1,6 @@
 import clsx from "clsx"
+import { FiCopy, FiCheck } from "react-icons/fi"
+import { ReactChild, ReactElement, useState } from "react"
 
 export interface anchorProps {
   href: string
@@ -15,14 +17,14 @@ export const Anchor = (props: anchorProps) => {
 
 export const Blockquote = (props: HTMLElement) => {
   const quoteStyle = [
-    'bg-gray-100',
-    'dark:bg-gray-800',
+    'bg-ngray-100',
+    'dark:bg-ngray-800',
     'rounded',
-    'text-gray-600',
-    'dark:text-gray-300',
+    'text-ngray-600',
+    'dark:text-ngray-300',
     'border-l-4',
-    'border-gray-400',
-    'dark:border-gray-500',
+    'border-ngray-400',
+    'dark:border-ngray-500',
     'px-5',
     'py-1',
     'my-3',
@@ -71,5 +73,51 @@ export const Paragraph = (props: HTMLElement) => {
 export const Ul = (props: HTMLElement) => {
   return (
     <ul className="list-disc ml-6">{props.children}</ul>
+  )
+}
+
+const copyButtonStyle = [
+  'absolute',
+  'top-2.5',
+  'right-2.5',
+  'p-2',
+  'rounded',
+  'bg-gray-700',
+  'text-gray-400',
+  'border',
+  'border-gray-500',
+  'invisible',
+  'group-hover:visible'
+]
+
+export const Pre = (props: { children: ReactElement }) => {
+  const [copied, setCopied] = useState(false)
+
+  const clickHandler = (text: string) => {
+    navigator.clipboard.writeText(text).then(() => {
+      setCopied(true)
+      setTimeout(() => {
+        setCopied(false)
+      }, 2500)
+    })
+  }
+  const text: string = props.children.props.children.map((el: ReactChild) => {
+    if (typeof el === 'object') {
+      return (el.props.children)
+    } else {
+      return el
+    }
+  }).join('').trim()
+
+  return (
+    <pre className="relative group">
+      <button className={clsx(copyButtonStyle)} onClick={() => clickHandler(text)}>
+        <span className="text-xl">
+          <FiCopy className={clsx(copied && 'hidden')} />
+          <FiCheck className={clsx(!copied && 'hidden')} />
+        </span>
+      </button>
+      {props.children}
+    </pre>
   )
 }

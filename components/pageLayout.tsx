@@ -11,8 +11,8 @@ export default function PageLayout({
     'self-start',
     'text-4xl',
     'font-bold',
-    'text-gray-900',
-    'dark:text-gray-100',
+    'text-ngray-900',
+    'dark:text-ngray-100',
     'pt-12',
     'pb-10'
   ]

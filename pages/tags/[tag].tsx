@@ -50,7 +50,7 @@ Page.getLayout = function getLayout({
 }) {
   const hashTag = 
   <p className="inline-flex flex-row items-center leading-none">
-    <span className="w-16 h-16 flex justify-center content-center items-center p-3 mr-3 rounded-full bg-gray-100 dark:bg-gray-800">
+    <span className="w-16 h-16 flex justify-center content-center items-center p-3 mr-3 rounded-full bg-ngray-100 dark:bg-ngray-800">
       <FiHash className="inline-block"/>
     </span>
     {tag}

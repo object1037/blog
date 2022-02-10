@@ -51,20 +51,20 @@ export default function ToCMobile({
     'max-w-sm',
     'rounded-md',
     'border',
-    'border-gray-300',
-    'dark:border-gray-600',
+    'border-ngray-300',
+    'dark:border-ngray-600',
     'ml-auto',
     'mt-auto',
     'text-sm',
     'leading-loose',
     'shadow-2xl',
     'bg-white',
-    'dark:bg-gray-900',
+    'dark:bg-ngray-900',
   ]
 
   return (
     <>
-    <button aria-label="目次" className="z-20 fixed bottom-12 right-4 ml-auto shadow-lg block lg:hidden text-gray-100 dark:text-gray-900 bg-gray-900 dark:bg-gray-100 rounded-full w-16 h-16" onClick={isOpen ? () => closeMenu() : () => openMenu()}>
+    <button aria-label="目次" className="z-20 fixed bottom-12 right-4 ml-auto shadow-lg block lg:hidden text-ngray-100 dark:text-ngray-900 bg-ngray-900 dark:bg-ngray-100 rounded-full w-16 h-16" onClick={isOpen ? () => closeMenu() : () => openMenu()}>
       <span className="text-2xl">
         <FiList className={clsx(iconStyle, isOpen && fadeOutStyle)} />
         <FiX className={clsx(iconStyle, !isOpen && fadeOutStyle)} />
@@ -73,7 +73,7 @@ export default function ToCMobile({
     {isOpen && (
       <aside className={clsx(menuWrapperStyle)} onClick={() => closeMenu()}>
         <nav className={clsx(menuStyle)}>
-          <ol className="shadow-2xl bg-white dark:bg-gray-900 p-4">
+          <ol className="shadow-2xl bg-white dark:bg-ngray-900 p-4">
             {tocElements.map((element) => {
               let isIntersectingElement = false
               if (element.title === intersectingElementId) {
