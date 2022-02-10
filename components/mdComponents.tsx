@@ -83,11 +83,13 @@ const copyButtonStyle = [
   'p-2',
   'rounded',
   'bg-gray-700',
+  'hover:bg-gray-600',
   'text-gray-400',
   'border',
   'border-gray-500',
   'invisible',
-  'group-hover:visible'
+  'group-hover:visible',
+  'transition'
 ]
 
 export const Pre = (props: { children: ReactElement }) => {
