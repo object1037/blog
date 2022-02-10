@@ -64,7 +64,7 @@ export default function ToCMobile({
 
   return (
     <>
-    <button aria-label="目次" className="z-20 fixed bottom-12 right-4 ml-auto shadow-2xl block lg:hidden text-gray-100 dark:text-gray-900 bg-gray-900 dark:bg-gray-100 rounded-full w-16 h-16" onClick={isOpen ? () => closeMenu() : () => openMenu()}>
+    <button aria-label="目次" className="z-20 fixed bottom-12 right-4 ml-auto shadow-lg block lg:hidden text-gray-100 dark:text-gray-900 bg-gray-900 dark:bg-gray-100 rounded-full w-16 h-16" onClick={isOpen ? () => closeMenu() : () => openMenu()}>
       <span className="text-2xl">
         <FiList className={clsx(iconStyle, isOpen && fadeOutStyle)} />
         <FiX className={clsx(iconStyle, !isOpen && fadeOutStyle)} />
