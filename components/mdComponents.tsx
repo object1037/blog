@@ -78,17 +78,14 @@ export const Ul = (props: HTMLElement) => {
 
 const copyButtonStyle = [
   'absolute',
-  'top-2.5',
-  'right-2.5',
+  'top-2',
+  'right-2',
   'p-2',
   'rounded',
-  'bg-gray-700',
-  'hover:bg-gray-600',
+  'bg-[#282c34]',
   'text-gray-400',
-  'border',
-  'border-gray-500',
-  'invisible',
-  'group-hover:visible',
+  'opacity-0',
+  'group-hover:opacity-100',
   'transition'
 ]
 
