@@ -3,15 +3,12 @@ import { FiCopy, FiCheck } from "react-icons/fi"
 import { ReactChild, ReactElement, useState } from "react"
 
 export const Anchor = (props: HTMLAnchorElement) => {
-  if (props.href.startsWith('#')) {
-    return (
-      <a className="text-ppink-300 dark:text-ppink-200 hover:underline" href={props.href} id={props.id}>
-        {props.children}
-      </a>
-    )
+  const targets = props.href.startsWith('#') ? undefined : {
+    target: "_blank",
+    rel: "noopener noreferrer"
   }
   return (
-    <a target="_blank" rel="noopener noreferrer" className="text-ppink-300 dark:text-ppink-200 hover:underline" href={props.href} id={props.id}>
+    <a {...targets} className="text-ppink-300 dark:text-ppink-200 hover:underline" href={props.href} id={props.id}>
       {props.children}
     </a>
   )
@@ -124,8 +121,28 @@ export const Pre = (props: { children: ReactElement }) => {
   )
 }
 
-export const Table = (props: HTMLTableElement) => {
+export const Table = (props: HTMLElement) => {
   return (
-    <table className="bg-gray-100">{props.children}</table>
+    <table className="text-left mb-9">{props.children}</table>
+  )
+}
+
+export const TR = (props: HTMLElement) => {
+  return (
+    <tr className="border-b only:border-0 last:border-0 border-ngray-200 dark:border-ngray-700">{props.children}</tr>
+  )
+}
+
+export const TH = (props: HTMLTableElement) => {
+  return (
+    <th className="bg-ngray-100 dark:bg-ngray-800 px-5 py-3 first:rounded-l last:rounded-r">
+      {props.children}
+    </th>
+  )
+}
+
+export const TD = (props: HTMLElement) => {
+  return (
+    <td className="px-5 py-3">{props.children}</td>
   )
 }
