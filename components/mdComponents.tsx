@@ -2,7 +2,13 @@ import clsx from "clsx"
 import { FiCopy, FiCheck } from "react-icons/fi"
 import React, { ReactChild, ReactElement, useState } from "react"
 
-export const Anchor = (props: HTMLAnchorElement) => {
+export interface anchorProps {
+  href: string
+  children: string
+  id?: string
+}
+
+export const Anchor = (props: anchorProps) => {
   const targets = props.href.startsWith('#') ? undefined : {
     target: "_blank",
     rel: "noopener noreferrer"
@@ -68,7 +74,7 @@ export const Ol = (props: HTMLElement) => {
 export const Paragraph = ({
   children,
 }: {
-  children: React.ReactElement
+  children: ReactElement
 }) => {
   let flag = false
   
