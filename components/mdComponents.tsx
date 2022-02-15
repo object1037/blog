@@ -123,7 +123,11 @@ export const Pre = (props: { children: ReactElement }) => {
 
 export const Table = (props: HTMLElement) => {
   return (
-    <table className="text-left mb-9">{props.children}</table>
+    <div className="mb-9 overflow-auto box-border">
+      <table className="text-left">
+        {props.children}
+      </table>
+    </div>
   )
 }
 
