@@ -133,7 +133,7 @@ export const Pre = (props: { children: ReactElement }) => {
 
   return (
     <pre className="relative group">
-      <button className={clsx(copyButtonStyle)} onClick={() => clickHandler(text)}>
+      <button className={clsx(copyButtonStyle)} onClick={() => clickHandler(text)} aria-label="Copy code">
         <span className="text-xl">
           <FiCopy className={clsx(copied && 'hidden')} />
           <FiCheck className={clsx(!copied && 'hidden')} />
