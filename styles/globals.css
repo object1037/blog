@@ -59,3 +59,10 @@ pre > code {
 pre code.hljs {
   padding: 16px;
 }
+
+.footnotes {
+  border-top: solid 1px #d4d4d4;
+  margin-top: 2rem;
+  padding-top: 1.5rem;
+  margin-bottom: -1rem;
+}

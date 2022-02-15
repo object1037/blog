@@ -1,6 +1,6 @@
 import clsx from "clsx"
 import { FiCopy, FiCheck } from "react-icons/fi"
-import { ReactChild, ReactElement, useState } from "react"
+import React, { ReactChild, ReactElement, useState } from "react"
 
 export const Anchor = (props: HTMLAnchorElement) => {
   const targets = props.href.startsWith('#') ? undefined : {
@@ -41,7 +41,9 @@ export const H2 = (props: HTMLElement) => {
 
 export const H3 = (props: HTMLElement) => {
   return (
-    <h3 className="break-all text-2xl font-semibold mt-2 mb-3 pt-6" id={String(props.children)}>{props.children}</h3>
+    <h3 className={clsx(props.className === "sr-only" ? "sr-only" : "break-all text-2xl font-semibold mt-2 mb-3 pt-6")} id={String(props.children)}>
+      {props.children}
+    </h3>
   )
 }
 
@@ -63,10 +65,25 @@ export const Ol = (props: HTMLElement) => {
   )
 }
 
-export const Paragraph = (props: HTMLElement) => {
-  return (
-    <p className="text-base leading-7 my-5" id={props.id}>{props.children}</p>
-  )
+export const Paragraph = ({
+  children,
+}: {
+  children: React.ReactElement
+}) => {
+  let flag = false
+  
+  React.Children.forEach(children, (child) => {
+    if (child.props?.href?.startsWith('#user-content-fnref')) {
+      flag = true
+    }
+  })
+  if (flag) {
+    return <>{children}</>
+  } else {
+    return (
+      <p className="text-base leading-7 my-5">{children}</p>
+    )
+  }
 }
 
 export const Ul = (props: HTMLElement) => {
