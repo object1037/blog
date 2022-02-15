@@ -37,13 +37,6 @@ code {
   font-size: 1rem;
 }
 
-@media (prefers-color-scheme: dark) {
-  :not(pre) > code {
-    --tw-bg-opacity: 1;
-    background-color: rgba(38, 38, 38, var(--tw-bg-opacity));
-  }
-}
-
 pre {
   border-radius: 0.25rem;
   box-sizing: border-box;
@@ -58,4 +51,22 @@ pre > code {
 
 pre code.hljs {
   padding: 16px;
+}
+
+.footnotes {
+  border-top: solid 1px #d4d4d4;
+  margin-top: 2rem;
+  padding-top: 1.5rem;
+  margin-bottom: -1rem;
+}
+
+@media (prefers-color-scheme: dark) {
+  :not(pre) > code {
+    --tw-bg-opacity: 1;
+    background-color: rgba(38, 38, 38, var(--tw-bg-opacity));
+  }
+
+  .footnotes {
+    border-color: #525252;
+  }
 }

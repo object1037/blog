@@ -45,7 +45,7 @@ export default function ArticleLayout({
     let observer = new IntersectionObserver(IOCallback, IOOptions)
 
     const h2s = Array.from(document.getElementsByTagName("h2"))
-    const h3s = Array.from(document.getElementsByTagName("h3"))
+    const h3s = Array.from(document.getElementsByTagName("h3")).filter(el => el.className != 'sr-only')
     const headings = h2s.concat(h3s)
 
     headings.sort(function(a, b) {

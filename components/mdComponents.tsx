@@ -1,15 +1,20 @@
 import clsx from "clsx"
 import { FiCopy, FiCheck } from "react-icons/fi"
-import { ReactChild, ReactElement, useState } from "react"
+import React, { ReactChild, ReactElement, useState } from "react"
 
 export interface anchorProps {
   href: string
   children: string
+  id?: string
 }
 
 export const Anchor = (props: anchorProps) => {
+  const targets = props.href.startsWith('#') ? undefined : {
+    target: "_blank",
+    rel: "noopener noreferrer"
+  }
   return (
-    <a target="_blank" rel="noopener noreferrer" className="text-ppink-300 dark:text-ppink-200 hover:underline" href={props.href}>
+    <a {...targets} className="text-ppink-300 dark:text-ppink-200 hover:underline" href={props.href} id={props.id}>
       {props.children}
     </a>
   )
@@ -42,7 +47,9 @@ export const H2 = (props: HTMLElement) => {
 
 export const H3 = (props: HTMLElement) => {
   return (
-    <h3 className="break-all text-2xl font-semibold mt-2 mb-3 pt-6" id={String(props.children)}>{props.children}</h3>
+    <h3 className={clsx(props.className === "sr-only" ? "sr-only" : "break-all text-2xl font-semibold mt-2 mb-3 pt-6")} id={String(props.children)}>
+      {props.children}
+    </h3>
   )
 }
 
@@ -54,7 +61,7 @@ export const H4 = (props: HTMLElement) => {
 
 export const Li = (props: HTMLElement) => {
   return (
-    <li className="pt-2">{props.children}</li>
+    <li className={clsx('pt-2', props.className)} id={props.id}>{props.children}</li>
   )
 }
 
@@ -64,10 +71,25 @@ export const Ol = (props: HTMLElement) => {
   )
 }
 
-export const Paragraph = (props: HTMLElement) => {
-  return (
-    <p className="text-base leading-7 my-5">{props.children}</p>
-  )
+export const Paragraph = ({
+  children,
+}: {
+  children: ReactElement
+}) => {
+  let flag = false
+  
+  React.Children.forEach(children, (child) => {
+    if (child.props?.href?.startsWith('#user-content-fnref')) {
+      flag = true
+    }
+  })
+  if (flag) {
+    return <>{children}</>
+  } else {
+    return (
+      <p className="text-base leading-7 my-5">{children}</p>
+    )
+  }
 }
 
 export const Ul = (props: HTMLElement) => {
@@ -111,7 +133,7 @@ export const Pre = (props: { children: ReactElement }) => {
 
   return (
     <pre className="relative group">
-      <button className={clsx(copyButtonStyle)} onClick={() => clickHandler(text)}>
+      <button className={clsx(copyButtonStyle)} onClick={() => clickHandler(text)} aria-label="Copy code">
         <span className="text-xl">
           <FiCopy className={clsx(copied && 'hidden')} />
           <FiCheck className={clsx(!copied && 'hidden')} />
@@ -119,5 +141,35 @@ export const Pre = (props: { children: ReactElement }) => {
       </button>
       {props.children}
     </pre>
+  )
+}
+
+export const Table = (props: HTMLElement) => {
+  return (
+    <div className="mb-9 overflow-auto box-border">
+      <table className="text-left">
+        {props.children}
+      </table>
+    </div>
+  )
+}
+
+export const TR = (props: HTMLElement) => {
+  return (
+    <tr className="border-b only:border-0 last:border-0 border-ngray-200 dark:border-ngray-700">{props.children}</tr>
+  )
+}
+
+export const TH = (props: HTMLTableElement) => {
+  return (
+    <th className="bg-ngray-100 dark:bg-ngray-800 px-5 py-3 first:rounded-l last:rounded-r">
+      {props.children}
+    </th>
+  )
+}
+
+export const TD = (props: HTMLElement) => {
+  return (
+    <td className="px-5 py-3">{props.children}</td>
   )
 }
