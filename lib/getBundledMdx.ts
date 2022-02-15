@@ -3,11 +3,13 @@ import path from 'path'
 import rehypeHighlight from 'rehype-highlight'
 import remarkMath from 'remark-math'
 import rehypeKatex from "rehype-katex"
+import remarkGfm from "remark-gfm"
 import { readFileSync } from 'fs'
 import removeMd from 'remove-markdown'
 
 const remarkPlugins = [
   remarkMath,
+  remarkGfm,
 ]
 const rehypePlugins = [
   rehypeHighlight,

@@ -2,14 +2,16 @@ import clsx from "clsx"
 import { FiCopy, FiCheck } from "react-icons/fi"
 import { ReactChild, ReactElement, useState } from "react"
 
-export interface anchorProps {
-  href: string
-  children: string
-}
-
-export const Anchor = (props: anchorProps) => {
+export const Anchor = (props: HTMLAnchorElement) => {
+  if (props.href.startsWith('#')) {
+    return (
+      <a className="text-ppink-300 dark:text-ppink-200 hover:underline" href={props.href} id={props.id}>
+        {props.children}
+      </a>
+    )
+  }
   return (
-    <a target="_blank" rel="noopener noreferrer" className="text-ppink-300 dark:text-ppink-200 hover:underline" href={props.href}>
+    <a target="_blank" rel="noopener noreferrer" className="text-ppink-300 dark:text-ppink-200 hover:underline" href={props.href} id={props.id}>
       {props.children}
     </a>
   )
@@ -54,7 +56,7 @@ export const H4 = (props: HTMLElement) => {
 
 export const Li = (props: HTMLElement) => {
   return (
-    <li className="pt-2">{props.children}</li>
+    <li className={clsx('pt-2', props.className)} id={props.id}>{props.children}</li>
   )
 }
 
@@ -66,7 +68,7 @@ export const Ol = (props: HTMLElement) => {
 
 export const Paragraph = (props: HTMLElement) => {
   return (
-    <p className="text-base leading-7 my-5">{props.children}</p>
+    <p className="text-base leading-7 my-5" id={props.id}>{props.children}</p>
   )
 }
 
@@ -119,5 +121,11 @@ export const Pre = (props: { children: ReactElement }) => {
       </button>
       {props.children}
     </pre>
+  )
+}
+
+export const Table = (props: HTMLTableElement) => {
+  return (
+    <table className="bg-gray-100">{props.children}</table>
   )
 }
