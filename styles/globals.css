@@ -45,8 +45,8 @@ pre {
   margin-bottom: 2.25rem;
 }
 
-pre > code {
-  border-radius: 0.25rem;
+.hljs {
+  @apply bg-ngray-800;
 }
 
 pre code.hljs {
@@ -58,6 +58,14 @@ pre code.hljs {
   margin-top: 2rem;
   padding-top: 1.5rem;
   margin-bottom: -1rem;
+}
+
+.rehype-code-title {
+  @apply text-ngray-300 text-sm font-mono py-3 px-4 bg-ngray-700 rounded-t;
+}
+
+.rehype-code-title + pre {
+  @apply rounded-t-none;
 }
 
 @media (prefers-color-scheme: dark) {

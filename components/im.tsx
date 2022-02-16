@@ -41,7 +41,7 @@ export default function Im({
           onLoadingComplete={() => setLoading(false)}
         />
       </div>
-      {cap ? <p className="text-ngray-600 dark:text-ngray-300 text-sm p-3 mb-9 bg-ngray-100 dark:bg-ngray-800 rounded-b">{cap}</p> : null}
+      {cap ? <p className="text-ngray-600 dark:text-ngray-300 text-sm py-3 px-4 mb-9 bg-ngray-100 dark:bg-ngray-800 rounded-b">{cap}</p> : null}
     </>
   )
 }

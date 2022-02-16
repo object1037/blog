@@ -2,6 +2,7 @@ import { writeFileSync } from 'fs'
 import prettier from 'prettier'
 import { globby } from 'globby'
 import { siteUrl } from '../constants/data'
+import { getAllPostsData } from './getAllPostsData'
 
 const robots = `
 User-agent: *
@@ -10,6 +11,9 @@ Sitemap: ${siteUrl}/sitemap.xml
 `.trim()
 
 export default async function generateSitemap(tags: string[]) {
+  const postPages = (await getAllPostsData()).map((postData) => {
+    return `posts/${postData.date}`
+  })
   const tagPages = tags.map((tag) => {
     return encodeURI(`pages/tags/${tag}.tsx`)
   })
@@ -17,9 +21,7 @@ export default async function generateSitemap(tags: string[]) {
   const pages = await globby([
     'pages/*.tsx',
     'pages/**/*.{mdx,tsx}',
-    'posts/*.mdx',
     '!pages/_*.tsx',
-    '!posts/testPost.mdx',
     '!pages/404.tsx',
     '!pages/posts/[date].tsx',
     '!pages/tags/[tag].tsx'
@@ -31,7 +33,7 @@ export default async function generateSitemap(tags: string[]) {
     '!public/images/profile.jpg',
   ])
 
-  const allPages = pages.concat(tagPages)
+  const allPages = pages.concat(postPages, tagPages)
 
   const sitemap = `
     <?xml version="1.0" encoding="UTF-8"?>
