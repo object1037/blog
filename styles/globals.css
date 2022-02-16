@@ -61,7 +61,7 @@ pre code.hljs {
 }
 
 .rehype-code-title {
-  @apply text-ngray-300 text-sm font-mono py-3 px-4 bg-ngray-700 rounded-t;
+  @apply text-ngray-300 text-sm font-mono py-3 px-4 bg-ngray-800 border-b border-ngray-600 rounded-t;
 }
 
 .rehype-code-title + pre {
