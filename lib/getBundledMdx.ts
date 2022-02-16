@@ -1,9 +1,10 @@
 import { bundleMDX } from "mdx-bundler"
 import path from 'path'
-import rehypeHighlight from 'rehype-highlight'
 import remarkMath from 'remark-math'
-import rehypeKatex from "rehype-katex"
 import remarkGfm from "remark-gfm"
+import rehypeCodeTitles from "rehype-code-titles"
+import rehypeHighlight from 'rehype-highlight'
+import rehypeKatex from "rehype-katex"
 import { readFileSync } from 'fs'
 import removeMd from 'remove-markdown'
 
@@ -12,6 +13,7 @@ const remarkPlugins = [
   remarkGfm,
 ]
 const rehypePlugins = [
+  rehypeCodeTitles,
   rehypeHighlight,
   rehypeKatex,
 ]
