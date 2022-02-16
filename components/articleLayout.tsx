@@ -78,7 +78,7 @@ export default function ArticleLayout({
       }
     }
     setTocElements(tocEls)
-  }, [])
+  }, [meta])
 
   useEffect(() => {
     const dateNow = new Date().getTime();
