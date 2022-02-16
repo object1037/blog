@@ -82,7 +82,7 @@ export default function ArticleLayout({
 
   useEffect(() => {
     const dateNow = new Date().getTime();
-    //const dateNow = new Date(2022, 3, 20).getTime();
+    //const dateNow = new Date(2022, 9, 20).getTime();
     const datePublished = new Date(+meta.date.substring(0, 4), +meta.date.substring(4, 6) - 1, +meta.date.substring(6, 8)).getTime();
     if (dateNow - datePublished < 157766400000) {
       const elapsedYearsF = (dateNow - datePublished)/31536000000;
@@ -115,8 +115,11 @@ export default function ArticleLayout({
                 <Tag name={tag} key={tag} />
               ))}
             </div>
+            {meta.draft &&
+            <Note type='danger' className='mt-6 mb-2'>This post is a draft</Note>
+            }
             {elapsedYears > 0 && 
-            <Note type={elapsedYears > 1 ? "danger" : "warn"} className="mt-6">
+            <Note type={elapsedYears > 1 ? "danger" : "warn"} className="mt-6 mb-2">
               <p className="my-5">この記事は公開から{elapsedYears}年以上が経過しています</p>
             </Note>
             }
