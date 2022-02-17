@@ -78,7 +78,7 @@ export default function Page({
 }) {
   const Contents = React.useMemo(() => getMDXComponent(code), [code])
   return (
-    <Contents components={mdComponents as any} />
+    <Contents components={mdComponents} />
   )
 }
 
