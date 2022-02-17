@@ -6,8 +6,7 @@ import ArticleLayout from '../../components/articleLayout'
 import { getMDXComponent } from 'mdx-bundler/client'
 import React from 'react'
 import { getAllPostsPaths } from '../../utils/getAllPostsPaths'
-import { H2, H3, H4, Paragraph, Ul, Ol, Li, Anchor, Blockquote, Pre, Table, TR, TH, TD} from '../../components/mdComponents'
-import Im from "../../components/im"
+import { H2, H3, H4, Paragraph, Ul, Ol, Li, Anchor, Blockquote, Pre, Table, TR, TH, TD, Img} from '../../components/mdComponents'
 import Note, { noteProps } from '../../components/note'
 import generateSearchIndex from '../../lib/generateSearchIndex'
 
@@ -60,7 +59,7 @@ const mdComponents = {
   tr: TR,
   th: TH,
   td: TD,
-  Im,
+  img: Img,
   Note: ({
     children,
     className = defaultNoteStyle,

@@ -1,6 +1,8 @@
 import clsx from "clsx"
 import { FiCopy, FiCheck } from "react-icons/fi"
 import React, { ReactChild, ReactElement, useState } from "react"
+import Image from 'next/image'
+import { getStaticProps } from "../pages"
 
 export interface anchorProps {
   href: string
@@ -79,7 +81,7 @@ export const Paragraph = ({
   let flag = false
   
   React.Children.forEach(children, (child) => {
-    if (child.props?.href?.startsWith('#user-content-fnref')) {
+    if (child.props?.href?.startsWith('#user-content-fnref') || children.props?.src) {
       flag = true
     }
   })
@@ -171,5 +173,57 @@ export const TH = (props: HTMLTableElement) => {
 export const TD = (props: HTMLElement) => {
   return (
     <td className="px-5 py-3">{props.children}</td>
+  )
+}
+
+export interface imgProps {
+  src: string
+  alt: string
+  title?: string
+}
+
+export const Img = (props: imgProps) => {
+  const [loading, setLoading] = useState(true)
+  
+  const re = /[^\|]+\|[0-9]+:[0-9]+$/
+  if (!re.test(props.alt)) {
+    console.error(`Invalid alt format for ${props.src}`)
+    return (
+      <>{props.alt}</>
+    )
+  }
+
+  const alt = props.alt.substring(0, props.alt.indexOf('|'))
+  const w = props.alt.substring(props.alt.indexOf('|') + 1, props.alt.indexOf(':'))
+  const h = props.alt.substring(props.alt.indexOf(':') + 1)
+
+  const imWrapperStyle = [
+    'flex',
+    'overflow-hidden',
+    'rounded-t',
+    'border-0',
+    'mt-10',
+  ]
+  const imBgStyle = [
+    'overflow-hidden',
+    'bg-ngray-200',
+    'dark:bg-ngray-700',
+    loading && 'animate-pulse'
+  ]
+
+  return (
+    <>
+    <div className={clsx(imWrapperStyle, props.title ? 'rounded-t' : 'rounded mb-9')}>
+      <Image
+        src={`/images/${props.src}`}
+        alt={alt}
+        width={w}
+        height={h}
+        className={clsx(imBgStyle)}
+        onLoadingComplete={() => setLoading(false)}
+      />
+    </div>
+    {props.title ? <p className="text-ngray-600 dark:text-ngray-300 text-sm py-3 px-4 mb-9 bg-ngray-100 dark:bg-ngray-800 rounded-b">{props.title}</p> : null}
+    </>
   )
 }
