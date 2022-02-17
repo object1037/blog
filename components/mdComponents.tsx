@@ -1,28 +1,21 @@
 import clsx from "clsx"
 import { FiCopy, FiCheck } from "react-icons/fi"
-import React, { ReactChild, ReactElement, useState } from "react"
+import React, { ComponentPropsWithoutRef, ReactChild, useState } from "react"
 import Image from 'next/image'
-import { getStaticProps } from "../pages"
 
-export interface anchorProps {
-  href: string
-  children: string
-  id?: string
-}
-
-export const Anchor = (props: anchorProps) => {
-  const targets = props.href.startsWith('#') ? undefined : {
+export const Anchor = (props: ComponentPropsWithoutRef<"a">) => {
+  const { className, ...rest } = props
+  const targets = props.href?.startsWith('#') ? undefined : {
     target: "_blank",
     rel: "noopener noreferrer"
   }
   return (
-    <a {...targets} className="text-ppink-300 dark:text-ppink-200 hover:underline" href={props.href} id={props.id}>
-      {props.children}
-    </a>
+    <a {...targets} className={clsx("text-ppink-300 dark:text-ppink-200 hover:underline", className)} {...rest} />
   )
 }
 
-export const Blockquote = (props: HTMLElement) => {
+export const Blockquote = (props: ComponentPropsWithoutRef<"blockquote">) => {
+  const { className, ...rest } = props
   const quoteStyle = [
     'bg-ngray-100',
     'dark:bg-ngray-800',
@@ -37,66 +30,85 @@ export const Blockquote = (props: HTMLElement) => {
     'my-3',
   ]
   return (
-    <blockquote className={clsx(quoteStyle)}>{props.children}</blockquote>
+    <blockquote className={clsx(quoteStyle, className)} {...rest} />
   )
 }
 
-export const H2 = (props: HTMLElement) => {
+export const H2 = (props: ComponentPropsWithoutRef<"h2">) => {
+  const { className, id, ...rest } = props
+
+  let idStr = ''
+  if (typeof props.children === 'object' && props.children) {
+    idStr = String(React.Children.toArray(props.children)[0])
+  } else {
+    idStr = String(props.children)
+  }
   return (
-    <h2 className="break-all text-3xl font-bold my-6 pt-6" id={String(props.children)} >{props.children}</h2>
+    <h2 className={clsx("break-all text-3xl font-bold my-6 pt-6", className)} id={id ? id : idStr} {...rest} />
   )
 }
 
-export const H3 = (props: HTMLElement) => {
+export const H3 = (props: ComponentPropsWithoutRef<"h3">) => {
+  const { className, id, ...rest } = props
+
+  let idStr = ''
+  if (typeof props.children === 'object' && props.children) {
+    idStr = String(React.Children.toArray(props.children)[0])
+  } else {
+    idStr = String(props.children)
+  }
+
   return (
-    <h3 className={clsx(props.className === "sr-only" ? "sr-only" : "break-all text-2xl font-semibold mt-2 mb-3 pt-6")} id={String(props.children)}>
-      {props.children}
-    </h3>
+    <h3 className={clsx("break-all text-2xl font-semibold mt-2 mb-3 pt-6", className)} id={id ? id : idStr} {...rest} />
   )
 }
 
-export const H4 = (props: HTMLElement) => {
+export const H4 = (props: ComponentPropsWithoutRef<"h4">) => {
+  const { className, ...rest } = props
   return (
-    <h4 className="break-all text-xl font-medium mt-4 mb-2">{props.children}</h4>
+    <h4 className={clsx("break-all text-xl font-medium mt-4 mb-2", className)} {...rest} />
   )
 }
 
-export const Li = (props: HTMLElement) => {
+export const Li = (props: ComponentPropsWithoutRef<"li">) => {
+  const { className, ...rest } = props
   return (
-    <li className={clsx('pt-2', props.className)} id={props.id}>{props.children}</li>
+    <li className={clsx('pt-2', className)} {...rest} />
   )
 }
 
-export const Ol = (props: HTMLElement) => {
+export const Ol = (props: ComponentPropsWithoutRef<"ol">) => {
+  const { className, ...rest } = props
   return (
-    <ol className="list-decimal ml-6">{props.children}</ol>
+    <ol className={clsx("list-decimal ml-6", className)} {...rest} />
   )
 }
 
-export const Paragraph = ({
-  children,
-}: {
-  children: ReactElement
-}) => {
+export const Paragraph = (props: ComponentPropsWithoutRef<"p">) => {
+  const { className, ...rest } = props
   let flag = false
   
-  React.Children.forEach(children, (child) => {
-    if (child.props?.href?.startsWith('#user-content-fnref') || children.props?.src) {
-      flag = true
+  // removes p tags from around images and footnotes
+  React.Children.forEach(props.children, (child) => {
+    if (typeof child === 'object' && child && 'props' in child) {
+      if (child.props.href?.startsWith('#user-content-fnref') || child.props.src) {
+        flag = true
+      }
     }
   })
   if (flag) {
-    return <>{children}</>
+    return <>{props.children}</>
   } else {
     return (
-      <p className="text-base leading-7 my-5">{children}</p>
+      <p className={clsx("text-base leading-7 my-5", className)} {...rest} />
     )
   }
 }
 
-export const Ul = (props: HTMLElement) => {
+export const Ul = (props: ComponentPropsWithoutRef<"ul">) => {
+  const { className, ...rest } = props
   return (
-    <ul className="list-disc ml-6">{props.children}</ul>
+    <ul className={clsx("list-disc ml-6", className)} {...rest} />
   )
 }
 
@@ -114,9 +126,10 @@ const copyButtonStyle = [
   'transition'
 ]
 
-export const Pre = (props: { children: ReactElement }) => {
+export const Pre = (props: ComponentPropsWithoutRef<"pre">) => {
   const [copied, setCopied] = useState(false)
 
+  let text = ''
   const clickHandler = (text: string) => {
     navigator.clipboard.writeText(text).then(() => {
       setCopied(true)
@@ -125,13 +138,20 @@ export const Pre = (props: { children: ReactElement }) => {
       }, 2500)
     })
   }
-  const text: string = props.children.props.children.map((el: ReactChild) => {
-    if (typeof el === 'object') {
-      return (el.props.children)
-    } else {
-      return el
+
+  if (typeof props.children === 'object' && props.children && 'props' in props.children) {
+    if (typeof props.children.props.children === 'string') {
+      text = props.children.props.children.trim()
+    } else if (typeof props.children.props.children === 'object' && props.children.props.children) {
+      text = props.children.props.children.map((el: ReactChild) => {
+        if (typeof el === 'object') {
+          return (el.props.children)
+        } else {
+          return el
+        }
+      }).join('').trim()
     }
-  }).join('').trim()
+  }
 
   return (
     <pre className="relative group">
@@ -146,47 +166,41 @@ export const Pre = (props: { children: ReactElement }) => {
   )
 }
 
-export const Table = (props: HTMLElement) => {
+export const Table = (props: ComponentPropsWithoutRef<"table">) => {
+  const { className, ...rest } = props
   return (
     <div className="mb-9 overflow-auto box-border">
-      <table className="text-left">
-        {props.children}
-      </table>
+      <table className={clsx("text-left", className)} {...rest} />
     </div>
   )
 }
 
-export const TR = (props: HTMLElement) => {
+export const TR = (props: ComponentPropsWithoutRef<"tr">) => {
+  const { className, ...rest } = props
   return (
-    <tr className="border-b only:border-0 last:border-0 border-ngray-200 dark:border-ngray-700">{props.children}</tr>
+    <tr className={clsx("border-b only:border-0 last:border-0 border-ngray-200 dark:border-ngray-700", className)} {...rest} />
   )
 }
 
-export const TH = (props: HTMLTableElement) => {
+export const TH = (props: ComponentPropsWithoutRef<"th">) => {
+  const { className, ...rest } = props
   return (
-    <th className="bg-ngray-100 dark:bg-ngray-800 px-5 py-3 first:rounded-l last:rounded-r">
-      {props.children}
-    </th>
+    <th className={clsx("bg-ngray-100 dark:bg-ngray-800 px-5 py-3 first:rounded-l last:rounded-r", className)} {...rest} />
   )
 }
 
-export const TD = (props: HTMLElement) => {
+export const TD = (props: ComponentPropsWithoutRef<"td">) => {
+  const { className, ...rest } = props
   return (
-    <td className="px-5 py-3">{props.children}</td>
+    <td className={clsx("px-5 py-3", className)} {...rest} />
   )
 }
 
-export interface imgProps {
-  src: string
-  alt: string
-  title?: string
-}
-
-export const Img = (props: imgProps) => {
+export const Img = (props: ComponentPropsWithoutRef<"img">) => {
   const [loading, setLoading] = useState(true)
   
   const re = /[^\|]+\|[0-9]+:[0-9]+$/
-  if (!re.test(props.alt)) {
+  if (!props.alt || !re.test(props.alt)) {
     console.error(`Invalid alt format for ${props.src}`)
     return (
       <>{props.alt}</>
