@@ -61,7 +61,7 @@ export default function ArticleLayout({
       if (headings[i].tagName === "H2") {
         const h2Index = tocEls.push({
           scrollPos: headings[i].getBoundingClientRect().top,
-          title: headings[i].innerText,
+          title: String(headings[i].firstChild?.textContent),
           level: headings[i].tagName,
           childEls: []
         }) - 1
@@ -69,7 +69,7 @@ export default function ArticleLayout({
         while (headings[i + 1] && headings[i + 1].tagName === "H3") {
           tocEls[h2Index].childEls.push({
             scrollPos: headings[i + 1].getBoundingClientRect().top,
-            title: headings[i + 1].innerText,
+            title: String(headings[i + 1].firstChild?.textContent),
             level: headings[i + 1].tagName,
             childEls: []
           })

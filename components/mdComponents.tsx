@@ -36,15 +36,30 @@ export const Blockquote = (props: ComponentPropsWithoutRef<"blockquote">) => {
 
 export const H2 = (props: ComponentPropsWithoutRef<"h2">) => {
   const { className, id, ...rest } = props
+
+  let idStr = ''
+  if (typeof props.children === 'object' && props.children) {
+    idStr = String(React.Children.toArray(props.children)[0])
+  } else {
+    idStr = String(props.children)
+  }
   return (
-    <h2 className={clsx("break-all text-3xl font-bold my-6 pt-6", className)} id={id ? id : String(props.children)} {...rest} />
+    <h2 className={clsx("break-all text-3xl font-bold my-6 pt-6", className)} id={id ? id : idStr} {...rest} />
   )
 }
 
 export const H3 = (props: ComponentPropsWithoutRef<"h3">) => {
   const { className, id, ...rest } = props
+
+  let idStr = ''
+  if (typeof props.children === 'object' && props.children) {
+    idStr = String(React.Children.toArray(props.children)[0])
+  } else {
+    idStr = String(props.children)
+  }
+
   return (
-    <h3 className={clsx("break-all text-2xl font-semibold mt-2 mb-3 pt-6", className)} id={id ? id : String(props.children)} {...rest} />
+    <h3 className={clsx("break-all text-2xl font-semibold mt-2 mb-3 pt-6", className)} id={id ? id : idStr} {...rest} />
   )
 }
 
