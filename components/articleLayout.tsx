@@ -67,6 +67,9 @@ export default function ArticleLayout({
         }) - 1
 
         while (headings[i + 1] && headings[i + 1].tagName === "H3") {
+          if (headings[i + 1].className.includes('sr-only')) {
+            break
+          }
           tocEls[h2Index].childEls.push({
             scrollPos: headings[i + 1].getBoundingClientRect().top,
             title: String(headings[i + 1].firstChild?.textContent),
