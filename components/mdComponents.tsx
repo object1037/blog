@@ -140,10 +140,9 @@ export const Pre = (props: ComponentPropsWithoutRef<"pre">) => {
   }
 
   if (typeof props.children === 'object' && props.children && 'props' in props.children) {
-    console.log(typeof props.children.props.children)
     if (typeof props.children.props.children === 'string') {
       text = props.children.props.children.trim()
-    } else {
+    } else if (typeof props.children.props.children === 'object' && props.children.props.children) {
       text = props.children.props.children.map((el: ReactChild) => {
         if (typeof el === 'object') {
           return (el.props.children)
