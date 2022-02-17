@@ -1,64 +1,125 @@
 ---
-title: 投稿テスト
-description: テスト
-date: '20200518'
-tags: [テスト, タグ2]
+title: Test post
+description: test
+date: '20210101'
+tags: [test, tag2]
 draft: true
 ---
 
-これは投稿テストです。
+This is a test post.
 
-# 見出し1
+# Heading 1
 
-先月末に東京で一人暮らしを初めてからもう2週間が経とうとしています。さすがに家事には慣れてきたところですが、実はまだ机と椅子が来ていないので落ち着かない感じです。
+```markdown
+# Heading 1
 
-## 見出し2
+## Heading 2
 
-仕方ないので段ボール箱を机にして小さい踏み台(に掛け布団を載せてクッション性を加えたもの)を椅子にしています。
+### Heading 3
+```
 
-### 見出し3
+Excepteur amet qui officia sit aliqua sit irure duis enim. In sint cupidatat aute culpa aliqua sit in laborum excepteur cupidatat sint commodo magna velit exercitation. 
 
-机と椅子、早く来て乁(˙꒳˙乁)ｸﾚﾖ...←来たよ（よかったね）
+Culpa ad sit qui esse adipiscing exercitation nostrud aliquip proident cupidatat veniam in duis culpa.
 
-# aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa
+## Heading 2
 
-長い見出しの例
+Magna dolor pariatur aliquip elit aute irure pariatur ullamco in magna aute officia.
 
-## bbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbb
+### Heading 3
 
-# 引用
+Consequat commodo nulla officia minim est cillum labore veniam sint ipsum aute duis qui amet ea reprehenderit.
 
-> エスプリ（Esprit ）は英国のロータスが生産していたスーパーカーである。 それまでの従来のロータスのライトウェイトスポーツカー路線からスーパースポーツカーに路線を広げようと開発された車である。 デザインはイタルデザイン創業者であるジョルジェット・ジウジアーロが担当し、スーパーカーらしいウエッジシェイプに仕上げられている。
-([Wikipedia](https://ja.wikipedia.org/wiki/%E3%83%AD%E3%83%BC%E3%82%BF%E3%82%B9%E3%83%BB%E3%82%A8%E3%82%B9%E3%83%97%E3%83%AA)より)
+# Amet et commodo adipiscing occaecat commodo tempor commodo anim consectetur esse nostrud consectetur et ipsum cillum sint esse enim.
 
-そうなんだ
+Some long headings
 
-## リンク
+## Ad sed adipiscing nisi qui laboris nulla tempor mollit sit id quis aute veniam exercitation.
 
-リンク→[GitHub](https://github.com/)
+# Quote
 
-みたいになる[^1]
+```markdown
+> The Lotus Esprit is a British sports car that was built by Lotus Cars at their Hethel factory in England between 1976 and 2004.
+> It was among the first of designer Giorgetto Giugiaro's polygonal "folded paper" designs.
+> ([Wikipedia](https://en.wikipedia.org/wiki/Lotus_Esprit))
+```
 
-[^1]: [GFM](#GFM)も使える
+> The Lotus Esprit is a British sports car that was built by Lotus Cars at their Hethel factory in England between 1976 and 2004.
+> It was among the first of designer Giorgetto Giugiaro's polygonal "folded paper" designs.
+> ([Wikipedia](https://en.wikipedia.org/wiki/Lotus_Esprit))
 
-# リスト
+# Link[^1]
 
-* 項目1
-* 項目2
-  * nested 1
-  * nested 2
-    * double-nested
-* 項目3
+[^1]: See also [GFM autolink literal](#Autolink%20literals) section.
 
-## 数字付きリスト
+```markdown
+You can use link like [this](https://example.com/).
+```
+
+You can use link like [this](https://example.com/).
+
+# List
+
+```markdown
+* foo
+* bar
+  * nested foo
+  * nested bar
+    * foobar
+* baz
 
 1. aaaa
-2. bbbbb
-3. ccccc
+2. bbbb
+3. cccc
+```
 
-# ソースコード
+* foo
+* bar
+  * nested foo
+  * nested bar
+    * foobar
+* baz
 
-ソースコードの表示は以下の通り
+## Ordered list
+
+1. aaaa
+2. bbbb
+3. cccc
+
+# Code block
+
+````markdown
+```javascript:lib/swr-hooks.ts
+import useSWR from 'swr';
+
+async function fetcher(url) {
+  const res = await window.fetch(url);
+  return await res.json();
+}
+
+export function useReservations() {
+  const { data, error } = useSWR(`/api/get-reservations`, fetcher)
+
+  return {
+    reservations: data,
+    isLoading: !error && !data,
+    isError: error,
+  }
+}
+
+export function useAllReservations(loggedIn) {
+  const { data, error } = useSWR(loggedIn ? '/api/get-alldata' : null, fetcher)
+
+  return {
+    reservations: data,
+    isLoading: !error && !data,
+    isError: error,
+  }
+}
+console.log(1 + 2)
+console.log("Aliquip anim ad velit ipsum ut dolore cupidatat ullamco non adipiscing consectetur lorem consequat nisi occaecat.")
+```
+````
 
 ```javascript:lib/swr-hooks.ts
 import useSWR from 'swr';
@@ -88,49 +149,45 @@ export function useAllReservations(loggedIn) {
   }
 }
 console.log(1 + 2)
-console.log("very long text : aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa")
+console.log("Aliquip anim ad velit ipsum ut dolore cupidatat ullamco non adipiscing consectetur lorem consequat nisi occaecat.")
 ```
 
 ## inline-code
 
-インラインコードは`hoge`とするとよいぞい
+inline-code`hoge`.
 
-# 画像
+# Image
 
 ```markdown
-![ガチ恋ぽんぽこの画像|1334:750](testPost/ponpoko-inamenn.jpg '否めん！(これは画像のキャプション)')
-// altは`代替テキスト|横幅:縦幅`のフォーマットでなければならない
-// キャプションは省略可
+![Gachikoi ponpoko|1334:750](testPost/ponpoko-inamenn.jpg '否めん！(This is a caption)')
+// alt must be in the format of `alt text|image width:image height`
+// caption is optional
 ```
 
-画像は以下の通り
-
-![ガチ恋ぽんぽこの画像|1334:750](testPost/ponpoko-inamenn.jpg '否めん！(これは画像のキャプション)')
+![Gachikoi ponpoko|1334:750](testPost/ponpoko-inamenn.jpg '否めん！(This is a caption)')
 
 あ～う〜♡
 
 # Note
 
 ```jsx
-<Note type="warn"> // "info" | "warn" | "danger" (デフォルトは"info")
-  ここには注意が必要なことを知らせる文を入れる。 モチモチモチモチモﾁﾓﾁﾓﾁﾓ(ﾉ)`ω´(ヾ)
+<Note type="warn"> // "info" | "warn" | "danger" (defaults to "info")
+  Some warning messages. モチモチモチモチモﾁﾓﾁﾓﾁﾓ(ﾉ)`ω´(ヾ)
 </Note>
 ```
 
-<Note>
-  ここにはちょっとした情報を入れる。 モチモチモチモチモﾁﾓﾁﾓﾁﾓ(ﾉ)`ω´(ヾ)
+<Note>Some information. モチモチモチモチモﾁﾓﾁﾓﾁﾓ(ﾉ)`ω´(ヾ)</Note>
+
+<Note type="warn">
+  Some warning messages. モチモチモチモチモﾁﾓﾁﾓﾁﾓ(ﾉ)`ω´(ヾ)
 </Note>
 
-<Note type="warn">ここには注意が必要なことを知らせる文を入れる。 モチモチモチモチモﾁﾓﾁﾓﾁﾓ(ﾉ)`ω´(ヾ)</Note>
-
 <Note type="danger">
-  ここには**危険**を知らせる文を入れる。 モチモチモチモチモﾁﾓﾁﾓﾁﾓ(ﾉ)`ω´(ヾ)\
+  Some **danger** messages. モチモチモチモチモﾁﾓﾁﾓﾁﾓ(ﾉ)`ω´(ヾ)\
   [My Website](https://object1037.dev)
 </Note>
 
-そうなんだ
-
-# 数式
+# Math
 
 ```markdown
 Lift($L$) can be determined by Lift Coefficient ($C_L$) like the following
@@ -152,9 +209,19 @@ $$
 
 ## Autolink literals
 
+```markdown
+www.example.com, https://example.com, and contact@example.com.
+```
+
 www.example.com, https://example.com, and contact@example.com.
 
 ## Footnote
+
+```markdown
+A note[^2]
+
+[^2]: Big note.
+```
 
 A note[^2]
 
@@ -162,20 +229,42 @@ A note[^2]
 
 ## Strikethrough
 
+```markdown
+~one~ or ~~two~~ tildes.
+```
+
 ~one~ or ~~two~~ tildes.
 
 ## Table
 
-| hoge | bar | foo |
-| --- | --- | --- |
-| baz | bim | dcc |
-| aaa | bbb | aaaa |
+```markdown
+| hoge | bar | foo | hugahuga |
+| --- | --- | --- | --- |
+| baz | bim | dcc | aaaaaaaaaaaaaaaaaaaaaaaaaaaaa |
+| aaa | bbb | aaaa | bbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbb |
+| Voluptate anim | Ad dolore | Sed voluptate | Commodo exercitation |
 
-| a | b  |  c |  d  | e |
-| - | - | - | - | - |
-| hoge | huga | poyo | unya | aaaaaaaaaaaaaaaaa|
+| a | b  |  c |  d  |
+| - | -: | :- | :-: |
+| hoge | huga | poyo | unya |
+```
+
+| hoge | bar | foo | hugahuga |
+| --- | --- | --- | --- |
+| baz | bim | dcc | aaaaaaaaaaaaaaaaaaaaaaaaaaaaa |
+| aaa | bbb | aaaa | bbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbb |
+| Voluptate anim | Ad dolore | Sed voluptate | Commodo exercitation |
+
+| a | b  |  c |  d  |
+| - | -: | :- | :-: |
+| hoge | huga | poyo | unya |
 
 ## Tasklist
+
+```markdown
+* [ ] to do
+* [x] done
+```
 
 * [ ] to do
 * [x] done
