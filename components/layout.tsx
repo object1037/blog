@@ -2,6 +2,8 @@ import Head from 'next/head'
 import Header from './header'
 import Footer from './footer'
 import { siteTitle, handleName, siteUrl, accounts, getOgImageUrl } from '../constants/data'
+import { useEffect } from 'react'
+import { loadCSS } from 'fg-loadcss'
 
 export default function Layout({
   title = siteTitle,
@@ -18,6 +20,18 @@ export default function Layout({
   meta?: postData
   children: React.ReactNode
 }) {
+  useEffect(() => {
+    loadCSS(
+      "https://cdn.jsdelivr.net/npm/katex@0.15.2/dist/katex.min.css",
+      undefined,
+      undefined,
+      {
+        "crossorigin": "anonymous",
+        "integrity": "sha384-MlJdn/WNKDGXveldHDdyRP1R4CTHr3FeuDNfhsLPYrq2t0UBkUdK2jyTnXPEK1NQ"
+      }
+    )
+  }, [])
+
   return (
     <>
     <Head>
@@ -30,13 +44,6 @@ export default function Layout({
       <meta property="og:description" content={meta ? meta.description : description} />
       <meta property="og:image" content={meta ? meta.ogImgUrl ? meta.ogImgUrl : getOgImageUrl(meta.title) : imgUrl} />
       <link rel="alternate" type="application/rss+xml" href="/feed.xml" title={siteTitle} />
-      {meta &&
-      <link 
-        rel="stylesheet"
-        href="https://cdn.jsdelivr.net/npm/katex@0.13.13/dist/katex.min.css"
-        integrity="sha384-RZU/ijkSsFbcmivfdRBQDtwuwVqK7GMOw6IMvKyeWL2K5UAlyp6WonmB8m7Jd0Hn"
-        crossOrigin="anonymous"
-      />}
       <title>{meta ? `${meta.title} | ${siteTitle}` : title}</title>
     </Head>
     <Header sticky={meta ? false : true}/>
