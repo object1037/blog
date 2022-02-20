@@ -16,5 +16,5 @@ interface postData {
 
 interface tagData {
   name: string,
-  articles: metaData[]
+  articles: postData[]
 }
