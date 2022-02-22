@@ -44,6 +44,7 @@ export default function Layout({
       <meta property="og:description" content={meta ? meta.description : description} />
       <meta property="og:image" content={meta ? meta.ogImgUrl ? meta.ogImgUrl : getOgImageUrl(meta.title) : imgUrl} />
       <link rel="alternate" type="application/rss+xml" href="/feed.xml" title={siteTitle} />
+      <link rel='canonical' href={meta ? `${siteUrl}/posts/${meta.date}` : url} />
       <title>{meta ? `${meta.title} | ${siteTitle}` : title}</title>
     </Head>
     <Header sticky={meta ? false : true}/>
