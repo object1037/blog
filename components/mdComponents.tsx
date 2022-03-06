@@ -19,10 +19,10 @@ export const Blockquote = (props: ComponentPropsWithoutRef<"blockquote">) => {
   const quoteStyle = [
     'bg-ngray-100',
     'dark:bg-ngray-800',
-    'rounded',
+    'rounded-md',
     'text-ngray-700',
     'dark:text-ngray-200',
-    'border-l-4',
+    'border-l-[0.375rem]',
     'border-ngray-400',
     'dark:border-ngray-500',
     'px-5',
@@ -117,7 +117,7 @@ const copyButtonStyle = [
   'top-2',
   'right-2',
   'p-2',
-  'rounded',
+  'rounded-md',
   'bg-ngray-800',
   'text-ngray-400',
   'hover:text-ngray-300',
@@ -185,7 +185,7 @@ export const TR = (props: ComponentPropsWithoutRef<"tr">) => {
 export const TH = (props: ComponentPropsWithoutRef<"th">) => {
   const { className, ...rest } = props
   return (
-    <th className={clsx("bg-ngray-100 dark:bg-ngray-800 px-5 py-3 first:rounded-l last:rounded-r", className)} {...rest} />
+    <th className={clsx("bg-ngray-100 dark:bg-ngray-800 px-5 py-3 first:rounded-l-md last:rounded-r-md", className)} {...rest} />
   )
 }
 
@@ -214,7 +214,7 @@ export const Img = (props: ComponentPropsWithoutRef<"img">) => {
   const imWrapperStyle = [
     'flex',
     'overflow-hidden',
-    'rounded-t',
+    'rounded-t-md',
     'border-0',
     'mt-10',
   ]
@@ -227,7 +227,7 @@ export const Img = (props: ComponentPropsWithoutRef<"img">) => {
 
   return (
     <>
-    <div className={clsx(imWrapperStyle, props.title ? 'rounded-t' : 'rounded mb-9')}>
+    <div className={clsx(imWrapperStyle, props.title ? 'rounded-t-md' : 'rounded-md mb-9')}>
       <Image
         src={`/images/${props.src}`}
         alt={alt}
@@ -237,7 +237,7 @@ export const Img = (props: ComponentPropsWithoutRef<"img">) => {
         onLoadingComplete={() => setLoading(false)}
       />
     </div>
-    {props.title ? <p className="text-ngray-600 dark:text-ngray-300 text-sm py-3 px-4 mb-9 bg-ngray-100 dark:bg-ngray-800 rounded-b">{props.title}</p> : null}
+    {props.title ? <p className="text-ngray-600 dark:text-ngray-300 text-sm py-3 px-4 mb-9 bg-ngray-100 dark:bg-ngray-800 rounded-b-md">{props.title}</p> : null}
     </>
   )
 }
