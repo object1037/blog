@@ -3,7 +3,7 @@ import DateDisplay from './date'
 
 export default function PostCard(post: postData) {
   return (
-    <li className="mb-8 bg-ngray-100 dark:bg-ngray-800 rounded-md hover:shadow-lg border border-transparent dark:hover:border-ngray-600 transition duration-300">
+    <li className="mb-8 bg-ngray-100 dark:bg-ngray-800 rounded-md border border-transparent hover:border-ngray-300 dark:hover:border-ngray-600 transition">
       <Link href={`/posts/${post.date}`}>
         <a className="flex items-start px-6 py-7">
           <div className="flex flex-col w-full">
