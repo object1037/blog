@@ -27,7 +27,7 @@ export default async function getBundledMdx(date: string) {
   const result = await bundleMDX<postData>({
     file: filePath,
     cwd: path.join(process.cwd(), "posts"),
-    xdmOptions: options => {
+    mdxOptions: options => {
       options.remarkPlugins = [
         ...(options.remarkPlugins ?? []),
         ...remarkPlugins
