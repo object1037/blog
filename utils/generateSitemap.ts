@@ -7,6 +7,8 @@ import { getAllPostsData } from './getAllPostsData'
 const robots = `
 User-agent: *
 Disallow: /posts/testPost
+Disallow: /*.json$
+Disallow: /*.js$
 Sitemap: ${siteUrl}/sitemap.xml
 `.trim()
 
