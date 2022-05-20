@@ -42,7 +42,7 @@
     "@types/react-modal": "^3.13.1",
     "@types/remove-markdown": "^0.3.1",
     "@types/rss": "^0.0.29",
-    "@types/webpack-env": "^1.16.4",
+    "@types/webpack-env": "^1.17.0",
     "autoprefixer": "^10.4.7",
     "eslint": "^8.15.0",
     "eslint-config-next": "^12.1.6",
