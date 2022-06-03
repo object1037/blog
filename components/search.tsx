@@ -129,7 +129,7 @@ export default function Search() {
     <Modal
       isOpen={modalIsOpen}
       onRequestClose={closeModal}
-      contentLabel="Delete Confirmation"
+      contentLabel="Search modal"
       className={clsx(modalStyle)}
       overlayClassName={clsx(overlayStyle)}
     >
