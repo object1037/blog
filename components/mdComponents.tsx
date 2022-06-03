@@ -1,6 +1,6 @@
 import clsx from "clsx"
 import { FiCopy, FiCheck } from "react-icons/fi"
-import React, { ComponentPropsWithoutRef, ReactChild, useState } from "react"
+import React, { ComponentPropsWithoutRef, useRef, useState } from "react"
 import Image from 'next/image'
 
 export const Anchor = (props: ComponentPropsWithoutRef<"a">) => {
@@ -88,10 +88,10 @@ export const Paragraph = (props: ComponentPropsWithoutRef<"p">) => {
   const { className, ...rest } = props
   let flag = false
   
-  // removes p tags from around images and footnotes
+  // removes p tags from around images, footnotes, and summary
   React.Children.forEach(props.children, (child) => {
     if (typeof child === 'object' && child && 'props' in child) {
-      if (child.props.href?.startsWith('#user-content-fnref') || child.props.src) {
+      if (child.props.href?.startsWith('#user-content-fnref') || child.props.src || child.type === "summary") {
         flag = true
       }
     }
@@ -127,11 +127,11 @@ const copyButtonStyle = [
 ]
 
 export const Pre = (props: ComponentPropsWithoutRef<"pre">) => {
+  const codeRef = useRef<HTMLPreElement>(null)
   const [copied, setCopied] = useState(false)
 
-  let text = ''
-  const clickHandler = (text: string) => {
-    navigator.clipboard.writeText(text).then(() => {
+  const clickHandler = (text: string | undefined) => {
+    navigator.clipboard.writeText(text ? text : '').then(() => {
       setCopied(true)
       setTimeout(() => {
         setCopied(false)
@@ -139,23 +139,9 @@ export const Pre = (props: ComponentPropsWithoutRef<"pre">) => {
     })
   }
 
-  if (typeof props.children === 'object' && props.children && 'props' in props.children) {
-    if (typeof props.children.props.children === 'string') {
-      text = props.children.props.children.trim()
-    } else if (typeof props.children.props.children === 'object' && props.children.props.children) {
-      text = props.children.props.children.map((el: ReactChild) => {
-        if (typeof el === 'object') {
-          return (el.props.children)
-        } else {
-          return el
-        }
-      }).join('').trim()
-    }
-  }
-
   return (
-    <pre className="relative group">
-      <button className={clsx(copyButtonStyle)} onClick={() => clickHandler(text)} aria-label="Copy code">
+    <pre className="relative group" ref={codeRef}>
+      <button className={clsx(copyButtonStyle)} onClick={() => clickHandler(codeRef.current?.innerText.trim())} aria-label="Copy code">
         <span className="text-xl">
           <FiCopy className={clsx(copied && 'hidden')} />
           <FiCheck className={clsx(!copied && 'hidden')} />
