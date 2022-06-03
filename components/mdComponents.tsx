@@ -91,7 +91,7 @@ export const Paragraph = (props: ComponentPropsWithoutRef<"p">) => {
   // removes p tags
   React.Children.forEach(props.children, (child) => {
     if (typeof child === 'object' && child && 'props' in child) {
-      if (child.props.href?.startsWith('#user-content-fnref') || child.type === 'summary') {
+      if (child.props.href?.startsWith('#user-content-fnref') || child.props.src || child.type === 'summary') {
         flag = true
       }
       else if (typeof child.type === 'function' && 'name' in child.type) {
