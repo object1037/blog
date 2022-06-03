@@ -88,11 +88,16 @@ export const Paragraph = (props: ComponentPropsWithoutRef<"p">) => {
   const { className, ...rest } = props
   let flag = false
   
-  // removes p tags from around images, footnotes, and summary
+  // removes p tags
   React.Children.forEach(props.children, (child) => {
     if (typeof child === 'object' && child && 'props' in child) {
-      if (child.props.href?.startsWith('#user-content-fnref') || child.props.src || child.type === "summary") {
+      if (child.props.href?.startsWith('#user-content-fnref') || child.type === 'summary') {
         flag = true
+      }
+      if (typeof child.type === 'function' && 'name' in child.type) {
+        if (child.type.name === 'Note' || child.type.name === 'Img') {
+          flag = true
+        }
       }
     }
   })

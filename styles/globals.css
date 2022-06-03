@@ -24,25 +24,11 @@ code {
 }
 
 :not(pre) > code {
-  margin-left: 0.25rem/* 4px */;
-  margin-right: 0.25rem/* 4px */;
-  --tw-bg-opacity: 1;
-  background-color: rgba(245, 245, 245, var(--tw-bg-opacity));
-  padding-left: 0.5rem/* 8px */;
-  padding-right: 0.5rem/* 8px */;
-  padding-top: 0.25rem/* 4px */;
-  padding-bottom: 0.25rem/* 4px */;
-  border-radius: 0.375rem/* 6px */;
-  word-break: break-all;
-  font-size: 1rem;
+  @apply bg-ngray-100 dark:bg-ngray-800 mx-1 px-2 py-1 rounded-md break-all text-base;
 }
 
 pre {
-  border-radius: 0.375rem;
-  box-sizing: border-box;
-  overflow: hidden;
-  line-height: 1.5rem;
-  margin-bottom: 2.25rem;
+  @apply rounded-md box-border overflow-hidden leading-6 mb-9;
 }
 
 .hljs {
@@ -50,14 +36,11 @@ pre {
 }
 
 pre code.hljs {
-  padding: 16px;
+  @apply p-4
 }
 
 .footnotes {
-  border-top: solid 1px #d4d4d4;
-  margin-top: 2rem;
-  padding-top: 1.5rem;
-  margin-bottom: -1rem;
+  @apply border-t border-ngray-300 mt-8 pt-6 -mb-4 dark:border-ngray-600;
 }
 
 .rehype-code-title {
@@ -68,13 +51,10 @@ pre code.hljs {
   @apply rounded-t-none;
 }
 
-@media (prefers-color-scheme: dark) {
-  :not(pre) > code {
-    --tw-bg-opacity: 1;
-    background-color: rgba(38, 38, 38, var(--tw-bg-opacity));
-  }
+summary {
+  @apply px-4 py-3 mb-4 bg-ngray-100 dark:bg-ngray-800 rounded-md cursor-pointer;
+}
 
-  .footnotes {
-    border-color: #525252;
-  }
+details {
+  @apply mb-5 rounded-md;
 }
