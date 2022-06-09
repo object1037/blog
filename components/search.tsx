@@ -3,7 +3,7 @@ import algoliasearch from 'algoliasearch/lite'
 import Link from 'next/link'
 import Modal from 'react-modal'
 import { useState } from 'react'
-import { FiSearch } from 'react-icons/fi'
+import { FiSearch, FiX } from 'react-icons/fi'
 import { MultipleQueriesQuery } from '@algolia/client-search'
 import clsx from 'clsx'
 import backfaceFixed from '../utils/backfaceFixed'
@@ -89,6 +89,15 @@ export default function Search() {
     'outline-none',
     'transition'
   ]
+  const closeButtonStyle = [
+    'text-lg',
+    'text-ngray-300',
+    'hover:text-ngray-900',
+    'dark:text-ngray-700',
+    'dark:hover:bg-ngray-100',
+    'outline-none',
+    'transition',
+  ]
   const modalStyle = [
     'bg-white',
     'dark:bg-ngray-900',
@@ -100,11 +109,13 @@ export default function Search() {
     'w-full',
     'mx-auto',
     'md:max-w-5xl',
-    'p-4',
-    'sm:px-8',
-    'sm:pt-8',
+    'p-1',
+    'pb-4',
+    'sm:p-3',
+    'sm:pb-4',
     'max-h-full',
-    'overflow-auto'
+    'overflow-auto',
+    'relative'
   ]
   const overlayStyle = [
     'bg-black',
@@ -133,13 +144,18 @@ export default function Search() {
       className={clsx(modalStyle)}
       overlayClassName={clsx(overlayStyle)}
     >
-    <InstantSearch indexName="blog_datas" searchClient={searchClient}>
-      <Configure hitsPerPage={3} attributesToSnippet={['content:20']} />
-      <SearchBox autoFocus />
-      <Hits hitComponent={Hit} />
-      <Pagination />
-      <PoweredBy />
-    </InstantSearch>
+      <div className='flex flex-row-reverse w-full mb-4 sm:mb-8 pr-2 pt-2 sm:p-0 sm:pt-1 sm:pr-1'>
+        <button onClick={() => closeModal()} aria-label="close modal" className={clsx(closeButtonStyle)}>
+          <FiX />
+        </button>
+      </div>
+      <InstantSearch indexName="blog_datas" searchClient={searchClient}>
+        <Configure hitsPerPage={3} attributesToSnippet={['content:20']} />
+        <SearchBox autoFocus />
+        <Hits hitComponent={Hit} />
+        <Pagination />
+        <PoweredBy />
+      </InstantSearch>
     </Modal>
     </>
   )
