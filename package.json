@@ -37,7 +37,7 @@
     "@types/node": "^18.0.0",
     "@types/prettier": "^2.6.3",
     "@types/prismjs": "^1.26.0",
-    "@types/react": "^18.0.12",
+    "@types/react": "^18.0.14",
     "@types/react-instantsearch-dom": "^6.12.3",
     "@types/react-modal": "^3.13.1",
     "@types/remove-markdown": "^0.3.1",
