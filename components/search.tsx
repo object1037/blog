@@ -94,6 +94,7 @@ export default function Search() {
     'text-ngray-300',
     'hover:text-ngray-900',
     'dark:text-ngray-700',
+    'dark:hover:text-ngray-100',
     'outline-none',
     'transition',
   ]
