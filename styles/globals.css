@@ -52,7 +52,7 @@ pre code.hljs {
 }
 
 summary {
-  @apply px-4 py-3 mb-4 bg-ngray-100 dark:bg-ngray-800 rounded-md cursor-pointer marker:text-ppink-200;
+  @apply px-4 py-3 mb-4 bg-ngray-100 dark:bg-ngray-800 rounded-md cursor-pointer;
 }
 
 details {
