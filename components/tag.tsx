@@ -22,15 +22,18 @@ export default function Tag({
           'group-hover:bg-ngray-200',
           'dark:group-hover:bg-ngray-700',
           'transition',
-          'rounded-l-md',
-          !postsCount && 'rounded-r-md'
+          'rounded-md',
         )}>
           <span className="inline-flex flex-row items-center">
             <FiHash className="inline-block mr-1"/>
             {name}
           </span>
+          {postsCount && 
+            <span className='text-ngray-500 text-sm border-l border-ngray-300 dark:border-ngray-600 ml-4 pl-4'>
+              {postsCount}
+            </span>
+          }
         </div>
-        {postsCount && <div className="flex items-center text-center bg-ngray-200 dark:bg-ngray-700 group-hover:bg-ngray-300 dark:group-hover:bg-ngray-600 px-4 rounded-r-md transition">{postsCount}</div>}
       </a>
     </Link>
   )
