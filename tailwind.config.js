@@ -27,7 +27,7 @@ module.exports = {
         },
       },
       fontFamily: {
-        sans: ['Zen Maru Gothic', 'YuGothic', "Yu Gothic Medium", "Yu Gothic", ...fontFamily.sans]
+        sans: ['Inter', 'YuGothic', "Yu Gothic Medium", "Yu Gothic", ...fontFamily.sans]
       },
       fontSize: {
         '4.5xl': '2.5rem',

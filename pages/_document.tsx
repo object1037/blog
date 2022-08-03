@@ -10,9 +10,13 @@ class MyDocument extends Document {
     return (
       <Html lang="ja" className="h-full flex flex-col text-ngray-900 dark:text-ngray-100 bg-white dark:bg-ngray-900">
         <Head>
-          <link rel="preconnect" href="https://fonts.googleapis.com" />
-          <link rel="preconnect" href="https://fonts.gstatic.com" crossOrigin="" />
-          <link href="https://fonts.googleapis.com/css2?family=Zen+Maru+Gothic:wght@400;500;700&display=swap" rel="stylesheet" />
+          <link
+            rel="preload"
+            href="/fonts/Inter-var.woff2"
+            as="font"
+            type="font/woff2"
+            crossOrigin="anonymous"
+          />
         </Head>
         <body className="h-full">
           <Main />
