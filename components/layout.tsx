@@ -8,7 +8,7 @@ import { loadCSS } from 'fg-loadcss'
 export default function Layout({
   title = siteTitle,
   description = `${handleName}のブログ`,
-  imgUrl = `${siteUrl}/images/profile.jpg`,
+  imgUrl = 'https://icon.object1037.dev/color.png',
   url = siteUrl,
   meta,
   children,

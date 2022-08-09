@@ -1,7 +1,7 @@
 import Link from 'next/link'
 import Image from 'next/image'
 import clsx from 'clsx'
-import profileImg from '../public/images/profile.jpg'
+import profileImg from '../public/images/icon.svg'
 import { siteTitle } from '../constants/data'
 import Search from './search'
 
@@ -58,7 +58,7 @@ export default function Header ({
         <Link href="/">
           <a className={clsx(logoStyle)}>
             <div className="rounded-full overflow-hidden shadow-sm w-10 h-10">
-              <Image priority src={profileImg} alt="picture of me" className="rounded-full" placeholder="blur"/>
+              <Image priority src={profileImg} alt="picture of me" className="rounded-full"/>
             </div>
             <span>{siteTitle}</span>
           </a>
