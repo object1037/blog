@@ -58,7 +58,7 @@ export default function Header ({
         <Link href="/">
           <a className={clsx(logoStyle)}>
             <div className="rounded-full overflow-hidden shadow-sm w-10 h-10">
-              <Image priority src={profileImg} alt="picture of me" className="rounded-full"/>
+              <Image src={profileImg} alt="picture of me" className="rounded-full"/>
             </div>
             <span>{siteTitle}</span>
           </a>
