@@ -35,16 +35,15 @@ export default function Header ({
     'flex',
     'items-center',
     'justify-between',
-    'h-10'
   ]
   const navLinkStyle = [
-    'px-3',
-    'py-2.5',
+    'p-3',
     'rounded-md',
     'font-medium',
     'hover:bg-ngray-100',
     'dark:hover:bg-ngray-800',
-    'transition'
+    'transition',
+    'inline-block'
   ]
   const stickyStyle = [
     'sticky',
@@ -76,13 +75,19 @@ export default function Header ({
         <div className={clsx(navStyle)}>
           <div className='space-x-1 md:space-x-2'>
             <Link href="/">
-              <a className={clsx(navLinkStyle)}>Posts</a>
+              <a className={clsx(navLinkStyle)}>
+                <span className='capsizedText'>Posts</span>
+              </a>
             </Link>
             <Link href="/tags">
-              <a className={clsx(navLinkStyle)}>Tags</a>
+              <a className={clsx(navLinkStyle)}>
+                <span className='capsizedText'>Tags</span>
+              </a>
             </Link>
             <Link href="/about">
-              <a className={clsx(navLinkStyle)}>About</a>
+              <a className={clsx(navLinkStyle)}>
+                <span className='capsizedText'>About</span>
+              </a>
             </Link>
           </div>
           {(process.env.NEXT_PUBLIC_ALGOLIA_APPLICATION_ID && process.env.NEXT_PUBLIC_ALGOLIA_SEARCH_ONLY_API_KEY) &&

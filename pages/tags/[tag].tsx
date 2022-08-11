@@ -53,7 +53,9 @@ Page.getLayout = function getLayout({
     <span className="w-16 h-16 flex justify-center content-center items-center p-3 mr-3 rounded-full bg-ngray-100 dark:bg-ngray-800">
       <FiHash className="inline-block"/>
     </span>
-    {tag}
+    <span className='capsizedText'>
+      {tag}
+    </span>
   </p>
   return (
     <Layout title={`${tag}に関する投稿 | ${siteTitle}`} description={`${tag}に関する投稿一覧 | ${handleName}のブログ`} url={`${siteUrl}/tags/${tag}`}>
