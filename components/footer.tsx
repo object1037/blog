@@ -4,7 +4,7 @@ import { accounts, handleName } from '../constants/data'
 
 export default function Footer() {
   return (
-  <footer className="flex items-center bg-ngray-100 dark:bg-ngray-800 py-2 px-6 mt-auto">
+  <footer className="flex items-center bg-ngray-100 dark:bg-ngray-800 py-2 px-6 sm:px-12 mt-auto -mx-6 sm:-mx-12">
     <div className="flex flex-row items-center justify-between w-full max-w-5xl mx-auto">
       <div className="flex flex-row space-x-2">
         <IconLink label="Twitter link" link={`https://twitter.com/${accounts.twitter}`} >

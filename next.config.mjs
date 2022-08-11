@@ -6,11 +6,11 @@ const ContentSecurityPolicy = `
   default-src 'self';
   script-src 'self' 'unsafe-eval' 'unsafe-inline';
   child-src 'none';
-  style-src 'self' 'unsafe-inline' https://cdn.jsdelivr.net;
+  style-src 'self' 'unsafe-inline' https://cdn.jsdelivr.net https://fonts.googleapis.com;
   img-src * blob: data:;
   media-src 'none';
   connect-src *;
-  font-src 'self' https://cdn.jsdelivr.net;
+  font-src 'self' https://cdn.jsdelivr.net https://fonts.gstatic.com;
 `
 
 const securityHeaders = [
@@ -65,6 +65,7 @@ const nextConfig = {
     ]
   },
   reactStrictMode: true,
+  swcMinify: true,
 }
 
 export default nextConfig
