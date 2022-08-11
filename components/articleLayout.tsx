@@ -108,7 +108,7 @@ export default function ArticleLayout({
 
   return (
     <>
-      <article className="flex flex-col px-6 sm:px-12">
+      <article className="flex flex-col">
         <header className="max-w-6xl pt-10 pb-8 border-ngray-400 dark:border-ngray-500 border-b w-full mx-auto">
           <div className="max-w-5xl mx-auto w-full">
             <span className="font-normal text-sm text-ngray-600 dark:text-ngray-300"><DateDisplay dateString={meta.date} /></span>

@@ -10,26 +10,13 @@ export default function Header ({
 }: {
   sticky?: boolean
 }) {
-  const headerStyle = [
-    'py-2',
-    'px-4',
-    'md:px-8',
+  const wrapperStyle = [
     'bg-white',
     'dark:bg-ngray-900',
-  ]
-  const headerWrapperStyle = [
     'max-w-5xl',
+    'w-full',
     'mx-auto',
-  ]
-  const logoStyle = [
-    'flex',
-    'items-center',
-    'space-x-3',
-    'text-sm',
-    'font-bold',
-    'px-3',
-    'pt-2',
-    'w-max'
+    'py-2',
   ]
   const navStyle = [
     'flex',
@@ -52,50 +39,51 @@ export default function Header ({
   ]
   return (
     <>
-    <header className={clsx(headerStyle)}>
-      <div className={clsx(headerWrapperStyle)}>
-        <Link href="/">
-          <a className={clsx(logoStyle)}>
-            <div className="rounded-full overflow-hidden shadow-sm w-10 h-10">
-              <Image src={profileImg} alt="picture of me" className="rounded-full"/>
-            </div>
-            <span>{siteTitle}</span>
-          </a>
-        </Link>
-      </div>
+    <header className={clsx(wrapperStyle, 'mt-4 mb-2')}>
+      <Link href="/">
+        <a className='my-10'>
+          <span className='tracking-widest font-bold text-sm'>{siteTitle}</span>
+        </a>
+      </Link>
     </header>
     <nav className={clsx(
-      headerStyle,
       'border-b',
       'border-ngray-200',
       'dark:border-ngray-700',
+      '-mx-6',
+      'sm:-mx-12',
+      'px-6',
+      'sm:px-12',
       sticky && stickyStyle
     )}>
-      <div className={clsx(headerWrapperStyle, sticky && stickyStyle)}>
-        <div className={clsx(navStyle)}>
-          <div className='space-x-1 md:space-x-2'>
-            <Link href="/">
-              <a className={clsx(navLinkStyle)}>
-                <span className='capsizedText'>Posts</span>
-              </a>
-            </Link>
-            <Link href="/tags">
-              <a className={clsx(navLinkStyle)}>
-                <span className='capsizedText'>Tags</span>
-              </a>
-            </Link>
-            <Link href="/about">
-              <a className={clsx(navLinkStyle)}>
-                <span className='capsizedText'>About</span>
-              </a>
-            </Link>
-          </div>
-          {(process.env.NEXT_PUBLIC_ALGOLIA_APPLICATION_ID && process.env.NEXT_PUBLIC_ALGOLIA_SEARCH_ONLY_API_KEY) &&
-          <div>
-            <Search />
-          </div>
-          }
+      <div className={clsx(wrapperStyle, navStyle)}>
+        <div className='flex flex-wrap items-center gap-x-1 md:gap-x-2'>
+          <Link href="/">
+            <a className='mr-2 w-10 h-10'>
+              <Image src={profileImg} width={40} height={40} alt="picture of me" className="rounded-full"/>
+            </a>
+          </Link>
+          <Link href="/">
+            <a className={clsx(navLinkStyle)}>
+              <span className='capsizedText'>Posts</span>
+            </a>
+          </Link>
+          <Link href="/tags">
+            <a className={clsx(navLinkStyle)}>
+              <span className='capsizedText'>Tags</span>
+            </a>
+          </Link>
+          <Link href="/about">
+            <a className={clsx(navLinkStyle)}>
+              <span className='capsizedText'>About</span>
+            </a>
+          </Link>
         </div>
+        {(process.env.NEXT_PUBLIC_ALGOLIA_APPLICATION_ID && process.env.NEXT_PUBLIC_ALGOLIA_SEARCH_ONLY_API_KEY) &&
+        <div>
+          <Search />
+        </div>
+        }
       </div>
     </nav>
     </>
