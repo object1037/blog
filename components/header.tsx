@@ -24,7 +24,8 @@ export default function Header ({
     'justify-between',
   ]
   const navLinkStyle = [
-    'p-3',
+    'h-10',
+    'flex items-center px-3',
     'rounded-md',
     'font-medium',
     'hover:bg-ngray-100',
@@ -59,13 +60,8 @@ export default function Header ({
       <div className={clsx(wrapperStyle, navStyle)}>
         <div className='flex flex-wrap items-center gap-x-1 md:gap-x-2'>
           <Link href="/">
-            <a className='mr-2 w-10 h-10'>
+            <a className='w-10 h-10 hover:bg-ngray-100 dark:bg-ngray-800 transition rounded-full p-[3px]'>
               <Image src={profileImg} width={40} height={40} alt="picture of me" className="rounded-full"/>
-            </a>
-          </Link>
-          <Link href="/">
-            <a className={clsx(navLinkStyle)}>
-              <span className='capsizedText'>Posts</span>
             </a>
           </Link>
           <Link href="/tags">

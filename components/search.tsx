@@ -81,7 +81,7 @@ export default function Search() {
   }
 
   const searchButtonStyle = [
-    'p-3',
+    'p-[11px]',
     'rounded-full',
     'text-lg',
     'hover:bg-ngray-100',
