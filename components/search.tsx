@@ -113,9 +113,9 @@ export default function Search() {
     'mx-auto',
     'md:max-w-5xl',
     'p-1',
-    'pb-4',
     'sm:p-3',
-    'sm:pb-4',
+    'pb-0',
+    'sm:pb-0',
     'max-h-full',
     'overflow-auto',
     'relative'

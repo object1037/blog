@@ -2,8 +2,6 @@
   position: sticky;
   margin-bottom: 0;
   padding: 0.75rem;
-  padding-top: 0.75rem;
-  padding-bottom: 1.75rem;
   border-radius: 0.5rem;
 }
 .ais-SearchBox-form {
@@ -29,6 +27,8 @@
 }
 .ais-Hits {
   margin-top: 0.25rem;
+  margin-left: 0.75rem;
+  margin-right: 0.75rem;
 }
 .ais-Hits-item {
   display: flex;
@@ -78,6 +78,7 @@
   margin-left: 0.75rem;
   margin-right: 0.75rem;
   padding-top: 1rem;
+  padding-bottom: 1rem;
   font-size: 0.825rem;
   color: #a3a3a3;
   justify-content: flex-end;
@@ -119,6 +120,8 @@
 @media (min-width: 640px) {
   .ais-Hits {
     margin-top: 0.5rem;
+    margin-left: 1.25rem;
+    margin-right: 1.25rem;
   }
   .ais-SearchBox {
     margin-bottom: 0;
