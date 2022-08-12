@@ -1,10 +1,10 @@
-import { InstantSearch, Hits, SearchBox, Configure, Pagination, PoweredBy, Snippet } from 'react-instantsearch-dom'
-import algoliasearch from 'algoliasearch/lite'
+import { InstantSearch, Hits, SearchBox, Configure, Pagination, PoweredBy, Snippet } from 'react-instantsearch-hooks-web'
+import algoliasearch, { SearchClient } from 'algoliasearch/lite'
+import { MultipleQueriesResponse, MultipleQueriesQuery } from "@algolia/client-search"
 import Link from 'next/link'
 import Modal from 'react-modal'
 import { useState } from 'react'
 import { FiSearch } from 'react-icons/fi'
-import { MultipleQueriesQuery } from '@algolia/client-search'
 import clsx from 'clsx'
 import backfaceFixed from '../utils/backfaceFixed'
 
@@ -17,21 +17,26 @@ export default function Search() {
     return <></>
   }
   const algoliaClient = algoliasearch(process.env.NEXT_PUBLIC_ALGOLIA_APPLICATION_ID, process.env.NEXT_PUBLIC_ALGOLIA_SEARCH_ONLY_API_KEY)
-  const searchClient = {
+  const searchClient: SearchClient = {
     ...algoliaClient,
-    search(requests: MultipleQueriesQuery[]) {
+    search: <SearchResponse,>(requests: Readonly<MultipleQueriesQuery[]>) => {
       if (requests.every(({ params }) => !params?.query)) {
-        return Promise.resolve({
+        return Promise.resolve<MultipleQueriesResponse<SearchResponse>>({
           results: requests.map(() => ({
             hits: [],
             nbHits: 0,
             nbPages: 0,
             page: 0,
             processingTimeMS: 0,
+            hitsPerPage: 0,
+            exhaustiveNbHits: true,
+            query: "",
+            params: "",
           })),
-        })
+        });
       }
-      return algoliaClient.search(requests);
+
+      return algoliaClient.search(requests)
     },
   }
 
@@ -53,6 +58,7 @@ export default function Search() {
       title: string
       description: string
       content: string
+      __position: number
     }
   }) {
     const cardStyle = [
@@ -150,13 +156,18 @@ export default function Search() {
       <InstantSearch indexName="blog_datas" searchClient={searchClient}>
         <Configure hitsPerPage={3} attributesToSnippet={['content:20']} />
         <div className='flex'>
-          <SearchBox autoFocus className='grow' />
+          <SearchBox className='grow' />
           <button onClick={() => closeModal()} aria-label="close modal" className={clsx(closeButtonStyle)}>
             ESC
           </button>
         </div>
         <Hits hitComponent={Hit} />
-        <Pagination />
+        <Pagination classNames={{
+          item: "inline-block flex items-center justify-center hover:bg-ngray-100 dark:hover:bg-ngray-800 rounded-full transition",
+          link: "capsizedText py-3 w-10 text-center rounded-full",
+          disabledItem: "hover:bg-transparent",
+          selectedItem: "bg-ngray-100 dark:bg-ngray-800",
+        }}/>
         <PoweredBy />
       </InstantSearch>
     </Modal>

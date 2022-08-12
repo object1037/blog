@@ -39,7 +39,7 @@
 .ais-PoweredBy {
   border-top: 1px solid #e5e5e5;
 }
-.ais-Pagination-list--noRefinement {
+.ais-Pagination--noRefinement {
   display: none;
 }
 .ais-Pagination-list {
@@ -53,23 +53,6 @@
 }
 .ais-Pagination-list > * + * {
   margin-left: 1rem;
-}
-.ais-Pagination-link {
-  width: 100%;
-  height: 100%;
-  text-align: center;
-  display: flex;
-  justify-content: center;
-  align-items: center;
-}
-.ais-Pagination-item {
-  border-radius: 9999px;
-  display: inline-block;
-  width: 2.5rem;
-  height: 2.5rem;
-}
-.ais-Pagination-item:hover:not(.ais-Pagination-item--disabled), .ais-Pagination-item--selected {
-  background-color: #f5f5f5;
 }
 .ais-Pagination-item--disabled {
   color: #a3a3a3;
