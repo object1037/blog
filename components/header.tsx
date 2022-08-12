@@ -1,9 +1,10 @@
 import Link from 'next/link'
-import Image from 'next/image'
 import clsx from 'clsx'
-import profileImg from '../public/images/icon.svg'
 import { siteTitle } from '../constants/data'
 import Search from './search'
+import Icon from './icon'
+//import Image from 'next/image'
+//import profileImg from '../public/images/icon.svg'
 
 export default function Header ({
   sticky
@@ -60,8 +61,8 @@ export default function Header ({
       <div className={clsx(wrapperStyle, navStyle)}>
         <div className='flex flex-wrap items-center gap-x-1 md:gap-x-2'>
           <Link href="/">
-            <a className='w-10 h-10 hover:bg-ngray-100 dark:bg-ngray-800 transition rounded-full p-[3px]'>
-              <Image src={profileImg} width={40} height={40} alt="picture of me" className="rounded-full"/>
+            <a className='w-10 h-10 hover:bg-ngray-100 dark:hover:bg-ngray-800 transition rounded-full p-1'>
+              <Icon />
             </a>
           </Link>
           <Link href="/tags">
