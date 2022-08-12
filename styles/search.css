@@ -48,6 +48,8 @@
   align-items: center;
   color: #171717;
   border-top: 1px solid #e5e5e5;
+  margin-left: 0.75rem;
+  margin-right: 0.75rem;
 }
 .ais-Pagination-list > * + * {
   margin-left: 1rem;
@@ -126,6 +128,10 @@
   .ais-SearchBox {
     margin-bottom: 0;
     padding: 1.25rem;
+  }
+  .ais-Pagination-list {
+    margin-left: 1.25rem;
+    margin-right: 1.25rem;
   }
   .ais-PoweredBy {
     margin-left: 1.25rem;

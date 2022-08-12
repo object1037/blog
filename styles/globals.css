@@ -48,6 +48,10 @@ details {
   @apply mb-5 rounded-lg;
 }
 
+.ais-Pagination-link {
+  @apply capsizedText
+}
+
 .capsizedText::before {
   content: "";
   margin-bottom: -0.506em;
