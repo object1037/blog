@@ -18,6 +18,8 @@ export default function Header ({
     'w-full',
     'mx-auto',
     'py-2',
+    'px-6',
+    'sm:px-12'
   ]
   const navStyle = [
     'flex',

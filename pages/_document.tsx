@@ -14,7 +14,7 @@ class MyDocument extends Document {
           <link rel="preconnect" href="https://fonts.gstatic.com" crossOrigin='anonymous' />
           <link href="https://fonts.googleapis.com/css2?family=Zen+Maru+Gothic:wght@400;500;700&display=optional" rel="stylesheet" />
         </Head>
-        <body className="h-full px-6 sm:px-12">
+        <body className="h-full">
           <Main />
           <NextScript />
         </body>
