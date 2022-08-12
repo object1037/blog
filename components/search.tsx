@@ -3,7 +3,7 @@ import algoliasearch from 'algoliasearch/lite'
 import Link from 'next/link'
 import Modal from 'react-modal'
 import { useState } from 'react'
-import { FiSearch, FiX } from 'react-icons/fi'
+import { FiSearch } from 'react-icons/fi'
 import { MultipleQueriesQuery } from '@algolia/client-search'
 import clsx from 'clsx'
 import backfaceFixed from '../utils/backfaceFixed'
@@ -90,13 +90,16 @@ export default function Search() {
     'transition'
   ]
   const closeButtonStyle = [
-    'text-lg',
-    'text-ngray-300',
+    'text-sm',
+    'text-ngray-400',
     'hover:text-ngray-900',
-    'dark:text-ngray-700',
+    'dark:text-ngray-500',
     'dark:hover:text-ngray-100',
     'outline-none',
     'transition',
+    'mr-5',
+    'p-2',
+    'my-auto'
   ]
   const modalStyle = [
     'bg-white',
@@ -144,14 +147,14 @@ export default function Search() {
       className={clsx(modalStyle)}
       overlayClassName={clsx(overlayStyle)}
     >
-      <div className='flex flex-row-reverse w-full mb-4 sm:mb-8 pr-2 pt-2 sm:p-0 sm:pt-1 sm:pr-1'>
-        <button onClick={() => closeModal()} aria-label="close modal" className={clsx(closeButtonStyle)}>
-          <FiX />
-        </button>
-      </div>
       <InstantSearch indexName="blog_datas" searchClient={searchClient}>
         <Configure hitsPerPage={3} attributesToSnippet={['content:20']} />
-        <SearchBox autoFocus />
+        <div className='flex'>
+          <SearchBox autoFocus className='grow' />
+          <button onClick={() => closeModal()} aria-label="close modal" className={clsx(closeButtonStyle)}>
+            ESC
+          </button>
+        </div>
         <Hits hitComponent={Hit} />
         <Pagination />
         <PoweredBy />
