@@ -17,9 +17,7 @@ export default function Header ({
     'max-w-5xl',
     'w-full',
     'mx-auto',
-    'py-2',
-    'px-6',
-    'sm:px-12'
+    'py-2'
   ]
   const navStyle = [
     'flex',
@@ -43,19 +41,19 @@ export default function Header ({
   ]
   return (
     <>
-    <header className={clsx(wrapperStyle, 'mt-4 mb-2')}>
-      <Link href="/">
-        <a className='my-10'>
-          <span className='tracking-widest font-bold text-sm'>{siteTitle}</span>
-        </a>
-      </Link>
+    <header className='px-6 sm:px-12'>
+      <div className={clsx(wrapperStyle, 'mt-4 mb-2')}>
+        <Link href="/">
+          <a className='my-10'>
+            <span className='tracking-widest font-bold text-sm'>{siteTitle}</span>
+          </a>
+        </Link>
+      </div>
     </header>
     <nav className={clsx(
       'border-b',
       'border-ngray-200',
       'dark:border-ngray-700',
-      '-mx-6',
-      'sm:-mx-12',
       'px-6',
       'sm:px-12',
       sticky && stickyStyle
