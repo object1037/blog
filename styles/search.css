@@ -64,11 +64,9 @@
 }
 .ais-Pagination-item {
   border-radius: 9999px;
-  display: inline-flex;
+  display: inline-block;
   width: 2.5rem;
   height: 2.5rem;
-  justify-content: center;
-  align-items: center;
 }
 .ais-Pagination-item:hover:not(.ais-Pagination-item--disabled), .ais-Pagination-item--selected {
   background-color: #f5f5f5;
