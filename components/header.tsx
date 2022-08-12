@@ -27,7 +27,7 @@ export default function Header ({
   const navLinkStyle = [
     'h-10',
     'flex items-center px-3',
-    'rounded-md',
+    'rounded-lg',
     'font-medium',
     'hover:bg-ngray-100',
     'dark:hover:bg-ngray-800',

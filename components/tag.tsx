@@ -11,7 +11,7 @@ export default function Tag({
 }) {
   return (
     <Link href={`/tags/${name}`}>
-      <a className="flex flex-row group m-2 rounded-md">
+      <a className="flex flex-row group m-2 rounded-lg">
         <div className={clsx(
           'px-4',
           'py-2.5',
@@ -22,7 +22,7 @@ export default function Tag({
           'group-hover:bg-ngray-200',
           'dark:group-hover:bg-ngray-700',
           'transition',
-          'rounded-md',
+          'rounded-lg',
         )}>
           <span className={clsx(
             'inline-flex',

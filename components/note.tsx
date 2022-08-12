@@ -14,7 +14,7 @@ const noteStyle = [
   'border-transparent',
   'text-base',
   'px-4',
-  'rounded-md',
+  'rounded-lg',
   'w-full',
   'mx-auto',
   'text-ngray-800',

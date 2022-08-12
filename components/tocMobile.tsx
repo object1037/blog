@@ -49,7 +49,7 @@ export default function ToCMobile({
     'overflow-y-auto',
     'overflow-hidden',
     'max-w-sm',
-    'rounded-md',
+    'rounded-lg',
     'border',
     'border-ngray-300',
     'dark:border-ngray-600',

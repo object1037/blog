@@ -104,7 +104,7 @@ export default function Search() {
     'border',
     'border-transparent',
     'dark:border-ngray-700',
-    'rounded-md',
+    'rounded-lg',
     'outline-none',
     'w-full',
     'mx-auto',

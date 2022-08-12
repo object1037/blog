@@ -13,11 +13,11 @@ code {
 }
 
 :not(pre) > code {
-  @apply bg-ngray-100 dark:bg-ngray-800 mx-1 px-2 py-1 rounded-md break-all text-base;
+  @apply bg-ngray-100 dark:bg-ngray-800 mx-1 px-2 py-1 rounded-lg break-all text-base;
 }
 
 pre {
-  @apply rounded-md box-border overflow-hidden leading-6 mb-9;
+  @apply rounded-lg box-border overflow-hidden leading-6 mb-9;
 }
 
 .hljs {
@@ -33,7 +33,7 @@ pre code.hljs {
 }
 
 .rehype-code-title {
-  @apply text-ngray-300 text-sm font-mono py-3 px-4 bg-ngray-800 border-b border-ngray-600 rounded-t-md break-all;
+  @apply text-ngray-300 text-sm font-mono py-3 px-4 bg-ngray-800 border-b border-ngray-600 rounded-t-lg break-all;
 }
 
 .rehype-code-title + pre {
@@ -41,11 +41,11 @@ pre code.hljs {
 }
 
 summary {
-  @apply px-4 py-3 mb-4 bg-ngray-100 dark:bg-ngray-800 hover:bg-ngray-200 dark:hover:bg-ngray-700 rounded-md cursor-pointer transition;
+  @apply px-4 py-3 mb-4 bg-ngray-100 dark:bg-ngray-800 hover:bg-ngray-200 dark:hover:bg-ngray-700 rounded-lg cursor-pointer transition;
 }
 
 details {
-  @apply mb-5 rounded-md;
+  @apply mb-5 rounded-lg;
 }
 
 .capsizedText::before {
