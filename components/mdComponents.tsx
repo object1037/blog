@@ -205,12 +205,10 @@ export const Img = (props: ComponentPropsWithoutRef<"img">) => {
   const imWrapperStyle = [
     'flex',
     'overflow-hidden',
-    'rounded-t-lg',
     'border-0',
     'mt-10',
   ]
   const imBgStyle = [
-    'overflow-hidden',
     'bg-ngray-200',
     'dark:bg-ngray-700',
     loading && 'animate-pulse'
@@ -224,7 +222,7 @@ export const Img = (props: ComponentPropsWithoutRef<"img">) => {
         alt={alt}
         width={w}
         height={h}
-        className={clsx(imBgStyle)}
+        className={clsx(imBgStyle, props.title ? 'rounded-t-lg' : 'rounded-lg')}
         onLoadingComplete={() => setLoading(false)}
       />
     </div>
