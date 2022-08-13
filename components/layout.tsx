@@ -8,7 +8,6 @@ import { loadCSS } from 'fg-loadcss'
 export default function Layout({
   title = siteTitle,
   description = `${handleName}のブログ`,
-  imgUrl = 'https://icon.object1037.dev/png',
   url = siteUrl,
   meta,
   children,
@@ -42,7 +41,7 @@ export default function Layout({
       <meta property="og:title" content={meta ? `${meta.title} | ${siteTitle}` : title} />
       <meta property="og:url" content={meta ? `${siteUrl}/posts/${meta.date}` : url} />
       <meta property="og:description" content={meta ? meta.description : description} />
-      <meta property="og:image" content={meta ? meta.ogImgUrl ? meta.ogImgUrl : getOgImageUrl(meta.title) : imgUrl} />
+      <meta property="og:image" content={meta?.ogImgUrl ? meta.ogImgUrl : getOgImageUrl(meta?.title)} />
       <link rel="alternate" type="application/rss+xml" href="/feed.xml" title={siteTitle} />
       <link rel='canonical' href={meta ? `${siteUrl}/posts/${meta.date}` : url} />
       <title>{meta ? `${meta.title} | ${siteTitle}` : title}</title>
