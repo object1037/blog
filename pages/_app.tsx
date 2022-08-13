@@ -4,7 +4,6 @@ import { AppProps } from 'next/app'
 import 'highlight.js/styles/atom-one-dark.css'
 import '../styles/globals.css'
 import 'instantsearch.css/themes/reset.css'
-import '../styles/search.css'
 import { useRouter } from 'next/router'
 
 type NextPageWithLayout = NextPage & {
