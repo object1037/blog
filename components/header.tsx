@@ -1,9 +1,9 @@
 import Link from 'next/link'
-import Image from 'next/image'
 import clsx from 'clsx'
-import profileImg from '../public/images/icon.svg'
 import { siteTitle } from '../constants/data'
 import Search from './search'
+import Image from 'next/image'
+import profileImg from '../public/apple-touch-icon.png'
 
 export default function Header ({
   sticky
@@ -16,7 +16,7 @@ export default function Header ({
     'max-w-5xl',
     'w-full',
     'mx-auto',
-    'py-2',
+    'py-2'
   ]
   const navStyle = [
     'flex',
@@ -24,8 +24,9 @@ export default function Header ({
     'justify-between',
   ]
   const navLinkStyle = [
-    'p-3',
-    'rounded-md',
+    'h-10',
+    'flex items-center px-3',
+    'rounded-lg',
     'font-medium',
     'hover:bg-ngray-100',
     'dark:hover:bg-ngray-800',
@@ -39,30 +40,26 @@ export default function Header ({
   ]
   return (
     <>
-    <header className={clsx(wrapperStyle, 'mt-4 mb-2')}>
-      <Link href="/">
-        <a className='my-10'>
-          <span className='tracking-widest font-bold text-sm'>{siteTitle}</span>
-        </a>
-      </Link>
+    <header className='px-6 sm:px-12'>
+      <div className={clsx(wrapperStyle, 'mt-3.5 mb-1')}>
+        <Link href="/">
+          <a className='flex items-center max-w-max gap-x-4'>
+            <Image src={profileImg} alt="my icon" width={40} height={40} />
+            <span className='tracking-widest font-bold text-sm'>{siteTitle}</span>
+          </a>
+        </Link>
+      </div>
     </header>
     <nav className={clsx(
       'border-b',
       'border-ngray-200',
       'dark:border-ngray-700',
-      '-mx-6',
-      'sm:-mx-12',
       'px-6',
       'sm:px-12',
       sticky && stickyStyle
     )}>
       <div className={clsx(wrapperStyle, navStyle)}>
         <div className='flex flex-wrap items-center gap-x-1 md:gap-x-2'>
-          <Link href="/">
-            <a className='mr-2 w-10 h-10'>
-              <Image src={profileImg} width={40} height={40} alt="picture of me" className="rounded-full"/>
-            </a>
-          </Link>
           <Link href="/">
             <a className={clsx(navLinkStyle)}>
               <span className='capsizedText'>Posts</span>

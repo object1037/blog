@@ -19,10 +19,10 @@ export const Blockquote = (props: ComponentPropsWithoutRef<"blockquote">) => {
   const quoteStyle = [
     'bg-ngray-100',
     'dark:bg-ngray-800',
-    'rounded-md',
+    'rounded-lg',
     'text-ngray-700',
     'dark:text-ngray-200',
-    'border-l-[0.375rem]',
+    'border-l-[0.5rem]',
     'border-ngray-400',
     'dark:border-ngray-500',
     'px-5',
@@ -122,7 +122,7 @@ const copyButtonStyle = [
   'top-2',
   'right-2',
   'p-2',
-  'rounded-md',
+  'rounded-lg',
   'bg-ngray-800',
   'text-ngray-400',
   'hover:text-ngray-300',
@@ -205,12 +205,10 @@ export const Img = (props: ComponentPropsWithoutRef<"img">) => {
   const imWrapperStyle = [
     'flex',
     'overflow-hidden',
-    'rounded-t-md',
     'border-0',
     'mt-10',
   ]
   const imBgStyle = [
-    'overflow-hidden',
     'bg-ngray-200',
     'dark:bg-ngray-700',
     loading && 'animate-pulse'
@@ -218,17 +216,17 @@ export const Img = (props: ComponentPropsWithoutRef<"img">) => {
 
   return (
     <>
-    <div className={clsx(imWrapperStyle, props.title ? 'rounded-t-md' : 'rounded-md mb-9')}>
+    <div className={clsx(imWrapperStyle, props.title ? 'rounded-t-lg' : 'rounded-lg mb-9')}>
       <Image
         src={`/images/${props.src}`}
         alt={alt}
         width={w}
         height={h}
-        className={clsx(imBgStyle)}
+        className={clsx(imBgStyle, props.title ? 'rounded-t-lg' : 'rounded-lg')}
         onLoadingComplete={() => setLoading(false)}
       />
     </div>
-    {props.title ? <p className="text-ngray-600 dark:text-ngray-300 text-sm py-3 px-4 mb-9 bg-ngray-100 dark:bg-ngray-800 rounded-b-md">{props.title}</p> : null}
+    {props.title ? <p className="text-ngray-600 dark:text-ngray-300 text-sm py-3 px-4 mb-9 bg-ngray-100 dark:bg-ngray-800 rounded-b-lg">{props.title}</p> : null}
     </>
   )
 }

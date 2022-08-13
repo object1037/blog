@@ -17,7 +17,7 @@ export default function PageLayout({
     'pb-10'
   ]
   return (
-    <main className="mb-20 px-6 sm:px-12">
+    <main className="mb-20 mx-6 sm:mx-12">
       <section className="flex flex-col justify-center items-center max-w-4xl mx-auto">
         <h1 className={clsx(h1Style)}>{h1}</h1>
         {children}
