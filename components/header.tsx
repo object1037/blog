@@ -2,9 +2,8 @@ import Link from 'next/link'
 import clsx from 'clsx'
 import { siteTitle } from '../constants/data'
 import Search from './search'
-import Icon from './icon'
-//import Image from 'next/image'
-//import profileImg from '../public/images/icon.svg'
+import Image from 'next/image'
+import profileImg from '../public/apple-touch-icon.png'
 
 export default function Header ({
   sticky
@@ -42,9 +41,10 @@ export default function Header ({
   return (
     <>
     <header className='px-6 sm:px-12'>
-      <div className={clsx(wrapperStyle, 'mt-4 mb-2')}>
+      <div className={clsx(wrapperStyle, 'mt-3.5 mb-1')}>
         <Link href="/">
-          <a className='my-10'>
+          <a className='flex items-center max-w-max gap-x-4'>
+            <Image src={profileImg} alt="my icon" width={40} height={40} />
             <span className='tracking-widest font-bold text-sm'>{siteTitle}</span>
           </a>
         </Link>
@@ -61,8 +61,8 @@ export default function Header ({
       <div className={clsx(wrapperStyle, navStyle)}>
         <div className='flex flex-wrap items-center gap-x-1 md:gap-x-2'>
           <Link href="/">
-            <a className='w-10 h-10 hover:bg-ngray-100 dark:hover:bg-ngray-800 transition rounded-full p-1'>
-              <Icon />
+            <a className={clsx(navLinkStyle)}>
+              <span className='capsizedText'>Posts</span>
             </a>
           </Link>
           <Link href="/tags">
