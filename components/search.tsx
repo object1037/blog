@@ -68,7 +68,16 @@ export default function Search() {
     'sm:pb-12'
   ]
   const InstantSearch = dynamic(() => import('./searchModalContent'), {
-    loading: () => <div className='p-4'>loading...</div>,
+    loading: () => (
+      <div className='flex'>
+        <div className='flex-1 mx-3 my-4 sm:my-6 border border-ngray-400 dark:border-ngray-500 text-ngray-500 dark:text-ngray-400 py-4 px-6 rounded-lg'>
+          loading...
+        </div>
+        <button onClick={() => closeModal()} aria-label="close modal" className='text-sm text-ngray-400 hover:text-ngray-900 dark:text-ngray-500 dark:hover:text-ngray-100 outline-none transition mr-5 p-2 my-auto'>
+          ESC
+        </button>
+      </div>
+    )
   })
   return (
     <>

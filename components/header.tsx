@@ -44,7 +44,9 @@ export default function Header ({
       <div className={clsx(wrapperStyle, 'mt-3.5 mb-1')}>
         <Link href="/">
           <a className='flex items-center max-w-max gap-x-4'>
-            <Image src={profileImg} alt="my icon" width={40} height={40} />
+            <span className='overflow-hidden rounded-full w-10 h-10'>
+              <Image src={profileImg} alt="my icon" width={40} height={40} placeholder='blur' priority />
+            </span>
             <span className='tracking-widest font-bold text-sm'>{siteTitle}</span>
           </a>
         </Link>
