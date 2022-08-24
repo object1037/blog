@@ -11,7 +11,7 @@ const SearchModalContent = ({
 }: {
   applicationId: string
   searchApiKey: string
-  closeModal: () => void 
+  closeModal: () => void
 }) => {
   const algoliaClient = algoliasearch(applicationId, searchApiKey)
   const searchClient: SearchClient = {
@@ -61,16 +61,16 @@ const SearchModalContent = ({
     ]
     return (
       <>
-      <Link href={`/posts/${hit.objectID}`} >
-        <a className={clsx(cardStyle)}  onClick={() => closeModal()}>
-          <h2 className="text-lg font-semibold text-ngray-900 dark:text-ngray-100 mb-3 truncate">{hit.title}</h2>
-          <p className="text-ngray-900 dark:text-ngray-100 truncate pb-0.5">
-            <Snippet attribute="content" hit={hit} classNames={{
-              highlighted: 'border-b-2 border-ppink-200 bg-transparent text-inherit'
-            }} />
-          </p>
-        </a>
-      </Link>
+        <Link href={`/posts/${hit.objectID}`} >
+          <a className={clsx(cardStyle)} onClick={() => closeModal()}>
+            <h2 className="text-lg font-semibold text-ngray-900 dark:text-ngray-100 mb-3 truncate">{hit.title}</h2>
+            <p className="text-ngray-900 dark:text-ngray-100 truncate pb-0.5">
+              <Snippet attribute="content" hit={hit} classNames={{
+                highlighted: 'border-b-2 border-ppink-200 bg-transparent text-inherit'
+              }} />
+            </p>
+          </a>
+        </Link>
       </>
     )
   }
@@ -91,7 +91,7 @@ const SearchModalContent = ({
     <InstantSearch indexName="blog_datas" searchClient={searchClient}>
       <Configure hitsPerPage={3} attributesToSnippet={['content:20']} />
       <div className='flex sticky top-0 bg-inherit pt-1 sm:pt-3'>
-        <SearchBox placeholder='Search posts' classNames={{
+        <SearchBox placeholder='Search posts' autoFocus classNames={{
           root: 'flex-1 rounded-lg bg-ngray-100 dark:bg-ngray-800 m-3 py-4 px-6',
           form: 'w-full flex',
           input: 'w-full bg-ngray-100 dark:bg-ngray-800 appearance-none outline-none',
@@ -114,7 +114,7 @@ const SearchModalContent = ({
         disabledItem: "text-ngray-300 dark:text-ngray-600 hover:bg-inherit dark:hover:bg-inherit",
         selectedItem: "bg-ngray-100 dark:bg-ngray-800",
         noRefinementRoot: 'hidden'
-      }}/>
+      }} />
       <PoweredBy classNames={{
         root: 'border-t border-ngray-200 dark:border-ngray-700 mx-3 py-4 text-sm justify-end'
       }} />
