@@ -8,12 +8,12 @@ export function getAllTagsData(posts: postData[]) {
   function convertToArr(value: string) {
     let tagData: tagData = {
       name: value,
-      articles: articles[value]
+      articles: articles[value],
     }
     tags.push(tagData)
   }
 
-  posts.forEach(post => {
+  posts.forEach((post) => {
     post.tags.map((tag) => {
       tagsSet.add(tag)
     })

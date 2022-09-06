@@ -10,7 +10,7 @@ import generateSitemap from '../../utils/generateSitemap'
 
 export const getStaticProps: GetStaticProps = async () => {
   const allTags = getAllTagsData(await getAllPostsData())
-  
+
   const tags = allTags.map((tagData) => {
     return tagData.name
   })
@@ -20,20 +20,16 @@ export const getStaticProps: GetStaticProps = async () => {
 
   return {
     props: {
-      allTags
-    }
+      allTags,
+    },
   }
 }
 
-export default function Page({
-  allTags
-}: {
-  allTags: tagData[]
-}) {
+export default function Page({ allTags }: { allTags: tagData[] }) {
   return (
     <div className="-ml-4 -mt-2 flex flex-row flex-wrap w-full">
       {allTags.map((tag) => (
-        <Tag name={tag.name} postsCount={tag.articles.length} key={tag.name}/>
+        <Tag name={tag.name} postsCount={tag.articles.length} key={tag.name} />
       ))}
     </div>
   )
@@ -41,10 +37,12 @@ export default function Page({
 
 Page.getLayout = function getLayout({ page }: { page: ReactElement }) {
   return (
-    <Layout title={`タグ一覧 | ${siteTitle}`} description={`タグ一覧 | ${handleName}のブログ`} url={`${siteUrl}/tags`}>
-      <PageLayout h1="Tags">
-        {page}
-      </PageLayout>
+    <Layout
+      title={`タグ一覧 | ${siteTitle}`}
+      description={`タグ一覧 | ${handleName}のブログ`}
+      url={`${siteUrl}/tags`}
+    >
+      <PageLayout h1="Tags">{page}</PageLayout>
     </Layout>
   )
 }

@@ -6,7 +6,23 @@ import ArticleLayout from '../../components/articleLayout'
 import { getMDXComponent } from 'mdx-bundler/client'
 import React from 'react'
 import { getAllPostsPaths } from '../../utils/getAllPostsPaths'
-import { H2, H3, H4, Paragraph, Ul, Ol, Li, Anchor, Blockquote, Pre, Table, TR, TH, TD, Img } from '../../components/mdComponents'
+import {
+  H2,
+  H3,
+  H4,
+  Paragraph,
+  Ul,
+  Ol,
+  Li,
+  Anchor,
+  Blockquote,
+  Pre,
+  Table,
+  TR,
+  TH,
+  TD,
+  Img,
+} from '../../components/mdComponents'
 import Note, { noteProps } from '../../components/note'
 import generateSearchIndex from '../../lib/generateSearchIndex'
 
@@ -30,8 +46,8 @@ export const getStaticProps: GetStaticProps = async ({ params }) => {
   return {
     props: {
       code,
-      frontmatter
-    }
+      frontmatter,
+    },
   }
 }
 
@@ -39,13 +55,13 @@ export async function getStaticPaths() {
   const allPostsPaths = getAllPostsPaths()
   return {
     paths: allPostsPaths.map((path) => ({ params: { date: path } })),
-    fallback: false
-  };
+    fallback: false,
+  }
 }
 
-const defaultNoteStyle = "my-8"
+const defaultNoteStyle = 'my-8'
 const mdComponents = {
-  h1: H2, 
+  h1: H2,
   h2: H3,
   h3: H4,
   p: Paragraph,
@@ -60,40 +76,29 @@ const mdComponents = {
   th: TH,
   td: TD,
   img: Img,
-  Note: ({
-    children,
-    className = defaultNoteStyle,
-    type
-  }: noteProps) => Note({
-    children,
-    className,
-    type
-  }),
+  Note: ({ children, className = defaultNoteStyle, type }: noteProps) =>
+    Note({
+      children,
+      className,
+      type,
+    }),
 }
 
-export default function Page({
-  code
-}: {
-  code: string
-}) {
+export default function Page({ code }: { code: string }) {
   const Contents = React.useMemo(() => getMDXComponent(code), [code])
-  return (
-    <Contents components={mdComponents} />
-  )
+  return <Contents components={mdComponents} />
 }
 
 Page.getLayout = function getLayout({
   page,
-  frontmatter
+  frontmatter,
 }: {
-  page: ReactElement,
+  page: ReactElement
   frontmatter: postData
 }) {
   return (
     <Layout meta={frontmatter}>
-      <ArticleLayout meta={frontmatter}>
-        {page}
-      </ArticleLayout>
+      <ArticleLayout meta={frontmatter}>{page}</ArticleLayout>
     </Layout>
   )
 }

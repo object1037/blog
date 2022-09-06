@@ -5,7 +5,8 @@
   "scripts": {
     "dev": "next dev",
     "build": "next build",
-    "start": "next start"
+    "start": "next start",
+    "prettier": "prettier --no-semi -l --single-quote './pages/**/*.{js,ts,jsx,tsx,mdx}' './components/**/*.{js,ts,jsx,tsx,mdx}' './constants/*.ts' './utils/*.{ts,tsx}' './posts/*.mdx' './styles/*.css'"
   },
   "dependencies": {
     "algoliasearch": "^4.14.2",

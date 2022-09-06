@@ -10,7 +10,7 @@ type NextPageWithLayout = NextPage & {
   getLayout?: ({
     page,
     tag,
-    frontmatter
+    frontmatter,
   }: {
     page: ReactElement
     tag?: string
@@ -26,11 +26,9 @@ export default function App({ Component, pageProps }: AppPropsWithLayout) {
   const router = useRouter()
   const { tag } = router.query
   const getLayout = Component.getLayout ?? (({ page }: { page: any }) => page)
-  return (
-    getLayout({
-      page: <Component {...pageProps} />,
-      tag: tag ? tag as string : '',
-      frontmatter: pageProps.frontmatter ? pageProps.frontmatter : null
-    })
-  )
+  return getLayout({
+    page: <Component {...pageProps} />,
+    tag: tag ? (tag as string) : '',
+    frontmatter: pageProps.frontmatter ? pageProps.frontmatter : null,
+  })
 }

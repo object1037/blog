@@ -25,7 +25,7 @@ pre {
 }
 
 pre code.hljs {
-  @apply p-4
+  @apply p-4;
 }
 
 .footnotes {
@@ -49,13 +49,13 @@ details {
 }
 
 .capsizedText::before {
-  content: "";
+  content: '';
   margin-bottom: -0.506em;
   display: table;
 }
 
 .capsizedText::after {
-  content: "";
+  content: '';
   margin-top: -0.294em;
   display: table;
 }

@@ -5,7 +5,7 @@ import { siteTitle } from '../constants/data'
 
 export default function Custom404() {
   return (
-    <div className='w-full'>
+    <div className="w-full">
       <p>Page not found</p>
     </div>
   )
@@ -14,9 +14,7 @@ export default function Custom404() {
 Custom404.getLayout = function getLayout({ page }: { page: ReactElement }) {
   return (
     <Layout title={`404 | ${siteTitle}`} description={`404 | ${siteTitle}`}>
-      <PageLayout h1="404">
-        {page}
-      </PageLayout>
+      <PageLayout h1="404">{page}</PageLayout>
     </Layout>
   )
 }

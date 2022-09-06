@@ -1,20 +1,29 @@
-import clsx from "clsx"
-import { FiCopy, FiCheck } from "react-icons/fi"
-import React, { ComponentPropsWithoutRef, useRef, useState } from "react"
+import clsx from 'clsx'
+import { FiCopy, FiCheck } from 'react-icons/fi'
+import React, { ComponentPropsWithoutRef, useRef, useState } from 'react'
 import Image from 'next/image'
 
-export const Anchor = (props: ComponentPropsWithoutRef<"a">) => {
+export const Anchor = (props: ComponentPropsWithoutRef<'a'>) => {
   const { className, ...rest } = props
-  const targets = props.href?.startsWith('#') ? undefined : {
-    target: "_blank",
-    rel: "noopener noreferrer"
-  }
+  const targets = props.href?.startsWith('#')
+    ? undefined
+    : {
+        target: '_blank',
+        rel: 'noopener noreferrer',
+      }
   return (
-    <a {...targets} className={clsx("text-ppink-300 dark:text-ppink-200 hover:underline", className)} {...rest} />
+    <a
+      {...targets}
+      className={clsx(
+        'text-ppink-300 dark:text-ppink-200 hover:underline',
+        className
+      )}
+      {...rest}
+    />
   )
 }
 
-export const Blockquote = (props: ComponentPropsWithoutRef<"blockquote">) => {
+export const Blockquote = (props: ComponentPropsWithoutRef<'blockquote'>) => {
   const { className, ...rest } = props
   const quoteStyle = [
     'bg-ngray-100',
@@ -29,12 +38,10 @@ export const Blockquote = (props: ComponentPropsWithoutRef<"blockquote">) => {
     'py-1',
     'my-3',
   ]
-  return (
-    <blockquote className={clsx(quoteStyle, className)} {...rest} />
-  )
+  return <blockquote className={clsx(quoteStyle, className)} {...rest} />
 }
 
-export const H2 = (props: ComponentPropsWithoutRef<"h2">) => {
+export const H2 = (props: ComponentPropsWithoutRef<'h2'>) => {
   const { className, id, ...rest } = props
 
   let idStr = ''
@@ -44,11 +51,15 @@ export const H2 = (props: ComponentPropsWithoutRef<"h2">) => {
     idStr = String(props.children)
   }
   return (
-    <h2 className={clsx("break-words text-3xl font-bold my-6 pt-6", className)} id={id ? id : idStr} {...rest} />
+    <h2
+      className={clsx('break-words text-3xl font-bold my-6 pt-6', className)}
+      id={id ? id : idStr}
+      {...rest}
+    />
   )
 }
 
-export const H3 = (props: ComponentPropsWithoutRef<"h3">) => {
+export const H3 = (props: ComponentPropsWithoutRef<'h3'>) => {
   const { className, id, ...rest } = props
 
   let idStr = ''
@@ -59,42 +70,51 @@ export const H3 = (props: ComponentPropsWithoutRef<"h3">) => {
   }
 
   return (
-    <h3 className={clsx("break-words text-2xl font-semibold mt-2 mb-3 pt-6", className)} id={id ? id : idStr} {...rest} />
+    <h3
+      className={clsx(
+        'break-words text-2xl font-semibold mt-2 mb-3 pt-6',
+        className
+      )}
+      id={id ? id : idStr}
+      {...rest}
+    />
   )
 }
 
-export const H4 = (props: ComponentPropsWithoutRef<"h4">) => {
+export const H4 = (props: ComponentPropsWithoutRef<'h4'>) => {
   const { className, ...rest } = props
   return (
-    <h4 className={clsx("break-words text-xl font-medium mt-4 mb-2", className)} {...rest} />
+    <h4
+      className={clsx('break-words text-xl font-medium mt-4 mb-2', className)}
+      {...rest}
+    />
   )
 }
 
-export const Li = (props: ComponentPropsWithoutRef<"li">) => {
+export const Li = (props: ComponentPropsWithoutRef<'li'>) => {
   const { className, ...rest } = props
-  return (
-    <li className={clsx('pt-2', className)} {...rest} />
-  )
+  return <li className={clsx('pt-2', className)} {...rest} />
 }
 
-export const Ol = (props: ComponentPropsWithoutRef<"ol">) => {
+export const Ol = (props: ComponentPropsWithoutRef<'ol'>) => {
   const { className, ...rest } = props
-  return (
-    <ol className={clsx("list-decimal ml-6", className)} {...rest} />
-  )
+  return <ol className={clsx('list-decimal ml-6', className)} {...rest} />
 }
 
-export const Paragraph = (props: ComponentPropsWithoutRef<"p">) => {
+export const Paragraph = (props: ComponentPropsWithoutRef<'p'>) => {
   const { className, ...rest } = props
   let flag = false
-  
+
   // removes p tags
   React.Children.forEach(props.children, (child) => {
     if (typeof child === 'object' && child && 'props' in child) {
-      if (child.props.href?.startsWith('#user-content-fnref') || child.props.src || child.type === 'summary') {
+      if (
+        child.props.href?.startsWith('#user-content-fnref') ||
+        child.props.src ||
+        child.type === 'summary'
+      ) {
         flag = true
-      }
-      else if (typeof child.type === 'function' && 'name' in child.type) {
+      } else if (typeof child.type === 'function' && 'name' in child.type) {
         if (child.type.name === 'Note' || child.type.name === 'Img') {
           flag = true
         }
@@ -105,16 +125,14 @@ export const Paragraph = (props: ComponentPropsWithoutRef<"p">) => {
     return <>{props.children}</>
   } else {
     return (
-      <p className={clsx("text-base leading-7 my-5", className)} {...rest} />
+      <p className={clsx('text-base leading-7 my-5', className)} {...rest} />
     )
   }
 }
 
-export const Ul = (props: ComponentPropsWithoutRef<"ul">) => {
+export const Ul = (props: ComponentPropsWithoutRef<'ul'>) => {
   const { className, ...rest } = props
-  return (
-    <ul className={clsx("list-disc ml-6", className)} {...rest} />
-  )
+  return <ul className={clsx('list-disc ml-6', className)} {...rest} />
 }
 
 const copyButtonStyle = [
@@ -128,10 +146,10 @@ const copyButtonStyle = [
   'hover:text-ngray-300',
   'opacity-0',
   'group-hover:opacity-100',
-  'transition'
+  'transition',
 ]
 
-export const Pre = (props: ComponentPropsWithoutRef<"pre">) => {
+export const Pre = (props: ComponentPropsWithoutRef<'pre'>) => {
   const codeRef = useRef<HTMLPreElement>(null)
   const [copied, setCopied] = useState(false)
 
@@ -146,7 +164,11 @@ export const Pre = (props: ComponentPropsWithoutRef<"pre">) => {
 
   return (
     <pre className="relative group" ref={codeRef}>
-      <button className={clsx(copyButtonStyle)} onClick={() => clickHandler(codeRef.current?.innerText.trim())} aria-label="Copy code">
+      <button
+        className={clsx(copyButtonStyle)}
+        onClick={() => clickHandler(codeRef.current?.innerText.trim())}
+        aria-label="Copy code"
+      >
         <span className="text-xl">
           <FiCopy className={clsx(copied && 'hidden')} />
           <FiCheck className={clsx(!copied && 'hidden')} />
@@ -157,76 +179,94 @@ export const Pre = (props: ComponentPropsWithoutRef<"pre">) => {
   )
 }
 
-export const Table = (props: ComponentPropsWithoutRef<"table">) => {
+export const Table = (props: ComponentPropsWithoutRef<'table'>) => {
   const { className, ...rest } = props
   return (
     <div className="mb-9 overflow-auto box-border">
-      <table className={clsx("text-left", className)} {...rest} />
+      <table className={clsx('text-left', className)} {...rest} />
     </div>
   )
 }
 
-export const TR = (props: ComponentPropsWithoutRef<"tr">) => {
+export const TR = (props: ComponentPropsWithoutRef<'tr'>) => {
   const { className, ...rest } = props
   return (
-    <tr className={clsx("border-b only:border-0 last:border-0 border-ngray-200 dark:border-ngray-700", className)} {...rest} />
+    <tr
+      className={clsx(
+        'border-b only:border-0 last:border-0 border-ngray-200 dark:border-ngray-700',
+        className
+      )}
+      {...rest}
+    />
   )
 }
 
-export const TH = (props: ComponentPropsWithoutRef<"th">) => {
+export const TH = (props: ComponentPropsWithoutRef<'th'>) => {
   const { className, ...rest } = props
   return (
-    <th className={clsx("bg-ngray-100 dark:bg-ngray-800 px-5 py-3 first:rounded-l-md last:rounded-r-md", className)} {...rest} />
+    <th
+      className={clsx(
+        'bg-ngray-100 dark:bg-ngray-800 px-5 py-3 first:rounded-l-md last:rounded-r-md',
+        className
+      )}
+      {...rest}
+    />
   )
 }
 
-export const TD = (props: ComponentPropsWithoutRef<"td">) => {
+export const TD = (props: ComponentPropsWithoutRef<'td'>) => {
   const { className, ...rest } = props
-  return (
-    <td className={clsx("px-5 py-3", className)} {...rest} />
-  )
+  return <td className={clsx('px-5 py-3', className)} {...rest} />
 }
 
-export const Img = (props: ComponentPropsWithoutRef<"img">) => {
+export const Img = (props: ComponentPropsWithoutRef<'img'>) => {
   const [loading, setLoading] = useState(true)
-  
+
   const re = /[^\|]+\|[0-9]+:[0-9]+$/
   if (!props.alt || !re.test(props.alt)) {
     console.error(`Invalid alt format for ${props.src}`)
-    return (
-      <>{props.alt}</>
-    )
+    return <>{props.alt}</>
   }
 
   const alt = props.alt.substring(0, props.alt.indexOf('|'))
-  const w = props.alt.substring(props.alt.indexOf('|') + 1, props.alt.indexOf(':'))
+  const w = props.alt.substring(
+    props.alt.indexOf('|') + 1,
+    props.alt.indexOf(':')
+  )
   const h = props.alt.substring(props.alt.indexOf(':') + 1)
 
-  const imWrapperStyle = [
-    'flex',
-    'overflow-hidden',
-    'border-0',
-    'mt-10',
-  ]
+  const imWrapperStyle = ['flex', 'overflow-hidden', 'border-0', 'mt-10']
   const imBgStyle = [
     'bg-ngray-200',
     'dark:bg-ngray-700',
-    loading && 'animate-pulse'
+    loading && 'animate-pulse',
   ]
 
   return (
     <>
-    <div className={clsx(imWrapperStyle, props.title ? 'rounded-t-lg' : 'rounded-lg mb-9')}>
-      <Image
-        src={`/images/${props.src}`}
-        alt={alt}
-        width={w}
-        height={h}
-        className={clsx(imBgStyle, props.title ? 'rounded-t-lg' : 'rounded-lg')}
-        onLoadingComplete={() => setLoading(false)}
-      />
-    </div>
-    {props.title ? <p className="text-ngray-600 dark:text-ngray-300 text-sm py-3 px-4 mb-9 bg-ngray-100 dark:bg-ngray-800 rounded-b-lg">{props.title}</p> : null}
+      <div
+        className={clsx(
+          imWrapperStyle,
+          props.title ? 'rounded-t-lg' : 'rounded-lg mb-9'
+        )}
+      >
+        <Image
+          src={`/images/${props.src}`}
+          alt={alt}
+          width={w}
+          height={h}
+          className={clsx(
+            imBgStyle,
+            props.title ? 'rounded-t-lg' : 'rounded-lg'
+          )}
+          onLoadingComplete={() => setLoading(false)}
+        />
+      </div>
+      {props.title ? (
+        <p className="text-ngray-600 dark:text-ngray-300 text-sm py-3 px-4 mb-9 bg-ngray-100 dark:bg-ngray-800 rounded-b-lg">
+          {props.title}
+        </p>
+      ) : null}
     </>
   )
 }

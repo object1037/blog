@@ -26,8 +26,8 @@ export default async function generateSitemap(tags: string[]) {
     '!pages/_*.tsx',
     '!pages/404.tsx',
     '!pages/posts/[date].tsx',
-    '!pages/tags/[tag].tsx'
-  ]);
+    '!pages/tags/[tag].tsx',
+  ])
 
   const allPages = pages.concat(postPages, tagPages)
 
@@ -40,7 +40,7 @@ export default async function generateSitemap(tags: string[]) {
             .replace('pages/', '')
             .replace('.tsx', '')
             .replace('.mdx', '')
-            .replace('index', '');
+            .replace('index', '')
 
           if (path.charAt(path.length - 1) === '/') {
             path = path.slice(0, -1)
@@ -50,17 +50,17 @@ export default async function generateSitemap(tags: string[]) {
             <url>
               <loc>${`${siteUrl}${path ? `/${path}` : ''}`}</loc>
             </url>
-          `;
-        }).join('')
-      }
+          `
+        })
+        .join('')}
     </urlset>
-    `;
-  
-  const formatted = prettier.format(sitemap, {
-    parser: 'html'
-  });
+    `
 
-  writeFileSync('public/sitemap.xml', formatted);
-  writeFileSync('public/robots.txt', robots);
-  console.log("Automatically generated /sitemap.xml and /robots.txt")
+  const formatted = prettier.format(sitemap, {
+    parser: 'html',
+  })
+
+  writeFileSync('public/sitemap.xml', formatted)
+  writeFileSync('public/robots.txt', robots)
+  console.log('Automatically generated /sitemap.xml and /robots.txt')
 }

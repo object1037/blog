@@ -4,8 +4,8 @@ export default function PageLayout({
   h1,
   children,
 }: {
-  h1: string | JSX.Element,
-  children: React.ReactNode,
+  h1: string | JSX.Element
+  children: React.ReactNode
 }) {
   const h1Style = [
     'self-start',
@@ -14,7 +14,7 @@ export default function PageLayout({
     'text-ngray-900',
     'dark:text-ngray-100',
     'pt-12',
-    'pb-10'
+    'pb-10',
   ]
   return (
     <main className="mb-20 mx-6 sm:mx-12">
