@@ -14,20 +14,22 @@ export const getStaticProps: GetStaticProps = async () => {
 
   return {
     props: {
-      allPosts
-    }
+      allPosts,
+    },
   }
 }
 
-export default function Page({
-  allPosts
-}: {
-  allPosts: postData[]
-}) {
+export default function Page({ allPosts }: { allPosts: postData[] }) {
   return (
     <ul className="flex flex-col justify-center max-w-4xl w-full">
       {allPosts.map((post) => (
-        <PostCard key={post.date} date={post.date} title={post.title} description={post.description} tags={post.tags} />
+        <PostCard
+          key={post.date}
+          date={post.date}
+          title={post.title}
+          description={post.description}
+          tags={post.tags}
+        />
       ))}
     </ul>
   )
@@ -36,9 +38,7 @@ export default function Page({
 Page.getLayout = function getLayout({ page }: { page: ReactElement }) {
   return (
     <Layout>
-      <PageLayout h1="Posts">
-        {page}
-      </PageLayout>
+      <PageLayout h1="Posts">{page}</PageLayout>
     </Layout>
   )
 }

@@ -1,4 +1,10 @@
-import Document, { Html, Head, Main, NextScript, DocumentContext} from 'next/document'
+import Document, {
+  Html,
+  Head,
+  Main,
+  NextScript,
+  DocumentContext,
+} from 'next/document'
 
 class MyDocument extends Document {
   static async getInitialProps(ctx: DocumentContext) {
@@ -8,11 +14,14 @@ class MyDocument extends Document {
 
   render() {
     return (
-      <Html lang="ja" className="h-full flex flex-col text-ngray-900 dark:text-ngray-100 bg-white dark:bg-ngray-900">
+      <Html
+        lang="ja"
+        className="h-full flex flex-col text-ngray-900 dark:text-ngray-100 bg-white dark:bg-ngray-900"
+      >
         <Head>
           <link
             href="https://fonts.googleapis.com/css2?family=Zen+Maru+Gothic:wght@400;500;700&display=optional"
-            rel="stylesheet" 
+            rel="stylesheet"
           />
         </Head>
         <body className="h-full">
