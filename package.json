@@ -6,7 +6,8 @@
     "dev": "next dev",
     "build": "next build",
     "start": "next start",
-    "prettier": "prettier --no-semi -l --single-quote './pages/**/*.{js,ts,jsx,tsx,mdx}' './components/**/*.{js,ts,jsx,tsx,mdx}' './constants/*.ts' './utils/*.{ts,tsx}' './posts/*.mdx' './styles/*.css'"
+    "prettier": "prettier --no-semi -l --single-quote './pages/**/*.{js,ts,jsx,tsx,mdx}' './components/**/*.{js,ts,jsx,tsx,mdx}' './constants/*.ts' './utils/*.{ts,tsx}' './posts/*.mdx' './styles/*.css'",
+    "preinstall": "npx only-allow pnpm"
   },
   "dependencies": {
     "algoliasearch": "^4.14.2",
@@ -33,6 +34,7 @@
     "rss": "^1.2.2"
   },
   "devDependencies": {
+    "@algolia/client-search": "^4.14.2",
     "@types/fg-loadcss": "^3.1.1",
     "@types/mdx-js__react": "^1.5.5",
     "@types/node": "^18.7.17",
@@ -44,6 +46,7 @@
     "@types/rss": "^0.0.29",
     "@types/webpack-env": "^1.18.0",
     "autoprefixer": "^10.4.9",
+    "date-fns": "^2.29.2",
     "eslint": "^8.23.1",
     "eslint-config-next": "^12.3.0",
     "postcss": "^8.4.16",
