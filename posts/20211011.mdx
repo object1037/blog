@@ -1,16 +1,16 @@
 ---
 title: WebでSimejiの顔文字変換ができるツールを作った
 description: Simejiのクラウド超変換で顔文字変換をするWebアプリケーションを作った話
-date: '20211011'
+date: "20211011"
 tags: [Web]
 ---
 
 [Simeji](https://simeji.me/)というスマホアプリにはキーボードのきせかえ等の機能のほか、**クラウド超変換**というユーザーが登録した単語を変換できる機能があります。
 
 この機能では固有名詞を簡単に変換できるという利点の他に、ユーザーが作った大量の顔文字を変換で使えるという利点があり、顔文字を使うときに重宝しています。
-しかし、Simeji はスマホアプリなのでパソコンからは Simeji の顔文字変換が使えません。
+しかし、SimejiはスマホアプリなのでパソコンからはSimejiの顔文字変換が使えません。
 
-そういうわけで、パソコンからでも顔文字変換を簡単に使いたかったので Simeji のクラウド超変換で顔文字変換をする Web アプリケーションを作りました。
+そういうわけで、パソコンからでも顔文字変換を簡単に使いたかったのでSimejiのクラウド超変換で顔文字変換をするWebアプリケーションを作りました。
 
 # できたもの
 
@@ -24,28 +24,28 @@ bnaSimeji: https://bnasimeji.vercel.app
 
 ソースコードは[GitHub](https://github.com/object1037/bnaSimeji)で公開しています。
 
-# bnaSimeji ができるまで
+# bnaSimejiができるまで
 
-## iPhone の通信を見てみよう
+## iPhoneの通信を見てみよう
 
-まず、Simeji のクラウド超変換がどういう通信をしているのか見たかったので、[Proxyman](https://proxyman.io/)で iPhone の通信を見てみました。
+まず、Simejiのクラウド超変換がどういう通信をしているのか見たかったので、[Proxyman](https://proxyman.io/)でiPhoneの通信を見てみました。
 
-![ProxymanでiPhoneの通信を見る様子|2128:100](20211011/proxyman.png 'Spotlightを開いて「ねこ」と打ったときの通信の様子')
+![ProxymanでiPhoneの通信を見る様子|2128:100](20211011/proxyman.png "Spotlightを開いて「ねこ」と打ったときの通信の様子")
 
-どうやら`http://cloud.simeji.me/py?ol=1&switch=2&section=1&ver=10.6&api_version=2&web=1&py=変換したいひらがな`に GET リクエストして変換データを取得しているようです。
+どうやら`http://cloud.simeji.me/py?ol=1&switch=2&section=1&ver=10.6&api_version=2&web=1&py=変換したいひらがな`にGETリクエストして変換データを取得しているようです。
 
-さらに、変換データが多い場合レスポンス内の`continue`が`1`になり、上の URL の`section`クエリの数字が増えた URL から追加で変換データを取得することもわかりました。
+さらに、変換データが多い場合レスポンス内の`continue`が`1`になり、上のURLの`section`クエリの数字が増えたURLから追加で変換データを取得することもわかりました。
 
 ## いろいろやる
 
 あとはいろいろやります。
 
-- [Next.js](https://nextjs.org/)
-- [Tailwind CSS](tailwindcss.com)
-- [SWR](https://swr.vercel.app/ja)
+* [Next.js](https://nextjs.org/)
+* [Tailwind CSS](tailwindcss.com)
+* [SWR](https://swr.vercel.app/ja)
 
 あたりをつかっています。
 
 # おわりに
 
-結構短い時間で実装できたのでよかったです。みんなも使って乁(˙꒳˙ 乁)ｸﾚﾖ...
+結構短い時間で実装できたのでよかったです。みんなも使って乁(˙꒳˙乁)ｸﾚﾖ...

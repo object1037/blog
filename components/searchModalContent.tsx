@@ -119,6 +119,7 @@ const SearchModalContent = ({
               'w-full bg-ngray-100 dark:bg-ngray-800 appearance-none outline-none',
             submitIcon: 'hidden',
             resetIcon: 'dark:fill-ngray-100',
+            loadingIcon: 'h-full ml-2',
           }}
         />
         <button
