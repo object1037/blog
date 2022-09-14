@@ -5,8 +5,8 @@ My blog system created with [Next.js](https://nextjs.org/), [Tailwind CSS](https
 ## Usage
 
 ```bash
-npm install
-npm run dev
+pnpm install
+pnpm run dev
 ```
 
 In order to enable the search feature, get [Algolia](https://www.algolia.com/)'s API keys and add environment variables referring to `.env.example`.
