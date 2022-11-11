@@ -2,7 +2,10 @@ const colors = require('tailwindcss/colors')
 const { fontFamily } = require('tailwindcss/defaultTheme');
 
 module.exports = {
-  content: ['./pages/**/*.{js,ts,jsx,tsx,mdx}', './components/**/*.{js,ts,jsx,tsx,mdx}'],
+  content: [
+    './pages/**/*.{js,ts,jsx,tsx,mdx}',
+    './components/**/*.{js,ts,jsx,tsx,mdx}',
+  ],
   theme: {
     extend: {
       colors: {
@@ -27,16 +30,22 @@ module.exports = {
         },
       },
       fontFamily: {
-        sans: ['Zen Maru Gothic', 'YuGothic', "Yu Gothic Medium", "Yu Gothic", ...fontFamily.sans]
+        sans: [
+          'var(--font-zenmarugothic)',
+          'YuGothic',
+          'Yu Gothic Medium',
+          'Yu Gothic',
+          ...fontFamily.sans,
+        ],
       },
       fontSize: {
         '4.5xl': '2.5rem',
       },
       scale: {
-        '80': '.8',
+        80: '.8',
       },
       maxHeight: {
-        'toc': 'calc(100vh - 3rem)'
+        toc: 'calc(100vh - 3rem)',
       },
     },
   },

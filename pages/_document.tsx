@@ -18,12 +18,7 @@ class MyDocument extends Document {
         lang="ja"
         className="h-full flex flex-col text-ngray-900 dark:text-ngray-100 bg-white dark:bg-ngray-900"
       >
-        <Head>
-          <link
-            href="https://fonts.googleapis.com/css2?family=Zen+Maru+Gothic:wght@400;500;700&display=optional"
-            rel="stylesheet"
-          />
-        </Head>
+        <Head />
         <body className="h-full">
           <Main />
           <NextScript />
