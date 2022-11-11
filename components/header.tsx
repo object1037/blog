@@ -31,7 +31,7 @@ export default function Header({ sticky }: { sticky?: boolean }) {
       <header className="px-6 sm:px-12">
         <div className={clsx(wrapperStyle, 'mt-3.5 mb-1')}>
           <Link href="/">
-            <a className="flex items-center max-w-max gap-x-4">
+            <p className="flex items-center max-w-max gap-x-4">
               <span className="overflow-hidden rounded-full w-10 h-10">
                 <Image
                   src={profileImg}
@@ -45,7 +45,7 @@ export default function Header({ sticky }: { sticky?: boolean }) {
               <span className="tracking-widest font-bold text-sm">
                 {siteTitle}
               </span>
-            </a>
+            </p>
           </Link>
         </div>
       </header>
@@ -62,19 +62,19 @@ export default function Header({ sticky }: { sticky?: boolean }) {
         <div className={clsx(wrapperStyle, navStyle)}>
           <div className="flex flex-wrap items-center gap-x-1 md:gap-x-2">
             <Link href="/">
-              <a className={clsx(navLinkStyle)}>
+              <p className={clsx(navLinkStyle)}>
                 <span className="capsizedText">Posts</span>
-              </a>
+              </p>
             </Link>
             <Link href="/tags">
-              <a className={clsx(navLinkStyle)}>
+              <p className={clsx(navLinkStyle)}>
                 <span className="capsizedText">Tags</span>
-              </a>
+              </p>
             </Link>
             <Link href="/about">
-              <a className={clsx(navLinkStyle)}>
+              <p className={clsx(navLinkStyle)}>
                 <span className="capsizedText">About</span>
-              </a>
+              </p>
             </Link>
           </div>
           {process.env.NEXT_PUBLIC_ALGOLIA_APPLICATION_ID &&

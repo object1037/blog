@@ -66,10 +66,6 @@ const nextConfig = {
   },
   reactStrictMode: true,
   swcMinify: true,
-  experimental: {
-    legacyBrowsers: false,
-    browsersListForSwc: true,
-  },
 }
 
 export default nextConfig

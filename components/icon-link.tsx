@@ -1,5 +1,3 @@
-import Link from 'next/link'
-
 export default function IconLink({
   link,
   label,
@@ -10,15 +8,14 @@ export default function IconLink({
   children: React.ReactNode
 }) {
   return (
-    <Link href={link}>
-      <a
-        target="_blank"
-        rel="noopener noreferrer"
-        aria-label={label}
-        className="p-4 hover:text-ngray-400 dark:hover:text-ngray-500 transition"
-      >
-        <p className="text-3xl">{children}</p>
-      </a>
-    </Link>
+    <a
+      href={link}
+      target="_blank"
+      rel="noopener noreferrer"
+      aria-label={label}
+      className="p-4 hover:text-ngray-400 dark:hover:text-ngray-500 transition"
+    >
+      <p className="text-3xl">{children}</p>
+    </a>
   )
 }
