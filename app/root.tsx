@@ -22,7 +22,9 @@ export default function App() {
         <Links />
       </head>
       <body>
+        <header>header</header>
         <Outlet />
+        <footer>footer</footer>
         <ScrollRestoration />
         <Scripts />
         <LiveReload />
