@@ -9,7 +9,10 @@
     "dev": "remix dev --manual -c \"npm run start\"",
     "start": "wrangler pages dev --compatibility-date=2023-06-21 ./public",
     "typecheck": "tsc",
-    "fmt": "prettier --write --no-semi --single-quote \"./app/**/*.{js,jsx,ts,tsx}\""
+    "fmt": "prettier --write --no-semi --single-quote \"./app/**/*.{js,jsx,ts,tsx}\"",
+    "generate": "drizzle-kit generate:sqlite --schema=./app/schema.ts --out=./migrations",
+    "migrate": "pnpm wrangler d1 migrations apply blog-db --local",
+    "migrate:prod": "pnpm wrangler d1 migrations apply blog-db"
   },
   "dependencies": {
     "@remix-run/cloudflare": "^2.1.0",
