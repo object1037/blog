@@ -8,7 +8,8 @@
     "build": "remix build",
     "dev": "remix dev --manual -c \"npm run start\"",
     "start": "wrangler pages dev --compatibility-date=2023-06-21 ./public",
-    "typecheck": "tsc"
+    "typecheck": "tsc", 
+    "fmt": "prettier --write --no-semi --single-quote \"./app/**/*.{js,jsx,ts,tsx}\""
   },
   "dependencies": {
     "@remix-run/cloudflare": "^2.1.0",
@@ -26,6 +27,7 @@
     "@types/react": "^18.2.20",
     "@types/react-dom": "^18.2.7",
     "eslint": "^8.38.0",
+    "prettier": "^3.0.3",
     "typescript": "^5.1.0",
     "wrangler": "^3.1.1"
   },
