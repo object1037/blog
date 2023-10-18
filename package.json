@@ -8,14 +8,16 @@
     "build": "remix build",
     "dev": "remix dev --manual -c \"npm run start\"",
     "start": "wrangler pages dev --compatibility-date=2023-06-21 ./public",
-    "typecheck": "tsc", 
+    "typecheck": "tsc",
     "fmt": "prettier --write --no-semi --single-quote \"./app/**/*.{js,jsx,ts,tsx}\""
   },
   "dependencies": {
     "@remix-run/cloudflare": "^2.1.0",
     "@remix-run/cloudflare-pages": "^2.1.0",
     "@remix-run/react": "^2.1.0",
+    "drizzle-orm": "^0.28.6",
     "isbot": "^3.6.8",
+    "markdown-it": "^13.0.2",
     "react": "^18.2.0",
     "react-dom": "^18.2.0"
   },
@@ -24,8 +26,10 @@
     "@pandacss/dev": "^0.16.0",
     "@remix-run/dev": "^2.1.0",
     "@remix-run/eslint-config": "^2.1.0",
+    "@types/markdown-it": "^13.0.3",
     "@types/react": "^18.2.20",
     "@types/react-dom": "^18.2.7",
+    "drizzle-kit": "^0.19.13",
     "eslint": "^8.38.0",
     "prettier": "^3.0.3",
     "typescript": "^5.1.0",
@@ -33,5 +37,10 @@
   },
   "engines": {
     "node": ">=18.0.0"
+  },
+  "pnpm": {
+    "patchedDependencies": {
+      "markdown-it@13.0.2": "patches/markdown-it@13.0.2.patch"
+    }
   }
 }
