@@ -7,7 +7,7 @@
     "prepare": "panda codegen",
     "build": "remix build",
     "dev": "remix dev --manual -c \"npm run start\"",
-    "start": "wrangler pages dev --compatibility-date=2023-06-21 ./public",
+    "start": "wrangler pages dev --compatibility-date=2023-06-21 ./public --kv=SESSION_KV",
     "typecheck": "tsc",
     "fmt": "prettier --write \"./app/**/*.{js,jsx,ts,tsx}\"",
     "generate": "drizzle-kit generate:sqlite --schema=./app/schema.ts --out=./migrations",
@@ -22,7 +22,9 @@
     "isbot": "^3.6.8",
     "markdown-it": "^13.0.2",
     "react": "^18.2.0",
-    "react-dom": "^18.2.0"
+    "react-dom": "^18.2.0",
+    "remix-auth": "^3.6.0",
+    "remix-auth-github": "^1.6.0"
   },
   "devDependencies": {
     "@cloudflare/workers-types": "^4.20230518.0",
