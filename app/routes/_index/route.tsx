@@ -9,10 +9,6 @@ import { css } from 'styled-system/css'
 
 import { getPosts } from '~/db.server'
 
-type Env = {
-  DB: D1Database
-}
-
 export const meta: MetaFunction = () => {
   return [
     { title: 'New Remix App' },
