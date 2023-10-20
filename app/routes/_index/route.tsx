@@ -1,6 +1,15 @@
-import type { MetaFunction } from '@remix-run/cloudflare'
+import {
+  json,
+  type LoaderFunctionArgs,
+  type MetaFunction,
+} from '@remix-run/cloudflare'
+import { useLoaderData } from '@remix-run/react'
 import { css } from 'styled-system/css'
-import MarkdownIt from 'markdown-it'
+import { getPosts } from '~/db.server'
+
+type Env = {
+  DB: D1Database
+}
 
 export const meta: MetaFunction = () => {
   return [
@@ -9,13 +18,17 @@ export const meta: MetaFunction = () => {
   ]
 }
 
-export const loader = async () => {
-  const md = new MarkdownIt()
-  const result = md.render('# Hello World')
-  return { result }
+export const loader = async ({ context }: LoaderFunctionArgs) => {
+  const env = context.env as Env
+  const posts = await getPosts(env.DB)
+
+  return json({ posts })
 }
 
 export default function Index() {
+  const { posts } = useLoaderData<typeof loader>()
+  console.log(posts)
+
   return (
     <section>
       <h1 className={css({ fontWeight: 'bold' })}>Blog</h1>
