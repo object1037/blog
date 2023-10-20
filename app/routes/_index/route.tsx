@@ -7,7 +7,7 @@ import { useLoaderData } from '@remix-run/react'
 
 import { css } from 'styled-system/css'
 
-import { getPosts } from '~/db.server'
+import { getPostData, getPosts } from '~/db.server'
 
 export const meta: MetaFunction = () => {
   return [
@@ -20,12 +20,20 @@ export const loader = async ({ context }: LoaderFunctionArgs) => {
   const env = context.env as Env
   const posts = await getPosts(env.DB)
 
-  return json({ posts })
+  const datas = []
+
+  for (const post of posts) {
+    const postData = await getPostData(env.DB, post.id)
+    datas.push(postData)
+  }
+
+  return json({ posts, datas })
 }
 
 export default function Index() {
-  const { posts } = useLoaderData<typeof loader>()
+  const { posts, datas } = useLoaderData<typeof loader>()
   console.log(posts)
+  console.log(datas)
 
   return (
     <section>
