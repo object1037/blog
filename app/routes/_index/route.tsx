@@ -32,7 +32,7 @@ export default function Index() {
       <ul>
         {posts.map((post) => (
           <li key={post.id}>
-            <Link to={`/posts/${post.id}`}>{post.title}</Link>
+            <Link to={`/posts/${post.id}`} prefetch='intent'>{post.title}</Link>
           </li>
         ))}
       </ul>
