@@ -3,11 +3,11 @@ import {
   type MetaFunction,
   json,
 } from '@remix-run/cloudflare'
-import { useLoaderData } from '@remix-run/react'
+import { Link, useLoaderData } from '@remix-run/react'
 
 import { css } from 'styled-system/css'
 
-import { getPostData, getPosts } from '~/db.server'
+import { getPosts } from '~/db.server'
 
 export const meta: MetaFunction = () => {
   return [
@@ -20,25 +20,22 @@ export const loader = async ({ context }: LoaderFunctionArgs) => {
   const env = context.env as Env
   const posts = await getPosts(env.DB)
 
-  const datas = []
-
-  for (const post of posts) {
-    const postData = await getPostData(env.DB, post.id)
-    datas.push(postData)
-  }
-
-  return json({ posts, datas })
+  return json({ posts })
 }
 
 export default function Index() {
-  const { posts, datas } = useLoaderData<typeof loader>()
-  console.log(posts)
-  console.log(datas)
+  const { posts } = useLoaderData<typeof loader>()
 
   return (
     <section>
       <h1 className={css({ fontWeight: 'bold' })}>Blog</h1>
-      <p>hello</p>
+      <ul>
+        {posts.map((post) => (
+          <li key={post.id}>
+            <Link to={`/posts/${post.id}`}>{post.title}</Link>
+          </li>
+        ))}
+      </ul>
     </section>
   )
 }
