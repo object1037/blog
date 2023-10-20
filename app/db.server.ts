@@ -1,10 +1,38 @@
+import { and, eq } from 'drizzle-orm'
 import { drizzle } from 'drizzle-orm/d1'
 
-import { posts } from './schema'
+import * as schema from './schema'
 
 export const getPosts = async (db_binding: D1Database) => {
   const db = drizzle(db_binding)
-  const results = await db.select().from(posts)
+  const posts = schema.posts
+  const results = await db
+    .select({
+      id: posts.id,
+      title: posts.title,
+    })
+    .from(posts)
+    .where(eq(posts.public, true))
 
   return results
+}
+
+export const getPost = async (db_binding: D1Database, id: number) => {
+  const db = drizzle(db_binding, { schema })
+  const results = await db.query.posts.findMany({
+    where: and(eq(schema.posts.id, id), eq(schema.posts.public, true)),
+    columns: {
+      markdown: false,
+      public: false,
+    },
+    with: {
+      postsToTags: {
+        columns: {
+          tagName: true,
+        },
+      },
+    },
+  })
+
+  return results[0]
 }
