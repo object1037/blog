@@ -1,4 +1,5 @@
 import { drizzle } from 'drizzle-orm/d1'
+
 import { posts } from './schema'
 
 export const getPosts = async (db_binding: D1Database) => {

@@ -1,10 +1,12 @@
 import {
-  json,
   type LoaderFunctionArgs,
   type MetaFunction,
+  json,
 } from '@remix-run/cloudflare'
 import { useLoaderData } from '@remix-run/react'
+
 import { css } from 'styled-system/css'
+
 import { getPosts } from '~/db.server'
 
 type Env = {
