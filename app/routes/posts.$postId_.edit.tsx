@@ -10,9 +10,19 @@ import { addPost, getAllPostData } from '~/db.server'
 import { envSchema } from '~/env'
 import { convertMarkdown } from '~/markdown.server'
 import { type InsertPost } from '~/schema'
+import { getAuthenticator } from '~/services/auth.server'
 
-export const loader = async ({ params, context }: LoaderFunctionArgs) => {
+export const loader = async ({
+  params,
+  context,
+  request,
+}: LoaderFunctionArgs) => {
   const env = envSchema.parse(context.env)
+  const authenticator = getAuthenticator(env)
+  await authenticator.isAuthenticated(request, {
+    failureRedirect: '/login',
+  })
+
   const postId = params.postId
   if (typeof postId !== 'string' || isNaN(Number(postId))) {
     throw new Response('Not Found', { status: 404 })
