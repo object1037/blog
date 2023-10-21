@@ -24,7 +24,6 @@ export function getAuthenticator(env: Env) {
       callbackURL: env.CALLBACK_URL,
     },
     async ({ accessToken, extraParams, profile }) => {
-      console.log('profile', profile.name)
       return { id: profile.id, name: profile.displayName }
     },
   )
