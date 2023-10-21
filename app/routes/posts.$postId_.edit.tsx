@@ -31,7 +31,7 @@ export default function Post() {
   return (
     <div>
       <Form method="post">
-        <textarea name="markdown">{post.markdown}</textarea>
+        <textarea name="markdown" defaultValue={post.markdown} />
         <button>Save</button>
       </Form>
     </div>
