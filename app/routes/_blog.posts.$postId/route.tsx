@@ -1,9 +1,8 @@
 import { type LoaderFunctionArgs, json } from '@remix-run/cloudflare'
 import { useLoaderData } from '@remix-run/react'
 
-import { envSchema } from 'env'
-
 import { getPostData } from '~/db.server'
+import { envSchema } from '~/env'
 
 export const loader = async ({ params, context }: LoaderFunctionArgs) => {
   const env = envSchema.parse(context.env)

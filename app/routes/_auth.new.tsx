@@ -6,9 +6,8 @@ import {
 } from '@remix-run/cloudflare'
 import { Form } from '@remix-run/react'
 
-import { envSchema } from 'env'
-
 import { addPost } from '~/db.server'
+import { envSchema } from '~/env'
 import { convertMarkdown } from '~/markdown.server'
 import { type InsertPost } from '~/schema'
 import { getAuthenticator } from '~/services/auth.server'

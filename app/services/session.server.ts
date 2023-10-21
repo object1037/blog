@@ -3,7 +3,7 @@ import {
   createWorkersKVSessionStorage,
 } from '@remix-run/cloudflare'
 
-import { type Env } from 'env'
+import { type Env } from '~/env'
 
 export const getSessionStrage = (env: Env) => {
   const sessionCookie = createCookie('__session', {

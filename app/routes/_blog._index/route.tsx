@@ -5,10 +5,10 @@ import {
 } from '@remix-run/cloudflare'
 import { Link, useLoaderData } from '@remix-run/react'
 
-import { envSchema } from 'env'
 import { css } from 'styled-system/css'
 
 import { getPosts } from '~/db.server'
+import { envSchema } from '~/env'
 
 export const meta: MetaFunction = () => {
   return [

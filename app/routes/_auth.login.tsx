@@ -1,8 +1,7 @@
 import { type LoaderFunctionArgs } from '@remix-run/cloudflare'
 import { Form } from '@remix-run/react'
 
-import { envSchema } from 'env'
-
+import { envSchema } from '~/env'
 import { getAuthenticator } from '~/services/auth.server'
 
 export const loader = async ({ context, request }: LoaderFunctionArgs) => {
