@@ -5,10 +5,12 @@ import {
 } from '@remix-run/cloudflare'
 import { Form, useLoaderData } from '@remix-run/react'
 
+import { envSchema } from 'env'
+
 import { getAuthenticator } from '~/services/auth.server'
 
 export const loader = async ({ request, context }: LoaderFunctionArgs) => {
-  const authenticator = getAuthenticator(context.env as Env)
+  const authenticator = getAuthenticator(envSchema.parse(context.env))
   const user = await authenticator.isAuthenticated(request, {
     failureRedirect: '/login',
   })
@@ -33,6 +35,6 @@ export default function Dashboard() {
 }
 
 export const action = async ({ request, context }: ActionFunctionArgs) => {
-  const authenticator = getAuthenticator(context.env as Env)
+  const authenticator = getAuthenticator(envSchema.parse(context.env))
   await authenticator.logout(request, { redirectTo: '/login' })
 }

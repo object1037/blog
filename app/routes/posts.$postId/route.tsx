@@ -1,10 +1,12 @@
 import { type LoaderFunctionArgs, json } from '@remix-run/cloudflare'
 import { useLoaderData } from '@remix-run/react'
 
+import { envSchema } from 'env'
+
 import { getPostData } from '~/db.server'
 
 export const loader = async ({ params, context }: LoaderFunctionArgs) => {
-  const env = context.env as Env
+  const env = envSchema.parse(context.env)
   const postId = params.postId
   if (typeof postId !== 'string' || isNaN(Number(postId))) {
     throw new Response('Not Found', { status: 404 })

@@ -5,6 +5,7 @@ import {
 } from '@remix-run/cloudflare'
 import { Link, useLoaderData } from '@remix-run/react'
 
+import { envSchema } from 'env'
 import { css } from 'styled-system/css'
 
 import { getPosts } from '~/db.server'
@@ -17,7 +18,7 @@ export const meta: MetaFunction = () => {
 }
 
 export const loader = async ({ context }: LoaderFunctionArgs) => {
-  const env = context.env as Env
+  const env = envSchema.parse(context.env)
   const posts = await getPosts(env.DB)
 
   return json({ posts })
