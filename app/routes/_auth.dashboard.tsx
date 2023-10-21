@@ -1,7 +1,7 @@
 import { type LoaderFunctionArgs, json } from '@remix-run/cloudflare';
 import { Form, Link, useLoaderData } from '@remix-run/react'
 
-import { getPosts } from '~/db.server'
+import { getAllPosts } from '~/db.server'
 import { envSchema } from '~/env'
 import { getAuthenticator } from '~/services/auth.server'
 
@@ -12,7 +12,7 @@ export const loader = async ({ request, context }: LoaderFunctionArgs) => {
     failureRedirect: '/login',
   })
 
-  const posts = await getPosts(env.DB)
+  const posts = await getAllPosts(env.DB)
 
   return json({ posts })
 }
@@ -32,6 +32,9 @@ export default function Dashboard() {
             <Link to={`../posts/${post.id}`} prefetch="intent">
               <p>{post.title}</p>
             </Link>
+            <Form action={`../posts/${post.id}/edit`}>
+              <button>Edit</button>
+            </Form>
             <Form action={`../posts/${post.id}/delete`} method="post">
               <button>Delete</button>
             </Form>
