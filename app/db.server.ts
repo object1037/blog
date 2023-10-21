@@ -47,3 +47,14 @@ export const getPostData = async (db_binding: D1Database, id: number) => {
 
   return postData
 }
+
+export const addPost = async (
+  db_binding: D1Database,
+  postData: schema.InsertPost,
+) => {
+  const db = drizzle(db_binding)
+  const posts = schema.posts
+  const results = await db.insert(posts).values(postData)
+
+  return results
+}

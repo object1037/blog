@@ -20,6 +20,7 @@
     "@remix-run/react": "^2.1.0",
     "drizzle-orm": "^0.28.6",
     "drizzle-zod": "^0.5.1",
+    "gray-matter": "^4.0.3",
     "isbot": "^3.6.8",
     "markdown-it": "^13.0.2",
     "react": "^18.2.0",
@@ -48,7 +49,8 @@
   },
   "pnpm": {
     "patchedDependencies": {
-      "markdown-it@13.0.2": "patches/markdown-it@13.0.2.patch"
+      "markdown-it@13.0.2": "patches/markdown-it@13.0.2.patch",
+      "gray-matter@4.0.3": "patches/gray-matter@4.0.3.patch"
     }
   }
 }

@@ -1,21 +1,19 @@
 import { relations } from 'drizzle-orm';
-import { integer, primaryKey, sqliteTable, text } from 'drizzle-orm/sqlite-core'
-import { createInsertSchema, createSelectSchema } from 'drizzle-zod'
+import { integer, primaryKey, sqliteTable, text } from 'drizzle-orm/sqlite-core';
 
 export const posts = sqliteTable('posts', {
   id: integer('id').primaryKey(),
   title: text('title').notNull(),
+  public: integer('public', { mode: 'boolean' }),
   markdown: text('markdown').notNull(),
   html: text('html').notNull(),
-  public: integer('public', { mode: 'boolean' }),
 })
 
 export const postsRelations = relations(posts, ({ many }) => ({
   postsToTags: many(postsToTags),
 }))
 
-export const insertPostSchema = createInsertSchema(posts)
-export const selectUserSchema = createSelectSchema(posts)
+export type InsertPost = typeof posts.$inferInsert
 
 export const tags = sqliteTable('tags', {
   name: text('name').primaryKey(),
