@@ -28,10 +28,10 @@ export const postsToTags = sqliteTable(
   {
     postId: integer('post_id')
       .notNull()
-      .references(() => posts.id),
+      .references(() => posts.id, { onDelete: 'cascade' }),
     tagName: text('tag_name')
       .notNull()
-      .references(() => tags.name),
+      .references(() => tags.name, { onDelete: 'cascade' }),
   },
   (t) => ({
     pk: primaryKey(t.postId, t.tagName),

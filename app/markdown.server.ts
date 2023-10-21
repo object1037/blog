@@ -15,6 +15,9 @@ export const convertMarkdown = (markdown: string) => {
 
   const { content, data } = matter(markdown)
   const html = md.render(content)
+  if (data.public === undefined) {
+    data.public = false
+  }
   const parsedData = matterSchema.safeParse(data)
 
   if (!parsedData.success) {

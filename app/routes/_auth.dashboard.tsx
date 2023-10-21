@@ -1,30 +1,43 @@
-import { type LoaderFunctionArgs, json } from '@remix-run/cloudflare'
-import { Form, useLoaderData } from '@remix-run/react'
+import { type LoaderFunctionArgs, json } from '@remix-run/cloudflare';
+import { Form, Link, useLoaderData } from '@remix-run/react'
 
+import { getPosts } from '~/db.server'
 import { envSchema } from '~/env'
 import { getAuthenticator } from '~/services/auth.server'
 
 export const loader = async ({ request, context }: LoaderFunctionArgs) => {
-  const authenticator = getAuthenticator(envSchema.parse(context.env))
-  const user = await authenticator.isAuthenticated(request, {
+  const env = envSchema.parse(context.env)
+  const authenticator = getAuthenticator(env)
+  await authenticator.isAuthenticated(request, {
     failureRedirect: '/login',
   })
 
-  return json({ user })
+  const posts = await getPosts(env.DB)
+
+  return json({ posts })
 }
 
 export default function Dashboard() {
-  const { user } = useLoaderData<typeof loader>()
+  const { posts } = useLoaderData<typeof loader>()
 
   return (
     <div>
       <h1>Dashboard</h1>
-      <p>
-        Hi, {user.id} {user.name}
-      </p>
       <Form action="../new">
         <button>New</button>
       </Form>
+      <ul>
+        {posts.map((post) => (
+          <li key={post.id}>
+            <Link to={`../posts/${post.id}`} prefetch="intent">
+              <p>{post.title}</p>
+            </Link>
+            <Form action={`../posts/${post.id}/delete`} method="post">
+              <button>Delete</button>
+            </Form>
+          </li>
+        ))}
+      </ul>
     </div>
   )
 }
