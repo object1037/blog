@@ -2,6 +2,7 @@ import {
   type ActionFunctionArgs,
   type LoaderFunctionArgs,
   json,
+  redirect,
 } from '@remix-run/cloudflare'
 import { Form } from '@remix-run/react'
 
@@ -47,7 +48,7 @@ export const action = async ({ request, context }: ActionFunctionArgs) => {
     html,
   }
 
-  const { success } = await addPost(envSchema.parse(context.env).DB, newPost)
+  await addPost(envSchema.parse(context.env).DB, newPost)
 
-  return json({ success })
+  return redirect('/dashboard')
 }
