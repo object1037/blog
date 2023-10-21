@@ -23,8 +23,11 @@ export function getAuthenticator(env: Env) {
       clientSecret: env.GITHUB_CLIENT_SECRET,
       callbackURL: env.CALLBACK_URL,
     },
-    async ({ accessToken, extraParams, profile }) => {
-      return { id: profile.id, name: profile.displayName }
+    async ({ profile }) => {
+      if (profile.displayName === 'object1037') {
+        return { id: profile.id, name: profile.displayName }
+      }
+      throw new Response('Forbidden', { status: 403 })
     },
   )
 
