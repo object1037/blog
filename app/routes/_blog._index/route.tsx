@@ -29,7 +29,7 @@ export default function Index() {
 
   return (
     <section>
-      <h1 className={css({ fontWeight: 'bold' })}>Blog</h1>
+      <h2 className={css({ fontWeight: 'bold' })}>Blog</h2>
       <ul>
         {posts.map((post) => (
           <li key={post.id}>
