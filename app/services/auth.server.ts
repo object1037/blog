@@ -1,3 +1,4 @@
+import { type Env } from 'env'
 import { Authenticator } from 'remix-auth'
 import { GitHubStrategy } from 'remix-auth-github'
 
