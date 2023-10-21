@@ -12,6 +12,9 @@ export const loader = async ({ params, context }: LoaderFunctionArgs) => {
     throw new Response('Not Found', { status: 404 })
   }
   const post = await getPostData(env.DB, Number(postId))
+  if (!post) {
+    throw new Response('Not Found', { status: 404 })
+  }
 
   return json({ post })
 }

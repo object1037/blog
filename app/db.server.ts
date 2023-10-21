@@ -19,7 +19,7 @@ export const getPosts = async (db_binding: D1Database) => {
 
 export const getPostData = async (db_binding: D1Database, id: number) => {
   const db = drizzle(db_binding, { schema })
-  const [{ postsToTags, ...restResult }] = await db.query.posts.findMany({
+  const results = await db.query.posts.findMany({
     where: and(eq(schema.posts.id, id), eq(schema.posts.public, true)),
     columns: {
       markdown: false,
@@ -33,6 +33,12 @@ export const getPostData = async (db_binding: D1Database, id: number) => {
       },
     },
   })
+
+  if (!results[0]) {
+    return undefined
+  }
+
+  const { postsToTags, ...restResult } = results[0]
 
   const postData = {
     ...restResult,
