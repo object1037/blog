@@ -6,6 +6,8 @@ import {
 } from '@remix-run/cloudflare'
 import { Form, useLoaderData } from '@remix-run/react'
 
+import { z } from 'zod'
+
 import { addPost, getAllPostData, pruneTags } from '~/db.server'
 import { envSchema } from '~/env'
 import { convertMarkdown } from '~/markdown.server'
@@ -24,9 +26,11 @@ export const loader = async ({
   })
 
   const postId = params.postId
-  if (typeof postId !== 'string' || isNaN(Number(postId))) {
-    throw new Response('Not Found', { status: 404 })
+  const parsedId = z.coerce.number().safeParse(postId)
+  if (!parsedId.success) {
+    throw new Response('Invalid postId', { status: 400 })
   }
+
   const post = await getAllPostData(env.DB, Number(postId))
   if (!post) {
     throw new Response('Not Found', { status: 404 })
