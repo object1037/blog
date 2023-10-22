@@ -1,7 +1,7 @@
 {
   "version": "5",
   "dialect": "sqlite",
-  "id": "122176f3-b3e1-48c8-a390-3921cac8b5ce",
+  "id": "8e27e3ef-75a8-4d71-a4d7-1bba7cd354b1",
   "prevId": "00000000-0000-0000-0000-000000000000",
   "tables": {
     "posts": {
@@ -26,7 +26,8 @@
           "type": "integer",
           "primaryKey": false,
           "notNull": false,
-          "autoincrement": false
+          "autoincrement": false,
+          "default": false
         },
         "markdown": {
           "name": "markdown",
@@ -79,7 +80,7 @@
             "id"
           ],
           "onDelete": "cascade",
-          "onUpdate": "no action"
+          "onUpdate": "cascade"
         },
         "posts_to_tags_tag_name_tags_name_fk": {
           "name": "posts_to_tags_tag_name_tags_name_fk",
@@ -92,7 +93,7 @@
             "name"
           ],
           "onDelete": "cascade",
-          "onUpdate": "no action"
+          "onUpdate": "cascade"
         }
       },
       "compositePrimaryKeys": {
