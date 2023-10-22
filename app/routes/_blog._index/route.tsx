@@ -3,10 +3,11 @@ import {
   type MetaFunction,
   json,
 } from '@remix-run/cloudflare'
-import { Link, useLoaderData } from '@remix-run/react'
+import { useLoaderData } from '@remix-run/react'
 
 import { css } from 'styled-system/css'
 
+import { PostList } from './postList'
 import { getPosts } from '~/db.server'
 import { envSchema } from '~/env'
 
@@ -30,15 +31,7 @@ export default function Index() {
   return (
     <section>
       <h2 className={css({ fontWeight: 'bold' })}>Blog</h2>
-      <ul>
-        {posts.map((post) => (
-          <li key={post.id}>
-            <Link to={`/posts/${post.id}`} prefetch="intent">
-              {post.title}
-            </Link>
-          </li>
-        ))}
-      </ul>
+      <PostList posts={posts} />
     </section>
   )
 }
