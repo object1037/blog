@@ -1,4 +1,4 @@
-import { and, eq, notInArray } from 'drizzle-orm'
+import { and, eq, inArray, notInArray } from 'drizzle-orm'
 import { drizzle } from 'drizzle-orm/d1'
 
 import * as schema from './schema'
@@ -132,6 +132,25 @@ export const deletePost = async (db_binding: D1Database, id: number) => {
   const db = drizzle(db_binding)
   const posts = schema.posts
   const results = await db.delete(posts).where(eq(posts.id, id))
+
+  return results
+}
+
+export const getTags = async (db_binding: D1Database) => {
+  const db = drizzle(db_binding)
+  const posts = schema.posts
+  const postsToTags = schema.postsToTags
+
+  const selectPublic = db
+    .select({ id: posts.id })
+    .from(posts)
+    .where(eq(posts.public, true))
+
+  const results = await db
+    .selectDistinct({ tag: postsToTags.tagName })
+    .from(postsToTags)
+    .where(inArray(postsToTags.postId, selectPublic))
+    .then((tagData) => tagData.map((e) => e.tag))
 
   return results
 }
