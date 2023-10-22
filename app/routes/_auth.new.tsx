@@ -22,11 +22,19 @@ export const loader = async ({ request, context }: LoaderFunctionArgs) => {
 }
 
 export default function New() {
+  const defaultMarkdown = `---
+id:
+title:
+tags: []
+public: false
+---
+`
+
   return (
     <div>
       <h2>new</h2>
       <Form method="post">
-        <textarea name="markdown" />
+        <textarea name="markdown" defaultValue={defaultMarkdown} />
         <button>Save</button>
       </Form>
     </div>
