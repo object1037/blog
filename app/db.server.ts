@@ -106,17 +106,15 @@ export const addPost = async (
     tagName: tagData.name,
   }))
 
-  const results = await Promise.all([
-    db
-      .insert(posts)
-      .values(postData)
-      .onConflictDoUpdate({ target: posts.id, set: postData }),
-    db.insert(tags).values(tagDatas).onConflictDoNothing(),
-    db.delete(postsToTags).where(eq(postsToTags.postId, postData.id)),
-    db.insert(postsToTags).values(postTagDatas),
-  ])
+  await db
+    .insert(posts)
+    .values(postData)
+    .onConflictDoUpdate({ target: posts.id, set: postData })
+  await db.insert(tags).values(tagDatas).onConflictDoNothing()
+  await db.delete(postsToTags).where(eq(postsToTags.postId, postData.id))
+  await db.insert(postsToTags).values(postTagDatas)
 
-  return results
+  return
 }
 
 export const pruneTags = async (db_binding: D1Database) => {
