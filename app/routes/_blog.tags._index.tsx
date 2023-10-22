@@ -1,5 +1,5 @@
 import { type LoaderFunctionArgs, json } from '@remix-run/cloudflare'
-import { useLoaderData } from '@remix-run/react'
+import { Link, useLoaderData } from '@remix-run/react'
 
 import { getTags } from '~/db.server'
 import { envSchema } from '~/env'
@@ -19,7 +19,11 @@ export default function Tags() {
       <h2>Tags</h2>
       <ul>
         {tags.map((tag) => (
-          <li key={tag}>{tag}</li>
+          <li key={tag}>
+            <Link to={`${tag}`} prefetch="intent">
+              {tag}
+            </Link>
+          </li>
         ))}
       </ul>
     </div>

@@ -1,7 +1,10 @@
-import { and, eq, inArray, notInArray } from 'drizzle-orm'
-import { drizzle } from 'drizzle-orm/d1'
+import { and, eq, inArray, notInArray } from 'drizzle-orm';
+import { drizzle } from 'drizzle-orm/d1';
 
-import * as schema from './schema'
+
+
+import * as schema from './schema';
+
 
 export const getPosts = async (db_binding: D1Database) => {
   const db = drizzle(db_binding)
@@ -122,8 +125,8 @@ export const pruneTags = async (db_binding: D1Database) => {
   const tags = schema.tags
   const postsToTags = schema.postsToTags
 
-  const query = db.select({ data: postsToTags.tagName }).from(postsToTags)
-  const results = await db.delete(tags).where(notInArray(tags.name, query))
+  const prunedTags = db.select({ data: postsToTags.tagName }).from(postsToTags)
+  const results = await db.delete(tags).where(notInArray(tags.name, prunedTags))
 
   return results
 }
@@ -141,7 +144,7 @@ export const getTags = async (db_binding: D1Database) => {
   const posts = schema.posts
   const postsToTags = schema.postsToTags
 
-  const selectPublic = db
+  const publicPosts = db
     .select({ id: posts.id })
     .from(posts)
     .where(eq(posts.public, true))
@@ -149,8 +152,29 @@ export const getTags = async (db_binding: D1Database) => {
   const results = await db
     .selectDistinct({ tag: postsToTags.tagName })
     .from(postsToTags)
-    .where(inArray(postsToTags.postId, selectPublic))
+    .where(inArray(postsToTags.postId, publicPosts))
     .then((tagData) => tagData.map((e) => e.tag))
+
+  return results
+}
+
+export const getPostsWithTag = async (db_binding: D1Database, tag: string) => {
+  const db = drizzle(db_binding)
+  const posts = schema.posts
+  const postsToTags = schema.postsToTags
+
+  const postIds = db
+    .select({ postId: postsToTags.postId })
+    .from(postsToTags)
+    .where(eq(postsToTags.tagName, tag))
+
+  const results = await db
+    .select({
+      id: posts.id,
+      title: posts.title,
+    })
+    .from(posts)
+    .where(inArray(posts.id, postIds))
 
   return results
 }
