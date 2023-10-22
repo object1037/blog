@@ -1,10 +1,7 @@
-import { and, eq, inArray, notInArray } from 'drizzle-orm';
-import { drizzle } from 'drizzle-orm/d1';
+import { and, eq, inArray, notInArray } from 'drizzle-orm'
+import { drizzle } from 'drizzle-orm/d1'
 
-
-
-import * as schema from './schema';
-
+import * as schema from './schema'
 
 export const getPosts = async (db_binding: D1Database) => {
   const db = drizzle(db_binding)

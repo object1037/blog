@@ -1,4 +1,4 @@
-import { type LoaderFunctionArgs, json } from '@remix-run/cloudflare';
+import { type LoaderFunctionArgs, json } from '@remix-run/cloudflare'
 import { Form, Link, useLoaderData } from '@remix-run/react'
 
 import { getAllPosts } from '~/db.server'
