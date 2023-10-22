@@ -21,5 +21,15 @@ export const loader = async ({ params, context }: LoaderFunctionArgs) => {
 export default function Post() {
   const { post } = useLoaderData<typeof loader>()
 
-  return <div dangerouslySetInnerHTML={{ __html: post.html }} />
+  return (
+    <div>
+      <h1>{post.title}</h1>
+      <ul>
+        {post.tags.map((tag) => (
+          <li key={tag}>{tag}</li>
+        ))}
+      </ul>
+      <div dangerouslySetInnerHTML={{ __html: post.html }} />
+    </div>
+  )
 }

@@ -11,6 +11,7 @@ export const convertMarkdown = (markdown: string) => {
     id: z.number(),
     title: z.string().min(1),
     public: z.boolean().nullable(),
+    tags: z.array(z.string()),
   })
 
   const { content, data } = matter(markdown)

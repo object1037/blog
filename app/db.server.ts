@@ -1,7 +1,7 @@
-import { and, eq } from 'drizzle-orm';
-import { drizzle } from 'drizzle-orm/d1';
+import { and, eq, notInArray } from 'drizzle-orm'
+import { drizzle } from 'drizzle-orm/d1'
 
-import * as schema from './schema';
+import * as schema from './schema'
 
 export const getPosts = async (db_binding: D1Database) => {
   const db = drizzle(db_binding)
@@ -93,14 +93,39 @@ export const getAllPostData = async (db_binding: D1Database, id: number) => {
 
 export const addPost = async (
   db_binding: D1Database,
-  postData: schema.InsertPost,
+  postData: Required<schema.InsertPost>,
+  tagDatas: schema.InsertTag[],
 ) => {
   const db = drizzle(db_binding)
   const posts = schema.posts
-  const results = await db
-    .insert(posts)
-    .values(postData)
-    .onConflictDoUpdate({ target: posts.id, set: postData })
+  const tags = schema.tags
+  const postsToTags = schema.postsToTags
+
+  const postTagDatas: schema.InsertPostsToTags[] = tagDatas.map((tagData) => ({
+    postId: postData.id,
+    tagName: tagData.name,
+  }))
+
+  const results = await Promise.all([
+    db
+      .insert(posts)
+      .values(postData)
+      .onConflictDoUpdate({ target: posts.id, set: postData }),
+    db.insert(tags).values(tagDatas).onConflictDoNothing(),
+    db.delete(postsToTags).where(eq(postsToTags.postId, postData.id)),
+    db.insert(postsToTags).values(postTagDatas),
+  ])
+
+  return results
+}
+
+export const pruneTags = async (db_binding: D1Database) => {
+  const db = drizzle(db_binding)
+  const tags = schema.tags
+  const postsToTags = schema.postsToTags
+
+  const query = db.select({ data: postsToTags.tagName }).from(postsToTags)
+  const results = await db.delete(tags).where(notInArray(tags.name, query))
 
   return results
 }

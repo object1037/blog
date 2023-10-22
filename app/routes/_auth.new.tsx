@@ -41,13 +41,19 @@ export const action = async ({ request, context }: ActionFunctionArgs) => {
   }
   const { frontmatter, html } = convertMarkdown(markdown)
 
-  const newPost: InsertPost = {
-    ...frontmatter,
+  const { tags, ...restMatter } = frontmatter
+
+  const newPost: Required<InsertPost> = {
+    ...restMatter,
     markdown,
     html,
   }
 
-  await addPost(envSchema.parse(context.env).DB, newPost)
+  await addPost(
+    envSchema.parse(context.env).DB,
+    newPost,
+    tags.map((tag) => ({ name: tag })),
+  )
 
   return redirect('/dashboard')
 }

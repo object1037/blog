@@ -6,7 +6,7 @@ import {
 } from '@remix-run/cloudflare'
 import { Form, useLoaderData } from '@remix-run/react'
 
-import { addPost, getAllPostData } from '~/db.server'
+import { addPost, getAllPostData, pruneTags } from '~/db.server'
 import { envSchema } from '~/env'
 import { convertMarkdown } from '~/markdown.server'
 import { type InsertPost } from '~/schema'
@@ -49,6 +49,7 @@ export default function Post() {
 }
 
 export const action = async ({ request, context }: ActionFunctionArgs) => {
+  const env = envSchema.parse(context.env)
   const body = await request.formData()
   const markdown = body.get('markdown')
   if (typeof markdown !== 'string') {
@@ -56,13 +57,21 @@ export const action = async ({ request, context }: ActionFunctionArgs) => {
   }
   const { frontmatter, html } = convertMarkdown(markdown)
 
-  const newPost: InsertPost = {
-    ...frontmatter,
+  const { tags, ...restMatter } = frontmatter
+
+  const newPost: Required<InsertPost> = {
+    ...restMatter,
     markdown,
     html,
   }
 
-  await addPost(envSchema.parse(context.env).DB, newPost)
+  await addPost(
+    env.DB,
+    newPost,
+    tags.map((tag) => ({ name: tag })),
+  )
+
+  await pruneTags(env.DB)
 
   return redirect('/dashboard')
 }
