@@ -10,6 +10,7 @@ export const getPosts = async (db_binding: D1Database) => {
     .select({
       id: posts.id,
       title: posts.title,
+      description: posts.description,
     })
     .from(posts)
     .where(eq(posts.public, true))
@@ -24,6 +25,7 @@ export const getAllPosts = async (db_binding: D1Database) => {
     .select({
       id: posts.id,
       title: posts.title,
+      description: posts.description,
       public: posts.public,
     })
     .from(posts)
@@ -169,6 +171,7 @@ export const getPostsWithTag = async (db_binding: D1Database, tag: string) => {
     .select({
       id: posts.id,
       title: posts.title,
+      description: posts.description,
     })
     .from(posts)
     .where(inArray(posts.id, postIds))

@@ -8,6 +8,7 @@ export type InsertPostsToTags = typeof postsToTags.$inferInsert
 export const posts = sqliteTable('posts', {
   id: integer('id').primaryKey(),
   title: text('title').notNull(),
+  description: text('description').notNull(),
   public: integer('public', { mode: 'boolean' }).default(false),
   markdown: text('markdown').notNull(),
   html: text('html').notNull(),

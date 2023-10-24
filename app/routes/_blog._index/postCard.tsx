@@ -1,6 +1,7 @@
 import { Link } from '@remix-run/react'
 
 import { css } from 'styled-system/css'
+import { flex } from 'styled-system/patterns'
 
 import { type getPosts } from '~/db.server'
 
@@ -12,7 +13,7 @@ export const PostCard = ({
   return (
     <li
       className={css({
-        h: '20',
+        h: '24',
         borderColor: 'gray.900',
         borderBottomWidth: { base: '1px', _last: '0px' },
       })}
@@ -20,14 +21,17 @@ export const PostCard = ({
       <Link
         to={`/posts/${post.id}`}
         prefetch="intent"
-        className={css({
-          display: 'block',
+        className={flex({
+          direction: 'column',
+          justify: 'space-between',
           h: '100%',
-          fontWeight: 'medium',
           p: '4',
         })}
       >
-        {post.title}
+        <p className={css({ fontWeight: 'medium', fontSize: 'xl' })}>
+          {post.title}
+        </p>
+        <p>{post.description}</p>
       </Link>
     </li>
   )

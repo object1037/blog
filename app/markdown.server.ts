@@ -10,6 +10,7 @@ export const convertMarkdown = (markdown: string) => {
   const matterSchema = z.object({
     id: z.number(),
     title: z.string().min(1),
+    description: z.string().min(1),
     public: z.boolean().nullable(),
     tags: z.array(z.string()),
   })
