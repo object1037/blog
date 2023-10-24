@@ -19,6 +19,13 @@ const linkStyle = flex({
 const titleStyle = css({
   fontWeight: 'medium',
   fontSize: 'xl',
+  w: 'fit-content',
+  bgRepeat: 'no-repeat',
+  bgGradient: 'to-b',
+  gradientFrom: 'transparent 92%',
+  gradientTo: 'token(colors.primary) 92%',
+  bgSize: { base: '0% 100%', _groupHover: '100% 100%' },
+  transition: 'background',
 })
 
 export const PostCard = ({

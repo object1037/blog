@@ -21,7 +21,19 @@ export default defineConfig({
 
   // Useful for theme customization
   theme: {
-    extend: {},
+    extend: {
+      tokens: {
+        colors: {
+          primary: {
+            DEFAULT: { value: '#fd3972' },
+            light: { value: '#ffbac1' },
+          },
+          secondary: {
+            DEFAULT: { value: '#40fdad' },
+          },
+        },
+      },
+    },
   },
 
   // The output directory for your css system
