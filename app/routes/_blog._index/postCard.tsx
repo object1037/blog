@@ -22,8 +22,8 @@ const titleStyle = css({
   w: 'fit-content',
   bgRepeat: 'no-repeat',
   bgGradient: 'to-b',
-  gradientFrom: 'transparent 92%',
-  gradientTo: 'token(colors.primary) 92%',
+  gradientFrom: 'transparent 70%',
+  gradientTo: 'token(colors.secondary) 70%',
   bgSize: { base: '0% 100%', _groupHover: '100% 100%' },
   transition: 'background',
 })
