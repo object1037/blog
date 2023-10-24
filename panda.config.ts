@@ -29,7 +29,7 @@ export default defineConfig({
             light: { value: '#ffbac1' },
           },
           secondary: {
-            DEFAULT: { value: '#40fdad' },
+            DEFAULT: { value: '#06feba' },
           },
         },
       },
