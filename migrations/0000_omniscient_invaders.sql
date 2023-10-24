@@ -1,6 +1,7 @@
 CREATE TABLE `posts` (
 	`id` integer PRIMARY KEY NOT NULL,
 	`title` text NOT NULL,
+	`description` text NOT NULL,
 	`public` integer DEFAULT false,
 	`markdown` text NOT NULL,
 	`html` text NOT NULL

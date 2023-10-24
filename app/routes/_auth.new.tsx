@@ -25,6 +25,7 @@ export default function New() {
   const defaultMarkdown = `---
 id:
 title:
+description:
 tags: []
 public: false
 ---
