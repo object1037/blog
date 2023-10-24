@@ -42,6 +42,22 @@ export default defineConfig({
     },
   },
 
+  patterns: {
+    extend: {
+      container: {
+        transform(props) {
+          return {
+            position: 'relative',
+            maxWidth: '4xl',
+            mx: 'auto',
+            px: { base: '4', md: '6', lg: '8' },
+            ...props,
+          }
+        },
+      },
+    },
+  },
+
   // The output directory for your css system
   outdir: 'styled-system',
 
