@@ -7,7 +7,7 @@ import { type getPosts } from '~/db.server'
 
 const itemStyle = css({
   h: '24',
-  borderColor: 'gray.900',
+  borderColor: 'neutral.200',
   borderBottomWidth: { base: '1px', _last: '0px' },
 })
 const linkStyle = flex({
