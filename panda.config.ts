@@ -5,6 +5,12 @@ const globalCss = defineGlobalStyles({
     bg: 'neutral.50',
     color: 'neutral.900',
   },
+  body: {
+    display: 'grid',
+    gridTemplateRows: 'auto 1fr auto',
+    gridTemplateColumns: '100%',
+    minHeight: '100svh',
+  },
 })
 
 export default defineConfig({
