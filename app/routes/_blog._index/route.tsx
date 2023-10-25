@@ -44,6 +44,7 @@ export default function Index() {
     >
       <div
         className={divider({
+          color: 'neutral.700',
           w: '10',
           mt: '2',
         })}
