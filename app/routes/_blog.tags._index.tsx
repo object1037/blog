@@ -1,6 +1,7 @@
-import { type LoaderFunctionArgs, json } from '@remix-run/cloudflare'
+import { type LoaderFunctionArgs, json } from '@remix-run/cloudflare';
 import { Link, useLoaderData } from '@remix-run/react'
 
+import { ContainerWithHeading } from '~/components/containerWithHeading'
 import { getTags } from '~/db.server'
 import { envSchema } from '~/env'
 
@@ -15,8 +16,7 @@ export default function Tags() {
   const { tags } = useLoaderData<typeof loader>()
 
   return (
-    <div>
-      <h2>Tags</h2>
+    <ContainerWithHeading heading="Tags">
       <ul>
         {tags.map((tag) => (
           <li key={tag}>
@@ -26,6 +26,6 @@ export default function Tags() {
           </li>
         ))}
       </ul>
-    </div>
+    </ContainerWithHeading>
   )
 }

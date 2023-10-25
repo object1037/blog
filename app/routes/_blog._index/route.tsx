@@ -5,10 +5,8 @@ import {
 } from '@remix-run/cloudflare'
 import { useLoaderData } from '@remix-run/react'
 
-import { css } from 'styled-system/css'
-import { container, divider } from 'styled-system/patterns'
-
 import { PostList } from './postList'
+import { ContainerWithHeading } from '~/components/containerWithHeading'
 import { getPosts } from '~/db.server'
 import { envSchema } from '~/env'
 
@@ -29,28 +27,9 @@ export const loader = async ({ context }: LoaderFunctionArgs) => {
 export default function Index() {
   const { posts } = useLoaderData<typeof loader>()
 
-  const headingStyle = css({
-    fontSize: '5xl',
-    fontWeight: 'bold',
-    py: '6',
-  })
-
   return (
-    <div
-      className={container({
-        maxWidth: '3xl',
-        px: {base: '6', md: '8', lg: '10'},
-      })}
-    >
-      <div
-        className={divider({
-          color: 'neutral.700',
-          w: '10',
-          mt: '2',
-        })}
-      />
-      <h1 className={headingStyle}>Posts</h1>
+    <ContainerWithHeading heading="Posts">
       <PostList posts={posts} />
-    </div>
+    </ContainerWithHeading>
   )
 }
