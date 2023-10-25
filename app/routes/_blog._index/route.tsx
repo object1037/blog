@@ -39,6 +39,7 @@ export default function Index() {
     <div
       className={container({
         maxWidth: '3xl',
+        px: {base: '6', md: '8', lg: '10'},
       })}
     >
       <div
