@@ -1,0 +1,47 @@
+import { Link } from '@remix-run/react'
+
+import { css } from 'styled-system/css'
+import { container, hstack } from 'styled-system/patterns'
+
+import { Icon } from './icon'
+
+const topLinkStyle = hstack({
+  gap: '1rem',
+  fontSize: '5xl',
+  py: '4',
+  px: '2',
+})
+const topTextStyle = css({
+  fontSize: '3xl',
+  fontWeight: 'bold',
+  lineHeight: '1',
+})
+const navTextStyle = css({
+  fontSize: 'sm',
+  fontWeight: 'medium',
+  py: '2',
+  px: '4',
+  rounded: '9999px',
+  _hover: { bg: 'neutral.200' },
+  transition: 'background',
+})
+
+export const Header = () => {
+  return (
+    <header className={container({ w: '100%' })}>
+      <div
+        className={hstack({
+          justify: 'space-between',
+          p: '2',
+        })}
+      >
+        <Link to="/" className={topLinkStyle}>
+          <Icon /> <span className={topTextStyle}>Blog</span>
+        </Link>
+        <Link to="/tags" className={navTextStyle}>
+          Tags
+        </Link>
+      </div>
+    </header>
+  )
+}

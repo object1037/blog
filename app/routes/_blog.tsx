@@ -1,11 +1,12 @@
-import { Link, Outlet } from '@remix-run/react'
+import { Outlet } from '@remix-run/react'
+
+import { Header } from '~/components/header'
 
 export default function BlogLayout() {
   return (
     <>
-      <header>blog layout</header>
+      <Header />
       <main>
-        <Link to="/">Home</Link>
         <Outlet />
       </main>
     </>
