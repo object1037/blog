@@ -6,6 +6,7 @@ import {
 import { useLoaderData } from '@remix-run/react'
 
 import { css } from 'styled-system/css'
+import { container, divider } from 'styled-system/patterns'
 
 import { PostList } from './postList'
 import { getPosts } from '~/db.server'
@@ -28,10 +29,26 @@ export const loader = async ({ context }: LoaderFunctionArgs) => {
 export default function Index() {
   const { posts } = useLoaderData<typeof loader>()
 
+  const headingStyle = css({
+    fontSize: '5xl',
+    fontWeight: 'bold',
+    py: '6',
+  })
+
   return (
-    <section>
-      <h2 className={css({ fontWeight: 'bold' })}>Blog</h2>
+    <div
+      className={container({
+        maxWidth: '3xl',
+      })}
+    >
+      <div
+        className={divider({
+          w: '10',
+          mt: '2',
+        })}
+      />
+      <h1 className={headingStyle}>Posts</h1>
       <PostList posts={posts} />
-    </section>
+    </div>
   )
 }
