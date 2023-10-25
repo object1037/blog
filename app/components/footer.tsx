@@ -6,7 +6,8 @@ import { container, hstack } from 'styled-system/patterns'
 
 const IconLink = (props: ComponentPropsWithoutRef<'a'>) => {
   const iconLinkStyle = css({
-    p: '4',
+    py: '4',
+    px: { base: '3', md: '4' },
     fontSize: '3xl',
     _hover: { color: 'neutral.400' },
     transition: 'colors',
@@ -28,10 +29,11 @@ export const Footer = () => {
   const footerStackStyle = hstack({
     justify: 'space-between',
     p: '2',
-    mb: '12',
+    mb: { base: '8', md: '10', lg: '12' },
   })
   const copyStyle = css({
-    p: '4',
+    py: '4',
+    px: { base: '2', md: '4' },
     fontSize: 'xs',
     fontWeight: 'light',
   })
@@ -39,7 +41,11 @@ export const Footer = () => {
   return (
     <footer className={container({ w: '100%' })}>
       <div className={footerStackStyle}>
-        <div className={hstack()}>
+        <div
+          className={hstack({
+            ml: { base: '-3', md: '-1' },
+          })}
+        >
           <IconLink href="https://twitter.com/object1037">
             <LuTwitter />
           </IconLink>

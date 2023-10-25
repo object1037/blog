@@ -14,18 +14,18 @@ export const Header = () => {
     gap: '1rem',
     fontSize: '5xl',
     py: '4',
-    px: '2',
+    px: { base: '0', md: '2', lg: '4' },
   })
   const topTextStyle = css({
-    fontSize: '3xl',
-    fontWeight: 'bold',
+    fontSize: 'lg',
+    fontWeight: 'medium',
     lineHeight: '1',
   })
   const navTextStyle = css({
     fontSize: 'sm',
     fontWeight: 'medium',
     py: '2',
-    px: '4',
+    px: { base: '2', md: '4' },
     rounded: '9999px',
     _hover: { bg: 'neutral.200' },
     transition: 'background',
