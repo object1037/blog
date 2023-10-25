@@ -1,41 +1,44 @@
+import { type ComponentPropsWithoutRef } from 'react'
+
 import { LuGithub, LuTwitter } from 'react-icons/lu'
 import { css } from 'styled-system/css'
 import { container, hstack } from 'styled-system/patterns'
 
-const IconLink = ({
-  href,
-  children,
-}: {
-  href: string
-  children: React.ReactNode
-}) => {
+const iconLinkStyle = css({
+  p: '4',
+  fontSize: '3xl',
+  _hover: { color: 'neutral.400' },
+  transition: 'colors',
+})
+
+const IconLink = (props: ComponentPropsWithoutRef<'a'>) => {
   return (
     <a
-      href={href}
+      {...props}
       target="_blank"
       rel="noopener noreferrer"
-      className={css({
-        p: '4',
-        fontSize: '3xl',
-        _hover: { color: 'neutral.400' },
-        transition: 'colors',
-      })}
+      className={iconLinkStyle}
     >
-      {children}
+      {props.children}
     </a>
   )
 }
 
+const footerStackStyle = hstack({
+  justify: 'space-between',
+  p: '2',
+  mb: '12',
+})
+const copyStyle = css({
+  p: '4',
+  fontSize: 'xs',
+  fontWeight: 'light',
+})
+
 export const Footer = () => {
   return (
     <footer className={container({ w: '100%' })}>
-      <div
-        className={hstack({
-          justify: 'space-between',
-          p: '2',
-          mb: '12',
-        })}
-      >
+      <div className={footerStackStyle}>
         <div className={hstack()}>
           <IconLink href="https://twitter.com/object1037">
             <LuTwitter />
@@ -44,15 +47,7 @@ export const Footer = () => {
             <LuGithub />
           </IconLink>
         </div>
-        <p
-          className={css({
-            p: '4',
-            fontSize: 'xs',
-            fontWeight: 'light',
-          })}
-        >
-          &copy; object1037
-        </p>
+        <p className={copyStyle}>&copy; object1037</p>
       </div>
     </footer>
   )

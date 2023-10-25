@@ -5,6 +5,10 @@ import { container, hstack } from 'styled-system/patterns'
 
 import { Icon } from './icon'
 
+const headerStackStyle = hstack({
+  justify: 'space-between',
+  p: '2',
+})
 const topLinkStyle = hstack({
   gap: '1rem',
   fontSize: '5xl',
@@ -29,12 +33,7 @@ const navTextStyle = css({
 export const Header = () => {
   return (
     <header className={container({ w: '100%' })}>
-      <div
-        className={hstack({
-          justify: 'space-between',
-          p: '2',
-        })}
-      >
+      <div className={headerStackStyle}>
         <Link to="/" className={topLinkStyle}>
           <Icon /> <span className={topTextStyle}>Blog</span>
         </Link>
