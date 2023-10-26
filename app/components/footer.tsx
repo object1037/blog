@@ -41,11 +41,7 @@ export const Footer = () => {
   return (
     <footer className={container({ w: '100%' })}>
       <div className={footerStackStyle}>
-        <div
-          className={hstack({
-            ml: { base: '-3', md: '-2', lg: '0' },
-          })}
-        >
+        <div className={hstack()}>
           <IconLink href="https://twitter.com/object1037">
             <LuTwitter />
           </IconLink>

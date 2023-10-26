@@ -10,7 +10,7 @@ export const ContainerWithHeading = ({
 }) => {
   const containerStyle = container({
     maxWidth: '3xl',
-    px: { base: '6', md: '8', lg: '10' },
+    px: { base: '7', md: '8', lg: '10' },
   })
   const dividerStyle = divider({
     color: 'neutral.700',
