@@ -25,8 +25,8 @@ export const Header = () => {
     fontSize: 'sm',
     fontWeight: 'medium',
     py: '2',
-    px: { base: '2', md: '4' },
-    rounded: 'full',
+    px: { base: '3', md: '4' },
+    rounded: 'sm',
     _hover: { bg: 'neutral.200' },
     transition: 'background',
   })
