@@ -1,6 +1,8 @@
-import { type LoaderFunctionArgs, json } from '@remix-run/cloudflare'
-import { Link, useLoaderData } from '@remix-run/react'
+import { type LoaderFunctionArgs, json } from '@remix-run/cloudflare';
+import { useLoaderData } from '@remix-run/react'
 
+import { ContainerWithHeading } from '~/components/containerWithHeading'
+import { PostList } from '~/components/postList'
 import { getPostsWithTag } from '~/db.server'
 import { envSchema } from '~/env'
 
@@ -14,24 +16,15 @@ export const loader = async ({ context, params }: LoaderFunctionArgs) => {
 
   const posts = await getPostsWithTag(env.DB, tagName)
 
-  return json({ posts })
+  return json({ tagName, posts })
 }
 
 export default function Tag() {
-  const { posts } = useLoaderData<typeof loader>()
+  const { tagName, posts } = useLoaderData<typeof loader>()
 
   return (
-    <div>
-      <h2>Posts with tag</h2>
-      <ul>
-        {posts.map((post) => (
-          <li key={post.id}>
-            <Link to={`../posts/${post.id}`} prefetch="intent">
-              {post.title}
-            </Link>
-          </li>
-        ))}
-      </ul>
-    </div>
+    <ContainerWithHeading heading={tagName}>
+      <PostList posts={posts} />
+    </ContainerWithHeading>
   )
 }

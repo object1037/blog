@@ -5,7 +5,7 @@ import {
 } from '@remix-run/cloudflare'
 import { useLoaderData } from '@remix-run/react'
 
-import { PostList } from './postList'
+import { PostList } from '../../components/postList'
 import { ContainerWithHeading } from '~/components/containerWithHeading'
 import { getPosts } from '~/db.server'
 import { envSchema } from '~/env'
