@@ -8,8 +8,8 @@ import {
   ScrollRestoration,
 } from '@remix-run/react'
 
-import { Footer } from './components/footer'
-import styles from './index.css'
+import { Footer } from '~/components/footer'
+import styles from '~/styles/index.css'
 
 export const links: LinksFunction = () => [{ rel: 'stylesheet', href: styles }]
 

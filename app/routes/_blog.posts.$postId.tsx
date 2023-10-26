@@ -1,4 +1,8 @@
-import { type LoaderFunctionArgs, json } from '@remix-run/cloudflare'
+import {
+  type LinksFunction,
+  type LoaderFunctionArgs,
+  json,
+} from '@remix-run/cloudflare'
 import { useLoaderData } from '@remix-run/react'
 
 import { z } from 'zod'
@@ -7,6 +11,9 @@ import { ContainerWithHeading } from '~/components/containerWithHeading'
 import { TagList } from '~/components/tagList'
 import { getPostData } from '~/db.server'
 import { envSchema } from '~/env'
+import styles from '~/styles/markdown.css'
+
+export const links: LinksFunction = () => [{ rel: 'stylesheet', href: styles }]
 
 export const loader = async ({ params, context }: LoaderFunctionArgs) => {
   const env = envSchema.parse(context.env)
@@ -31,7 +38,10 @@ export default function Post() {
   return (
     <ContainerWithHeading heading={post.title}>
       <TagList tags={post.tags} />
-      <div dangerouslySetInnerHTML={{ __html: post.html }} />
+      <div
+        className="markdown_wrapper"
+        dangerouslySetInnerHTML={{ __html: post.html }}
+      />
     </ContainerWithHeading>
   )
 }

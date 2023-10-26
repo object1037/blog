@@ -1,0 +1,5 @@
+.markdown_wrapper {
+  & p {
+    background-color: aquamarine;
+  }
+}
