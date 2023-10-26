@@ -34,10 +34,10 @@ export const Header = () => {
   return (
     <header className={container({ w: '100%' })}>
       <nav className={headerStackStyle}>
-        <Link to="/" className={topLinkStyle}>
+        <Link to="/" prefetch='intent' className={topLinkStyle}>
           <Icon /> <span className={topTextStyle}>Blog</span>
         </Link>
-        <Link to="/tags" className={navTextStyle}>
+        <Link to="/tags" prefetch='intent' className={navTextStyle}>
           Tags
         </Link>
       </nav>
