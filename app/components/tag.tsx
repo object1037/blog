@@ -4,12 +4,12 @@ import { css } from 'styled-system/css'
 
 export const Tag = ({ name }: { name: string }) => {
   const tagStyle = css({
-    py: '2',
+    py: '1.5',
     px: '3',
     borderColor: 'neutral.200',
     borderWidth: '1px',
     rounded: 'sm',
-    w: 'fit-content',
+    display: 'inline-block',
     fontSize: 'sm',
     fontWeight: 'medium',
     color: 'neutral.700',

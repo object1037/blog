@@ -3,6 +3,8 @@ import { useLoaderData } from '@remix-run/react'
 
 import { z } from 'zod'
 
+import { ContainerWithHeading } from '~/components/containerWithHeading'
+import { TagList } from '~/components/tagList'
 import { getPostData } from '~/db.server'
 import { envSchema } from '~/env'
 
@@ -27,14 +29,9 @@ export default function Post() {
   const { post } = useLoaderData<typeof loader>()
 
   return (
-    <div>
-      <h1>{post.title}</h1>
-      <ul>
-        {post.tags.map((tag) => (
-          <li key={tag}>{tag}</li>
-        ))}
-      </ul>
+    <ContainerWithHeading heading={post.title}>
+      <TagList tags={post.tags} />
       <div dangerouslySetInnerHTML={{ __html: post.html }} />
-    </div>
+    </ContainerWithHeading>
   )
 }
