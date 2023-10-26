@@ -1,11 +1,8 @@
 import { type LoaderFunctionArgs, json } from '@remix-run/cloudflare'
 import { useLoaderData } from '@remix-run/react'
 
-import { css } from 'styled-system/css'
-import { wrap } from 'styled-system/patterns'
-
 import { ContainerWithHeading } from '~/components/containerWithHeading'
-import { Tag } from '~/components/tag'
+import { TagList } from '~/components/tagList'
 import { getTags } from '~/db.server'
 import { envSchema } from '~/env'
 
@@ -21,13 +18,7 @@ export default function Tags() {
 
   return (
     <ContainerWithHeading heading="Tags">
-      <ul className={wrap()}>
-        {tags.map((tag) => (
-          <li key={tag} className={css({ display: 'inline' })}>
-            <Tag name={tag} />
-          </li>
-        ))}
-      </ul>
+      <TagList tags={tags} />
     </ContainerWithHeading>
   )
 }
