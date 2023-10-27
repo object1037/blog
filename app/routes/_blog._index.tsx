@@ -24,7 +24,7 @@ export const loader = async ({ context }: LoaderFunctionArgs) => {
   const cacheControl =
     'public, max-age=30, stale-while-revalidate=600, stale-if-error=864000'
 
-  return json({ posts }, {headers: {'Cache-Control': cacheControl}})
+  return json({ posts }, { headers: { 'Cache-Control': cacheControl } })
 }
 
 export default function Index() {

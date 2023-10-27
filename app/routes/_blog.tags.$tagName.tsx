@@ -1,4 +1,4 @@
-import { type LoaderFunctionArgs, json } from '@remix-run/cloudflare';
+import { type LoaderFunctionArgs, json } from '@remix-run/cloudflare'
 import { useLoaderData } from '@remix-run/react'
 
 import { ContainerWithHeading } from '~/components/containerWithHeading'
