@@ -16,7 +16,13 @@ export const loader = async ({ context, params }: LoaderFunctionArgs) => {
 
   const posts = await getPostsWithTag(env.DB, tagName)
 
-  return json({ tagName, posts })
+  const cacheControl =
+    'public, max-age=30, stale-while-revalidate=600, stale-if-error=864000'
+
+  return json(
+    { tagName, posts },
+    { headers: { 'Cache-Control': cacheControl } },
+  )
 }
 
 export default function Tag() {

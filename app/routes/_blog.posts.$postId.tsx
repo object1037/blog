@@ -29,7 +29,10 @@ export const loader = async ({ params, context }: LoaderFunctionArgs) => {
     throw new Response('Not Found', { status: 404 })
   }
 
-  return json({ post })
+  const cacheControl =
+    'public, max-age=30, stale-while-revalidate=600, stale-if-error=864000'
+
+  return json({ post }, { headers: { 'Cache-Control': cacheControl } })
 }
 
 export default function Post() {

@@ -21,7 +21,10 @@ export const loader = async ({ context }: LoaderFunctionArgs) => {
   const env = envSchema.parse(context.env)
   const posts = await getPosts(env.DB)
 
-  return json({ posts })
+  const cacheControl =
+    'public, max-age=30, stale-while-revalidate=600, stale-if-error=864000'
+
+  return json({ posts }, {headers: {'Cache-Control': cacheControl}})
 }
 
 export default function Index() {
