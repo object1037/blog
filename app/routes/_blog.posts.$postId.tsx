@@ -40,7 +40,6 @@ export default function Post() {
 
   return (
     <ContainerWithHeading heading={post.title}>
-      <h5>hoge</h5>
       <TagList tags={post.tags} />
       <div
         className="markdown_wrapper"
