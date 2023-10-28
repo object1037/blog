@@ -1,11 +1,18 @@
-import matter from 'gray-matter'
+import matter from 'gray-matter';
 import MarkdownIt from 'markdown-it'
+import Shikiji from 'markdown-it-shikiji'
 import { z } from 'zod'
 
-export const convertMarkdown = (markdown: string) => {
+export const convertMarkdown = async (markdown: string) => {
   const md = new MarkdownIt({
     linkify: true,
   })
+
+  md.use(
+    await Shikiji({
+      theme: 'material-theme-palenight',
+    }),
+  )
 
   const matterSchema = z.object({
     id: z.number(),

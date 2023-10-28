@@ -24,6 +24,7 @@
     "gray-matter": "^4.0.3",
     "isbot": "^3.7.0",
     "markdown-it": "^13.0.2",
+    "markdown-it-shikiji": "^0.6.10",
     "react": "^18.2.0",
     "react-dom": "^18.2.0",
     "react-icons": "^4.11.0",
@@ -44,7 +45,7 @@
     "eslint": "^8.52.0",
     "prettier": "^3.0.3",
     "typescript": "^5.2.2",
-    "wrangler": "^3.14.0"
+    "wrangler": "^3.15.0"
   },
   "engines": {
     "node": ">=18.0.0"
@@ -52,7 +53,9 @@
   "pnpm": {
     "patchedDependencies": {
       "markdown-it@13.0.2": "patches/markdown-it@13.0.2.patch",
-      "gray-matter@4.0.3": "patches/gray-matter@4.0.3.patch"
+      "gray-matter@4.0.3": "patches/gray-matter@4.0.3.patch",
+      "markdown-it-shikiji@0.6.10": "patches/markdown-it-shikiji@0.6.10.patch",
+      "@remix-run/dev@2.1.0": "patches/@remix-run__dev@2.1.0.patch"
     }
   }
 }

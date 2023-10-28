@@ -1,16 +1,14 @@
-import {
-  type ActionFunctionArgs,
-  type LoaderFunctionArgs,
-  json,
-  redirect,
-} from '@remix-run/cloudflare'
-import { Form } from '@remix-run/react'
+import { type ActionFunctionArgs, type LoaderFunctionArgs, json, redirect } from '@remix-run/cloudflare';
+import { Form } from '@remix-run/react';
 
-import { addPost } from '~/db.server'
-import { envSchema } from '~/env'
-import { convertMarkdown } from '~/markdown.server'
-import { type InsertPost } from '~/schema'
-import { getAuthenticator } from '~/services/auth.server'
+
+
+import { addPost } from '~/db.server';
+import { envSchema } from '~/env';
+import { convertMarkdown } from '~/markdown.server';
+import { type InsertPost } from '~/schema';
+import { getAuthenticator } from '~/services/auth.server';
+
 
 export const loader = async ({ request, context }: LoaderFunctionArgs) => {
   const authenticator = getAuthenticator(envSchema.parse(context.env))
@@ -48,7 +46,7 @@ export const action = async ({ request, context }: ActionFunctionArgs) => {
   if (typeof markdown !== 'string') {
     throw new Response('Missing markdown', { status: 400 })
   }
-  const { frontmatter, html } = convertMarkdown(markdown)
+  const { frontmatter, html } = await convertMarkdown(markdown)
 
   const { tags, ...restMatter } = frontmatter
 

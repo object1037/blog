@@ -1,0 +1,13 @@
+diff --git a/dist/compiler/utils/loaders.js b/dist/compiler/utils/loaders.js
+index ba1b7801c0b0aee3c6f725eeb855d297143230df..dd55dce6ffac2ce4a4568a650fac4f7d9de16f42 100644
+--- a/dist/compiler/utils/loaders.js
++++ b/dist/compiler/utils/loaders.js
+@@ -71,7 +71,7 @@ const loaders = {
+   ".ts": "ts",
+   ".tsx": "tsx",
+   ".ttf": "file",
+-  ".wasm": "file",
++  ".wasm": "text",
+   ".wav": "file",
+   ".webm": "file",
+   ".webmanifest": "file",
