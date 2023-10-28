@@ -12,7 +12,7 @@ patchedDependencies:
     hash: cahvimcigbzfhugkwvn3mhutwu
     path: patches/gray-matter@4.0.3.patch
   markdown-it-shikiji@0.6.10:
-    hash: dhgkctl5434p4lyi7ob3rk2wpy
+    hash: t4rd6ywxg3vq6qtpbvyiyvwipu
     path: patches/markdown-it-shikiji@0.6.10.patch
   markdown-it@13.0.2:
     hash: avg7pqwcqkxgbiewqrb7ocip7q
@@ -45,7 +45,7 @@ dependencies:
     version: 13.0.2(patch_hash=avg7pqwcqkxgbiewqrb7ocip7q)
   markdown-it-shikiji:
     specifier: ^0.6.10
-    version: 0.6.10(patch_hash=dhgkctl5434p4lyi7ob3rk2wpy)
+    version: 0.6.10(patch_hash=t4rd6ywxg3vq6qtpbvyiyvwipu)
   react:
     specifier: ^18.2.0
     version: 18.2.0
@@ -6586,7 +6586,7 @@ packages:
     engines: {node: '>=0.10.0'}
     dev: true
 
-  /markdown-it-shikiji@0.6.10(patch_hash=dhgkctl5434p4lyi7ob3rk2wpy):
+  /markdown-it-shikiji@0.6.10(patch_hash=t4rd6ywxg3vq6qtpbvyiyvwipu):
     resolution: {integrity: sha512-RWSiTQbgLB8vxFWzswTxWDvuhJ0kU2R9vBkUutjgX5xHeqSftPxwyLqbJGH9n/w/gticlYposWa0qTT+vvbbxg==}
     dependencies:
       markdown-it: 13.0.2(patch_hash=avg7pqwcqkxgbiewqrb7ocip7q)
