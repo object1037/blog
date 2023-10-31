@@ -11,3 +11,8 @@ database_id = "fe62b702-8f6b-4b85-81c0-e315529e6ca7"
 kv_namespaces = [
   { binding = "SESSION_KV", id = "4fee0af77fa3425dac9bd8dc5bfbaf4b", preview_id = "4fee0af77fa3425dac9bd8dc5bfbaf4b" }
 ]
+
+[[r2_buckets]]
+binding = 'BUCKET'
+bucket_name = 'blog-images'
+preview_bucket_name = 'blog-images'
