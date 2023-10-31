@@ -49,9 +49,22 @@ export const action = async ({ request, context }: ActionFunctionArgs) => {
 
   const formData = await unstable_parseMultipartFormData(request, uploadHandler)
   const image = z.instanceof(File).parse(formData.get('image'))
-  const response = await env.BUCKET.put(image.name, await image.arrayBuffer(), {
+  const imageBuffer = await image.arrayBuffer()
+
+  const [name, ext] = image.name.split('.')
+  const hash = await digestMessage(imageBuffer)
+  const key = `${name}-${hash}.${ext}`
+
+  const response = await env.BUCKET.put(key, imageBuffer, {
     httpMetadata: { contentType: image.type },
   })
 
   return json({ response })
+}
+
+const digestMessage = async (imageBuffer: ArrayBuffer) => {
+  const hashBuffer = await crypto.subtle.digest('SHA-256', imageBuffer)
+  const hashArray = Array.from(new Uint8Array(hashBuffer))
+  const hashHex = hashArray.map((b) => b.toString(16).padStart(2, '0')).join('')
+  return hashHex.slice(0, 7)
 }
