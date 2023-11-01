@@ -1,18 +1,18 @@
-import { type ActionFunctionArgs, type LoaderFunctionArgs, json, redirect } from '@remix-run/cloudflare';
-import { Form, useLoaderData } from '@remix-run/react';
+import {
+  type ActionFunctionArgs,
+  type LoaderFunctionArgs,
+  json,
+  redirect,
+} from '@remix-run/cloudflare'
+import { Form, useLoaderData } from '@remix-run/react'
 
+import { z } from 'zod'
 
-
-import { z } from 'zod';
-
-
-
-import { addPost, getAllPostData, pruneTags } from '~/db.server';
-import { envSchema } from '~/env';
-import { convertMarkdown } from '~/markdown.server';
-import { type InsertPost } from '~/schema';
-import { getAuthenticator } from '~/services/auth.server';
-
+import { addPost, getAllPostData, pruneTags } from '~/db.server'
+import { envSchema } from '~/env'
+import { convertMarkdown } from '~/markdown.server'
+import { type InsertPost } from '~/schema'
+import { getAuthenticator } from '~/services/auth.server'
 
 export const loader = async ({
   params,

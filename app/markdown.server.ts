@@ -1,4 +1,4 @@
-import matter from 'gray-matter';
+import matter from 'gray-matter'
 import MarkdownIt from 'markdown-it'
 import Shikiji from 'markdown-it-shikiji'
 import { z } from 'zod'

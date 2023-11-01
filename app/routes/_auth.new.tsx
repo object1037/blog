@@ -1,4 +1,9 @@
-import { type ActionFunctionArgs, type LoaderFunctionArgs, json, redirect } from '@remix-run/cloudflare'
+import {
+  type ActionFunctionArgs,
+  type LoaderFunctionArgs,
+  json,
+  redirect,
+} from '@remix-run/cloudflare'
 import { Form } from '@remix-run/react'
 
 import { addPost } from '~/db.server'

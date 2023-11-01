@@ -7,7 +7,7 @@ export const envSchema = z.object({
   SESSION_SECRET: z.string().min(1),
   DB: z.custom<D1Database>(),
   SESSION_KV: z.custom<KVNamespace>(),
-  BUCKET: z.custom<R2Bucket>()
+  BUCKET: z.custom<R2Bucket>(),
 })
 
 export type Env = z.infer<typeof envSchema>
