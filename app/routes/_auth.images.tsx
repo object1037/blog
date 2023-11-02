@@ -32,7 +32,7 @@ export default function Images() {
       <ul>
         {list.objects.map((object) => (
           <li key={object.key}>
-            {object.key}
+            <a href={`/images/${object.key}`}>{object.key}</a>
             <Form method="post" encType="multipart/form-data">
               <input type="hidden" name="key" value={object.key} />
               <button name="_action" value="delete">
