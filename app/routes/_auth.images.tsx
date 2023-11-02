@@ -11,6 +11,7 @@ import { z } from 'zod'
 
 import { envSchema } from '~/env'
 import { getAuthenticator } from '~/services/auth.server'
+import { digestMessage } from '~/utils/digest'
 
 export const loader = async ({ request, context }: LoaderFunctionArgs) => {
   const authenticator = getAuthenticator(envSchema.parse(context.env))
@@ -30,12 +31,22 @@ export default function Images() {
     <div>
       <ul>
         {list.objects.map((object) => (
-          <li key={object.key}>{object.key}</li>
+          <li key={object.key}>
+            {object.key}
+            <Form method="post" encType="multipart/form-data">
+              <input type="hidden" name="key" value={object.key} />
+              <button name="_action" value="delete">
+                Delete
+              </button>
+            </Form>
+          </li>
         ))}
       </ul>
       <Form method="post" encType="multipart/form-data">
         <input type="file" name="image" />
-        <button>Submit</button>
+        <button name="_action" value="add">
+          Add
+        </button>
       </Form>
     </div>
   )
@@ -48,6 +59,14 @@ export const action = async ({ request, context }: ActionFunctionArgs) => {
   })
 
   const formData = await unstable_parseMultipartFormData(request, uploadHandler)
+  const _action = z.string().parse(formData.get('_action'))
+
+  if (_action === 'delete') {
+    const key = z.string().parse(formData.get('key'))
+    await env.BUCKET.delete(key)
+    return null
+  }
+
   const image = z.instanceof(File).parse(formData.get('image'))
   const imageBuffer = await image.arrayBuffer()
 
@@ -60,11 +79,4 @@ export const action = async ({ request, context }: ActionFunctionArgs) => {
   })
 
   return json({ response })
-}
-
-const digestMessage = async (imageBuffer: ArrayBuffer) => {
-  const hashBuffer = await crypto.subtle.digest('SHA-256', imageBuffer)
-  const hashArray = Array.from(new Uint8Array(hashBuffer))
-  const hashHex = hashArray.map((b) => b.toString(16).padStart(2, '0')).join('')
-  return hashHex.slice(0, 7)
 }
