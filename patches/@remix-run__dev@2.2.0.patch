@@ -1,13 +1,33 @@
-diff --git a/dist/compiler/utils/loaders.js b/dist/compiler/utils/loaders.js
-index ba1b7801c0b0aee3c6f725eeb855d297143230df..dd55dce6ffac2ce4a4568a650fac4f7d9de16f42 100644
---- a/dist/compiler/utils/loaders.js
-+++ b/dist/compiler/utils/loaders.js
-@@ -71,7 +71,7 @@ const loaders = {
-   ".ts": "ts",
-   ".tsx": "tsx",
-   ".ttf": "file",
--  ".wasm": "file",
-+  ".wasm": "text",
-   ".wav": "file",
-   ".webm": "file",
-   ".webmanifest": "file",
+diff --git a/dist/compiler/server/plugins/bareImports.js b/dist/compiler/server/plugins/bareImports.js
+index bb0dfdb4de0304fe105a4111be05a02c2baef5f4..57fd316a730840ccb01a10a110885ab9b349a808 100644
+--- a/dist/compiler/server/plugins/bareImports.js
++++ b/dist/compiler/server/plugins/bareImports.js
+@@ -74,9 +74,6 @@ function serverBareModulesPlugin(ctx) {
+             throw e;
+           }
+         }
+-        if (loader === "file") {
+-          return undefined;
+-        }
+ 
+         // Always bundle CSS side-effect imports.
+         if (cssSideEffectImports.isCssSideEffectImportPath(path)) {
+@@ -89,9 +86,18 @@ function serverBareModulesPlugin(ctx) {
+           // bundle it if the path matches the pattern
+           if (typeof pattern === "string" ? path === pattern : pattern.test(path)) {
+             return undefined;
++          } else {
++            return {
++              path,
++              external: true
++            };
+           }
+         }
+ 
++        if (loader === "file") {
++          return undefined;
++        }
++
+         // Externalize everything else if we've gotten here.
+         return {
+           path,

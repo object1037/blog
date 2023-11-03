@@ -5,8 +5,14 @@ settings:
   excludeLinksFromLockfile: false
 
 patchedDependencies:
+  '@jsquash/jpeg@1.2.0':
+    hash: 2o4g2ugtpvxjeowssscjtx5j6i
+    path: patches/@jsquash__jpeg@1.2.0.patch
+  '@jsquash/webp@1.2.0':
+    hash: ex5kno7s6bwieegltnl72cvf2q
+    path: patches/@jsquash__webp@1.2.0.patch
   '@remix-run/dev@2.2.0':
-    hash: zfdehz2hsmjm5aglbwqt5bp4tm
+    hash: pt7x7qigtovskc55egtn3bfigu
     path: patches/@remix-run__dev@2.2.0.patch
   gray-matter@4.0.3:
     hash: cahvimcigbzfhugkwvn3mhutwu
@@ -21,13 +27,13 @@ patchedDependencies:
 dependencies:
   '@jsquash/jpeg':
     specifier: ^1.2.0
-    version: 1.2.0
+    version: 1.2.0(patch_hash=2o4g2ugtpvxjeowssscjtx5j6i)
   '@jsquash/png':
     specifier: ^2.1.4
     version: 2.1.4
   '@jsquash/webp':
     specifier: ^1.2.0
-    version: 1.2.0
+    version: 1.2.0(patch_hash=ex5kno7s6bwieegltnl72cvf2q)
   '@remix-run/cloudflare':
     specifier: ^2.2.0
     version: 2.2.0(@cloudflare/workers-types@4.20231025.0)(typescript@5.2.2)
@@ -83,7 +89,7 @@ devDependencies:
     version: 0.17.5(@internationalized/date@3.5.0)(@types/react-dom@18.2.14)(@types/react@18.2.33)(typescript@5.2.2)
   '@remix-run/dev':
     specifier: ^2.2.0
-    version: 2.2.0(patch_hash=zfdehz2hsmjm5aglbwqt5bp4tm)(typescript@5.2.2)
+    version: 2.2.0(patch_hash=pt7x7qigtovskc55egtn3bfigu)(typescript@5.2.2)
   '@remix-run/eslint-config':
     specifier: ^2.2.0
     version: 2.2.0(eslint@8.52.0)(react@18.2.0)(typescript@5.2.2)
@@ -1554,19 +1560,21 @@ packages:
     resolution: {integrity: sha512-Lg3PnLp0QXpxwLIAuuJboLeRaIhrgJjeuh797QADg3xz8wGLugQOS5DpsE8A6i6Adgzf+bacllkKZG3J0tGfDw==}
     dev: true
 
-  /@jsquash/jpeg@1.2.0:
+  /@jsquash/jpeg@1.2.0(patch_hash=2o4g2ugtpvxjeowssscjtx5j6i):
     resolution: {integrity: sha512-lJqzn28eB42zgGrBPYC3tFXf9Yr6aAr6GtN6pe1B3sCln7HpVrv41n6GWApbjC/pA3gonNsyslV2EdfEMQCU8Q==}
     dev: false
+    patched: true
 
   /@jsquash/png@2.1.4:
     resolution: {integrity: sha512-WXq40XtEeYxbJLpYgVIUJPVqy3nrFPlnlE9KXLMbtM6YPYyfpO4df0sy/sqk4OThK0+qTmz0VB9+kYjMA5XOjQ==}
     dev: false
 
-  /@jsquash/webp@1.2.0:
+  /@jsquash/webp@1.2.0(patch_hash=ex5kno7s6bwieegltnl72cvf2q):
     resolution: {integrity: sha512-wCoybWJE1rfaWMdn3BCCHnUVbcaxqRWmuwrAqQWxdgSFa7bMNkW/H9t1Qkjh2f7QvTz8Kf7/y3RKecrRM7Hl2Q==}
     dependencies:
       wasm-feature-detect: 1.6.1
     dev: false
+    patched: true
 
   /@mdx-js/mdx@2.3.0:
     resolution: {integrity: sha512-jLuwRlz8DQfQNiUCJR50Y09CGPq3fLtmtUQfVrj79E0JWu3dvsVcxVIcfhR5h0iXu+/z++zDrYeiJqifRynJkA==}
@@ -1959,7 +1967,7 @@ packages:
       typescript: 5.2.2
     dev: false
 
-  /@remix-run/dev@2.2.0(patch_hash=zfdehz2hsmjm5aglbwqt5bp4tm)(typescript@5.2.2):
+  /@remix-run/dev@2.2.0(patch_hash=pt7x7qigtovskc55egtn3bfigu)(typescript@5.2.2):
     resolution: {integrity: sha512-JtteMtYirQlj1Xf9FSLLjqO+owxlqJVsTESgVWdF+CR5kon2i12YjPnRx1xGtB4UGgU/yTZseMTPNhTKc5mwpQ==}
     engines: {node: '>=18.0.0'}
     hasBin: true
