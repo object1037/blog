@@ -14,6 +14,19 @@ export const convertMarkdown = async (markdown: string) => {
     }),
   )
 
+  md.renderer.rules.image = (tokens, idx, options, env, slf) => {
+    const token = tokens[idx]
+    if (!token) return ''
+    const src = token?.attrGet('src') || ''
+    const alt = slf.renderInlineAsText(token.children ?? [], options, env)
+    const name = src.split('.')[0]
+
+    return `<picture>
+  <source srcset="${name}.webp" type="image/webp" />
+  <img src="${src}" alt="${alt}" loading="lazy" decoding="async" />
+</picture>`
+  }
+
   const matterSchema = z.object({
     id: z.number(),
     title: z.string().min(1),
