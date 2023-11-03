@@ -16,6 +16,9 @@
     "migrate:prod": "pnpm wrangler d1 migrations apply blog-db"
   },
   "dependencies": {
+    "@jsquash/jpeg": "^1.2.0",
+    "@jsquash/png": "^2.1.4",
+    "@jsquash/webp": "^1.2.0",
     "@remix-run/cloudflare": "^2.2.0",
     "@remix-run/cloudflare-pages": "^2.2.0",
     "@remix-run/react": "^2.2.0",

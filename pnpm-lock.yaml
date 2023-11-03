@@ -19,6 +19,15 @@ patchedDependencies:
     path: patches/markdown-it@13.0.2.patch
 
 dependencies:
+  '@jsquash/jpeg':
+    specifier: ^1.2.0
+    version: 1.2.0
+  '@jsquash/png':
+    specifier: ^2.1.4
+    version: 2.1.4
+  '@jsquash/webp':
+    specifier: ^1.2.0
+    version: 1.2.0
   '@remix-run/cloudflare':
     specifier: ^2.2.0
     version: 2.2.0(@cloudflare/workers-types@4.20231025.0)(typescript@5.2.2)
@@ -1544,6 +1553,20 @@ packages:
   /@jspm/core@2.0.1:
     resolution: {integrity: sha512-Lg3PnLp0QXpxwLIAuuJboLeRaIhrgJjeuh797QADg3xz8wGLugQOS5DpsE8A6i6Adgzf+bacllkKZG3J0tGfDw==}
     dev: true
+
+  /@jsquash/jpeg@1.2.0:
+    resolution: {integrity: sha512-lJqzn28eB42zgGrBPYC3tFXf9Yr6aAr6GtN6pe1B3sCln7HpVrv41n6GWApbjC/pA3gonNsyslV2EdfEMQCU8Q==}
+    dev: false
+
+  /@jsquash/png@2.1.4:
+    resolution: {integrity: sha512-WXq40XtEeYxbJLpYgVIUJPVqy3nrFPlnlE9KXLMbtM6YPYyfpO4df0sy/sqk4OThK0+qTmz0VB9+kYjMA5XOjQ==}
+    dev: false
+
+  /@jsquash/webp@1.2.0:
+    resolution: {integrity: sha512-wCoybWJE1rfaWMdn3BCCHnUVbcaxqRWmuwrAqQWxdgSFa7bMNkW/H9t1Qkjh2f7QvTz8Kf7/y3RKecrRM7Hl2Q==}
+    dependencies:
+      wasm-feature-detect: 1.6.1
+    dev: false
 
   /@mdx-js/mdx@2.3.0:
     resolution: {integrity: sha512-jLuwRlz8DQfQNiUCJR50Y09CGPq3fLtmtUQfVrj79E0JWu3dvsVcxVIcfhR5h0iXu+/z++zDrYeiJqifRynJkA==}
@@ -9984,6 +10007,10 @@ packages:
   /vscode-uri@3.0.8:
     resolution: {integrity: sha512-AyFQ0EVmsOZOlAnxoFOGOq1SQDWAB7C6aqMGS23svWAllfOaxbuFvcT8D1i8z3Gyn8fraVeZNNmN6e9bxxXkKw==}
     dev: true
+
+  /wasm-feature-detect@1.6.1:
+    resolution: {integrity: sha512-R1i9ED8UlLu/foILNB1ck9XS63vdtqU/tP1MCugVekETp/ySCrBZRk5I/zI67cI1wlQYeSonNm1PLjDHZDNg6g==}
+    dev: false
 
   /wcwidth@1.0.1:
     resolution: {integrity: sha512-XHPEwS0q6TaxcvG85+8EYkbiCux2XtWG2mkc47Ng2A77BQu9+DqIOJldST4HgPkuea7dvKSj5VgX3P1d4rW8Tg==}
