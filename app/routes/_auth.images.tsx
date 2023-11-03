@@ -14,6 +14,7 @@ import { getAuthenticator } from '~/services/auth.server'
 import { decodeImage } from '~/utils/decodeImage.client'
 import { digestMessage } from '~/utils/digest'
 import { encodeImage } from '~/utils/encodeImage.client'
+import { resizeImage } from '~/utils/resizeImage.client'
 
 export const loader = async ({ request, context }: LoaderFunctionArgs) => {
   const authenticator = getAuthenticator(envSchema.parse(context.env))
@@ -47,7 +48,25 @@ export default function Images() {
     }
 
     const imageData = await decodeImage(imageBuffer, ext)
-    const webpImage = await encodeImage(imageData)
+
+    let resized = imageData
+    const origWidth = imageData.width
+    const origHeight = imageData.height
+    const aspect = origHeight / origWidth
+
+    if (origWidth > origHeight && origWidth > 3840) {
+      resized = await resizeImage(imageData, {
+        width: 3840,
+        height: aspect * 3840,
+      })
+    } else if (origHeight > origWidth && origHeight > 3840) {
+      resized = await resizeImage(imageData, {
+        width: 3840 / aspect,
+        height: 3840,
+      })
+    }
+
+    const webpImage = await encodeImage(resized)
 
     formData.set('webp', new File([webpImage], `${name}.webp`))
     formData.set('_action', 'add')
@@ -85,7 +104,7 @@ export default function Images() {
 export const action = async ({ request, context }: ActionFunctionArgs) => {
   const env = envSchema.parse(context.env)
   const uploadHandler = unstable_createMemoryUploadHandler({
-    maxPartSize: 1_000_000,
+    maxPartSize: 10_000_000,
   })
 
   const formData = await unstable_parseMultipartFormData(request, uploadHandler)

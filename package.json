@@ -18,6 +18,7 @@
   "dependencies": {
     "@jsquash/jpeg": "^1.2.0",
     "@jsquash/png": "^2.1.4",
+    "@jsquash/resize": "^1.0.1",
     "@jsquash/webp": "^1.2.0",
     "@remix-run/cloudflare": "^2.2.0",
     "@remix-run/cloudflare-pages": "^2.2.0",
