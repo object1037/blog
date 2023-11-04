@@ -4,13 +4,13 @@ import {
   json,
   redirect,
 } from '@remix-run/cloudflare'
-import { Form } from '@remix-run/react'
+import { Form, useSubmit } from '@remix-run/react'
 
 import { addPost } from '~/db.server'
 import { envSchema } from '~/env'
-import { convertMarkdown } from '~/markdown.server'
-import { type InsertPost } from '~/schema'
 import { getAuthenticator } from '~/services/auth.server'
+import { convertFormData } from '~/utils/markdown.client'
+import { parsePostData } from '~/utils/parsePostData'
 
 export const loader = async ({ request, context }: LoaderFunctionArgs) => {
   const authenticator = getAuthenticator(envSchema.parse(context.env))
@@ -22,6 +22,8 @@ export const loader = async ({ request, context }: LoaderFunctionArgs) => {
 }
 
 export default function New() {
+  const submit = useSubmit()
+
   const defaultMarkdown = `---
 id:
 title:
@@ -31,10 +33,16 @@ public: false
 ---
 `
 
+  const submitHandler = async (e: React.FormEvent<HTMLFormElement>) => {
+    e.preventDefault()
+    const formData = await convertFormData(new FormData(e.currentTarget))
+    submit(formData, { method: 'post' })
+  }
+
   return (
     <div>
       <h2>new</h2>
-      <Form method="post">
+      <Form method="post" onSubmit={submitHandler}>
         <textarea name="markdown" defaultValue={defaultMarkdown} />
         <button>Save</button>
       </Form>
@@ -43,20 +51,9 @@ public: false
 }
 
 export const action = async ({ request, context }: ActionFunctionArgs) => {
-  const body = await request.formData()
-  const markdown = body.get('markdown')
-  if (typeof markdown !== 'string') {
-    throw new Response('Missing markdown', { status: 400 })
-  }
-  const { frontmatter, html } = await convertMarkdown(markdown)
+  const formData = await request.formData()
 
-  const { tags, ...restMatter } = frontmatter
-
-  const newPost: Required<InsertPost> = {
-    ...restMatter,
-    markdown,
-    html,
-  }
+  const { newPost, tags } = await parsePostData(formData)
 
   await addPost(
     envSchema.parse(context.env).DB,

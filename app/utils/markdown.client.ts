@@ -1,9 +1,10 @@
 import matter from 'gray-matter'
 import MarkdownIt from 'markdown-it'
 import Shikiji from 'markdown-it-shikiji'
-import { z } from 'zod'
 
-export const convertMarkdown = async (markdown: string) => {
+import { matterSchema } from './parsePostData'
+
+const convertMarkdown = async (markdown: string) => {
   const md = new MarkdownIt({
     linkify: true,
   })
@@ -27,14 +28,6 @@ export const convertMarkdown = async (markdown: string) => {
 </picture>`
   }
 
-  const matterSchema = z.object({
-    id: z.number(),
-    title: z.string().min(1),
-    description: z.string().min(1),
-    public: z.boolean().nullable(),
-    tags: z.array(z.string()),
-  })
-
   const { content, data } = matter(markdown)
   const html = md.render(content)
   if (data.public === undefined) {
@@ -47,4 +40,17 @@ export const convertMarkdown = async (markdown: string) => {
   }
 
   return { frontmatter: parsedData.data, html }
+}
+
+export const convertFormData = async (formData: FormData) => {
+  const markdown = formData.get('markdown')
+  if (typeof markdown !== 'string') {
+    throw new Response('Missing markdown', { status: 400 })
+  }
+  const { frontmatter, html } = await convertMarkdown(markdown)
+
+  formData.set('html', html)
+  formData.set('frontmatter', JSON.stringify(frontmatter))
+
+  return formData
 }

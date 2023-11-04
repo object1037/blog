@@ -4,7 +4,7 @@ export default {
   server: './server.ts',
   serverBuildPath: 'functions/[[path]].js',
   serverConditions: ['workerd', 'worker', 'browser'],
-  serverDependenciesToBundle: [/^(?!.+\.wasm$).*/],
+  serverDependenciesToBundle: 'all',
   serverMainFields: ['browser', 'module', 'main'],
   serverMinify: true,
   serverModuleFormat: 'esm',

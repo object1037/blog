@@ -4,15 +4,15 @@ import {
   json,
   redirect,
 } from '@remix-run/cloudflare'
-import { Form, useLoaderData } from '@remix-run/react'
+import { Form, useLoaderData, useSubmit } from '@remix-run/react'
 
 import { z } from 'zod'
 
 import { addPost, getAllPostData, pruneTags } from '~/db.server'
 import { envSchema } from '~/env'
-import { convertMarkdown } from '~/markdown.server'
-import { type InsertPost } from '~/schema'
 import { getAuthenticator } from '~/services/auth.server'
+import { convertFormData } from '~/utils/markdown.client'
+import { parsePostData } from '~/utils/parsePostData'
 
 export const loader = async ({
   params,
@@ -41,10 +41,17 @@ export const loader = async ({
 
 export default function Post() {
   const { post } = useLoaderData<typeof loader>()
+  const submit = useSubmit()
+
+  const submitHandler = async (e: React.FormEvent<HTMLFormElement>) => {
+    e.preventDefault()
+    const formData = await convertFormData(new FormData(e.currentTarget))
+    submit(formData, { method: 'post' })
+  }
 
   return (
     <div>
-      <Form method="post">
+      <Form method="post" onSubmit={submitHandler}>
         <textarea name="markdown" defaultValue={post.markdown} />
         <button>Save</button>
       </Form>
@@ -54,20 +61,9 @@ export default function Post() {
 
 export const action = async ({ request, context }: ActionFunctionArgs) => {
   const env = envSchema.parse(context.env)
-  const body = await request.formData()
-  const markdown = body.get('markdown')
-  if (typeof markdown !== 'string') {
-    throw new Response('Missing markdown', { status: 400 })
-  }
-  const { frontmatter, html } = await convertMarkdown(markdown)
+  const formData = await request.formData()
 
-  const { tags, ...restMatter } = frontmatter
-
-  const newPost: Required<InsertPost> = {
-    ...restMatter,
-    markdown,
-    html,
-  }
+  const { newPost, tags } = await parsePostData(formData)
 
   await addPost(
     env.DB,

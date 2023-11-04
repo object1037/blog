@@ -1,8 +1,8 @@
 diff --git a/dist/index.mjs b/dist/index.mjs
-index f866095e94f78b13465f1c0741353e0a5f653dd9..b1430802726c2d7761d95765f05f9e1a65dc3a60 100644
+index f866095e94f78b13465f1c0741353e0a5f653dd9..9c4c9eb9a0e766f6535a41fe2c76f79566d7d4e3 100644
 --- a/dist/index.mjs
 +++ b/dist/index.mjs
-@@ -1,4 +1,11 @@
+@@ -1,4 +1,15 @@
 -import { getHighlighter, bundledLanguages } from 'shikiji';
 +import { getHighlighterCore, loadWasm } from 'shikiji/core';
 +import materialThemePalenight from 'shikiji/themes/material-theme-palenight.mjs';
@@ -11,11 +11,15 @@ index f866095e94f78b13465f1c0741353e0a5f653dd9..b1430802726c2d7761d95765f05f9e1a
 +
 +import wasm from 'shikiji/onig.wasm';
 +
-+await loadWasm(obj => WebAssembly.instantiate(wasm, obj))
++const module = await fetch(wasm)
++  .then((response) => response.arrayBuffer())
++  .then((bytes) => new WebAssembly.Module(bytes));
++
++await loadWasm(obj => WebAssembly.instantiate(module, obj));
  
  function parseHighlightLines(attrs) {
    if (!attrs)
-@@ -44,13 +51,12 @@ function setup(markdownit, highlighter, options) {
+@@ -44,13 +55,12 @@ function setup(markdownit, highlighter, options) {
        code,
        codeOptions
      );

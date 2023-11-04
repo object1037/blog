@@ -11,14 +11,11 @@ patchedDependencies:
   '@jsquash/webp@1.2.0':
     hash: ex5kno7s6bwieegltnl72cvf2q
     path: patches/@jsquash__webp@1.2.0.patch
-  '@remix-run/dev@2.2.0':
-    hash: pt7x7qigtovskc55egtn3bfigu
-    path: patches/@remix-run__dev@2.2.0.patch
   gray-matter@4.0.3:
     hash: cahvimcigbzfhugkwvn3mhutwu
     path: patches/gray-matter@4.0.3.patch
   markdown-it-shikiji@0.6.10:
-    hash: v2tge2fa6jir63agrdmbpgwi7q
+    hash: fixvbrcz5y7lmgqf2vjknrh2vy
     path: patches/markdown-it-shikiji@0.6.10.patch
   markdown-it@13.0.2:
     hash: avg7pqwcqkxgbiewqrb7ocip7q
@@ -63,7 +60,7 @@ dependencies:
     version: 13.0.2(patch_hash=avg7pqwcqkxgbiewqrb7ocip7q)
   markdown-it-shikiji:
     specifier: ^0.6.10
-    version: 0.6.10(patch_hash=v2tge2fa6jir63agrdmbpgwi7q)
+    version: 0.6.10(patch_hash=fixvbrcz5y7lmgqf2vjknrh2vy)
   react:
     specifier: ^18.2.0
     version: 18.2.0
@@ -92,7 +89,7 @@ devDependencies:
     version: 0.17.5(@internationalized/date@3.5.0)(@types/react-dom@18.2.14)(@types/react@18.2.33)(typescript@5.2.2)
   '@remix-run/dev':
     specifier: ^2.2.0
-    version: 2.2.0(patch_hash=pt7x7qigtovskc55egtn3bfigu)(typescript@5.2.2)
+    version: 2.2.0(typescript@5.2.2)
   '@remix-run/eslint-config':
     specifier: ^2.2.0
     version: 2.2.0(eslint@8.52.0)(react@18.2.0)(typescript@5.2.2)
@@ -1974,7 +1971,7 @@ packages:
       typescript: 5.2.2
     dev: false
 
-  /@remix-run/dev@2.2.0(patch_hash=pt7x7qigtovskc55egtn3bfigu)(typescript@5.2.2):
+  /@remix-run/dev@2.2.0(typescript@5.2.2):
     resolution: {integrity: sha512-JtteMtYirQlj1Xf9FSLLjqO+owxlqJVsTESgVWdF+CR5kon2i12YjPnRx1xGtB4UGgU/yTZseMTPNhTKc5mwpQ==}
     engines: {node: '>=18.0.0'}
     hasBin: true
@@ -2062,7 +2059,6 @@ packages:
       - ts-node
       - utf-8-validate
     dev: true
-    patched: true
 
   /@remix-run/eslint-config@2.2.0(eslint@8.52.0)(react@18.2.0)(typescript@5.2.2):
     resolution: {integrity: sha512-H+LPiQhsXaCsOVvyB5vf6wTAv72m/pI6rdoCjyx3ayipNGAuqldkAnmFD6Qa/Bpc/zRHk13+PZV27kjyNd32vw==}
@@ -6725,7 +6721,7 @@ packages:
     engines: {node: '>=0.10.0'}
     dev: true
 
-  /markdown-it-shikiji@0.6.10(patch_hash=v2tge2fa6jir63agrdmbpgwi7q):
+  /markdown-it-shikiji@0.6.10(patch_hash=fixvbrcz5y7lmgqf2vjknrh2vy):
     resolution: {integrity: sha512-RWSiTQbgLB8vxFWzswTxWDvuhJ0kU2R9vBkUutjgX5xHeqSftPxwyLqbJGH9n/w/gticlYposWa0qTT+vvbbxg==}
     dependencies:
       markdown-it: 13.0.2(patch_hash=avg7pqwcqkxgbiewqrb7ocip7q)
