@@ -73,8 +73,14 @@ export default function Images() {
 
     const webpImage = await encodeImage(resized)
 
-    formData.set('image', new File([imageBuffer], `${name}.${ext}`))
-    formData.set('webp', new File([webpImage], `${name}.webp`))
+    formData.set(
+      'image',
+      new File([imageBuffer], `${name}.${ext}`, { type: image.type }),
+    )
+    formData.set(
+      'webp',
+      new File([webpImage], `${name}.webp`, { type: 'image/webp' }),
+    )
     formData.set('_action', 'add')
     formData.set('width', width.toString())
     formData.set('height', height.toString())
@@ -141,7 +147,7 @@ export const action = async ({ request, context }: ActionFunctionArgs) => {
       httpMetadata: { contentType: origImage.type },
     }),
     env.BUCKET.put(`${fileName}.webp`, webpBuffer, {
-      httpMetadata: { contentType: 'image/webp' },
+      httpMetadata: { contentType: webpImage.type },
     }),
   ])
 
