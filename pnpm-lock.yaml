@@ -58,6 +58,9 @@ dependencies:
   markdown-it:
     specifier: ^13.0.2
     version: 13.0.2(patch_hash=avg7pqwcqkxgbiewqrb7ocip7q)
+  markdown-it-container:
+    specifier: ^3.0.0
+    version: 3.0.0
   markdown-it-shikiji:
     specifier: ^0.6.10
     version: 0.6.10(patch_hash=fixvbrcz5y7lmgqf2vjknrh2vy)
@@ -99,6 +102,9 @@ devDependencies:
   '@types/markdown-it':
     specifier: ^13.0.5
     version: 13.0.5
+  '@types/markdown-it-container':
+    specifier: ^2.0.9
+    version: 2.0.9
   '@types/react':
     specifier: ^18.2.33
     version: 18.2.33
@@ -2353,6 +2359,12 @@ packages:
 
   /@types/linkify-it@3.0.4:
     resolution: {integrity: sha512-hPpIeeHb/2UuCw06kSNAOVWgehBLXEo0/fUs0mw3W2qhqX89PI2yvok83MnuctYGCPrabGIoi0fFso4DQ+sNUQ==}
+    dev: true
+
+  /@types/markdown-it-container@2.0.9:
+    resolution: {integrity: sha512-pW2W5ibThEXN/wKXTCsORMRJ0zKdFae/v+/n2YV8p6L/1gWQKIaW9KovmckuNV+v9u6yInMV1cXtfmDj+Q52NA==}
+    dependencies:
+      '@types/markdown-it': 13.0.5
     dev: true
 
   /@types/markdown-it@13.0.5:
@@ -6720,6 +6732,10 @@ packages:
     resolution: {integrity: sha512-WWC0ZuMzCyDHYCasEGs4IPvLyTGftYwh6wIEOULOF0HXcqZlhwRzrK0w2VUlxWA98xnvb/jszw4ZSkJ6ADpM6Q==}
     engines: {node: '>=0.10.0'}
     dev: true
+
+  /markdown-it-container@3.0.0:
+    resolution: {integrity: sha512-y6oKTq4BB9OQuY/KLfk/O3ysFhB3IMYoIWhGJEidXt1NQFocFK2sA2t0NYZAMyMShAGL6x5OPIbrmXPIqaN9rw==}
+    dev: false
 
   /markdown-it-shikiji@0.6.10(patch_hash=fixvbrcz5y7lmgqf2vjknrh2vy):
     resolution: {integrity: sha512-RWSiTQbgLB8vxFWzswTxWDvuhJ0kU2R9vBkUutjgX5xHeqSftPxwyLqbJGH9n/w/gticlYposWa0qTT+vvbbxg==}

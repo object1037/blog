@@ -1,5 +1,6 @@
 import matter from 'gray-matter'
-import MarkdownIt from 'markdown-it'
+import MarkdownIt, { type Token } from 'markdown-it'
+import container from 'markdown-it-container'
 import Shikiji from 'markdown-it-shikiji'
 
 import { matterSchema } from './parsePostData'
@@ -9,11 +10,32 @@ const convertMarkdown = async (markdown: string) => {
     linkify: true,
   })
 
+  const detailsPattern = /^details\s+(.*)$/
+
   md.use(
     await Shikiji({
       theme: 'material-theme-palenight',
     }),
   )
+    .use(container, 'info')
+    .use(container, 'warn')
+    .use(container, 'danger')
+    .use(container, 'details', {
+      validate: (params: string) => {
+        return params.trim().match(detailsPattern)
+      },
+      render: (tokens: Token[], idx: number) => {
+        const summary = tokens[idx]?.info.trim().match(detailsPattern)?.[1]
+
+        if (tokens[idx]?.nesting === 1) {
+          return `<details><summary>${md.utils.escapeHtml(
+            summary ?? '',
+          )}</summary>\n`
+        } else {
+          return '</details>\n'
+        }
+      },
+    })
 
   md.renderer.rules.image = (tokens, idx, options, env, slf) => {
     const token = tokens[idx]
