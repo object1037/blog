@@ -40,13 +40,26 @@ const convertMarkdown = async (markdown: string) => {
   md.renderer.rules.image = (tokens, idx, options, env, slf) => {
     const token = tokens[idx]
     if (!token) return ''
+
     const src = token?.attrGet('src') || ''
-    const alt = slf.renderInlineAsText(token.children ?? [], options, env)
+    const title = token?.attrGet('title') || ''
+    const altRaw = slf.renderInlineAsText(token.children ?? [], options, env)
+
+    const delimiter = altRaw.lastIndexOf('|')
+    const alt = delimiter === -1 ? altRaw : altRaw.slice(0, delimiter)
+    const size = delimiter === -1 ? '' : altRaw.slice(delimiter + 1)
+    const [width, height] = size.split(':').map((s) => parseInt(s, 10))
+    
+    let sizes = ''
+    if (width && height && !(isNaN(width) || isNaN(height))) {
+      sizes = `width="${width}" height="${height}"`
+    }
+
     const name = src.split('.')[0]
 
     return `<picture>
   <source srcset="${name}.webp" type="image/webp" />
-  <img src="${src}" alt="${alt}" loading="lazy" decoding="async" />
+  <img src="${src}" alt="${alt}" title="${title}" ${sizes} loading="lazy" decoding="async" />
 </picture>`
   }
 
