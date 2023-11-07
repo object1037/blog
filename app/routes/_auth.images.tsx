@@ -41,10 +41,12 @@ export default function Images() {
     }
 
     const imageBuffer = await image.arrayBuffer()
-    const [name, ext] = image.name.split('.')
+    const extIdx = image.name.lastIndexOf('.')
+    const name = image.name.slice(0, extIdx).replace(/\.|-|\s/g, '')
+    const ext = image.name.slice(extIdx + 1)
 
     if (!(name && ext)) {
-      throw new Error('Invalid image extension')
+      throw new Error('Invalid file name')
     }
 
     const imageData = await decodeImage(imageBuffer, ext)
@@ -52,24 +54,30 @@ export default function Images() {
     let resized = imageData
     const origWidth = imageData.width
     const origHeight = imageData.height
+    let width = origWidth
+    let height = origHeight
     const aspect = origHeight / origWidth
 
     if (origWidth > origHeight && origWidth > 3840) {
-      resized = await resizeImage(imageData, {
-        width: 3840,
-        height: aspect * 3840,
-      })
+      width = 3840
+      height = aspect * 3840
     } else if (origHeight > origWidth && origHeight > 3840) {
-      resized = await resizeImage(imageData, {
-        width: 3840 / aspect,
-        height: 3840,
-      })
+      width = 3840 / aspect
+      height = 3840
     }
+
+    resized = await resizeImage(imageData, {
+      width,
+      height,
+    })
 
     const webpImage = await encodeImage(resized)
 
+    formData.set('image', new File([imageBuffer], `${name}.${ext}`))
     formData.set('webp', new File([webpImage], `${name}.webp`))
     formData.set('_action', 'add')
+    formData.set('width', width.toString())
+    formData.set('height', height.toString())
 
     submit(formData, { method: 'post', encType: 'multipart/form-data' })
   }
@@ -121,9 +129,12 @@ export const action = async ({ request, context }: ActionFunctionArgs) => {
   const origBuffer = await origImage.arrayBuffer()
   const webpBuffer = await webpImage.arrayBuffer()
 
+  const width = z.string().parse(formData.get('width'))
+  const height = z.string().parse(formData.get('height'))
+
   const [name, ext] = origImage.name.split('.')
   const hash = await digestMessage(origBuffer)
-  const fileName = `${name}-${hash}`
+  const fileName = `${name}-${hash}-${width}:${height}`
 
   const response = await Promise.all([
     env.BUCKET.put(`${fileName}.${ext}`, origBuffer, {

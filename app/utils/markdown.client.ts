@@ -43,13 +43,11 @@ const convertMarkdown = async (markdown: string) => {
 
     const src = token?.attrGet('src') || ''
     const title = token?.attrGet('title') || ''
-    const altRaw = slf.renderInlineAsText(token.children ?? [], options, env)
+    const alt = slf.renderInlineAsText(token.children ?? [], options, env)
 
-    const delimiter = altRaw.lastIndexOf('|')
-    const alt = delimiter === -1 ? altRaw : altRaw.slice(0, delimiter)
-    const size = delimiter === -1 ? '' : altRaw.slice(delimiter + 1)
-    const [width, height] = size.split(':').map((s) => parseInt(s, 10))
-    
+    const sizeStr = src.split('.')[0]?.split('-')[2] ?? ''
+    const [width, height] = sizeStr.split(':').map((s) => parseInt(s, 10))
+
     let sizes = ''
     if (width && height && !(isNaN(width) || isNaN(height))) {
       sizes = `width="${width}" height="${height}"`
