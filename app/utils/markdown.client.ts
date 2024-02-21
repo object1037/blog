@@ -1,19 +1,19 @@
 import matter from 'gray-matter'
 import MarkdownIt, { type Token } from 'markdown-it'
 import container from 'markdown-it-container'
-import Shikiji from 'markdown-it-shikiji'
+import Shiki from '@shikijs/markdown-it'
 
 import { matterSchema } from './parsePostData'
 
 const convertMarkdown = async (markdown: string) => {
-  const md = new MarkdownIt({
+  const md = MarkdownIt({
     linkify: true,
   })
 
   const detailsPattern = /^details\s+(.*)$/
 
   md.use(
-    await Shikiji({
+    await Shiki({
       theme: 'material-theme-palenight',
     }),
   )

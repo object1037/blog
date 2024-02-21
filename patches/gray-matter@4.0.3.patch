@@ -105,17 +105,16 @@ index 799bb5d9e65e42caac086f9bfa757ee2ac23aacc..b88827589190b14616546da674a98b1f
    utils.define(file, 'matter', file.matter || '');
    utils.define(file, 'stringify', function(data, options) {
 diff --git a/lib/utils.js b/lib/utils.js
-index 96e7ce020c3a5df0e3e43cbba6e7d3d8d09f9e51..c31df5f8ef678e7515d5f89481206b00bee3be5a 100644
+index 96e7ce020c3a5df0e3e43cbba6e7d3d8d09f9e51..54c9d1744ce34c11d42ccadd80916814a155b5f2 100644
 --- a/lib/utils.js
 +++ b/lib/utils.js
-@@ -32,9 +32,7 @@ exports.isObject = function(val) {
+@@ -32,9 +32,6 @@ exports.isObject = function(val) {
   * Cast `input` to a buffer
   */
  
 -exports.toBuffer = function(input) {
 -  return typeof input === 'string' ? Buffer.from(input) : input;
 -};
-+
  
  /**
   * Cast `val` to a string.

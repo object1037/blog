@@ -16,54 +16,52 @@
     "migrate:prod": "pnpm wrangler d1 migrations apply blog-db"
   },
   "dependencies": {
-    "@jsquash/jpeg": "^1.2.0",
-    "@jsquash/png": "^2.1.4",
-    "@jsquash/resize": "^1.0.1",
-    "@jsquash/webp": "^1.2.0",
-    "@remix-run/cloudflare": "^2.3.0",
-    "@remix-run/cloudflare-pages": "^2.3.0",
-    "@remix-run/react": "^2.3.0",
-    "drizzle-orm": "^0.29.0",
+    "@jsquash/jpeg": "^1.4.0",
+    "@jsquash/png": "^3.0.0",
+    "@jsquash/resize": "^1.1.1",
+    "@jsquash/webp": "^1.4.0",
+    "@remix-run/cloudflare": "^2.7.1",
+    "@remix-run/cloudflare-pages": "^2.7.1",
+    "@remix-run/react": "^2.7.1",
+    "drizzle-orm": "^0.29.3",
     "drizzle-zod": "^0.5.1",
     "gray-matter": "^4.0.3",
-    "isbot": "^3.7.1",
-    "markdown-it": "^13.0.2",
-    "markdown-it-container": "^3.0.0",
-    "markdown-it-shikiji": "^0.6.13",
+    "isbot": "^5.1.0",
+    "markdown-it": "^14.0.0",
+    "markdown-it-container": "^4.0.0",
     "react": "^18.2.0",
     "react-dom": "^18.2.0",
-    "react-icons": "^4.12.0",
+    "react-icons": "^5.0.1",
     "remix-auth": "^3.6.0",
     "remix-auth-github": "^1.6.0",
     "zod": "^3.22.4"
   },
   "devDependencies": {
-    "@cloudflare/workers-types": "^4.20231025.0",
-    "@pandacss/dev": "^0.18.3",
-    "@remix-run/dev": "^2.3.0",
-    "@remix-run/eslint-config": "^2.3.0",
+    "@cloudflare/workers-types": "^4.20240208.0",
+    "@pandacss/dev": "^0.32.0",
+    "@remix-run/dev": "^2.7.1",
+    "@remix-run/eslint-config": "^2.7.1",
+    "@shikijs/markdown-it": "^1.1.6",
     "@trivago/prettier-plugin-sort-imports": "^4.3.0",
-    "@types/markdown-it": "^13.0.6",
+    "@types/markdown-it": "^13.0.7",
     "@types/markdown-it-container": "^2.0.9",
-    "@types/react": "^18.2.37",
-    "@types/react-dom": "^18.2.15",
-    "drizzle-kit": "^0.20.4",
-    "eslint": "^8.54.0",
+    "@types/react": "^18.2.57",
+    "@types/react-dom": "^18.2.19",
+    "drizzle-kit": "^0.20.14",
+    "eslint": "^8.56.0",
     "postcss-nested": "^6.0.1",
-    "prettier": "^3.1.0",
-    "typescript": "^5.2.2",
-    "wrangler": "^3.16.0"
+    "prettier": "^3.2.5",
+    "typescript": "^5.3.3",
+    "wrangler": "^3.28.4"
   },
   "engines": {
     "node": ">=18.0.0"
   },
   "pnpm": {
     "patchedDependencies": {
-      "markdown-it@13.0.2": "patches/markdown-it@13.0.2.patch",
-      "gray-matter@4.0.3": "patches/gray-matter@4.0.3.patch",
-      "markdown-it-shikiji@0.6.13": "patches/markdown-it-shikiji@0.6.10.patch",
-      "@jsquash/webp@1.2.0": "patches/@jsquash__webp@1.2.0.patch",
-      "@jsquash/jpeg@1.2.0": "patches/@jsquash__jpeg@1.2.0.patch"
+      "@jsquash/jpeg@1.4.0": "patches/@jsquash__jpeg@1.4.0.patch",
+      "@jsquash/webp@1.4.0": "patches/@jsquash__webp@1.4.0.patch",
+      "gray-matter@4.0.3": "patches/gray-matter@4.0.3.patch"
     }
   }
 }
