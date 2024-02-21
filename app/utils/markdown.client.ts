@@ -1,11 +1,22 @@
+import { fromHighlighter } from '@shikijs/markdown-it/core'
 import matter from 'gray-matter'
 import MarkdownIt, { type Token } from 'markdown-it'
 import container from 'markdown-it-container'
-import Shiki from '@shikijs/markdown-it'
+import { HighlighterGeneric, getHighlighterCore } from 'shiki/core'
+import l_markdown from 'shiki/langs/markdown.mjs'
+import l_tsx from 'shiki/langs/tsx.mjs'
+import palenight from 'shiki/themes/material-theme-palenight.mjs'
+import getWasm from 'shiki/wasm'
 
 import { matterSchema } from './parsePostData'
 
 const convertMarkdown = async (markdown: string) => {
+  const highlighter = await getHighlighterCore({
+    themes: [palenight],
+    langs: [l_tsx, l_markdown],
+    loadWasm: getWasm,
+  })
+
   const md = MarkdownIt({
     linkify: true,
   })
@@ -13,7 +24,7 @@ const convertMarkdown = async (markdown: string) => {
   const detailsPattern = /^details\s+(.*)$/
 
   md.use(
-    await Shiki({
+    fromHighlighter(highlighter as HighlighterGeneric<any, any>, {
       theme: 'material-theme-palenight',
     }),
   )
