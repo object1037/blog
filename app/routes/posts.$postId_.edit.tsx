@@ -19,7 +19,7 @@ export const loader = async ({
   context,
   request,
 }: LoaderFunctionArgs) => {
-  const env = envSchema.parse(context.env)
+  const env = envSchema.parse(context.cloudflare.env)
   const authenticator = getAuthenticator(env)
   await authenticator.isAuthenticated(request, {
     failureRedirect: '/login',
@@ -60,7 +60,7 @@ export default function Post() {
 }
 
 export const action = async ({ request, context }: ActionFunctionArgs) => {
-  const env = envSchema.parse(context.env)
+  const env = envSchema.parse(context.cloudflare.env)
   const formData = await request.formData()
 
   const { newPost, tags } = await parsePostData(formData)

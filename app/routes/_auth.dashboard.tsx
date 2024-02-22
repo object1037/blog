@@ -6,7 +6,7 @@ import { envSchema } from '~/env'
 import { getAuthenticator } from '~/services/auth.server'
 
 export const loader = async ({ request, context }: LoaderFunctionArgs) => {
-  const env = envSchema.parse(context.env)
+  const env = envSchema.parse(context.cloudflare.env)
   const authenticator = getAuthenticator(env)
   await authenticator.isAuthenticated(request, {
     failureRedirect: '/login',

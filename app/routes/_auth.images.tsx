@@ -17,12 +17,14 @@ import { encodeImage } from '~/utils/encodeImage.client'
 import { resizeImage } from '~/utils/resizeImage.client'
 
 export const loader = async ({ request, context }: LoaderFunctionArgs) => {
-  const authenticator = getAuthenticator(envSchema.parse(context.env))
+  const authenticator = getAuthenticator(
+    envSchema.parse(context.cloudflare.env),
+  )
   await authenticator.isAuthenticated(request, {
     failureRedirect: '/login',
   })
 
-  const list = await envSchema.parse(context.env).BUCKET.list()
+  const list = await envSchema.parse(context.cloudflare.env).BUCKET.list()
 
   return json({ list })
 }
@@ -49,11 +51,10 @@ export default function Images() {
       throw new Error('Invalid file name')
     }
 
-    const imageData = await decodeImage(imageBuffer, ext)
+    const origImage = await decodeImage(imageBuffer, ext)
 
-    let resized = imageData
-    const origWidth = imageData.width
-    const origHeight = imageData.height
+    const origWidth = origImage.width
+    const origHeight = origImage.height
     let width = origWidth
     let height = origHeight
     const aspect = origHeight / origWidth
@@ -66,12 +67,12 @@ export default function Images() {
       height = 3840
     }
 
-    resized = await resizeImage(imageData, {
+    const resizedImage = await resizeImage(origImage, {
       width,
       height,
     })
 
-    const webpImage = await encodeImage(resized)
+    const webpImage = await encodeImage(resizedImage)
 
     formData.set(
       'image',
@@ -116,7 +117,7 @@ export default function Images() {
 }
 
 export const action = async ({ request, context }: ActionFunctionArgs) => {
-  const env = envSchema.parse(context.env)
+  const env = envSchema.parse(context.cloudflare.env)
   const uploadHandler = unstable_createMemoryUploadHandler({
     maxPartSize: 10_000_000,
   })

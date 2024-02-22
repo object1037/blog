@@ -8,9 +8,8 @@ export const loader = async () => {
 }
 
 export const action = async ({ context, request }: ActionFunctionArgs) => {
-  const authenticator = getAuthenticator(envSchema.parse(context.env))
-  return authenticator.authenticate('github', request, {
-    successRedirect: '/dashboard',
-    failureRedirect: '/login',
-  })
+  const authenticator = getAuthenticator(
+    envSchema.parse(context.cloudflare.env),
+  )
+  return authenticator.authenticate('github', request)
 }

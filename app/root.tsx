@@ -1,7 +1,6 @@
 import type { LinksFunction } from '@remix-run/cloudflare'
 import {
   Links,
-  LiveReload,
   Meta,
   Outlet,
   Scripts,
@@ -9,7 +8,7 @@ import {
 } from '@remix-run/react'
 
 import { Footer } from '~/components/footer'
-import styles from '~/styles/index.css'
+import styles from '~/styles/index.css?url'
 
 export const links: LinksFunction = () => [{ rel: 'stylesheet', href: styles }]
 
@@ -27,7 +26,6 @@ export default function App() {
         <Footer />
         <ScrollRestoration />
         <Scripts />
-        <LiveReload />
       </body>
     </html>
   )

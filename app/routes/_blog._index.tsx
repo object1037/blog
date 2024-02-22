@@ -18,7 +18,7 @@ export const meta: MetaFunction = () => {
 }
 
 export const loader = async ({ context }: LoaderFunctionArgs) => {
-  const env = envSchema.parse(context.env)
+  const env = envSchema.parse(context.cloudflare.env)
   const posts = await getPosts(env.DB)
 
   const cacheControl =

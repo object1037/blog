@@ -11,12 +11,12 @@ import { ContainerWithHeading } from '~/components/containerWithHeading'
 import { TagList } from '~/components/tagList'
 import { getPostData } from '~/db.server'
 import { envSchema } from '~/env'
-import styles from '~/styles/markdown.css'
+import styles from '~/styles/markdown.css?url'
 
 export const links: LinksFunction = () => [{ rel: 'stylesheet', href: styles }]
 
 export const loader = async ({ params, context }: LoaderFunctionArgs) => {
-  const env = envSchema.parse(context.env)
+  const env = envSchema.parse(context.cloudflare.env)
 
   const postId = params.postId
   const parsedId = z.coerce.number().safeParse(postId)

@@ -13,7 +13,9 @@ import { convertFormData } from '~/utils/markdown.client'
 import { parsePostData } from '~/utils/parsePostData'
 
 export const loader = async ({ request, context }: LoaderFunctionArgs) => {
-  const authenticator = getAuthenticator(envSchema.parse(context.env))
+  const authenticator = getAuthenticator(
+    envSchema.parse(context.cloudflare.env),
+  )
   const user = await authenticator.isAuthenticated(request, {
     failureRedirect: '/login',
   })
@@ -56,7 +58,7 @@ export const action = async ({ request, context }: ActionFunctionArgs) => {
   const { newPost, tags } = await parsePostData(formData)
 
   await addPost(
-    envSchema.parse(context.env).DB,
+    envSchema.parse(context.cloudflare.env).DB,
     newPost,
     tags.map((tag) => ({ name: tag })),
   )

@@ -7,7 +7,7 @@ import { getPostsWithTag } from '~/db.server'
 import { envSchema } from '~/env'
 
 export const loader = async ({ context, params }: LoaderFunctionArgs) => {
-  const env = envSchema.parse(context.env)
+  const env = envSchema.parse(context.cloudflare.env)
   const tagName = params.tagName
 
   if (!tagName) {

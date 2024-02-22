@@ -11,7 +11,7 @@ export const action = async ({
   context,
   params,
 }: ActionFunctionArgs) => {
-  const env = envSchema.parse(context.env)
+  const env = envSchema.parse(context.cloudflare.env)
   const authenticator = getAuthenticator(env)
   const user = await authenticator.isAuthenticated(request)
 
