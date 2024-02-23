@@ -24,6 +24,7 @@ const convertMarkdown = async (markdown: string) => {
   const detailsPattern = /^details\s+(.*)$/
 
   md.use(
+    // eslint-disable-next-line @typescript-eslint/no-explicit-any
     fromHighlighter(highlighter as HighlighterGeneric<any, any>, {
       theme: 'material-theme-palenight',
     }),

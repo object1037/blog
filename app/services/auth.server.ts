@@ -2,7 +2,6 @@ import { Authenticator } from 'remix-auth'
 import { GitHubStrategy } from 'remix-auth-github'
 
 import { getSessionStrage } from './session.server'
-import { type Env } from '~/env'
 
 type User = {
   id: string
