@@ -72,6 +72,14 @@ module.exports = {
       ],
     },
 
+    // Drizzle
+    {
+      files: ['app/db.server.ts'],
+      plugins: ['drizzle'],
+      extends: ['plugin:drizzle/recommended'],
+      parser: '@typescript-eslint/parser',
+    },
+
     // Node
     {
       files: ['.eslintrc.js'],
