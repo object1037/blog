@@ -28,7 +28,7 @@
     "@remix-run/cloudflare-pages": "^2.7.2",
     "@remix-run/react": "^2.7.2",
     "@typescript-eslint/eslint-plugin": "^7.0.2",
-    "drizzle-orm": "^0.29.3",
+    "drizzle-orm": "^0.29.4",
     "drizzle-zod": "^0.5.1",
     "eslint-import-resolver-typescript": "^3.6.1",
     "eslint-plugin-import": "^2.29.1",
@@ -47,14 +47,14 @@
     "zod": "^3.22.4"
   },
   "devDependencies": {
-    "@cloudflare/workers-types": "^4.20240208.0",
+    "@cloudflare/workers-types": "^4.20240222.0",
     "@pandacss/dev": "^0.32.0",
     "@remix-run/dev": "^2.7.2",
     "@shikijs/markdown-it": "^1.1.6",
     "@trivago/prettier-plugin-sort-imports": "^4.3.0",
     "@types/markdown-it": "^13.0.7",
     "@types/markdown-it-container": "^2.0.9",
-    "@types/react": "^18.2.57",
+    "@types/react": "^18.2.58",
     "@types/react-dom": "^18.2.19",
     "drizzle-kit": "^0.20.14",
     "eslint": "^8.56.0",
@@ -64,7 +64,7 @@
     "typescript": "^5.3.3",
     "vite": "^5.1.4",
     "vite-tsconfig-paths": "^4.3.1",
-    "wrangler": "^3.28.4"
+    "wrangler": "^3.29.0"
   },
   "engines": {
     "node": ">=18.0.0"
