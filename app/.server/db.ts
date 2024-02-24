@@ -124,8 +124,8 @@ export const pruneTags = async (db_binding: D1Database) => {
   const tags = schema.tags
   const postsToTags = schema.postsToTags
 
-  const prunedTags = db.select({ data: postsToTags.tagName }).from(postsToTags)
-  const results = await db.delete(tags).where(notInArray(tags.name, prunedTags))
+  const validTags = db.select({ tag: postsToTags.tagName }).from(postsToTags)
+  const results = await db.delete(tags).where(notInArray(tags.name, validTags))
 
   return results
 }
