@@ -1,6 +1,6 @@
 import { z } from 'zod'
 
-import { type InsertPost } from '~/schema'
+import { type InsertPost } from '~/.server/schema'
 
 export const matterSchema = z.object({
   id: z.number(),

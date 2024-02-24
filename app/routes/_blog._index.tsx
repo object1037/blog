@@ -5,9 +5,9 @@ import {
 } from '@remix-run/cloudflare'
 import { useLoaderData } from '@remix-run/react'
 
+import { getPosts } from '~/.server/db'
 import { ContainerWithHeading } from '~/components/containerWithHeading'
 import { PostList } from '~/components/postList'
-import { getPosts } from '~/db.server'
 import { envSchema } from '~/env'
 
 export const meta: MetaFunction = () => {

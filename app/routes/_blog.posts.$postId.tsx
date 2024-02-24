@@ -7,9 +7,9 @@ import { useLoaderData } from '@remix-run/react'
 
 import { z } from 'zod'
 
+import { getPostData } from '~/.server/db'
 import { ContainerWithHeading } from '~/components/containerWithHeading'
 import { TagList } from '~/components/tagList'
-import { getPostData } from '~/db.server'
 import { envSchema } from '~/env'
 import styles from '~/styles/markdown.css?url'
 

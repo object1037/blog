@@ -6,7 +6,7 @@ import {
 } from '@remix-run/cloudflare'
 import { Form, useSubmit } from '@remix-run/react'
 
-import { addPost } from '~/db.server'
+import { addPost } from '~/.server/db'
 import { envSchema } from '~/env'
 import { getAuthenticator } from '~/services/auth.server'
 import { convertFormData } from '~/utils/markdown.client'

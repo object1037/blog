@@ -1,7 +1,7 @@
 import { type SerializeFrom } from '@remix-run/cloudflare'
 
 import { PostCard } from './postCard'
-import { type getPosts } from '~/db.server'
+import { type getPosts } from '~/.server/db'
 
 export const PostList = ({
   posts,

@@ -1,9 +1,9 @@
 import { type LoaderFunctionArgs, json } from '@remix-run/cloudflare'
 import { useLoaderData } from '@remix-run/react'
 
+import { getTags } from '~/.server/db'
 import { ContainerWithHeading } from '~/components/containerWithHeading'
 import { TagList } from '~/components/tagList'
-import { getTags } from '~/db.server'
 import { envSchema } from '~/env'
 
 export const loader = async ({ context }: LoaderFunctionArgs) => {

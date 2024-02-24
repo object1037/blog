@@ -1,7 +1,7 @@
 import { type LoaderFunctionArgs, json } from '@remix-run/cloudflare'
 import { Form, Link, useLoaderData } from '@remix-run/react'
 
-import { getAllPosts } from '~/db.server'
+import { getAllPosts } from '~/.server/db'
 import { envSchema } from '~/env'
 import { getAuthenticator } from '~/services/auth.server'
 

@@ -2,7 +2,7 @@ import { type ActionFunctionArgs, redirect } from '@remix-run/cloudflare'
 
 import { z } from 'zod'
 
-import { deletePost, pruneTags } from '~/db.server'
+import { deletePost, pruneTags } from '~/.server/db'
 import { envSchema } from '~/env'
 import { getAuthenticator } from '~/services/auth.server'
 

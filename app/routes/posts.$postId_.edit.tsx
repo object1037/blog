@@ -8,7 +8,7 @@ import { Form, useLoaderData, useSubmit } from '@remix-run/react'
 
 import { z } from 'zod'
 
-import { addPost, getAllPostData, pruneTags } from '~/db.server'
+import { addPost, getAllPostData, pruneTags } from '~/.server/db'
 import { envSchema } from '~/env'
 import { getAuthenticator } from '~/services/auth.server'
 import { convertFormData } from '~/utils/markdown.client'
