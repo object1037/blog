@@ -14,7 +14,7 @@
     "prepare": "panda codegen",
     "typecheck": "tsc",
     "fmt": "prettier --write \"./app/**/*.{js,jsx,ts,tsx}\"",
-    "generate": "drizzle-kit generate:sqlite --schema=./app/schema.ts --out=./migrations",
+    "generate": "drizzle-kit generate:sqlite --schema=./app/.server/schema.ts --out=./migrations",
     "migrate": "pnpm wrangler d1 migrations apply blog-db --local",
     "migrate:preview": "pnpm wrangler d1 migrations apply blog-db-preview",
     "migrate:prod": "pnpm wrangler d1 migrations apply blog-db"
