@@ -36,7 +36,7 @@ export const getAllPosts = async (db_binding: D1Database) => {
 export const getPostData = async (db_binding: D1Database, id: number) => {
   const db = drizzle(db_binding, { schema })
   const posts = schema.posts
-  const results = await db.query.posts.findMany({
+  const result = await db.query.posts.findFirst({
     where: and(eq(posts.id, id), eq(posts.public, true)),
     columns: {
       markdown: false,
@@ -51,11 +51,11 @@ export const getPostData = async (db_binding: D1Database, id: number) => {
     },
   })
 
-  if (!results[0]) {
+  if (!result) {
     return undefined
   }
 
-  const { postsToTags, ...restResult } = results[0]
+  const { postsToTags, ...restResult } = result
 
   const postData = {
     ...restResult,
@@ -68,7 +68,7 @@ export const getPostData = async (db_binding: D1Database, id: number) => {
 export const getAllPostData = async (db_binding: D1Database, id: number) => {
   const db = drizzle(db_binding, { schema })
   const posts = schema.posts
-  const results = await db.query.posts.findMany({
+  const result = await db.query.posts.findFirst({
     where: eq(posts.id, id),
     with: {
       postsToTags: {
@@ -79,11 +79,11 @@ export const getAllPostData = async (db_binding: D1Database, id: number) => {
     },
   })
 
-  if (!results[0]) {
+  if (!result) {
     return undefined
   }
 
-  const { postsToTags, ...restResult } = results[0]
+  const { postsToTags, ...restResult } = result
 
   const postData = {
     ...restResult,
