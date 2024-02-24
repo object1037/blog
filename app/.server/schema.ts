@@ -43,7 +43,7 @@ export const postsToTags = sqliteTable(
       }),
   },
   (t) => ({
-    pk: primaryKey(t.postId, t.tagName),
+    pk: primaryKey({ columns: [t.postId, t.tagName] }),
   }),
 )
 
