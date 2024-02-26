@@ -1,7 +1,7 @@
 {
   "version": "5",
   "dialect": "sqlite",
-  "id": "51e8ac73-e9fd-4dfe-9f33-811850296378",
+  "id": "5d7ce9dd-0f9f-4754-afc9-60cdc9a0bb4e",
   "prevId": "00000000-0000-0000-0000-000000000000",
   "tables": {
     "posts": {
@@ -32,9 +32,8 @@
           "name": "public",
           "type": "integer",
           "primaryKey": false,
-          "notNull": false,
-          "autoincrement": false,
-          "default": false
+          "notNull": true,
+          "autoincrement": false
         },
         "markdown": {
           "name": "markdown",
@@ -108,7 +107,8 @@
           "columns": [
             "post_id",
             "tag_name"
-          ]
+          ],
+          "name": "posts_to_tags_post_id_tag_name_pk"
         }
       },
       "uniqueConstraints": {}

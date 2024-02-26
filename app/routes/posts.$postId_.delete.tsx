@@ -2,7 +2,7 @@ import { type ActionFunctionArgs, redirect } from '@remix-run/cloudflare'
 
 import { z } from 'zod'
 
-import { deletePost, pruneTags } from '~/.server/db'
+import { deletePost } from '~/.server/db'
 import { envSchema } from '~/env'
 import { getAuthenticator } from '~/services/auth.server'
 
@@ -26,7 +26,6 @@ export const action = async ({
   }
 
   await deletePost(env.DB, parsedId.data)
-  await pruneTags(env.DB)
 
   return redirect('/dashboard')
 }

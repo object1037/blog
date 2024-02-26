@@ -108,24 +108,42 @@ export const addPost = async (
     tagName: tagData.name,
   }))
 
-  await db
-    .insert(posts)
-    .values(postData)
-    .onConflictDoUpdate({ target: posts.id, set: postData })
-  await db.insert(tags).values(tagDatas).onConflictDoNothing()
-  await db.delete(postsToTags).where(eq(postsToTags.postId, postData.id))
-  await db.insert(postsToTags).values(postTagDatas)
+  const updateTagQueries = [
+    db.insert(tags).values(tagDatas).onConflictDoNothing(),
+    db.insert(postsToTags).values(postTagDatas).onConflictDoNothing(),
+    db.delete(postsToTags).where(
+      and(
+        eq(postsToTags.postId, postData.id),
+        notInArray(
+          postsToTags.tagName,
+          tagDatas.map((e) => e.name),
+        ),
+      ),
+    ),
+  ]
+  const deletePrivateTagQueries = [
+    db.delete(postsToTags).where(eq(postsToTags.postId, postData.id)),
+  ]
+  const pruneTagsQuery = db
+    .delete(tags)
+    .where(
+      notInArray(
+        tags.name,
+        db.select({ tag: postsToTags.tagName }).from(postsToTags),
+      ),
+    )
+  const tagQueries = postData.public
+    ? updateTagQueries
+    : deletePrivateTagQueries
 
-  return
-}
-
-export const pruneTags = async (db_binding: D1Database) => {
-  const db = drizzle(db_binding)
-  const tags = schema.tags
-  const postsToTags = schema.postsToTags
-
-  const validTags = db.select({ tag: postsToTags.tagName }).from(postsToTags)
-  const results = await db.delete(tags).where(notInArray(tags.name, validTags))
+  const results = await db.batch([
+    db
+      .insert(posts)
+      .values(postData)
+      .onConflictDoUpdate({ target: posts.id, set: postData }),
+    ...tagQueries,
+    pruneTagsQuery,
+  ])
 
   return results
 }
@@ -133,25 +151,31 @@ export const pruneTags = async (db_binding: D1Database) => {
 export const deletePost = async (db_binding: D1Database, id: number) => {
   const db = drizzle(db_binding)
   const posts = schema.posts
-  const results = await db.delete(posts).where(eq(posts.id, id))
+  const tags = schema.tags
+  const postsToTags = schema.postsToTags
+
+  const results = await db.batch([
+    db.delete(posts).where(eq(posts.id, id)),
+    db
+      .delete(tags)
+      .where(
+        notInArray(
+          tags.name,
+          db.select({ tag: postsToTags.tagName }).from(postsToTags),
+        ),
+      ),
+  ])
 
   return results
 }
 
 export const getTags = async (db_binding: D1Database) => {
   const db = drizzle(db_binding)
-  const posts = schema.posts
-  const postsToTags = schema.postsToTags
-
-  const publicPosts = db
-    .select({ id: posts.id })
-    .from(posts)
-    .where(eq(posts.public, true))
+  const tags = schema.tags
 
   const results = await db
-    .selectDistinct({ tag: postsToTags.tagName })
-    .from(postsToTags)
-    .where(inArray(postsToTags.postId, publicPosts))
+    .select({ tag: tags.name })
+    .from(tags)
     .then((tagData) => tagData.map((e) => e.tag))
 
   return results
@@ -162,7 +186,7 @@ export const getPostsWithTag = async (db_binding: D1Database, tag: string) => {
   const posts = schema.posts
   const postsToTags = schema.postsToTags
 
-  const postIds = db
+  const postIdQuery = db
     .select({ postId: postsToTags.postId })
     .from(postsToTags)
     .where(eq(postsToTags.tagName, tag))
@@ -174,7 +198,7 @@ export const getPostsWithTag = async (db_binding: D1Database, tag: string) => {
       description: posts.description,
     })
     .from(posts)
-    .where(inArray(posts.id, postIds))
+    .where(inArray(posts.id, postIdQuery))
 
   return results
 }
