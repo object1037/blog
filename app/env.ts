@@ -14,7 +14,6 @@ export const envSchema = schemaForType<Env>()(
     CALLBACK_URL: z.string().url(),
     SESSION_SECRET: z.string().min(1),
     DB: z.custom<D1Database>(),
-    DB_PREVIEW: z.custom<D1Database>(),
     SESSION_KV: z.custom<KVNamespace>(),
     BUCKET: z.custom<R2Bucket>(),
   }),
