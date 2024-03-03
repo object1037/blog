@@ -1,8 +1,7 @@
 import { Link } from '@remix-run/react'
 
-import { css, cx } from 'styled-system/css';
+import { css, cx } from 'styled-system/css'
 import { flex } from 'styled-system/patterns'
-import { Temporal } from 'temporal-polyfill'
 
 import { type getPosts } from '~/.server/db'
 
@@ -34,14 +33,11 @@ export const PostCard = ({
     transition: 'background',
   })
 
-  const postDate = Temporal.PlainDate.from(post.id.toString())
-
   return (
     <li className={cx('group', itemStyle)}>
       <Link to={`/posts/${post.id}`} prefetch="intent" className={linkStyle}>
         <p className={titleStyle}>{post.title}</p>
         <p>{post.description}</p>
-        <p>{postDate.toString()}</p>
       </Link>
     </li>
   )
