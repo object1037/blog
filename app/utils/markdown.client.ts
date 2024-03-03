@@ -75,11 +75,11 @@ const convertMarkdown = async (markdown: string) => {
 
   const { content, data } = matter(markdown)
   const html = md.render(content)
-  if (data.public === undefined) {
+
+  if (data.public == null) {
     data.public = false
   }
   const parsedData = matterSchema.safeParse(data)
-
   if (!parsedData.success) {
     throw new Response('Invalid data', { status: 400 })
   }
