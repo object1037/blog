@@ -1,6 +1,7 @@
-import { fromHighlighter } from '@shikijs/markdown-it/core'
-import matter from 'gray-matter'
+import { fromHighlighter } from '@shikijs/markdown-it/core';
+import matter from 'gray-matter';
 import MarkdownIt, { type Token } from 'markdown-it'
+import anchor from 'markdown-it-anchor'
 import container from 'markdown-it-container'
 import { type HighlighterGeneric, getHighlighterCore } from 'shiki/core'
 import l_markdown from 'shiki/langs/markdown.mjs'
@@ -47,6 +48,13 @@ const convertMarkdown = async (markdown: string) => {
           return '</details>\n'
         }
       },
+    })
+    .use(anchor, {
+      level: [1, 2, 3, 4],
+      permalink: anchor.permalink.ariaHidden({
+        symbol: '',
+      }),
+      tabIndex: false,
     })
 
   md.renderer.rules.image = (tokens, idx, options, env, slf) => {
