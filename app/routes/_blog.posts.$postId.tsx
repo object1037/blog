@@ -1,5 +1,3 @@
-import { useEffect } from 'react'
-
 import {
   type LinksFunction,
   type LoaderFunctionArgs,
@@ -12,15 +10,10 @@ import { z } from 'zod'
 import { getPostData } from '~/.server/db'
 import { ContainerWithHeading } from '~/components/containerWithHeading'
 import { TagList } from '~/components/tagList'
+import { ToC } from '~/components/toc'
 import { envSchema } from '~/env'
 import styles from '~/styles/markdown.css?url'
-
-interface ToC {
-  level: number
-  text: string
-  id: string
-  children: ToC[]
-}
+import { useToC } from '~/utils/useToC'
 
 export const links: LinksFunction = () => [{ rel: 'stylesheet', href: styles }]
 
@@ -47,38 +40,12 @@ export const loader = async ({ params, context }: LoaderFunctionArgs) => {
 export default function Post() {
   const { post } = useLoaderData<typeof loader>()
 
-  useEffect(() => {
-    const headings = Array.from(document.querySelectorAll('h2,h3'))
-    const headingsToC: ToC[] = headings.map((heading) => ({
-      level: parseInt(heading.tagName.slice(1), 10),
-      text:
-        (heading instanceof HTMLElement
-          ? heading.innerText
-          : heading.textContent) ?? '',
-      id: heading.id,
-      children: [],
-    }))
-
-    const toc: ToC[] = headingsToC.reduce((acc: ToC[], heading: ToC) => {
-      let parent = acc
-
-      while (parent.length > 0) {
-        const last = parent.slice(-1)[0]
-        if (!last || last.level >= heading.level) {
-          break
-        }
-        parent = last.children
-      }
-
-      parent.push(heading)
-      return acc
-    }, [])
-    console.log(toc)
-  }, [])
+  const toc = useToC()
 
   return (
     <ContainerWithHeading heading={post.title}>
       <TagList tags={post.tags} />
+      <ToC toc={toc} />
       <div
         className="markdown_wrapper"
         dangerouslySetInnerHTML={{ __html: post.html }}
