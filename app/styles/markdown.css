@@ -41,7 +41,7 @@
     }
   }
 
-  ul, ol, blockquote, pre, table {
+  ul, ol, blockquote, pre, table, .info, .warn, .danger {
     margin: 1.25rem 0;
   }
 
@@ -71,7 +71,7 @@
 
   blockquote {
     border-left: solid 3px #e5e5e5;
-    padding: 0.125rem 0 0.125rem 1rem;
+    padding: 0.125rem 1rem;
     color: #737373;
     p {
       margin: 0.75rem 0;
@@ -107,5 +107,28 @@
     width: auto;
     overflow: auto;
     display: block;
+  }
+
+  .info, .warn, .danger {
+    border-radius: 0.25rem;
+    padding: 0.25rem 1rem;
+    p {
+      margin: 0.75rem 0;
+    }
+    > :first-child::before {
+      content: 'ℹ️';
+    }
+  }
+
+  .info {
+    background-color: #eff6ff;
+  }
+
+  .warn {
+    background-color: #fff7ed;
+  }
+
+  .danger {
+    background-color: #fef2f2;
   }
 }
