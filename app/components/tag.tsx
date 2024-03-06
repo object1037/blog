@@ -18,7 +18,7 @@ export const Tag = ({ name }: { name: string }) => {
   })
 
   return (
-    <Link to={`../tags/${name}`} prefetch="intent" className={tagStyle}>
+    <Link to={`/tags/${name}`} prefetch="intent" className={tagStyle}>
       {name}
     </Link>
   )
