@@ -11,7 +11,7 @@ export const Header = () => {
     p: '2',
   })
   const topLinkStyle = hstack({
-    gap: '1rem',
+    gap: '4',
     fontSize: '5xl',
     py: '4',
     px: { base: '0', md: '2', lg: '4' },
@@ -19,7 +19,7 @@ export const Header = () => {
   const topTextStyle = css({
     fontSize: 'lg',
     fontWeight: 'medium',
-    lineHeight: '1',
+    lineHeight: 'none',
   })
   const navTextStyle = css({
     fontSize: 'sm',
@@ -32,7 +32,7 @@ export const Header = () => {
   })
 
   return (
-    <header className={container({ w: '100%' })}>
+    <header className={container()}>
       <nav className={headerStackStyle}>
         <Link to="/" prefetch="intent" className={topLinkStyle}>
           <Icon /> <span className={topTextStyle}>Blog</span>

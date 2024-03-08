@@ -39,7 +39,7 @@ export const Footer = () => {
   })
 
   return (
-    <footer className={container({ w: '100%' })}>
+    <footer className={container()}>
       <div className={footerStackStyle}>
         <div className={hstack()}>
           <IconLink href="https://twitter.com/object1037">

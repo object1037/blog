@@ -7,7 +7,7 @@ export const Tag = ({ name }: { name: string }) => {
     py: '1.5',
     px: '3',
     borderColor: 'neutral.200',
-    borderWidth: '1px',
+    borderWidth: '[1px]',
     rounded: 'sm',
     display: 'inline-block',
     fontSize: 'sm',

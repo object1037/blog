@@ -25,6 +25,9 @@ export default defineConfig({
   // Files to exclude
   exclude: [],
 
+  strictTokens: true,
+  strictPropertyValues: true,
+
   // Useful for theme customization
   theme: {
     extend: {
@@ -48,6 +51,7 @@ export default defineConfig({
         transform(props) {
           return {
             position: 'relative',
+            w: 'full',
             maxWidth: '4xl',
             mx: 'auto',
             px: { base: '4', md: '6', lg: '8' },

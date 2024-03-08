@@ -20,7 +20,7 @@ const ToCSub = ({ toc }: { toc: ToCEl[] }) => {
 const tocStyle = css({
   gridArea: 'toc',
   hideBelow: 'xl',
-  position: 'stiky',
+  position: 'sticky',
   top: '24',
   w: '56',
 })

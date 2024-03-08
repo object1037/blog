@@ -13,22 +13,22 @@ export const PostCard = ({
   const itemStyle = css({
     h: '24',
     borderColor: 'neutral.200',
-    borderBottomWidth: { base: '1px', _last: '0px' },
+    borderBottomWidth: { base: '[1px]', _last: '[0px]' },
   })
   const linkStyle = flex({
     direction: 'column',
     justify: 'space-between',
-    h: '100%',
+    h: 'full',
     p: '4',
   })
   const titleStyle = css({
     fontWeight: 'medium',
     fontSize: 'xl',
-    w: 'fit-content',
+    w: '[fit-content]',
     bgRepeat: 'no-repeat',
     bgGradient: 'to-b',
-    gradientFrom: 'transparent 70%',
-    gradientTo: 'token(colors.secondary) 70%',
+    gradientFrom: '[transparent 70%]',
+    gradientTo: '[token(colors.secondary) 70%]',
     bgSize: { base: '0% 100%', _groupHover: '100% 100%' },
     transition: 'background',
   })

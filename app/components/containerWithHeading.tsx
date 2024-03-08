@@ -11,7 +11,6 @@ export const ContainerWithHeading = ({
   children: React.ReactNode
 }) => {
   const containerStyle = container({
-    width: 'full',
     maxWidth: '3xl',
     px: { base: '7', md: '8', lg: '10' },
   })

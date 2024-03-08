@@ -16,7 +16,7 @@ export const Article = ({
   const wrapperStyle = css({
     display: 'grid',
     gridTemplateAreas: '". article toc"',
-    gridTemplateColumns: '1fr minmax(0, {sizes.3xl}) 1fr',
+    gridTemplateColumns: '[1fr minmax(0, {sizes.3xl}) 1fr]',
     alignItems: 'start',
   })
 
