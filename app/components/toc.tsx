@@ -1,5 +1,7 @@
 import { Link } from '@remix-run/react'
 
+import { css } from 'styled-system/css'
+
 import { type ToCEl } from '~/utils/useToC'
 
 const ToCSub = ({ toc }: { toc: ToCEl[] }) => {
@@ -15,10 +17,18 @@ const ToCSub = ({ toc }: { toc: ToCEl[] }) => {
   )
 }
 
+const tocStyle = css({
+  gridArea: 'toc',
+  hideBelow: 'xl',
+  position: 'stiky',
+  top: '24',
+  w: '56',
+})
+
 export const ToC = ({ toc }: { toc: ToCEl[] }) => {
   return (
-    <div>
+    <nav className={tocStyle}>
       <ToCSub toc={toc} />
-    </div>
+    </nav>
   )
 }

@@ -1,14 +1,17 @@
-import { css } from 'styled-system/css'
+import { css, cx } from 'styled-system/css'
 import { container, divider } from 'styled-system/patterns'
 
 export const ContainerWithHeading = ({
   heading,
+  className,
   children,
 }: {
   heading: string
+  className?: string
   children: React.ReactNode
 }) => {
   const containerStyle = container({
+    width: 'full',
     maxWidth: '3xl',
     px: { base: '7', md: '8', lg: '10' },
   })
@@ -24,7 +27,7 @@ export const ContainerWithHeading = ({
   })
 
   return (
-    <div className={containerStyle}>
+    <div className={cx(containerStyle, className)}>
       <div className={dividerStyle} />
       <h1 className={headingStyle}>{heading}</h1>
       {children}

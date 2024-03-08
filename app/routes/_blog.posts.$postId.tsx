@@ -8,12 +8,9 @@ import { useLoaderData } from '@remix-run/react'
 import { z } from 'zod'
 
 import { getPostData } from '~/.server/db'
-import { ContainerWithHeading } from '~/components/containerWithHeading'
-import { TagList } from '~/components/tagList'
-import { ToC } from '~/components/toc'
+import { Article } from '~/components/article'
 import { envSchema } from '~/env'
 import styles from '~/styles/markdown.css?url'
-import { useToC } from '~/utils/useToC'
 
 export const links: LinksFunction = () => [{ rel: 'stylesheet', href: styles }]
 
@@ -40,16 +37,5 @@ export const loader = async ({ params, context }: LoaderFunctionArgs) => {
 export default function Post() {
   const { post } = useLoaderData<typeof loader>()
 
-  const toc = useToC()
-
-  return (
-    <ContainerWithHeading heading={post.title}>
-      <TagList tags={post.tags} />
-      <ToC toc={toc} />
-      <div
-        className="markdown_wrapper"
-        dangerouslySetInnerHTML={{ __html: post.html }}
-      />
-    </ContainerWithHeading>
-  )
+  return <Article post={post} />
 }
