@@ -6,5 +6,6 @@ import { createPagesFunctionHandler } from '@remix-run/cloudflare-pages'
 import * as build from '../build/server'
 
 export const onRequest = createPagesFunctionHandler({
+  // @ts-expect-error - this error only occurs with exactOptionalPropertyTypes enabled.
   build,
 })
