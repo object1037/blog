@@ -8,7 +8,7 @@ import {
 } from '@remix-run/react'
 
 import { Footer } from '~/components/footer'
-import styles from '~/styles/index.css?url'
+import styles from 'styled-system/styles.css?url'
 
 export const links: LinksFunction = () => [{ rel: 'stylesheet', href: styles }]
 
