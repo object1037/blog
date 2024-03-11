@@ -1,22 +1,22 @@
-# blog
+# Welcome to Remix!
 
-My blog system created with [Next.js](https://nextjs.org/), [Tailwind CSS](https://tailwindcss.com/), [MDX](https://github.com/mdx-js/mdx), etc.
+- [Remix Docs](https://remix.run/docs)
 
-## Usage
+## Development
 
-```bash
-pnpm install
-pnpm run dev
+You will be utilizing Wrangler for local development to emulate the Cloudflare runtime. This is already wired up in your package.json as the `dev` script:
+
+```sh
+# start the remix dev server and wrangler
+npm run dev
 ```
 
-In order to enable the search feature, get [Algolia](https://www.algolia.com/)'s API keys and add environment variables referring to `.env.example`.
+Open up [http://127.0.0.1:8788](http://127.0.0.1:8788) and you should be ready to go!
 
-Edit the following files if you need.
+## Deployment
 
- * `constants/data.ts`: General data
- * `posts/[YYYYMMDD].mdx`: Blog post
- * `public/images/*`: Images
+Cloudflare Pages are currently only deployable through their Git provider integrations.
 
-You can see full features in `posts/testPost.mdx`.
+If you don't already have an account, then [create a Cloudflare account here](https://dash.cloudflare.com/sign-up/pages) and after verifying your email address with Cloudflare, go to your dashboard and follow the [Cloudflare Pages deployment guide](https://developers.cloudflare.com/pages/framework-guides/deploy-anything).
 
-[![Deploy with Vercel](https://vercel.com/button)](https://vercel.com/new/clone?repository-url=https%3A%2F%2Fgithub.com%2Fobject1037%2Fblog&project-name=blog&repo-name=blog)
+Configure the "Build command" should be set to `npm run build`, and the "Build output directory" should be set to `public`.

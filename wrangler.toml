@@ -1,0 +1,14 @@
+[[kv_namespaces]]
+binding = "SESSION_KV"
+id = "4fee0af77fa3425dac9bd8dc5bfbaf4b"
+preview_id = "4fee0af77fa3425dac9bd8dc5bfbaf4b"
+
+[[d1_databases]]
+binding = "DB"
+database_name = "blog-db"
+database_id = "77f4589e-54f5-43ad-ab44-ccc96e048bfc"
+
+[[r2_buckets]]
+binding = 'BUCKET'
+bucket_name = 'blog-images'
+preview_bucket_name = 'blog-images'

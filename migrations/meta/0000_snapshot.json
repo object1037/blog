@@ -1,0 +1,139 @@
+{
+  "version": "5",
+  "dialect": "sqlite",
+  "id": "5d7ce9dd-0f9f-4754-afc9-60cdc9a0bb4e",
+  "prevId": "00000000-0000-0000-0000-000000000000",
+  "tables": {
+    "posts": {
+      "name": "posts",
+      "columns": {
+        "id": {
+          "name": "id",
+          "type": "integer",
+          "primaryKey": true,
+          "notNull": true,
+          "autoincrement": false
+        },
+        "title": {
+          "name": "title",
+          "type": "text",
+          "primaryKey": false,
+          "notNull": true,
+          "autoincrement": false
+        },
+        "description": {
+          "name": "description",
+          "type": "text",
+          "primaryKey": false,
+          "notNull": true,
+          "autoincrement": false
+        },
+        "public": {
+          "name": "public",
+          "type": "integer",
+          "primaryKey": false,
+          "notNull": true,
+          "autoincrement": false
+        },
+        "markdown": {
+          "name": "markdown",
+          "type": "text",
+          "primaryKey": false,
+          "notNull": true,
+          "autoincrement": false
+        },
+        "html": {
+          "name": "html",
+          "type": "text",
+          "primaryKey": false,
+          "notNull": true,
+          "autoincrement": false
+        }
+      },
+      "indexes": {},
+      "foreignKeys": {},
+      "compositePrimaryKeys": {},
+      "uniqueConstraints": {}
+    },
+    "posts_to_tags": {
+      "name": "posts_to_tags",
+      "columns": {
+        "post_id": {
+          "name": "post_id",
+          "type": "integer",
+          "primaryKey": false,
+          "notNull": true,
+          "autoincrement": false
+        },
+        "tag_name": {
+          "name": "tag_name",
+          "type": "text",
+          "primaryKey": false,
+          "notNull": true,
+          "autoincrement": false
+        }
+      },
+      "indexes": {},
+      "foreignKeys": {
+        "posts_to_tags_post_id_posts_id_fk": {
+          "name": "posts_to_tags_post_id_posts_id_fk",
+          "tableFrom": "posts_to_tags",
+          "tableTo": "posts",
+          "columnsFrom": [
+            "post_id"
+          ],
+          "columnsTo": [
+            "id"
+          ],
+          "onDelete": "cascade",
+          "onUpdate": "cascade"
+        },
+        "posts_to_tags_tag_name_tags_name_fk": {
+          "name": "posts_to_tags_tag_name_tags_name_fk",
+          "tableFrom": "posts_to_tags",
+          "tableTo": "tags",
+          "columnsFrom": [
+            "tag_name"
+          ],
+          "columnsTo": [
+            "name"
+          ],
+          "onDelete": "cascade",
+          "onUpdate": "cascade"
+        }
+      },
+      "compositePrimaryKeys": {
+        "posts_to_tags_post_id_tag_name_pk": {
+          "columns": [
+            "post_id",
+            "tag_name"
+          ],
+          "name": "posts_to_tags_post_id_tag_name_pk"
+        }
+      },
+      "uniqueConstraints": {}
+    },
+    "tags": {
+      "name": "tags",
+      "columns": {
+        "name": {
+          "name": "name",
+          "type": "text",
+          "primaryKey": true,
+          "notNull": true,
+          "autoincrement": false
+        }
+      },
+      "indexes": {},
+      "foreignKeys": {},
+      "compositePrimaryKeys": {},
+      "uniqueConstraints": {}
+    }
+  },
+  "enums": {},
+  "_meta": {
+    "schemas": {},
+    "tables": {},
+    "columns": {}
+  }
+}

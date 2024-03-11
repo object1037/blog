@@ -1,0 +1,69 @@
+import { defineConfig, defineGlobalStyles } from '@pandacss/dev'
+
+const globalCss = defineGlobalStyles({
+  'html, body': {
+    bg: 'neutral.50',
+    color: 'neutral.900',
+  },
+  body: {
+    display: 'grid',
+    gridTemplateRows: 'auto 1fr auto',
+    gridTemplateColumns: '100%',
+    minHeight: '100svh',
+  },
+})
+
+export default defineConfig({
+  // Whether to use css reset
+  preflight: true,
+
+  // The extension for the emitted JavaScript files
+  outExtension: 'js',
+  // Where to look for your css declarations
+  include: ['./app/**/*.{js,jsx,ts,tsx}'],
+
+  // Files to exclude
+  exclude: [],
+
+  strictTokens: true,
+  strictPropertyValues: true,
+
+  // Useful for theme customization
+  theme: {
+    extend: {
+      tokens: {
+        colors: {
+          primary: {
+            DEFAULT: { value: '#fd3972' },
+            light: { value: '#ffbac1' },
+          },
+          secondary: {
+            DEFAULT: { value: '#06feba' },
+          },
+        },
+      },
+    },
+  },
+
+  patterns: {
+    extend: {
+      container: {
+        transform(props) {
+          return {
+            position: 'relative',
+            w: 'full',
+            maxWidth: '4xl',
+            mx: 'auto',
+            px: { base: '4', md: '6', lg: '8' },
+            ...props,
+          }
+        },
+      },
+    },
+  },
+
+  // The output directory for your css system
+  outdir: 'styled-system',
+
+  globalCss,
+})

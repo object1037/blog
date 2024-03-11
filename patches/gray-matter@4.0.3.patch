@@ -1,0 +1,120 @@
+diff --git a/CHANGELOG.md b/CHANGELOG.md
+deleted file mode 100644
+index eebdf42eb721b756d4f554b09b943774faa659b0..0000000000000000000000000000000000000000
+diff --git a/gray-matter.d.ts b/gray-matter.d.ts
+index dec9c09b24bac4992508313783e78320ea3cd236..67cbb51fb7c4c2d084e612d1d71e1fb4e48c3064 100644
+--- a/gray-matter.d.ts
++++ b/gray-matter.d.ts
+@@ -40,7 +40,6 @@ declare namespace matter {
+     data: { [key: string]: any }
+     content: string
+     excerpt?: string
+-    orig: Buffer | I
+     language: string
+     matter: string
+     stringify(lang: string): string
+@@ -82,10 +81,6 @@ declare namespace matter {
+    * @param {Object} `options` [Options](#options) to pass to gray-matter.
+    * @return {Object} Returns [an object](#returned-object) with `data` and `content`
+    */
+-  export function read<O extends GrayMatterOption<string, O>>(
+-    fp: string,
+-    options?: GrayMatterOption<string, O>
+-  ): matter.GrayMatterFile<string>
+ 
+   /**
+    * Returns true if the given `string` has front matter.
+diff --git a/index.js b/index.js
+index 7d4933198abcd2811d1d44a300831d1ee352afc1..0fc8b25910a6902ce1b23f8b232f558bd12bccc3 100644
+--- a/index.js
++++ b/index.js
+@@ -1,6 +1,5 @@
+ 'use strict';
+ 
+-const fs = require('fs');
+ const sections = require('section-matter');
+ const defaults = require('./lib/defaults');
+ const stringify = require('./lib/stringify');
+@@ -28,7 +27,7 @@ const utils = require('./lib/utils');
+ 
+ function matter(input, options) {
+   if (input === '') {
+-    return { data: {}, content: input, excerpt: '', orig: input };
++    return { data: {}, content: input, excerpt: '' };
+   }
+ 
+   let file = toFile(input);
+@@ -37,7 +36,6 @@ function matter(input, options) {
+   if (!options) {
+     if (cached) {
+       file = Object.assign({}, cached);
+-      file.orig = cached.orig;
+       return file;
+     }
+ 
+@@ -175,12 +173,6 @@ matter.stringify = function(file, data, options) {
+  * @api public
+  */
+ 
+-matter.read = function(filepath, options) {
+-  const str = fs.readFileSync(filepath, 'utf8');
+-  const file = matter(str, options);
+-  file.path = filepath;
+-  return file;
+-};
+ 
+ /**
+  * Returns true if the given `string` has front matter.
+diff --git a/lib/engines.js b/lib/engines.js
+index 38f993db06cf364191ac635a6590c2d29303297d..c698933e5731663b6cccf75ebacec6c0d01b416f 100644
+--- a/lib/engines.js
++++ b/lib/engines.js
+@@ -33,22 +33,3 @@ engines.json = {
+  * JavaScript
+  */
+ 
+-engines.javascript = {
+-  parse: function parse(str, options, wrap) {
+-    /* eslint no-eval: 0 */
+-    try {
+-      if (wrap !== false) {
+-        str = '(function() {\nreturn ' + str.trim() + ';\n}());';
+-      }
+-      return eval(str) || {};
+-    } catch (err) {
+-      if (wrap !== false && /(unexpected|identifier)/i.test(err.message)) {
+-        return parse(str, options, false);
+-      }
+-      throw new SyntaxError(err);
+-    }
+-  },
+-  stringify: function() {
+-    throw new Error('stringifying JavaScript is not supported');
+-  }
+-};
+diff --git a/lib/to-file.js b/lib/to-file.js
+index 799bb5d9e65e42caac086f9bfa757ee2ac23aacc..b88827589190b14616546da674a98b1fe2c090ec 100644
+--- a/lib/to-file.js
++++ b/lib/to-file.js
+@@ -25,7 +25,6 @@ module.exports = function(file) {
+   }
+ 
+   // set non-enumerable properties on the file object
+-  utils.define(file, 'orig', utils.toBuffer(file.content));
+   utils.define(file, 'language', file.language || '');
+   utils.define(file, 'matter', file.matter || '');
+   utils.define(file, 'stringify', function(data, options) {
+diff --git a/lib/utils.js b/lib/utils.js
+index 96e7ce020c3a5df0e3e43cbba6e7d3d8d09f9e51..54c9d1744ce34c11d42ccadd80916814a155b5f2 100644
+--- a/lib/utils.js
++++ b/lib/utils.js
+@@ -32,9 +32,6 @@ exports.isObject = function(val) {
+  * Cast `input` to a buffer
+  */
+ 
+-exports.toBuffer = function(input) {
+-  return typeof input === 'string' ? Buffer.from(input) : input;
+-};
+ 
+ /**
+  * Cast `val` to a string.
