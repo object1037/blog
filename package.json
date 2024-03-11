@@ -6,7 +6,7 @@
   "scripts": {
     "postinstall": "npm run typegen",
     "dev": "concurrently \"remix vite:dev\" \"panda --watch\"",
-    "build": "remix vite:build && panda",
+    "build": "panda && remix vite:build",
     "start": "wrangler pages dev ./build/client",
     "deploy": "wrangler pages deploy ./build/client",
     "lint": "eslint --ignore-path .gitignore --cache --cache-location ./node_modules/.cache/eslint .",
