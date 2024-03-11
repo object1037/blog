@@ -12,8 +12,8 @@ import { envSchema } from '~/env'
 
 export const meta: MetaFunction = () => {
   return [
-    { title: 'New Remix App' },
-    { name: 'description', content: 'Welcome to Remix!' },
+    { title: 'ゆるふわインターネット' },
+    { name: 'description', content: 'object1037のブログ' },
   ]
 }
 
