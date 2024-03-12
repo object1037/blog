@@ -1,13 +1,16 @@
-import { Form, Outlet } from '@remix-run/react'
+import { Outlet } from '@remix-run/react'
+
+import { Footer } from '~/components/footer'
+import { Header } from '~/components/header'
 
 export default function AuthLayout() {
   return (
-    <div>
-      <h1>Auth Layout</h1>
-      <Form action="logout" method="post">
-        <button>Logout</button>
-      </Form>
-      <Outlet />
-    </div>
+    <>
+      <Header dashboard />
+      <main>
+        <Outlet />
+      </main>
+      <Footer />
+    </>
   )
 }

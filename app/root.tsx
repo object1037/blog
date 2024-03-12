@@ -7,7 +7,6 @@ import {
   ScrollRestoration,
 } from '@remix-run/react'
 
-import { Footer } from '~/components/footer'
 import styles from 'styled-system/styles.css?url'
 
 export const links: LinksFunction = () => [{ rel: 'stylesheet', href: styles }]
@@ -23,7 +22,6 @@ export default function App() {
       </head>
       <body>
         <Outlet />
-        <Footer />
         <ScrollRestoration />
         <Scripts />
       </body>
