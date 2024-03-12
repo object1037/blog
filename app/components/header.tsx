@@ -1,7 +1,7 @@
 import { Form, Link } from '@remix-run/react'
 
-import { css } from 'styled-system/css'
-import { container, hstack } from 'styled-system/patterns'
+import { css } from 'styled-system/css';
+import { button, container, hstack } from 'styled-system/patterns'
 
 import { Icon } from './icon'
 
@@ -21,15 +21,9 @@ export const Header = ({ dashboard }: { dashboard?: boolean }) => {
     fontWeight: 'medium',
     lineHeight: 'none',
   })
-  const navTextStyle = css({
-    fontSize: 'sm',
-    fontWeight: 'medium',
+  const navTextStyle = button({
     py: '2',
     px: { base: '3', md: '4' },
-    rounded: 'sm',
-    _hover: { bg: 'neutral.200' },
-    transition: 'background',
-    cursor: 'pointer',
   })
 
   return (
