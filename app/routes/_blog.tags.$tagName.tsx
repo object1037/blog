@@ -2,8 +2,8 @@ import { type LoaderFunctionArgs, json } from '@remix-run/cloudflare'
 import { useLoaderData } from '@remix-run/react'
 
 import { getPostsWithTag } from '~/.server/db'
-import { ContainerWithHeading } from '~/components/containerWithHeading'
-import { PostList } from '~/components/postList'
+import { ContainerWithHeading } from '~/components/containerWithHeading';
+import { PostCard } from '~/components/postCard'
 import { envSchema } from '~/env'
 
 export const loader = async ({ context, params }: LoaderFunctionArgs) => {
@@ -30,7 +30,11 @@ export default function Tag() {
 
   return (
     <ContainerWithHeading heading={tagName}>
-      <PostList posts={posts} />
+      <ul>
+        {posts.map((post) => (
+          <PostCard key={post.id} post={post} />
+        ))}
+      </ul>
     </ContainerWithHeading>
   )
 }
