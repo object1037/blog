@@ -15,11 +15,12 @@
     "typecheck": "tsc",
     "fmt": "prettier --write \"./app/**/*.{js,jsx,ts,tsx}\"",
     "generate": "drizzle-kit generate:sqlite --schema=./app/.server/schema.ts --out=./migrations",
-    "migrate": "pnpm wrangler d1 migrations apply blog-db --local",
-    "migrate:preview": "pnpm wrangler d1 migrations apply blog-db-preview",
-    "migrate:prod": "pnpm wrangler d1 migrations apply blog-db"
+    "migrate": "pnpm wrangler d1 migrations apply blog-db",
+    "migrate:preview": "pnpm wrangler d1 migrations apply blog-db-preview"
   },
   "dependencies": {
+    "@codemirror/state": "^6.4.1",
+    "@codemirror/view": "^6.25.1",
     "@jsquash/jpeg": "^1.4.0",
     "@jsquash/png": "^3.0.0",
     "@jsquash/resize": "^1.1.1",
@@ -42,7 +43,7 @@
     "zod": "^3.22.4"
   },
   "devDependencies": {
-    "@cloudflare/workers-types": "^4.20240222.0",
+    "@cloudflare/workers-types": "^4.20240312.0",
     "@pandacss/dev": "^0.34.3",
     "@pandacss/studio": "^0.34.3",
     "@remix-run/dev": "^2.8.1",
@@ -71,7 +72,7 @@
     "typescript": "^5.4.2",
     "vite": "^5.1.6",
     "vite-tsconfig-paths": "^4.3.1",
-    "wrangler": "^3.32.0"
+    "wrangler": "^3.33.0"
   },
   "engines": {
     "node": ">=18.0.0"
