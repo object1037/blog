@@ -1,17 +1,17 @@
-import { useCallback, useState } from 'react'
+import { useCallback, useState } from 'react';
 
-import {
-  type ActionFunctionArgs,
-  type LoaderFunctionArgs,
-  json,
-  redirect,
-} from '@remix-run/cloudflare'
-import { useFetcher, useLoaderData } from '@remix-run/react'
 
+
+import { type ActionFunctionArgs, type LoaderFunctionArgs, json, redirect } from '@remix-run/cloudflare';
+import { useFetcher, useLoaderData } from '@remix-run/react';
+
+
+
+import { ClientOnly } from 'remix-utils/client-only'
 import { z } from 'zod'
 
 import { addPost, getAllPostData } from '~/.server/db'
-import { Editor } from '~/components/editor'
+import { Editor } from '~/components/editor.client'
 import { envSchema } from '~/env'
 import { getAuthenticator } from '~/services/auth.server'
 import { convertMarkdown } from '~/utils/markdown.client'
@@ -45,27 +45,30 @@ export const loader = async ({
 export default function Post() {
   const { post } = useLoaderData<typeof loader>()
   const fetcher = useFetcher()
-  const [value, setValue] = useState(post.markdown)
+  const [markdown, setMarkdown] = useState(post.markdown)
 
   const submitHandler = async (e: React.FormEvent<HTMLFormElement>) => {
     e.preventDefault()
-    const { frontmatter, html } = await convertMarkdown(value)
+    const { frontmatter, html } = await convertMarkdown(markdown)
     fetcher.submit(
       {
-        markdown: value,
         frontmatter: JSON.stringify(frontmatter),
+        markdown,
         html,
       },
       { method: 'post' },
     )
   }
-  const onChange = useCallback((val: string) => {
-    setValue(val)
+  const onChange = useCallback((value: string) => {
+    setMarkdown(value)
   }, [])
 
   return (
     <div>
-      <Editor value={value} onChange={onChange} />
+      <ClientOnly fallback={<textarea value={markdown} />}>
+        {() => <Editor value={markdown} onChange={onChange} />}
+      </ClientOnly>
+
       <fetcher.Form onSubmit={submitHandler}>
         <button>Save</button>
       </fetcher.Form>
