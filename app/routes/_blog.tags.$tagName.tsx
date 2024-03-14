@@ -2,7 +2,7 @@ import { type LoaderFunctionArgs, json } from '@remix-run/cloudflare'
 import { useLoaderData } from '@remix-run/react'
 
 import { getPostsWithTag } from '~/.server/db'
-import { ContainerWithHeading } from '~/components/containerWithHeading';
+import { ContainerWithHeading } from '~/components/containerWithHeading'
 import { PostCard } from '~/components/postCard'
 import { envSchema } from '~/env'
 

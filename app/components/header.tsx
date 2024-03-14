@@ -1,6 +1,6 @@
 import { Form, Link } from '@remix-run/react'
 
-import { css } from 'styled-system/css';
+import { css } from 'styled-system/css'
 import { button, container, hstack } from 'styled-system/patterns'
 
 import { Icon } from './icon'

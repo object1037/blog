@@ -1,6 +1,5 @@
 import { Link } from '@remix-run/react'
 
-import { css } from 'styled-system/css';
 import { button } from 'styled-system/patterns'
 
 export const Tag = ({ name }: { name: string }) => {

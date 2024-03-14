@@ -1,15 +1,13 @@
-import {
-  type ActionFunctionArgs,
-  type LoaderFunctionArgs,
-  json,
-  redirect,
-} from '@remix-run/cloudflare'
-import { Form, useSubmit } from '@remix-run/react'
+import { useCallback, useState } from 'react'
+
+import { type ActionFunctionArgs, type LoaderFunctionArgs, json, redirect } from '@remix-run/cloudflare';
+import { useFetcher } from '@remix-run/react'
 
 import { addPost } from '~/.server/db'
+import { Editor } from '~/components/editor'
 import { envSchema } from '~/env'
 import { getAuthenticator } from '~/services/auth.server'
-import { convertFormData } from '~/utils/markdown.client'
+import { convertMarkdown } from '~/utils/markdown.client'
 import { parsePostData } from '~/utils/parsePostData'
 
 export const loader = async ({ request, context }: LoaderFunctionArgs) => {
@@ -24,8 +22,6 @@ export const loader = async ({ request, context }: LoaderFunctionArgs) => {
 }
 
 export default function New() {
-  const submit = useSubmit()
-
   const defaultMarkdown = `---
 id:
 title:
@@ -35,19 +31,31 @@ public: false
 ---
 `
 
+  const fetcher = useFetcher()
+  const [value, setValue] = useState(defaultMarkdown)
+
   const submitHandler = async (e: React.FormEvent<HTMLFormElement>) => {
     e.preventDefault()
-    const formData = await convertFormData(new FormData(e.currentTarget))
-    submit(formData, { method: 'post' })
+    const { frontmatter, html } = await convertMarkdown(value)
+    fetcher.submit(
+      {
+        markdown: value,
+        frontmatter: JSON.stringify(frontmatter),
+        html,
+      },
+      { method: 'post' },
+    )
   }
+  const onChange = useCallback((val: string) => {
+    setValue(val)
+  }, [])
 
   return (
     <div>
-      <h2>new</h2>
-      <Form method="post" onSubmit={submitHandler}>
-        <textarea name="markdown" defaultValue={defaultMarkdown} />
+      <Editor value={value} onChange={onChange} />
+      <fetcher.Form onSubmit={submitHandler}>
         <button>Save</button>
-      </Form>
+      </fetcher.Form>
     </div>
   )
 }
