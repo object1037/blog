@@ -1,11 +1,11 @@
-import { Link } from '@remix-run/react'
+import { Form, Link } from '@remix-run/react'
 
 import { css } from 'styled-system/css'
-import { container, hstack } from 'styled-system/patterns'
+import { button, container, hstack } from 'styled-system/patterns'
 
 import { Icon } from './icon'
 
-export const Header = () => {
+export const Header = ({ dashboard }: { dashboard?: boolean }) => {
   const headerStackStyle = hstack({
     justify: 'space-between',
     p: '2',
@@ -21,25 +21,27 @@ export const Header = () => {
     fontWeight: 'medium',
     lineHeight: 'none',
   })
-  const navTextStyle = css({
-    fontSize: 'sm',
-    fontWeight: 'medium',
+  const navTextStyle = button({
     py: '2',
     px: { base: '3', md: '4' },
-    rounded: 'sm',
-    _hover: { bg: 'neutral.200' },
-    transition: 'background',
   })
 
   return (
     <header className={container()}>
       <nav className={headerStackStyle}>
         <Link to="/" prefetch="intent" className={topLinkStyle}>
-          <Icon /> <span className={topTextStyle}>Blog</span>
+          <Icon mono={dashboard ? true : false} />{' '}
+          <span className={topTextStyle}>{dashboard ? 'Dash' : 'Blog'}</span>
         </Link>
-        <Link to="/tags" prefetch="intent" className={navTextStyle}>
-          Tags
-        </Link>
+        {dashboard ? (
+          <Form action="/logout" method="POST">
+            <button className={navTextStyle}>Logout</button>
+          </Form>
+        ) : (
+          <Link to="/tags" prefetch="intent" className={navTextStyle}>
+            Tags
+          </Link>
+        )}
       </nav>
     </header>
   )

@@ -7,7 +7,7 @@ import { useLoaderData } from '@remix-run/react'
 
 import { getPosts } from '~/.server/db'
 import { ContainerWithHeading } from '~/components/containerWithHeading'
-import { PostList } from '~/components/postList'
+import { PostCard } from '~/components/postCard'
 import { envSchema } from '~/env'
 
 export const meta: MetaFunction = () => {
@@ -32,7 +32,11 @@ export default function Index() {
 
   return (
     <ContainerWithHeading heading="Posts">
-      <PostList posts={posts} />
+      <ul>
+        {posts.map((post) => (
+          <PostCard key={post.id} post={post} />
+        ))}
+      </ul>
     </ContainerWithHeading>
   )
 }

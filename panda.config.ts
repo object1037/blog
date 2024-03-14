@@ -59,6 +59,20 @@ export default defineConfig({
           }
         },
       },
+      button: {
+        description: 'A simple button',
+        transform(props) {
+          return {
+            fontSize: 'sm',
+            fontWeight: 'medium',
+            rounded: 'sm',
+            _hover: { bg: 'neutral.200' },
+            transition: 'background',
+            cursor: 'pointer',
+            ...props,
+          }
+        },
+      },
     },
   },
 

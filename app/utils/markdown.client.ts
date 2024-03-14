@@ -11,7 +11,7 @@ import getWasm from 'shiki/wasm'
 
 import { matterSchema } from './parsePostData'
 
-const convertMarkdown = async (markdown: string) => {
+export const convertMarkdown = async (markdown: string) => {
   const highlighter = await getHighlighterCore({
     themes: [palenight],
     langs: [l_tsx, l_markdown],
@@ -93,17 +93,4 @@ const convertMarkdown = async (markdown: string) => {
   }
 
   return { frontmatter: parsedData.data, html }
-}
-
-export const convertFormData = async (formData: FormData) => {
-  const markdown = formData.get('markdown')
-  if (typeof markdown !== 'string') {
-    throw new Response('Missing markdown', { status: 400 })
-  }
-  const { frontmatter, html } = await convertMarkdown(markdown)
-
-  formData.set('html', html)
-  formData.set('frontmatter', JSON.stringify(frontmatter))
-
-  return formData
 }
