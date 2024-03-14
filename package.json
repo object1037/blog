@@ -72,6 +72,7 @@
     "postcss-nested": "^6.0.1",
     "postcss-prune-var": "^1.1.2",
     "prettier": "^3.2.5",
+    "rollup-plugin-visualizer": "^5.12.0",
     "shiki": "^1.1.7",
     "typescript": "^5.4.2",
     "vite": "^5.1.6",
