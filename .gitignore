@@ -3,6 +3,7 @@ node_modules
 /.cache
 /build
 /styled-system
+/functions/\[\[path\]\].js
 .dev.vars
 .DS_Store
 .wrangler
