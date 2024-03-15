@@ -6,7 +6,7 @@
   "scripts": {
     "postinstall": "npm run typegen",
     "dev": "concurrently \"remix vite:dev\" \"panda --watch\"",
-    "build": "panda && remix vite:build",
+    "build": "panda && remix vite:build && esbuild [[path]].ts --bundle --minify --format=esm --outfile=functions/[[path]].js",
     "start": "wrangler pages dev ./build/client",
     "deploy": "wrangler pages deploy ./build/client",
     "lint": "eslint --ignore-path .gitignore --cache --cache-location ./node_modules/.cache/eslint .",
@@ -48,7 +48,7 @@
     "zod": "^3.22.4"
   },
   "devDependencies": {
-    "@cloudflare/workers-types": "^4.20240312.0",
+    "@cloudflare/workers-types": "^4.20240314.0",
     "@pandacss/dev": "^0.34.3",
     "@pandacss/studio": "^0.34.3",
     "@remix-run/dev": "^2.8.1",
@@ -63,6 +63,7 @@
     "autoprefixer": "^10.4.18",
     "concurrently": "^8.2.2",
     "drizzle-kit": "^0.20.14",
+    "esbuild": "^0.20.2",
     "eslint": "^8.57.0",
     "eslint-import-resolver-typescript": "^3.6.1",
     "eslint-plugin-drizzle": "^0.2.3",
@@ -78,7 +79,7 @@
     "typescript": "^5.4.2",
     "vite": "^5.1.6",
     "vite-tsconfig-paths": "^4.3.2",
-    "wrangler": "^3.34.1"
+    "wrangler": "^3.34.2"
   },
   "engines": {
     "node": ">=18.0.0"
