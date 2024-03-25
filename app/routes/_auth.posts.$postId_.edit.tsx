@@ -65,7 +65,7 @@ export default function Post() {
 
   return (
     <div>
-      <ClientOnly fallback={<textarea value={markdown} />}>
+      <ClientOnly fallback={<textarea readOnly value={markdown} />}>
         {() => <Editor value={markdown} onChange={onChange} />}
       </ClientOnly>
 
