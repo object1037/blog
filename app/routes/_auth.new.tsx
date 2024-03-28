@@ -8,13 +8,14 @@ import {
 } from '@remix-run/cloudflare'
 import { useFetcher } from '@remix-run/react'
 
+import { ClientOnly } from 'remix-utils/client-only'
+
 import { addPost } from '~/.server/db'
 import { Editor } from '~/components/editor.client'
 import { envSchema } from '~/env'
 import { getAuthenticator } from '~/services/auth.server'
 import { convertMarkdown } from '~/utils/markdown.client'
 import { parsePostData } from '~/utils/parsePostData'
-import { ClientOnly } from 'remix-utils/client-only'
 
 export const loader = async ({ request, context }: LoaderFunctionArgs) => {
   const authenticator = getAuthenticator(
@@ -58,7 +59,7 @@ public: false
 
   return (
     <div>
-      <ClientOnly fallback={<textarea value={markdown} />}>
+      <ClientOnly fallback={<textarea readOnly value={markdown} />}>
         {() => <Editor value={markdown} onChange={onChange} />}
       </ClientOnly>
       <fetcher.Form onSubmit={submitHandler}>

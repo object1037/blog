@@ -1,11 +1,12 @@
-import { useCallback, useState } from 'react';
+import { useCallback, useState } from 'react'
 
-
-
-import { type ActionFunctionArgs, type LoaderFunctionArgs, json, redirect } from '@remix-run/cloudflare';
-import { useFetcher, useLoaderData } from '@remix-run/react';
-
-
+import {
+  type ActionFunctionArgs,
+  type LoaderFunctionArgs,
+  json,
+  redirect,
+} from '@remix-run/cloudflare'
+import { useFetcher, useLoaderData } from '@remix-run/react'
 
 import { ClientOnly } from 'remix-utils/client-only'
 import { z } from 'zod'
@@ -65,7 +66,7 @@ export default function Post() {
 
   return (
     <div>
-      <ClientOnly fallback={<textarea value={markdown} />}>
+      <ClientOnly fallback={<textarea readOnly value={markdown} />}>
         {() => <Editor value={markdown} onChange={onChange} />}
       </ClientOnly>
 
