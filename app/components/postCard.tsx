@@ -10,14 +10,20 @@ export const PostCard = ({
 }: {
   post: Awaited<ReturnType<typeof getPosts>>[number]
 }) => {
+  const itemStyle = css({
+    rounded: 'lg',
+    borderWidth: '[1px]',
+    borderColor: { base: 'neutral.200', _hover: 'neutral.400' },
+    mb: '6',
+    transition: 'colors',
+  })
   const linkStyle = flex({
     justify: 'space-between',
     gap: '4',
     p: '4',
-    _hover: { bg: 'neutral.100' },
   })
   const titleStyle = css({
-    fontWeight: 'medium',
+    fontWeight: 'semibold',
     fontSize: 'xl',
     mb: '4',
   })
@@ -27,7 +33,7 @@ export const PostCard = ({
   })
 
   return (
-    <li>
+    <li className={itemStyle}>
       <Link to={`/posts/${post.id}`} prefetch="viewport" className={linkStyle}>
         <div>
           <p className={titleStyle}>{post.title}</p>

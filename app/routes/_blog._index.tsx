@@ -5,8 +5,6 @@ import {
 } from '@remix-run/cloudflare'
 import { useLoaderData } from '@remix-run/react'
 
-import { css } from 'styled-system/css'
-
 import { getPosts } from '~/.server/db'
 import { ContainerWithHeading } from '~/components/containerWithHeading'
 import { PostCard } from '~/components/postCard'
@@ -34,7 +32,7 @@ export default function Index() {
 
   return (
     <ContainerWithHeading heading="Posts">
-      <ul className={css({ divideY: '1', divideColor: 'neutral.200' })}>
+      <ul>
         {posts.map((post) => (
           <PostCard key={post.id} post={post} />
         ))}
