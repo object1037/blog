@@ -7,17 +7,21 @@ import { type getPosts } from '~/.server/db'
 
 export const PostCard = ({
   post,
+  children,
 }: {
   post: Awaited<ReturnType<typeof getPosts>>[number]
+  children?: React.ReactNode
 }) => {
-  const itemStyle = css({
+  const itemStyle = flex({
     rounded: 'lg',
     borderWidth: '[1px]',
     borderColor: { base: 'neutral.200', _hover: 'neutral.400' },
     mb: '6',
     transition: 'colors',
+    overflow: 'hidden',
   })
   const linkStyle = flex({
+    grow: '1',
     justify: 'space-between',
     gap: '2',
     p: '4',
@@ -54,6 +58,7 @@ export const PostCard = ({
         </div>
         <p className={idStyle}>{post.id}</p>
       </Link>
+      {children}
     </li>
   )
 }

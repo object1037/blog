@@ -1,9 +1,9 @@
-import { Form, Link } from '@remix-run/react'
+import { Form } from '@remix-run/react'
 
-import { LuPenSquare, LuTrash } from 'react-icons/lu'
 import { css, cx } from 'styled-system/css'
 import { flex } from 'styled-system/patterns'
 
+import { PostCard } from './postCard'
 import { type getAllPosts } from '~/.server/db'
 
 export const DashPostCard = ({
@@ -11,48 +11,46 @@ export const DashPostCard = ({
 }: {
   post: Awaited<ReturnType<typeof getAllPosts>>[number]
 }) => {
-  const itemStyle = flex({
-    h: '24',
+  const formStyle = flex({
+    position: 'relative',
+    borderLeftWidth: '[1px]',
+    borderStyle: 'dashed',
     borderColor: 'neutral.200',
-    borderBottomWidth: { base: '[1px]', _last: '[0px]' },
-    alignItems: 'center',
-    gap: '4',
-    p: '4',
-  })
-  const linkStyle = flex({
-    direction: 'column',
-    justify: 'space-between',
-    flexGrow: '1',
-    h: 'full',
-  })
-  const titleStyle = css({
-    fontWeight: 'medium',
-    fontSize: 'xl',
+    transition: 'colors',
+    _groupHover: {
+      borderStyle: 'solid',
+      borderColor: 'neutral.400',
+    },
   })
   const buttonStyle = css({
-    fontSize: 'xl',
     p: '4',
-    rounded: 'full',
-    bg: 'neutral.100',
+    fontFamily: 'mono',
+    fontSize: 'sm',
+    color: 'neutral.700',
+    writingMode: 'vertical-rl',
+    textAlign: 'left',
     cursor: 'pointer',
   })
 
   return (
-    <li className={cx('group', itemStyle)}>
-      <Link to={`/posts/${post.id}`} prefetch="intent" className={linkStyle}>
-        <p className={titleStyle}>{post.title}</p>
-        <p>{post.description}</p>
-      </Link>
-      <Form action={`/posts/${post.id}/edit`}>
-        <button className={buttonStyle}>
-          <LuPenSquare />
+    <PostCard post={post}>
+      <Form action={`/posts/${post.id}/edit`} className={formStyle}>
+        <button
+          className={cx(buttonStyle, css({ _hover: { bg: 'neutral.200' } }))}
+        >
+          EDIT
         </button>
       </Form>
-      <Form action={`/posts/${post.id}/delete`} method="post">
-        <button className={buttonStyle}>
-          <LuTrash />
+      <Form
+        action={`/posts/${post.id}/delete`}
+        method="post"
+        navigate={false}
+        className={formStyle}
+      >
+        <button className={cx(buttonStyle, css({ _hover: { bg: 'red.200' } }))}>
+          DELETE
         </button>
       </Form>
-    </li>
+    </PostCard>
   )
 }
