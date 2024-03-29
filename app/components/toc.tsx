@@ -46,7 +46,7 @@ const ToCSub = ({ toc }: { toc: ToCEl[] }) => {
       {toc.map((heading) => (
         <li key={heading.id}>
           <Link
-            to={`#${heading.id}`}
+            to={`#${encodeURIComponent(heading.id)}`}
             className={cx(
               tocLinkStyle,
               heading.level == 2 ? h2LinkStyle : h3LinkStyle,
