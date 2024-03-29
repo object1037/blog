@@ -1,6 +1,6 @@
 import { fromHighlighter } from '@shikijs/markdown-it/core'
-import matter from 'gray-matter'
-import MarkdownIt, { type Token } from 'markdown-it'
+import matter from 'gray-matter';
+import MarkdownIt from 'markdown-it'
 import anchor from 'markdown-it-anchor'
 import container from 'markdown-it-container'
 import { type HighlighterGeneric, getHighlighterCore } from 'shiki/core'
@@ -9,6 +9,7 @@ import l_tsx from 'shiki/langs/tsx.mjs'
 import palenight from 'shiki/themes/material-theme-palenight.mjs'
 import getWasm from 'shiki/wasm'
 
+import { detailsOption, noteOption } from './mdContainer.client'
 import { matterSchema } from './parsePostData'
 
 export const convertMarkdown = async (markdown: string) => {
@@ -22,33 +23,14 @@ export const convertMarkdown = async (markdown: string) => {
     linkify: true,
   })
 
-  const detailsPattern = /^details\s+(.*)$/
-
   md.use(
     // eslint-disable-next-line @typescript-eslint/no-explicit-any
     fromHighlighter(highlighter as HighlighterGeneric<any, any>, {
       theme: 'material-theme-palenight',
     }),
   )
-    .use(container, 'info')
-    .use(container, 'warn')
-    .use(container, 'danger')
-    .use(container, 'details', {
-      validate: (params: string) => {
-        return params.trim().match(detailsPattern)
-      },
-      render: (tokens: Token[], idx: number) => {
-        const summary = tokens[idx]?.info.trim().match(detailsPattern)?.[1]
-
-        if (tokens[idx]?.nesting === 1) {
-          return `<details><summary>${md.utils.escapeHtml(
-            summary ?? '',
-          )}</summary>\n`
-        } else {
-          return '</details>\n'
-        }
-      },
-    })
+    .use(container, 'note', noteOption)
+    .use(container, 'details', detailsOption)
     .use(anchor, {
       level: [1, 2, 3, 4],
       permalink: anchor.permalink.ariaHidden({
