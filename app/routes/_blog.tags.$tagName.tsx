@@ -1,10 +1,18 @@
-import { type LoaderFunctionArgs, json } from '@remix-run/cloudflare'
+import {
+  type LoaderFunctionArgs,
+  MetaFunction,
+  json,
+} from '@remix-run/cloudflare'
 import { useLoaderData } from '@remix-run/react'
 
 import { getPostsWithTag } from '~/.server/db'
 import { ContainerWithHeading } from '~/components/containerWithHeading'
 import { PostCard } from '~/components/postCard'
 import { envSchema } from '~/env'
+
+export const meta: MetaFunction = ({ params }) => {
+  return [{ title: `Tag: ${params.tagName} | ゆるふわインターネット` }]
+}
 
 export const loader = async ({ context, params }: LoaderFunctionArgs) => {
   const env = envSchema.parse(context.cloudflare.env)

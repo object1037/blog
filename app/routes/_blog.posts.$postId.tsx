@@ -1,6 +1,7 @@
 import {
   type LinksFunction,
   type LoaderFunctionArgs,
+  MetaFunction,
   json,
 } from '@remix-run/cloudflare'
 import { useLoaderData } from '@remix-run/react'
@@ -11,6 +12,13 @@ import { getPostData } from '~/.server/db'
 import { Article } from '~/components/article'
 import { envSchema } from '~/env'
 import styles from '~/styles/markdown.css?url'
+
+export const meta: MetaFunction<typeof loader> = ({ data }) => {
+  return [
+    { title: `${data?.post.title} | ゆるふわインターネット` },
+    { name: 'description', content: data?.post.description },
+  ]
+}
 
 export const links: LinksFunction = () => [{ rel: 'stylesheet', href: styles }]
 

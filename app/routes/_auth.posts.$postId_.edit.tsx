@@ -3,6 +3,7 @@ import { useCallback, useState } from 'react'
 import {
   type ActionFunctionArgs,
   type LoaderFunctionArgs,
+  MetaFunction,
   json,
   redirect,
 } from '@remix-run/cloudflare'
@@ -17,6 +18,10 @@ import { envSchema } from '~/env'
 import { getAuthenticator } from '~/services/auth.server'
 import { convertMarkdown } from '~/utils/markdown.client'
 import { parsePostData } from '~/utils/parsePostData'
+
+export const meta: MetaFunction<typeof loader> = ({ data }) => {
+  return [{ title: `Edit: ${data?.post.title}` }]
+}
 
 export const loader = async ({
   params,
