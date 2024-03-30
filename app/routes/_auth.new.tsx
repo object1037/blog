@@ -3,6 +3,7 @@ import { useCallback, useState } from 'react'
 import {
   type ActionFunctionArgs,
   type LoaderFunctionArgs,
+  MetaFunction,
   json,
   redirect,
 } from '@remix-run/cloudflare'
@@ -16,6 +17,8 @@ import { envSchema } from '~/env'
 import { getAuthenticator } from '~/services/auth.server'
 import { convertMarkdown } from '~/utils/markdown.client'
 import { parsePostData } from '~/utils/parsePostData'
+
+export const meta: MetaFunction = () => [{ title: 'New Post' }]
 
 export const loader = async ({ request, context }: LoaderFunctionArgs) => {
   const authenticator = getAuthenticator(

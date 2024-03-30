@@ -1,6 +1,7 @@
 import {
   type ActionFunctionArgs,
   type LoaderFunctionArgs,
+  MetaFunction,
   json,
   unstable_createMemoryUploadHandler,
   unstable_parseMultipartFormData,
@@ -15,6 +16,8 @@ import { decodeImage } from '~/utils/decodeImage.client'
 import { digestMessage } from '~/utils/digest'
 import { encodeImage } from '~/utils/encodeImage.client'
 import { resizeImage } from '~/utils/resizeImage.client'
+
+export const meta: MetaFunction = () => [{ title: 'Blog Images' }]
 
 export const loader = async ({ request, context }: LoaderFunctionArgs) => {
   const authenticator = getAuthenticator(

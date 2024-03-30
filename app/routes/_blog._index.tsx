@@ -14,6 +14,11 @@ export const meta: MetaFunction = () => {
   return [
     { title: 'ゆるふわインターネット' },
     { name: 'description', content: 'object1037のブログ' },
+    {
+      tagName: "link",
+      rel: "canonical",
+      href: "https://blog.object1037.dev",
+    },
   ]
 }
 
