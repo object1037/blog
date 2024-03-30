@@ -129,6 +129,7 @@
     content: '';
     display: inline-block;
     margin: 1.125rem 0.75rem 0 0;
+    flex-shrink: 0;
   }
 
   .info {
