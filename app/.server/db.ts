@@ -1,4 +1,4 @@
-import { and, eq, inArray, notInArray } from 'drizzle-orm'
+import { and, desc, eq, inArray, notInArray } from 'drizzle-orm'
 import { drizzle } from 'drizzle-orm/d1'
 
 import * as schema from './schema'
@@ -14,6 +14,7 @@ export const getPosts = async (db_binding: D1Database) => {
     })
     .from(posts)
     .where(eq(posts.public, true))
+    .orderBy(desc(posts.id))
 
   return results
 }
@@ -29,6 +30,7 @@ export const getAllPosts = async (db_binding: D1Database) => {
       public: posts.public,
     })
     .from(posts)
+    .orderBy(desc(posts.id))
 
   return results
 }
@@ -199,6 +201,7 @@ export const getPostsWithTag = async (db_binding: D1Database, tag: string) => {
     })
     .from(posts)
     .where(inArray(posts.id, postIdQuery))
+    .orderBy(desc(posts.id))
 
   return results
 }
