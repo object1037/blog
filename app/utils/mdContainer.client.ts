@@ -1,5 +1,5 @@
-import type { Token } from 'markdown-it'
-import { escapeHtml } from 'markdown-it/lib/common/utils'
+import { type Token } from 'markdown-it/index.js'
+import { escapeHtml } from 'markdown-it/lib/common/utils.mjs'
 
 const detailsPattern = /^details\s+(.*)$/
 export const detailsOption = {
