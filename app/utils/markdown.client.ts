@@ -1,5 +1,5 @@
 import { fromHighlighter } from '@shikijs/markdown-it/core'
-import matter from 'gray-matter';
+import matter from 'gray-matter'
 import MarkdownIt from 'markdown-it'
 import anchor from 'markdown-it-anchor'
 import container from 'markdown-it-container'

@@ -57,6 +57,7 @@ export const useEditor = ({
           highlightSpecialChars(),
           history(),
           drawSelection(),
+          // @ts-expect-error - this error only occurs with exactOptionalPropertyTypes enabled.
           syntaxHighlighting(defaultHighlightStyle, { fallback: true }),
           keymap.of([...defaultKeymap, ...historyKeymap]),
         ],
