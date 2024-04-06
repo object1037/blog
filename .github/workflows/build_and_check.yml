@@ -52,3 +52,5 @@ jobs:
         run: pnpm lint
       - name: Run Prettier
         run: pnpm fmt
+      - name: Cleanup env file
+        run: rm .dev.vars
