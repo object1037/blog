@@ -12,8 +12,8 @@
     "typegen": "wrangler types",
     "prepare": "panda codegen",
     "typecheck": "tsc",
-    "check": "biome ci \"./app/**/*.{js,jsx,ts,tsx}\"",
-    "fmt": "biome format \"./app/**/*.{js,jsx,ts,tsx}\"",
+    "check": "biome ci ./app",
+    "fmt": "biome format --write ./app",
     "generate": "drizzle-kit generate:sqlite --schema=./app/.server/schema.ts --out=./migrations",
     "migrate": "pnpm wrangler d1 migrations apply blog-db",
     "migrate:preview": "pnpm wrangler d1 migrations apply blog-db-preview"
