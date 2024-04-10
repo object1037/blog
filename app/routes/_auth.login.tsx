@@ -1,4 +1,4 @@
-import { type LoaderFunctionArgs, MetaFunction } from '@remix-run/cloudflare'
+import type { LoaderFunctionArgs, MetaFunction } from '@remix-run/cloudflare'
 import { Form } from '@remix-run/react'
 
 import { envSchema } from '~/env'
@@ -18,7 +18,7 @@ export const loader = async ({ context, request }: LoaderFunctionArgs) => {
 export default function Login() {
   return (
     <Form method="post" action="/auth/github">
-      <button>Login with GitHub</button>
+      <button type="submit">Login with GitHub</button>
     </Form>
   )
 }

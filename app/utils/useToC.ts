@@ -13,7 +13,7 @@ export const useToC = () => {
   useEffect(() => {
     const headings = Array.from(document.querySelectorAll('h2,h3'))
     const headingsToC: ToCEl[] = headings.map((heading) => ({
-      level: parseInt(heading.tagName.slice(1), 10),
+      level: Number.parseInt(heading.tagName.slice(1), 10),
       text:
         (heading instanceof HTMLElement
           ? heading.innerText

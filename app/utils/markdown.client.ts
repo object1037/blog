@@ -24,7 +24,7 @@ export const convertMarkdown = async (markdown: string) => {
   })
 
   md.use(
-    // eslint-disable-next-line @typescript-eslint/no-explicit-any
+    // biome-ignore lint/suspicious/noExplicitAny: the type is correct.
     fromHighlighter(highlighter as HighlighterGeneric<any, any>, {
       theme: 'material-theme-palenight',
     }),
@@ -48,10 +48,12 @@ export const convertMarkdown = async (markdown: string) => {
     const alt = slf.renderInlineAsText(token.children ?? [], options, env)
 
     const sizeStr = src.split('.')[0]?.split('-')[2] ?? ''
-    const [width, height] = sizeStr.split(':').map((s) => parseInt(s, 10))
+    const [width, height] = sizeStr
+      .split(':')
+      .map((s) => Number.parseInt(s, 10))
 
     let sizes = ''
-    if (width && height && !(isNaN(width) || isNaN(height))) {
+    if (width && height && !(Number.isNaN(width) || Number.isNaN(height))) {
       sizes = `width="${width}" height="${height}"`
     }
 

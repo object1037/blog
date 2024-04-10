@@ -3,7 +3,7 @@ import { useCallback, useState } from 'react'
 import {
   type ActionFunctionArgs,
   type LoaderFunctionArgs,
-  MetaFunction,
+  type MetaFunction,
   json,
   redirect,
 } from '@remix-run/cloudflare'
@@ -66,7 +66,7 @@ public: false
         {() => <Editor value={markdown} onChange={onChange} />}
       </ClientOnly>
       <fetcher.Form onSubmit={submitHandler}>
-        <button>Save</button>
+        <button type="submit">Save</button>
       </fetcher.Form>
     </div>
   )

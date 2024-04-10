@@ -2,7 +2,7 @@ import { z } from 'zod'
 
 const schemaForType =
   <T>() =>
-  // eslint-disable-next-line @typescript-eslint/no-explicit-any
+  // biome-ignore lint/suspicious/noExplicitAny: the type is correct.
   <S extends z.ZodType<T, any, any>>(arg: S) => {
     return arg
   }

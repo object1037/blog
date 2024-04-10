@@ -3,7 +3,7 @@ import { Link } from '@remix-run/react'
 import { css, cx } from 'styled-system/css'
 import { divider } from 'styled-system/patterns'
 
-import { type ToCEl } from '~/utils/useToC'
+import type { ToCEl } from '~/utils/useToC'
 
 const tocStyle = css({
   gridArea: 'toc',
@@ -49,7 +49,7 @@ const ToCSub = ({ toc }: { toc: ToCEl[] }) => {
             to={`#${encodeURIComponent(heading.id)}`}
             className={cx(
               tocLinkStyle,
-              heading.level == 2 ? h2LinkStyle : h3LinkStyle,
+              heading.level === 2 ? h2LinkStyle : h3LinkStyle,
             )}
           >
             {heading.text}

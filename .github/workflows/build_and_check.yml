@@ -48,9 +48,7 @@ jobs:
         run: pnpm build
       - name: Run tsc
         run: pnpm typecheck
-      - name: Run ESLint
-        run: pnpm lint
-      - name: Run Prettier
-        run: pnpm fmt
+      - name: Run Biome
+        run: pnpm check
       - name: Cleanup env file
         run: rm .dev.vars
