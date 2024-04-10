@@ -1,6 +1,8 @@
 export const Icon = ({ mono }: { mono?: boolean }) => {
   return (
     <svg
+      role="img"
+      aria-label="icon"
       stroke="#000000"
       strokeWidth={6}
       fill="none"

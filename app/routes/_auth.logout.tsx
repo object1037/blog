@@ -1,4 +1,4 @@
-import { type ActionFunctionArgs } from '@remix-run/cloudflare'
+import type { ActionFunctionArgs } from '@remix-run/cloudflare'
 
 import { envSchema } from '~/env'
 import { getAuthenticator } from '~/services/auth.server'

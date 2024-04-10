@@ -1,10 +1,10 @@
 import { css } from 'styled-system/css'
 
+import type { getPostData } from '~/.server/db'
+import { useToC } from '~/utils/useToC'
 import { ContainerWithHeading } from './containerWithHeading'
 import { TagList } from './tagList'
 import { ToC } from './toc'
-import { type getPostData } from '~/.server/db'
-import { useToC } from '~/utils/useToC'
 
 export const Article = ({
   post,
@@ -29,6 +29,7 @@ export const Article = ({
         <TagList tags={post.tags} />
         <article
           className="markdown_wrapper"
+          // biome-ignore lint/security/noDangerouslySetInnerHtml: the content is trusted.
           dangerouslySetInnerHTML={{ __html: post.html }}
         />
       </ContainerWithHeading>

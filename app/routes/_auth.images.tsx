@@ -1,7 +1,7 @@
 import {
   type ActionFunctionArgs,
   type LoaderFunctionArgs,
-  MetaFunction,
+  type MetaFunction,
   json,
   unstable_createMemoryUploadHandler,
   unstable_parseMultipartFormData,
@@ -100,7 +100,7 @@ export default function Images() {
             <a href={`/images/${object.key}`}>{object.key}</a>
             <Form method="post" encType="multipart/form-data">
               <input type="hidden" name="key" value={object.key} />
-              <button name="_action" value="delete">
+              <button type="submit" name="_action" value="delete">
                 Delete
               </button>
             </Form>
@@ -113,7 +113,7 @@ export default function Images() {
         onSubmit={submitHandler}
       >
         <input type="file" name="image" />
-        <button>Add</button>
+        <button type="submit">Add</button>
       </Form>
     </div>
   )

@@ -1,7 +1,7 @@
 import {
   type LinksFunction,
   type LoaderFunctionArgs,
-  MetaFunction,
+  type MetaFunction,
   json,
 } from '@remix-run/cloudflare'
 import { useLoaderData } from '@remix-run/react'

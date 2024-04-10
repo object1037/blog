@@ -3,7 +3,7 @@ import { Link } from '@remix-run/react'
 import { css, cx } from 'styled-system/css'
 import { flex } from 'styled-system/patterns'
 
-import { type getPosts } from '~/.server/db'
+import type { getPosts } from '~/.server/db'
 
 export const PostCard = ({
   post,

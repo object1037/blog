@@ -11,7 +11,8 @@ export const decodeImage = async (buffer: ArrayBuffer, format: string) => {
         .then((bytes) => new WebAssembly.Module(bytes)),
     )
     return decodeJpeg(buffer)
-  } else if (format === 'png') {
+  }
+  if (format === 'png') {
     await initPngWasm(PNG_DEC_WASM)
     return decodePng(buffer)
   }

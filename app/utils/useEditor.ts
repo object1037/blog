@@ -47,6 +47,7 @@ export const useEditor = ({
     setParent(container)
   }, [container])
 
+  // biome-ignore lint/correctness/useExhaustiveDependencies: exhaustive deps will cause infinite loop.
   useEffect(() => {
     if (parent && !state) {
       const stateCurrent = EditorState.create({
@@ -78,7 +79,6 @@ export const useEditor = ({
         setView(undefined)
       }
     }
-    // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [parent, state, updateListener, view])
 
   useEffect(

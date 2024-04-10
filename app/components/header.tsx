@@ -35,7 +35,9 @@ export const Header = ({ dashboard }: { dashboard?: boolean }) => {
         </Link>
         {dashboard ? (
           <Form action="/logout" method="POST">
-            <button className={navTextStyle}>Logout</button>
+            <button type="submit" className={navTextStyle}>
+              Logout
+            </button>
           </Form>
         ) : (
           <Link to="/tags" prefetch="intent" className={navTextStyle}>

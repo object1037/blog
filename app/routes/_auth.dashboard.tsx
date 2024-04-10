@@ -1,6 +1,6 @@
 import {
   type LoaderFunctionArgs,
-  MetaFunction,
+  type MetaFunction,
   json,
 } from '@remix-run/cloudflare'
 import { Form, useLoaderData } from '@remix-run/react'
@@ -31,7 +31,7 @@ export default function Dashboard() {
   return (
     <ContainerWithHeading heading="Posts">
       <Form action="../new">
-        <button>New</button>
+        <button type="submit">New</button>
       </Form>
       <ul>
         {posts.map((post) => (

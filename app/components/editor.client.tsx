@@ -1,6 +1,6 @@
 import { useRef } from 'react'
 
-import { type ViewUpdate } from '@codemirror/view'
+import type { ViewUpdate } from '@codemirror/view'
 
 import { useEditor } from '~/utils/useEditor'
 

@@ -1,4 +1,4 @@
-import { type Token } from 'markdown-it/index.js'
+import type { Token } from 'markdown-it/index.js'
 import { escapeHtml } from 'markdown-it/lib/common/utils.mjs'
 
 const detailsPattern = /^details\s+(.*)$/
@@ -11,9 +11,8 @@ export const detailsOption = {
 
     if (tokens[idx]?.nesting === 1) {
       return `<details><summary>${escapeHtml(summary ?? '')}</summary>\n`
-    } else {
-      return '</details>\n'
     }
+    return '</details>\n'
   },
 }
 
@@ -26,8 +25,7 @@ export const noteOption = {
     const type = tokens[idx]?.info.trim().match(notePattern)?.[1] ?? 'info'
     if (tokens[idx]?.nesting === 1) {
       return `<aside class='note ${type}'><div>\n`
-    } else {
-      return '</div></aside>\n'
     }
+    return '</div></aside>\n'
   },
 }

@@ -1,4 +1,4 @@
-import { type ComponentPropsWithoutRef } from 'react'
+import type { ComponentPropsWithoutRef } from 'react'
 
 import { LuGithub, LuTwitter } from 'react-icons/lu'
 import { css } from 'styled-system/css'

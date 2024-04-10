@@ -3,8 +3,8 @@ import { Form } from '@remix-run/react'
 import { css, cx } from 'styled-system/css'
 import { flex } from 'styled-system/patterns'
 
+import type { getAllPosts } from '~/.server/db'
 import { PostCard } from './postCard'
-import { type getAllPosts } from '~/.server/db'
 
 export const DashPostCard = ({
   post,
@@ -36,6 +36,7 @@ export const DashPostCard = ({
     <PostCard post={post}>
       <Form action={`/posts/${post.id}/edit`} className={formStyle}>
         <button
+          type="submit"
           className={cx(buttonStyle, css({ _hover: { bg: 'neutral.200' } }))}
         >
           EDIT
@@ -47,7 +48,10 @@ export const DashPostCard = ({
         navigate={false}
         className={formStyle}
       >
-        <button className={cx(buttonStyle, css({ _hover: { bg: 'red.200' } }))}>
+        <button
+          type="submit"
+          className={cx(buttonStyle, css({ _hover: { bg: 'red.200' } }))}
+        >
           DELETE
         </button>
       </Form>
