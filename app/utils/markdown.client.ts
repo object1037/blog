@@ -4,6 +4,7 @@ import MarkdownIt from 'markdown-it'
 import anchor from 'markdown-it-anchor'
 import container from 'markdown-it-container'
 import { type HighlighterGeneric, getHighlighterCore } from 'shiki/core'
+import l_c from 'shiki/langs/c.mjs'
 import l_markdown from 'shiki/langs/markdown.mjs'
 import l_tsx from 'shiki/langs/tsx.mjs'
 import palenight from 'shiki/themes/material-theme-palenight.mjs'
@@ -15,7 +16,7 @@ import { matterSchema } from './parsePostData'
 export const convertMarkdown = async (markdown: string) => {
   const highlighter = await getHighlighterCore({
     themes: [palenight],
-    langs: [l_tsx, l_markdown],
+    langs: [l_tsx, l_markdown, l_c],
     loadWasm: getWasm,
   })
 
