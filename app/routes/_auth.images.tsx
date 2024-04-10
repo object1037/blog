@@ -64,9 +64,9 @@ export default function Images() {
 
     if (origWidth > origHeight && origWidth > 3840) {
       width = 3840
-      height = aspect * 3840
+      height = Math.round(aspect * 3840)
     } else if (origHeight > origWidth && origHeight > 3840) {
-      width = 3840 / aspect
+      width = Math.round(3840 / aspect)
       height = 3840
     }
 
