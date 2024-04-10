@@ -13,7 +13,8 @@
     "enabled": true,
     "rules": {
       "correctness": {
-        "all": true
+        "all": true,
+        "noUndeclaredVariables": "off"
       }
     }
   },
