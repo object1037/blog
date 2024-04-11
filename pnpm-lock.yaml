@@ -55,6 +55,9 @@ dependencies:
   drizzle-zod:
     specifier: ^0.5.1
     version: 0.5.1(drizzle-orm@0.30.7)(zod@3.22.4)
+  fflate:
+    specifier: ^0.8.2
+    version: 0.8.2
   gray-matter:
     specifier: ^4.0.3
     version: 4.0.3(patch_hash=mgb2m4u4ebw5qtzciyicweucky)
@@ -4917,6 +4920,10 @@ packages:
     dependencies:
       format: 0.2.2
     dev: true
+
+  /fflate@0.8.2:
+    resolution: {integrity: sha512-cPJU47OaAoCbg0pBvzsgpTPhmhqI5eJjh/JIu8tPj5q+T7iLvW/JAYUqmE7KOB4R1ZyEhzBaIQpQpardBF5z8A==}
+    dev: false
 
   /file-size@1.0.0:
     resolution: {integrity: sha512-tLIdonWTpABkU6Axg2yGChYdrOsy4V8xcm0IcyAP8fSsu6jiXLm5pgs083e4sq5fzNRZuAYolUbZyYmPvCKfwQ==}

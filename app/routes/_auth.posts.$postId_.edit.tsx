@@ -88,11 +88,7 @@ export const action = async ({ request, context }: ActionFunctionArgs) => {
 
   const { newPost, tags } = await parsePostData(formData)
 
-  await addPost(
-    env.DB,
-    newPost,
-    tags.map((tag) => ({ name: tag })),
-  )
+  await addPost(env.DB, newPost, tags)
 
   return redirect('/dashboard')
 }

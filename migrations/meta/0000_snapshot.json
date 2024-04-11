@@ -1,7 +1,7 @@
 {
   "version": "5",
   "dialect": "sqlite",
-  "id": "5d7ce9dd-0f9f-4754-afc9-60cdc9a0bb4e",
+  "id": "2b848252-878f-4681-87e2-afa94a513914",
   "prevId": "00000000-0000-0000-0000-000000000000",
   "tables": {
     "posts": {
@@ -86,20 +86,7 @@
             "id"
           ],
           "onDelete": "cascade",
-          "onUpdate": "cascade"
-        },
-        "posts_to_tags_tag_name_tags_name_fk": {
-          "name": "posts_to_tags_tag_name_tags_name_fk",
-          "tableFrom": "posts_to_tags",
-          "tableTo": "tags",
-          "columnsFrom": [
-            "tag_name"
-          ],
-          "columnsTo": [
-            "name"
-          ],
-          "onDelete": "cascade",
-          "onUpdate": "cascade"
+          "onUpdate": "no action"
         }
       },
       "compositePrimaryKeys": {
@@ -111,22 +98,6 @@
           "name": "posts_to_tags_post_id_tag_name_pk"
         }
       },
-      "uniqueConstraints": {}
-    },
-    "tags": {
-      "name": "tags",
-      "columns": {
-        "name": {
-          "name": "name",
-          "type": "text",
-          "primaryKey": true,
-          "notNull": true,
-          "autoincrement": false
-        }
-      },
-      "indexes": {},
-      "foreignKeys": {},
-      "compositePrimaryKeys": {},
       "uniqueConstraints": {}
     }
   },

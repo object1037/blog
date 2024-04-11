@@ -77,11 +77,7 @@ export const action = async ({ request, context }: ActionFunctionArgs) => {
 
   const { newPost, tags } = await parsePostData(formData)
 
-  await addPost(
-    envSchema.parse(context.cloudflare.env).DB,
-    newPost,
-    tags.map((tag) => ({ name: tag })),
-  )
+  await addPost(envSchema.parse(context.cloudflare.env).DB, newPost, tags)
 
   return redirect('/dashboard')
 }

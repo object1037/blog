@@ -16,7 +16,7 @@ export const meta: MetaFunction = () => [
 
 export const loader = async ({ context }: LoaderFunctionArgs) => {
   const env = envSchema.parse(context.cloudflare.env)
-  const tags = await getTags(env.DB)
+  const tags = await getTags(env.DB).then((tags) => tags.map((t) => t.tagName))
 
   const cacheControl =
     'public, max-age=30, stale-while-revalidate=600, stale-if-error=864000'
