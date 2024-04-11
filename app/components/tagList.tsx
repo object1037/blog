@@ -1,13 +1,16 @@
 import { wrap } from 'styled-system/patterns'
 
+import type { getTags } from '~/.server/db'
 import { Tag } from './tag'
 
-export const TagList = ({ tags }: { tags: string[] }) => {
+export const TagList = ({
+  tagDatas,
+}: { tagDatas: Awaited<ReturnType<typeof getTags>> }) => {
   return (
     <ul className={wrap()}>
-      {tags.map((tag) => (
-        <li key={tag}>
-          <Tag name={tag} />
+      {tagDatas.map((tagData) => (
+        <li key={tagData.tagName}>
+          <Tag tagData={tagData} />
         </li>
       ))}
     </ul>
