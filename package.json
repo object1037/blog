@@ -16,7 +16,7 @@
     "fmt": "biome format --write ./app",
     "generate": "drizzle-kit generate:sqlite --schema=./app/.server/schema.ts --out=./migrations",
     "migrate": "pnpm wrangler d1 migrations apply blog-db",
-    "migrate:preview": "pnpm wrangler d1 migrations apply blog-db-preview"
+    "migrate:preview": "pnpm wrangler d1 migrations apply blog-db --preview --remote"
   },
   "dependencies": {
     "@codemirror/commands": "^6.3.3",
