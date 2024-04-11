@@ -67,6 +67,23 @@ export const getPostData = async (db_binding: D1Database, id: number) => {
   return postData
 }
 
+export const getMarkdown = async (db_binding: D1Database, id: number) => {
+  const db = drizzle(db_binding, { schema })
+  const posts = schema.posts
+  const result = await db.query.posts.findFirst({
+    where: and(eq(posts.id, id), eq(posts.public, true)),
+    columns: {
+      markdown: true,
+    },
+  })
+
+  if (!result) {
+    return undefined
+  }
+
+  return result.markdown
+}
+
 export const getAllPostData = async (db_binding: D1Database, id: number) => {
   const db = drizzle(db_binding, { schema })
   const posts = schema.posts
