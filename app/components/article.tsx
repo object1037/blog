@@ -26,7 +26,9 @@ export const Article = ({
         heading={post.title}
         className={css({ gridArea: 'article' })}
       >
-        <TagList tags={post.tags} />
+        <TagList
+          tagDatas={post.tags.map((tag) => ({ tagName: tag, count: 0 }))}
+        />
         <article
           className="markdown_wrapper"
           // biome-ignore lint/security/noDangerouslySetInnerHtml: the content is trusted.

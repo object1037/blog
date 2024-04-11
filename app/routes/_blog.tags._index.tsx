@@ -16,20 +16,20 @@ export const meta: MetaFunction = () => [
 
 export const loader = async ({ context }: LoaderFunctionArgs) => {
   const env = envSchema.parse(context.cloudflare.env)
-  const tags = await getTags(env.DB).then((tags) => tags.map((t) => t.tagName))
+  const tagDatas = await getTags(env.DB)
 
   const cacheControl =
     'public, max-age=30, stale-while-revalidate=600, stale-if-error=864000'
 
-  return json({ tags }, { headers: { 'Cache-Control': cacheControl } })
+  return json({ tagDatas }, { headers: { 'Cache-Control': cacheControl } })
 }
 
 export default function Tags() {
-  const { tags } = useLoaderData<typeof loader>()
+  const { tagDatas } = useLoaderData<typeof loader>()
 
   return (
     <ContainerWithHeading heading="Tags">
-      <TagList tags={tags} />
+      <TagList tagDatas={tagDatas} />
     </ContainerWithHeading>
   )
 }
