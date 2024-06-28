@@ -30,7 +30,7 @@ export const Header = ({ dashboard }: { dashboard?: boolean }) => {
     <header className={container()}>
       <nav className={headerStackStyle}>
         <Link to="/" prefetch="intent" className={topLinkStyle}>
-          <Icon mono={dashboard ? true : false} />{' '}
+          <Icon mono={!!dashboard} />{' '}
           <span className={topTextStyle}>{dashboard ? 'Dash' : 'Blog'}</span>
         </Link>
         {dashboard ? (
