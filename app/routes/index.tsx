@@ -8,6 +8,6 @@ export default createRoute((c) => {
       <title>{name}</title>
       <h1 class="text-3xl font-bold">Hello, {name}!</h1>
       <Counter />
-    </div>
+    </div>,
   )
 })
