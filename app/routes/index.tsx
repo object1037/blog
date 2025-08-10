@@ -1,27 +1,21 @@
+import { useContext } from 'hono/jsx'
 import { createRoute } from 'honox/factory'
-import type { Frontmatter } from '../types'
+import { PostsContext } from './_renderer'
 
 export default createRoute((c) => {
-  const posts = import.meta.glob<{ frontmatter: Frontmatter }>('./posts/*.mdx', {
-    eager: true,
-  })
+  const { postInfos } = useContext(PostsContext)
 
   return c.render(
     <div class="py-8 text-center">
       <title>ゆるふわインターネット</title>
       <h1>Posts</h1>
       <ul>
-        {Object.entries(posts).map(([id, module]) => {
-          if (module.frontmatter) {
-            return (
-              <li>
-                <a href={`${id.replace(/\.mdx$/, '')}`}>
-                  {module.frontmatter.title}
-                </a>
-              </li>
-            )
-          }
-          return null
+        {postInfos.map((postInfo) => {
+          return (
+            <li>
+              <a href={`/posts/${postInfo.id}`}>{postInfo.title}</a>
+            </li>
+          )
         })}
       </ul>
     </div>,
