@@ -4,6 +4,7 @@ dist/
 # dev
 .hono/
 .wrangler/
+worker-configuration.d.ts
 .yarn/
 !.yarn/releases
 .vscode/*

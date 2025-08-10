@@ -2,17 +2,32 @@
   "name": "blog",
   "type": "module",
   "scripts": {
+    "postinstall": "wrangler types",
     "dev": "vite",
     "build": "vite build --mode client && vite build",
     "preview": "wrangler dev",
     "deploy": "pnpm run build && wrangler deploy",
     "check": "biome ci ./app vite.config.ts",
-    "fmt": "biome format --write ./app vite.config.ts"
+    "fmt": "biome format --write ./app vite.config.ts",
+    "setLocalDB": "LOCAL_DB_PATH=$(find .wrangler/state/v3/d1/miniflare-D1DatabaseObject -type f -name '*.sqlite' -print -quit)",
+    "setPreviewDB": "DB_ID='fe62b702-8f6b-4b85-81c0-e315529e6ca7'",
+    "setProdDB": "DB_ID='77f4589e-54f5-43ad-ab44-ccc96e048bfc'",
+    "db:push": "pnpm setLocalDB drizzle-kit push",
+    "db:push:prev": "pnpm setPreviewDB drizzle-kit push",
+    "db:push:prod": "pnpm setProdDB drizzle-kit push",
+    "db:studio": "pnpm setLocalDB drizzle-kit studio",
+    "db:studio:prev": "pnpm setPreviewDB drizzle-kit studio",
+    "db:studio:prod": "pnpm setProdDB drizzle-kit studio"
   },
   "private": true,
   "dependencies": {
+    "@markdoc/markdoc": "^0.5.4",
+    "better-sqlite3": "^12.2.0",
+    "drizzle-orm": "^0.44.4",
+    "drizzle-valibot": "^0.4.2",
     "hono": "^4.9.0",
-    "honox": "^0.1.43"
+    "honox": "^0.1.43",
+    "valibot": "^1.1.0"
   },
   "devDependencies": {
     "@biomejs/biome": "^2.1.4",
@@ -20,6 +35,8 @@
     "@hono/vite-dev-server": "^0.20.1",
     "@mdx-js/rollup": "^3.1.0",
     "@types/mdx": "^2.0.13",
+    "@types/node": "^24.2.1",
+    "drizzle-kit": "^0.31.4",
     "vite": "^7.1.1",
     "wrangler": "^4.28.1"
   }
