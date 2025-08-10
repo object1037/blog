@@ -1,7 +1,7 @@
 {
   "$schema": "node_modules/wrangler/config-schema.json",
   "name": "blog",
-  "main": "./dist/index.js",
+  // "main": "./dist/index.js",
   "compatibility_date": "2025-08-08",
   "compatibility_flags": [
     "nodejs_compat"

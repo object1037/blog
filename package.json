@@ -18,6 +18,7 @@
     "@biomejs/biome": "^2.1.4",
     "@hono/vite-build": "^1.7.0",
     "@hono/vite-dev-server": "^0.20.1",
+    "@hono/vite-ssg": "^0.1.2",
     "@mdx-js/rollup": "^3.1.0",
     "@tailwindcss/vite": "^4.1.11",
     "@types/mdx": "^2.0.13",
