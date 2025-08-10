@@ -1,46 +1,25 @@
 import build from '@hono/vite-build/cloudflare-workers'
 import adapter from '@hono/vite-dev-server/cloudflare'
-import ssg from '@hono/vite-ssg'
 import mdx from '@mdx-js/rollup'
-import tailwindcss from '@tailwindcss/vite'
 import honox from 'honox/vite'
-import client from 'honox/vite/client'
-import remarkFrontmatter from 'remark-frontmatter'
-import remarkMdxFrontmatter from 'remark-mdx-frontmatter'
 import type { EnvironmentModuleNode, Plugin } from 'vite'
 import { defineConfig } from 'vite'
 
-export default defineConfig(({ mode }) => {
-  if (mode === 'client') {
-    return {
-      plugins: [
-        client(),
-        tailwindcss(),
-        honox({
-          client: { input: ['./app/style.css'] },
-        }),
-      ],
-    }
-  }
-  return {
-    build: {
-      emptyOutDir: false,
-    },
-    plugins: [
-      honox({
-        client: { input: ['./app/style.css'] },
-        devServer: { adapter },
-      }),
-      ssg({ entry: './app/server.ts' }),
-      mdx({
-        jsxImportSource: 'hono/jsx',
-        remarkPlugins: [remarkFrontmatter, remarkMdxFrontmatter],
-      }),
-      tailwindcss(),
-      hmrReload(),
-      build(),
-    ],
-  }
+export default defineConfig({
+  build: {
+    emptyOutDir: false,
+  },
+  plugins: [
+    honox({
+      client: { input: ['./app/style.css'] },
+      devServer: { adapter },
+    }),
+    mdx({
+      jsxImportSource: 'hono/jsx',
+    }),
+    hmrReload(),
+    build(),
+  ],
 })
 
 function hmrReload(): Plugin {
