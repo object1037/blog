@@ -1,10 +1,5 @@
-import { createContext } from 'hono/jsx'
 import { jsxRenderer } from 'hono/jsx-renderer'
 import { Link, Script } from 'honox/server'
-import { getPostCtxData } from '../utils/getPostCtxData'
-
-const postCtxData = getPostCtxData()
-export const PostsContext = createContext(postCtxData)
 
 export default jsxRenderer(({ children }) => {
   return (
@@ -16,9 +11,7 @@ export default jsxRenderer(({ children }) => {
         <Link href="/app/style.css" rel="stylesheet" />
         <Script src="/app/client.ts" async />
       </head>
-      <PostsContext.Provider value={postCtxData}>
-        <body>{children}</body>
-      </PostsContext.Provider>
+      <body>{children}</body>
     </html>
   )
 })

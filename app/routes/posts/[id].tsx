@@ -1,12 +1,11 @@
 import { createRoute } from 'honox/factory'
 
 export default createRoute((c) => {
-  const tag = c.req.param('tag')
+  const id = c.req.param('id')
 
   return c.render(
     <div>
-      <title>{tag}</title>
-      <h1>Tag: {tag}</h1>
+      <h1>Post {id}</h1>
     </div>,
   )
 })
