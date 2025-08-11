@@ -8,6 +8,9 @@ importers:
 
   .:
     dependencies:
+      '@hono/valibot-validator':
+        specifier: ^0.5.3
+        version: 0.5.3(hono@4.9.0)(valibot@1.1.0(typescript@5.9.2))
       '@markdoc/markdoc':
         specifier: ^0.5.4
         version: 0.5.4
@@ -16,10 +19,10 @@ importers:
         version: 12.2.0
       drizzle-orm:
         specifier: ^0.44.4
-        version: 0.44.4(@cloudflare/workers-types@4.20250807.0)(better-sqlite3@12.2.0)
+        version: 0.44.4(@cloudflare/workers-types@4.20250807.0)(better-sqlite3@12.2.0)(kysely@0.28.5)
       drizzle-valibot:
         specifier: ^0.4.2
-        version: 0.4.2(drizzle-orm@0.44.4(@cloudflare/workers-types@4.20250807.0)(better-sqlite3@12.2.0))(valibot@1.1.0(typescript@5.9.2))
+        version: 0.4.2(drizzle-orm@0.44.4(@cloudflare/workers-types@4.20250807.0)(better-sqlite3@12.2.0)(kysely@0.28.5))(valibot@1.1.0(typescript@5.9.2))
       hono:
         specifier: ^4.9.0
         version: 4.9.0
@@ -660,6 +663,12 @@ packages:
     engines: {node: '>=18.14.1'}
     peerDependencies:
       hono: ^4
+
+  '@hono/valibot-validator@0.5.3':
+    resolution: {integrity: sha512-91wjmjDvrTdEm2ZcuCyLBghtld78QoLEduzfkqLo1L74n6sqqoVfc0gDfmju1Ar6w1eK8Q0UyIubrtj4KMWVnQ==}
+    peerDependencies:
+      hono: '>=3.9.0'
+      valibot: ^1.0.0 || ^1.0.0-beta.4 || ^1.0.0-rc
 
   '@hono/vite-build@1.7.0':
     resolution: {integrity: sha512-L73WBed5teC7DHTzXYkho83POYYluD2rTkbT76FJuqpfXPgTW/PsbIa8O0YcCETE3VUoh584fe6vuLAM5ctjww==}
@@ -1474,6 +1483,10 @@ packages:
     resolution: {integrity: sha512-o+NO+8WrRiQEE4/7nwRJhN1HWpVmJm511pBHUxPLtp0BUISzlBplORYSmTclCnJvQq2tKu/sgl3xVpkc7ZWuQQ==}
     engines: {node: '>=6'}
 
+  kysely@0.28.5:
+    resolution: {integrity: sha512-rlB0I/c6FBDWPcQoDtkxi9zIvpmnV5xoIalfCMSMCa7nuA6VGA3F54TW9mEgX4DVf10sXAWCF5fDbamI/5ZpKA==}
+    engines: {node: '>=20.0.0'}
+
   lightningcss-darwin-arm64@1.30.1:
     resolution: {integrity: sha512-c8JK7hyE65X1MHMN+Viq9n11RRC7hgin3HhYKhrMyaXflk5GVplZ60IxyoVtzILeKr+xAJwg6zK6sjTBJ0FKYQ==}
     engines: {node: '>= 12.0.0'}
@@ -2245,6 +2258,11 @@ snapshots:
     dependencies:
       hono: 4.9.0
 
+  '@hono/valibot-validator@0.5.3(hono@4.9.0)(valibot@1.1.0(typescript@5.9.2))':
+    dependencies:
+      hono: 4.9.0
+      valibot: 1.1.0(typescript@5.9.2)
+
   '@hono/vite-build@1.7.0(hono@4.9.0)':
     dependencies:
       hono: 4.9.0
@@ -2720,14 +2738,15 @@ snapshots:
     transitivePeerDependencies:
       - supports-color
 
-  drizzle-orm@0.44.4(@cloudflare/workers-types@4.20250807.0)(better-sqlite3@12.2.0):
+  drizzle-orm@0.44.4(@cloudflare/workers-types@4.20250807.0)(better-sqlite3@12.2.0)(kysely@0.28.5):
     optionalDependencies:
       '@cloudflare/workers-types': 4.20250807.0
       better-sqlite3: 12.2.0
+      kysely: 0.28.5
 
-  drizzle-valibot@0.4.2(drizzle-orm@0.44.4(@cloudflare/workers-types@4.20250807.0)(better-sqlite3@12.2.0))(valibot@1.1.0(typescript@5.9.2)):
+  drizzle-valibot@0.4.2(drizzle-orm@0.44.4(@cloudflare/workers-types@4.20250807.0)(better-sqlite3@12.2.0)(kysely@0.28.5))(valibot@1.1.0(typescript@5.9.2)):
     dependencies:
-      drizzle-orm: 0.44.4(@cloudflare/workers-types@4.20250807.0)(better-sqlite3@12.2.0)
+      drizzle-orm: 0.44.4(@cloudflare/workers-types@4.20250807.0)(better-sqlite3@12.2.0)(kysely@0.28.5)
       valibot: 1.1.0(typescript@5.9.2)
 
   end-of-stream@1.4.5:
@@ -2963,6 +2982,9 @@ snapshots:
   jsonc-parser@3.3.1: {}
 
   kleur@4.1.5: {}
+
+  kysely@0.28.5:
+    optional: true
 
   lightningcss-darwin-arm64@1.30.1:
     optional: true
