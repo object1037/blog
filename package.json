@@ -33,8 +33,6 @@
     "@biomejs/biome": "^2.1.4",
     "@hono/vite-build": "^1.7.0",
     "@hono/vite-dev-server": "^0.20.1",
-    "@mdx-js/rollup": "^3.1.0",
-    "@types/mdx": "^2.0.13",
     "@types/node": "^24.2.1",
     "drizzle-kit": "^0.31.4",
     "vite": "^7.1.1",
