@@ -1,5 +1,5 @@
 import { createRoute } from 'honox/factory'
-import { getTags } from '../../api/db'
+import { getTags } from '../../services/db'
 
 export default createRoute(async (c) => {
   const tags = await getTags(c.env.DB)

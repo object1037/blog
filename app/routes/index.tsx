@@ -1,5 +1,5 @@
 import { createRoute } from 'honox/factory'
-import { getPublicPosts } from '../api/db'
+import { getPublicPosts } from '../services/db'
 
 export default createRoute(async (c) => {
   const posts = await getPublicPosts(c.env.DB)

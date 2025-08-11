@@ -1,13 +1,12 @@
-import { HTTPException } from 'hono/http-exception'
 import { createRoute } from 'honox/factory'
-import { getPostByID } from '../../api/db'
-import { parseMarkdown } from '../../api/parseMarkDown'
+import { getPostByID } from '../../services/db'
+import { parseMarkdown } from '../../services/parseMarkDown'
 
 export default createRoute(async (c) => {
   const id_txt = c.req.param('id')
   const id = parseInt(id_txt, 10)
   if (Number.isNaN(id)) {
-    throw new HTTPException(400, { message: 'Invalid post ID' })
+    return c.notFound()
   }
   const post = await getPostByID(c.env.DB, id)
   if (!post) {
