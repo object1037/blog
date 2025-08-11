@@ -1,6 +1,6 @@
 import { HTTPException } from 'hono/http-exception'
 import { createRoute } from 'honox/factory'
-import { getPostByID } from '../../api/getPostByID'
+import { getPostByID } from '../../api/db'
 import { parseMarkdown } from '../../api/parseMarkDown'
 
 export default createRoute(async (c) => {

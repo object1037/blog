@@ -6,14 +6,14 @@ loadEnvFile('./.dev.vars')
 export default process.env.LOCAL_DB_PATH
   ? defineConfig({
       dialect: 'sqlite',
-      schema: './app/db/schema.ts',
+      schema: './app/schema.ts',
       dbCredentials: {
         url: process.env.LOCAL_DB_PATH,
       },
     })
   : defineConfig({
       dialect: 'sqlite',
-      schema: './app/db/schema.ts',
+      schema: './app/schema.ts',
       driver: 'd1-http',
       dbCredentials: {
         accountId: process.env.CLOUDFLARE_ACCOUNT_ID || '',
