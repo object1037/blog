@@ -10,6 +10,9 @@ import { creationOptionSchema, requestOptionSchema } from '../lib/webauthn'
 const verificationSchema = v.object({
   verified: v.literal(true),
 })
+const alreadyRegisteredSchema = v.object({
+  alreadyRegistered: v.literal(true),
+})
 
 const getAttResp = async (
   optionsJSON: PublicKeyCredentialCreationOptionsJSON,
@@ -42,16 +45,23 @@ const getAsseResp = async (
 const handleRegistration = async () => {
   console.log('Registration started')
 
-  let optionsJSON: PublicKeyCredentialCreationOptionsJSON
+  let parsedOptions: PublicKeyCredentialCreationOptionsJSON
   try {
     const optionsResp = await fetch('/api/generate-registration-options')
-    optionsJSON = v.parse(creationOptionSchema, await optionsResp.json())
+    const optionsJSON = await optionsResp.json()
+    const result = v.safeParse(alreadyRegisteredSchema, optionsJSON)
+    if (result.success) {
+      console.log('Already registered, skipping registration')
+      await handleAuthentication()
+      return
+    }
+    parsedOptions = v.parse(creationOptionSchema, optionsJSON)
   } catch (e) {
     console.error('Error fetching registration options:')
     throw e
   }
 
-  const attResp = await getAttResp(optionsJSON)
+  const attResp = await getAttResp(parsedOptions)
 
   const verificationResp = await fetch('/api/verify-registration', {
     method: 'POST',
@@ -103,22 +113,19 @@ const handleAuthentication = async () => {
   console.log('Success!')
 }
 
-// const handleLogin = async () => {
-//   console.log('Login started')
-//   try {
-//     await handleRegistration()
-//   } catch (e) {
-//     console.error('Error during login process:', e)
-//   }
-// }
+const handleLogin = async () => {
+  console.log('Login started')
+  try {
+    await handleRegistration()
+  } catch (e) {
+    console.error('Error during login process:', e)
+  }
+}
 
 export const LoginWidget = () => {
   return (
     <div>
-      <button onClick={handleRegistration} type="button">
-        Register
-      </button>
-      <button onClick={handleAuthentication} type="button">
+      <button onClick={handleLogin} type="button">
         Login
       </button>
     </div>

@@ -26,7 +26,6 @@
     "@markdoc/markdoc": "^0.5.4",
     "@simplewebauthn/browser": "^13.1.2",
     "@simplewebauthn/server": "^13.1.2",
-    "better-sqlite3": "^12.2.0",
     "drizzle-orm": "^0.44.4",
     "drizzle-valibot": "^0.4.2",
     "hono": "^4.9.0",
@@ -38,6 +37,7 @@
     "@hono/vite-build": "^1.7.0",
     "@hono/vite-dev-server": "^0.20.1",
     "@types/node": "^24.2.1",
+    "better-sqlite3": "^12.2.0",
     "drizzle-kit": "^0.31.4",
     "vite": "^7.1.1",
     "wrangler": "^4.28.1"

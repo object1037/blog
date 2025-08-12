@@ -7,6 +7,5 @@ export const requireAuth = createMiddleware(async (c, next) => {
     return c.redirect('/login')
   }
   await next()
-  c.res.headers.set('Cache-Control', 'private, no-cache')
   return
 })
