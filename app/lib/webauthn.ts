@@ -186,3 +186,15 @@ export const requestOptionSchema = v.object({
   allowCredentials: v.exactOptional(v.array(publicKeyDescSchema)),
   userVerification: v.literal('required'),
 }) satisfies v.GenericSchema<PublicKeyCredentialRequestOptionsJSON>
+
+export const parseRegOptSchema = v.pipe(
+  v.string(),
+  v.parseJson(),
+  creationOptionSchema,
+)
+
+export const parseAuthOptSchema = v.pipe(
+  v.string(),
+  v.parseJson(),
+  requestOptionSchema,
+)

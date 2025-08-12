@@ -8,6 +8,7 @@ import { createRoute } from 'honox/factory'
 import * as v from 'valibot'
 import {
   authenticationRespSchema,
+  parseAuthOptSchema,
   stringifyCredentialSchema,
 } from '../../lib/webauthn'
 import { getCredentials } from '../../middlewares/getCredentials'
@@ -57,9 +58,9 @@ export const POST = createRoute(getCredentials, async (c) => {
 
   let verification: Awaited<ReturnType<typeof getVerification>>
   try {
-    const { challenge } = JSON.parse(
-      (await c.env.KV.get('authenticationOptions')) ?? '{}',
-    )
+    const authOptStr = await c.env.KV.get('authenticationOptions')
+    const { challenge } = v.parse(parseAuthOptSchema, authOptStr)
+
     verification = await getVerification(
       authenticationResponse,
       challenge,

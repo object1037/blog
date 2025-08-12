@@ -6,6 +6,7 @@ import { HTTPException } from 'hono/http-exception'
 import { createRoute } from 'honox/factory'
 import * as v from 'valibot'
 import {
+  parseRegOptSchema,
   registrationRespSchema,
   stringifyCredentialSchema,
 } from '../../lib/webauthn'
@@ -48,9 +49,9 @@ export const POST = createRoute(async (c) => {
 
   let verification: Awaited<ReturnType<typeof getVerification>>
   try {
-    const { challenge } = JSON.parse(
-      (await c.env.KV.get('registrationOptions')) ?? '{}',
-    )
+    const regOptStr = await c.env.KV.get('registrationOptions')
+    const { challenge } = v.parse(parseRegOptSchema, regOptStr)
+
     verification = await getVerification(
       registrationResponse,
       challenge,
