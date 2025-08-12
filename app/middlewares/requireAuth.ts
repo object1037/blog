@@ -11,7 +11,10 @@ export const requireAuth = createMiddleware(async (c, next) => {
   const sessionCookie = getCookie(c, 'sessionId')
   if (sessionCookie) {
     const sessionData = await c.env.KV.get(`session:${sessionCookie}`, 'json')
-    session = v.parse(sessionSchema, sessionData)
+    const result = v.safeParse(sessionSchema, sessionData)
+    if (result.success) {
+      session = result.output
+    }
   }
 
   if (session) {

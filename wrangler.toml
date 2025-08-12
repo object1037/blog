@@ -16,14 +16,14 @@ preview_database_id = "fe62b702-8f6b-4b85-81c0-e315529e6ca7"
 binding = "KV"
 id = "d5a0fdf0da6541dabb9caac6bbc6b898"
 
-[env.dev.vars]
+[vars]
 RP_ID="localhost"
 ORIGIN_PORT="5173"
 
 [env.preview.vars]
 RP_ID="blog.object1037.workers.dev"
 
-[vars]
+[env.production.vars]
 RP_ID="blog.object1037.workers.dev"
 # RP_ID="blog.object1037.dev"
 # workers_dev = false
