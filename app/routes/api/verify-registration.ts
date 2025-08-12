@@ -10,6 +10,7 @@ import {
   registrationRespSchema,
   stringifyCredentialSchema,
 } from '../../lib/webauthn'
+import { createSession } from '../../services/session'
 
 const getVerification = async (
   body: RegistrationResponseJSON,
@@ -70,7 +71,8 @@ export const POST = createRoute(async (c) => {
       stringifyCredentialSchema,
       registrationInfo.credential,
     )
-    await c.env.KV.put('credential', credentialStr)
+
+    Promise.all([c.env.KV.put('credential', credentialStr), createSession(c)])
   }
 
   return c.json({ verified: verified })

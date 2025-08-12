@@ -5,8 +5,11 @@ export default createRoute(requireAuth, (c) => {
   const session = c.get('session')
   return c.render(
     <>
-      <h1>New post</h1>
+      <h1>Dashboard</h1>
       <p>{session?.createdAt}</p>
+      <form action="/logout" method="post">
+        <button type="submit">Logout</button>
+      </form>
     </>,
   )
 })

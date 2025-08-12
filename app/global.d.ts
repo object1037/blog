@@ -9,5 +9,10 @@ declare module 'hono' {
 
   interface ContextVariableMap {
     credential: WebAuthnCredential | undefined
+    session:
+      | {
+          createdAt: number
+        }
+      | undefined
   }
 }

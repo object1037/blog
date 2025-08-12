@@ -43,15 +43,15 @@ const getAsseResp = async (
 }
 
 const handleRegistration = async () => {
-  console.log('Registration started')
-
   let parsedOptions: PublicKeyCredentialCreationOptionsJSON
   try {
     const optionsResp = await fetch('/api/generate-registration-options')
     const optionsJSON = await optionsResp.json()
-    const result = v.safeParse(alreadyRegisteredSchema, optionsJSON)
-    if (result.success) {
-      console.log('Already registered, skipping registration')
+    const checkAlreadyRegistered = v.safeParse(
+      alreadyRegisteredSchema,
+      optionsJSON,
+    )
+    if (checkAlreadyRegistered.success) {
       await handleAuthentication()
       return
     }
@@ -77,13 +77,9 @@ const handleRegistration = async () => {
     console.error('Error verifying registration response:')
     throw e
   }
-
-  console.log('Success!')
 }
 
 const handleAuthentication = async () => {
-  console.log('Authentication started')
-
   let optionsJSON: PublicKeyCredentialRequestOptionsJSON
   try {
     const optionsResp = await fetch('/api/generate-authentication-options')
@@ -109,14 +105,12 @@ const handleAuthentication = async () => {
     console.error('Error verifying authentication response:')
     throw e
   }
-
-  console.log('Success!')
 }
 
 const handleLogin = async () => {
-  console.log('Login started')
   try {
     await handleRegistration()
+    window.location.replace('/dashboard')
   } catch (e) {
     console.error('Error during login process:', e)
   }
