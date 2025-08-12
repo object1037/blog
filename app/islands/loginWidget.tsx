@@ -1,9 +1,15 @@
 import {
   type PublicKeyCredentialCreationOptionsJSON,
+  type PublicKeyCredentialRequestOptionsJSON,
+  startAuthentication,
   startRegistration,
 } from '@simplewebauthn/browser'
 import * as v from 'valibot'
-import { creationOptionSchema } from '../lib/webauthn'
+import { creationOptionSchema, requestOptionSchema } from '../lib/webauthn'
+
+const verificationSchema = v.object({
+  verified: v.literal(true),
+})
 
 const getAttResp = async (
   optionsJSON: PublicKeyCredentialCreationOptionsJSON,
@@ -16,22 +22,33 @@ const getAttResp = async (
         'Error: Authenticator was probably already registered by user',
       )
     } else {
-      console.error('Unknown error during registration:', e)
+      console.error('Unknown error during registration:')
     }
     throw e
   }
 }
 
-const handleLogin = async () => {
-  console.log('Logging in...')
+const getAsseResp = async (
+  optionsJSON: PublicKeyCredentialRequestOptionsJSON,
+) => {
+  try {
+    return await startAuthentication({ optionsJSON })
+  } catch (e) {
+    console.error('Error during authentication:')
+    throw e
+  }
+}
+
+const handleRegistration = async () => {
+  console.log('Registration started')
 
   let optionsJSON: PublicKeyCredentialCreationOptionsJSON
   try {
     const optionsResp = await fetch('/api/generate-registration-options')
     optionsJSON = v.parse(creationOptionSchema, await optionsResp.json())
   } catch (e) {
-    console.error('Error fetching registration options:', e)
-    return
+    console.error('Error fetching registration options:')
+    throw e
   }
 
   const attResp = await getAttResp(optionsJSON)
@@ -44,28 +61,64 @@ const handleLogin = async () => {
     body: JSON.stringify(attResp),
   })
 
-  let verificationJSON: { verified: boolean }
   try {
-    verificationJSON = v.parse(
-      v.object({ verified: v.boolean() }),
-      await verificationResp.json(),
-    )
+    v.parse(verificationSchema, await verificationResp.json())
   } catch (e) {
-    console.error('Error verifying registration response:', e)
-    return
+    console.error('Error verifying registration response:')
+    throw e
   }
 
-  if (verificationJSON.verified) {
-    console.log('Success!')
-  } else {
-    console.log('Login failed.')
-  }
+  console.log('Success!')
 }
+
+const handleAuthentication = async () => {
+  console.log('Authentication started')
+
+  let optionsJSON: PublicKeyCredentialRequestOptionsJSON
+  try {
+    const optionsResp = await fetch('/api/generate-authentication-options')
+    optionsJSON = v.parse(requestOptionSchema, await optionsResp.json())
+  } catch (e) {
+    console.error('Error fetching authentication options:')
+    throw e
+  }
+
+  const asseResp = await getAsseResp(optionsJSON)
+
+  const verificationResp = await fetch('/api/verify-authentication', {
+    method: 'POST',
+    headers: {
+      'Content-Type': 'application/json',
+    },
+    body: JSON.stringify(asseResp),
+  })
+
+  try {
+    v.parse(verificationSchema, await verificationResp.json())
+  } catch (e) {
+    console.error('Error verifying authentication response:')
+    throw e
+  }
+
+  console.log('Success!')
+}
+
+// const handleLogin = async () => {
+//   console.log('Login started')
+//   try {
+//     await handleRegistration()
+//   } catch (e) {
+//     console.error('Error during login process:', e)
+//   }
+// }
 
 export const LoginWidget = () => {
   return (
     <div>
-      <button onClick={handleLogin} type="button">
+      <button onClick={handleRegistration} type="button">
+        Register
+      </button>
+      <button onClick={handleAuthentication} type="button">
         Login
       </button>
     </div>

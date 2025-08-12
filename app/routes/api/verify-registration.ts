@@ -5,7 +5,10 @@ import {
 import { HTTPException } from 'hono/http-exception'
 import { createRoute } from 'honox/factory'
 import * as v from 'valibot'
-import { registrationRespSchema } from '../../lib/webauthn'
+import {
+  registrationRespSchema,
+  stringifyCredentialSchema,
+} from '../../lib/webauthn'
 
 const getVerification = async (
   body: RegistrationResponseJSON,
@@ -47,12 +50,15 @@ export const POST = createRoute(async (c) => {
     throw new HTTPException(500, { message: 'Failed to verify registration' })
   }
 
-  if (verification.registrationInfo) {
-    await c.env.KV.put(
-      'credential',
-      JSON.stringify(verification.registrationInfo.credential),
+  const { verified, registrationInfo } = verification
+
+  if (verified && registrationInfo) {
+    const credentialStr = v.parse(
+      stringifyCredentialSchema,
+      registrationInfo.credential,
     )
+    await c.env.KV.put('credential', credentialStr)
   }
 
-  return c.json({ verified: verification.verified })
+  return c.json({ verified: verified })
 })
