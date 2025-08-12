@@ -16,13 +16,20 @@ const getVerification = async (
   body: AuthenticationResponseJSON,
   challenge: string,
   credential: WebAuthnCredential,
+  expectedRPID: string,
+  originPort?: string,
 ) => {
+  const expectedOrigin =
+    expectedRPID === 'localhost'
+      ? `http://localhost:${originPort}`
+      : `https://${expectedRPID}`
+
   try {
     return await verifyAuthenticationResponse({
       response: body,
       expectedChallenge: challenge,
-      expectedOrigin: 'http://localhost:5173',
-      expectedRPID: 'localhost',
+      expectedOrigin,
+      expectedRPID,
       credential,
     })
   } catch (e) {
@@ -57,6 +64,8 @@ export const POST = createRoute(getCredentials, async (c) => {
       authenticationResponse,
       challenge,
       credential,
+      c.env.RP_ID,
+      c.env.ORIGIN_PORT,
     )
   } catch (e) {
     console.error(e)

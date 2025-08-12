@@ -5,9 +5,6 @@ import {
 import { createRoute } from 'honox/factory'
 import { getCredentials } from '../../middlewares/getCredentials'
 
-const rpName = 'ゆるふわインターネット'
-const rpID = 'localhost'
-
 export default createRoute(getCredentials, async (c) => {
   const credential = c.get('credential')
   let excludeCredentials: Pick<WebAuthnCredential, 'id' | 'transports'>[] = []
@@ -18,8 +15,8 @@ export default createRoute(getCredentials, async (c) => {
   }
 
   const options = await generateRegistrationOptions({
-    rpName,
-    rpID,
+    rpName: 'ゆるふわインターネット',
+    rpID: c.env.RP_ID,
     userName: 'object1037',
     attestationType: 'none',
     excludeCredentials,

@@ -13,13 +13,20 @@ import {
 const getVerification = async (
   body: RegistrationResponseJSON,
   challenge: string,
+  expectedRPID: string,
+  originPort?: string,
 ) => {
+  const expectedOrigin =
+    expectedRPID === 'localhost'
+      ? `http://localhost:${originPort}`
+      : `https://${expectedRPID}`
+
   try {
     return await verifyRegistrationResponse({
       response: body,
       expectedChallenge: challenge,
-      expectedOrigin: 'http://localhost:5173',
-      expectedRPID: 'localhost',
+      expectedOrigin,
+      expectedRPID,
     })
   } catch (e) {
     console.error(e)
@@ -44,7 +51,12 @@ export const POST = createRoute(async (c) => {
     const { challenge } = JSON.parse(
       (await c.env.KV.get('registrationOptions')) ?? '{}',
     )
-    verification = await getVerification(registrationResponse, challenge)
+    verification = await getVerification(
+      registrationResponse,
+      challenge,
+      c.env.RP_ID,
+      c.env.ORIGIN_PORT,
+    )
   } catch (e) {
     console.error(e)
     throw new HTTPException(500, { message: 'Failed to verify registration' })
