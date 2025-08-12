@@ -27,7 +27,7 @@ export default createRoute(getCredentials, async (c) => {
     },
   })
 
-  c.env.KV.put('registrationOptions', JSON.stringify(options))
+  await c.env.KV.put('registrationOptions', JSON.stringify(options))
 
   return c.json(options)
 })
