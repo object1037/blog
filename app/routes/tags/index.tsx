@@ -1,4 +1,5 @@
 import { createRoute } from 'honox/factory'
+import { TagList } from '../../components/tagList'
 import { getTags } from '../../services/db'
 
 export default createRoute(async (c) => {
@@ -8,13 +9,7 @@ export default createRoute(async (c) => {
     <div>
       <title>Blog Tags</title>
       <h1>Tags</h1>
-      <ul>
-        {tags.map((tag) => (
-          <li key={tag.name}>
-            {tag.name} {tag.count}
-          </li>
-        ))}
-      </ul>
+      <TagList tags={tags} />
     </div>,
   )
 })

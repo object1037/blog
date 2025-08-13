@@ -1,4 +1,5 @@
 import { createRoute } from 'honox/factory'
+import { TagList } from '../../components/tagList'
 import { getPostByID } from '../../services/db'
 import { parseMarkdown } from '../../services/parseMarkDown'
 
@@ -19,11 +20,7 @@ export default createRoute(async (c) => {
     <div>
       <h1>Post {id}</h1>
       <h2>{post.title}</h2>
-      <ul>
-        {post.tags.map((tag) => (
-          <li key={tag}>{tag}</li>
-        ))}
-      </ul>
+      <TagList tags={post.tags.map((tag) => ({ name: tag, count: 0 }))} />
       {/** biome-ignore lint/security/noDangerouslySetInnerHtml: html is safe */}
       <div dangerouslySetInnerHTML={{ __html: parsed }} />
     </div>,

@@ -1,4 +1,5 @@
 import { createRoute } from 'honox/factory'
+import { PostCard } from '../components/postCard'
 import { getPublicPosts } from '../services/db'
 
 export default createRoute(async (c) => {
@@ -9,12 +10,9 @@ export default createRoute(async (c) => {
       <title>ゆるふわインターネット</title>
       <h1>Posts</h1>
       <ul>
-        {posts.map(({ id, title, description }) => (
-          <li key={id}>
-            <a href={`/posts/${id}`}>
-              <h2>{title}</h2>
-              <p>{description}</p>
-            </a>
+        {posts.map((post) => (
+          <li key={post.id}>
+            <PostCard post={post} />
           </li>
         ))}
       </ul>

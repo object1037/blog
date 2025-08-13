@@ -1,4 +1,5 @@
 import { createRoute } from 'honox/factory'
+import { PostCard } from '../../components/postCard'
 import { getPostsWithTag } from '../../services/db'
 
 export default createRoute(async (c) => {
@@ -15,7 +16,9 @@ export default createRoute(async (c) => {
       <h1>Tag: {tag}</h1>
       <ul>
         {postsWithTag.map((post) => (
-          <li key={post.id}>{post.title}</li>
+          <li key={post.id}>
+            <PostCard post={post} />
+          </li>
         ))}
       </ul>
     </div>,
