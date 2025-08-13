@@ -1,3 +1,4 @@
+import type { Env } from 'hono'
 import { deleteCookie, getCookie } from 'hono/cookie'
 import { createMiddleware } from 'hono/factory'
 import * as v from 'valibot'
@@ -7,7 +8,7 @@ const sessionSchema = v.object({
   userAgent: v.string(),
 })
 
-export const requireAuth = createMiddleware(async (c, next) => {
+export const requireAuth = createMiddleware<Env>(async (c, next) => {
   let session: v.InferInput<typeof sessionSchema> | undefined
   const sessionCookie = getCookie(c, 'sessionId')
   if (sessionCookie) {

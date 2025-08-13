@@ -9,7 +9,7 @@
     "deploy": "pnpm run build && wrangler deploy",
     "check": "biome ci ./app vite.config.ts",
     "fmt": "biome format --write ./app vite.config.ts",
-    "typegen": "wrangler types",
+    "typegen": "wrangler types --env-interface=CloudflareEnv",
     "setLocalDB": "LOCAL_DB_PATH=$(find .wrangler/state/v3/d1/miniflare-D1DatabaseObject -type f -name '*.sqlite' -print -quit)",
     "setPreviewDB": "DB_ID='fe62b702-8f6b-4b85-81c0-e315529e6ca7'",
     "setProdDB": "DB_ID='77f4589e-54f5-43ad-ab44-ccc96e048bfc'",

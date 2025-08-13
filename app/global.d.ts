@@ -3,17 +3,15 @@ import type {} from 'hono'
 
 declare module 'hono' {
   interface Env {
-    Variables: Cloudflare.Env
-    Bindings: Cloudflare.Env
-  }
-
-  interface ContextVariableMap {
-    credential: WebAuthnCredential | undefined
-    session:
-      | {
-          createdAt: number
-          userAgent: string
-        }
-      | undefined
+    Variables: {
+      credential: WebAuthnCredential | undefined
+      session:
+        | {
+            createdAt: number
+            userAgent: string
+          }
+        | undefined
+    }
+    Bindings: CloudflareEnv
   }
 }
