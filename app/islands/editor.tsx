@@ -1,5 +1,6 @@
 import { useEffect, useRef } from 'hono/jsx'
 import Prism from 'prismjs'
+import 'prismjs/components/prism-markdown'
 
 export const tokenTypes = [
   'atrule',
@@ -41,6 +42,10 @@ const handleKeydown = (e: KeyboardEvent) => {
     document.execCommand('insertHTML', false, '	')
     e.preventDefault()
   }
+  if (e.key === 'Enter') {
+    document.execCommand('insertLineBreak')
+    e.preventDefault()
+  }
 }
 
 const flattenTextNodes = (codeBlock: Node) => codeBlock.normalize()
@@ -72,7 +77,7 @@ const highlight = (codeBlock: HTMLPreElement | null) => {
 
   flattenTextNodes(codeBlock)
 
-  const mdGrammer = Prism.languages.js
+  const mdGrammer = Prism.languages.markdown
   if (!mdGrammer) {
     console.error('Markdown grammar not found')
     console.log(Prism.languages)
