@@ -1,22 +1,20 @@
-import {
-  generateAuthenticationOptions,
-  type WebAuthnCredential,
-} from '@simplewebauthn/server'
+import { generateAuthenticationOptions } from '@simplewebauthn/server'
+import { HTTPException } from 'hono/http-exception'
 import { createRoute } from 'honox/factory'
 import { getCredentials } from '../../middlewares/getCredentials'
 
 export default createRoute(getCredentials, async (c) => {
   const credential = c.get('credential')
-  let allowCredentials: Pick<WebAuthnCredential, 'id' | 'transports'>[] = []
 
-  if (credential) {
-    const { publicKey: _p, counter: _c, ...rest } = credential
-    allowCredentials = [rest]
+  if (!credential) {
+    throw new HTTPException(500, { message: 'Credential not found' })
   }
+
+  const { publicKey: _p, counter: _c, ...rest } = credential
 
   const options = await generateAuthenticationOptions({
     rpID: c.env.RP_ID,
-    allowCredentials,
+    allowCredentials: [rest],
     userVerification: 'required',
   })
 
