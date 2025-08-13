@@ -4,6 +4,7 @@ import * as v from 'valibot'
 
 const sessionSchema = v.object({
   createdAt: v.number(),
+  userAgent: v.string(),
 })
 
 export const requireAuth = createMiddleware(async (c, next) => {

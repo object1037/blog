@@ -12,6 +12,7 @@ declare module 'hono' {
     session:
       | {
           createdAt: number
+          userAgent: string
         }
       | undefined
   }

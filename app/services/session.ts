@@ -13,6 +13,7 @@ export const createSession = async (c: Context) => {
     `session:${sessionId}`,
     JSON.stringify({
       createdAt: Date.now(),
+      userAgent: c.req.header('User-Agent'),
     }),
     { expirationTtl: 86400 }, // 1 Day
   )
