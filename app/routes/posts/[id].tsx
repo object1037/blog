@@ -1,7 +1,7 @@
 import { createRoute } from 'honox/factory'
 import { TagList } from '../../components/tagList'
 import { getPostByID } from '../../services/db'
-import { parseMarkdown } from '../../services/parseMarkDown'
+import { markdownToHtml } from '../../services/markdoc'
 
 export default createRoute(async (c) => {
   const id_txt = c.req.param('id')
@@ -14,7 +14,7 @@ export default createRoute(async (c) => {
     return c.notFound()
   }
 
-  const parsed = parseMarkdown(post.content)
+  const parsed = markdownToHtml(post.content)
 
   return c.render(
     <div>

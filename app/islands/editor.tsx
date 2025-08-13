@@ -1,4 +1,4 @@
-import { useEffect, useRef } from 'hono/jsx'
+import { useEffect, useRef, useState } from 'hono/jsx'
 import Prism from 'prismjs'
 import 'prismjs/components/prism-markdown'
 
@@ -39,11 +39,7 @@ export const tokenTypes = [
 
 const handleKeydown = (e: KeyboardEvent) => {
   if (e.code === 'Tab') {
-    document.execCommand('insertHTML', false, '	')
-    e.preventDefault()
-  }
-  if (e.key === 'Enter') {
-    document.execCommand('insertLineBreak')
+    document.execCommand('insertHTML', false, '  ')
     e.preventDefault()
   }
 }
@@ -72,7 +68,10 @@ const paintTokenHighlights = (
   }
 }
 
-const highlight = (codeBlock: HTMLPreElement | null) => {
+const highlight = (
+  codeBlock: HTMLPreElement | null,
+  setCode: ReturnType<typeof useState<string>>[1],
+) => {
   if (!codeBlock) return
 
   flattenTextNodes(codeBlock)
@@ -83,7 +82,9 @@ const highlight = (codeBlock: HTMLPreElement | null) => {
     console.log(Prism.languages)
     return
   }
-  const tokens = Prism.tokenize(codeBlock.innerText, mdGrammer)
+  const innerText = codeBlock.innerText
+  setCode(innerText)
+  const tokens = Prism.tokenize(innerText, mdGrammer)
 
   tokenTypes.forEach((tokenType) => {
     CSS.highlights.get(tokenType)?.clear()
@@ -92,8 +93,24 @@ const highlight = (codeBlock: HTMLPreElement | null) => {
   paintTokenHighlights(codeBlock, tokens)
 }
 
+const submitHandler = async (e: Event) => {
+  e.preventDefault()
+  const result = await fetch('/new', {
+    method: 'POST',
+    body: new FormData(e.target as HTMLFormElement),
+  })
+
+  if (result.status >= 400) {
+    console.error('Failed to create post')
+    return
+  }
+
+  window.location.replace('/dashboard')
+}
+
 export const Editor = () => {
   const codeBlockRef = useRef<HTMLPreElement>(null)
+  const [code, setCode] = useState<string>()
   useEffect(() => {
     Prism.manual = true
     tokenTypes.forEach((tokenType) => {
@@ -102,11 +119,15 @@ export const Editor = () => {
   }, [])
 
   return (
-    <pre
-      contenteditable
-      ref={codeBlockRef}
-      onKeyUp={() => highlight(codeBlockRef.current)}
-      onKeyDown={handleKeydown}
-    ></pre>
+    <form method="post" onSubmit={submitHandler}>
+      <pre
+        contenteditable="plaintext-only"
+        ref={codeBlockRef}
+        onKeyUp={() => highlight(codeBlockRef.current, setCode)}
+        onKeyDown={handleKeydown}
+      ></pre>
+      <input type="hidden" name="code" value={code} />
+      <button type="submit">Submit</button>
+    </form>
   )
 }
