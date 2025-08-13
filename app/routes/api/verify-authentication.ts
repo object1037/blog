@@ -83,7 +83,10 @@ export const POST = createRoute(getCredentials, async (c) => {
       ...rest,
     })
 
-    Promise.all([c.env.KV.put('credential', credentialStr), createSession(c)])
+    await Promise.all([
+      c.env.KV.put('credential', credentialStr),
+      createSession(c),
+    ])
   }
 
   return c.json({ verified: verified })
