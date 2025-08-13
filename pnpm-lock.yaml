@@ -20,6 +20,9 @@ importers:
       '@simplewebauthn/server':
         specifier: ^13.1.2
         version: 13.1.2
+      '@types/prismjs':
+        specifier: ^1.26.5
+        version: 1.26.5
       drizzle-orm:
         specifier: ^0.44.4
         version: 0.44.4(@cloudflare/workers-types@4.20250807.0)(better-sqlite3@12.2.0)(kysely@0.28.5)
@@ -32,6 +35,9 @@ importers:
       honox:
         specifier: ^0.1.43
         version: 0.1.43(hono@4.9.0)(miniflare@4.20250803.0)(wrangler@4.28.1(@cloudflare/workers-types@4.20250807.0))
+      prismjs:
+        specifier: ^1.30.0
+        version: 1.30.0
       valibot:
         specifier: ^1.1.0
         version: 1.1.0(typescript@5.9.2)
@@ -1012,6 +1018,9 @@ packages:
   '@types/node@24.2.1':
     resolution: {integrity: sha512-DRh5K+ka5eJic8CjH7td8QpYEV6Zo10gfRkjHCO3weqZHWDtAaSTFtl4+VMqOJ4N5jcuhZ9/l+yy8rVgw7BQeQ==}
 
+  '@types/prismjs@1.26.5':
+    resolution: {integrity: sha512-AUZTa7hQ2KY5L7AmtSiqxlhWxb4ina0yd8hNbl4TWuqnv/pFP0nDMb3YrfSBf4hJVGLh2YEIBfKaBW/9UEl6IQ==}
+
   '@typescript-eslint/project-service@8.39.0':
     resolution: {integrity: sha512-CTzJqaSq30V/Z2Og9jogzZt8lJRR5TKlAdXmWgdu4hgcC9Kww5flQ+xFvMxIBWVNdxJO7OifgdOK4PokMIWPew==}
     engines: {node: ^18.18.0 || ^20.9.0 || >=21.1.0}
@@ -1694,6 +1703,10 @@ packages:
     resolution: {integrity: sha512-x2qVN3oSOp3D05ihCd8XdkIPuEQsyte7PSxzLqiRgktu79S5Dr1I75/S+zAup8/0cwjoiJTQztE9h0/sWp9bJQ==}
     engines: {node: '>=18'}
     hasBin: true
+
+  prismjs@1.30.0:
+    resolution: {integrity: sha512-DEvV2ZF2r2/63V+tK8hQvrR2ZGn10srHbXviTlcv7Kpzw8jWiNTqbVgjO3IY8RxrrOUF8VPMQQFysYYYv0YZxw==}
+    engines: {node: '>=6'}
 
   pump@3.0.3:
     resolution: {integrity: sha512-todwxLMY7/heScKmntwQG8CXVkWUOdYxIvY2s0VWAAMh/nd8SoYiRaKjlr7+iCs984f2P8zvrfWcDDYVb73NfA==}
@@ -2584,6 +2597,8 @@ snapshots:
     dependencies:
       undici-types: 7.10.0
 
+  '@types/prismjs@1.26.5': {}
+
   '@typescript-eslint/project-service@8.39.0(typescript@5.9.2)':
     dependencies:
       '@typescript-eslint/tsconfig-utils': 8.39.0(typescript@5.9.2)
@@ -3257,6 +3272,8 @@ snapshots:
       typescript: 5.9.2
     transitivePeerDependencies:
       - supports-color
+
+  prismjs@1.30.0: {}
 
   pump@3.0.3:
     dependencies:

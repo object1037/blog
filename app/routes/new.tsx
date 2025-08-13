@@ -1,4 +1,5 @@
 import { createRoute } from 'honox/factory'
+import { Editor } from '../islands/editor'
 import { requireAuth } from '../middlewares/requireAuth'
 
 export default createRoute(requireAuth, (c) => {
@@ -6,7 +7,8 @@ export default createRoute(requireAuth, (c) => {
   return c.render(
     <>
       <h1>New post</h1>
-      <p>{session?.createdAt}</p>
+      <p>{session?.userAgent}</p>
+      <Editor />
     </>,
   )
 })

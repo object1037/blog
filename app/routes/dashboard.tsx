@@ -6,7 +6,7 @@ export default createRoute(requireAuth, (c) => {
   return c.render(
     <>
       <h1>Dashboard</h1>
-      <p>{session?.createdAt}</p>
+      <p>{session?.userAgent}</p>
       <form action="/logout" method="post">
         <button type="submit">Logout</button>
       </form>

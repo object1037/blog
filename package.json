@@ -26,10 +26,12 @@
     "@markdoc/markdoc": "^0.5.4",
     "@simplewebauthn/browser": "^13.1.2",
     "@simplewebauthn/server": "^13.1.2",
+    "@types/prismjs": "^1.26.5",
     "drizzle-orm": "^0.44.4",
     "drizzle-valibot": "^0.4.2",
     "hono": "^4.9.0",
     "honox": "^0.1.43",
+    "prismjs": "^1.30.0",
     "valibot": "^1.1.0"
   },
   "devDependencies": {
