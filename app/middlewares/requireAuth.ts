@@ -1,4 +1,4 @@
-import { getCookie } from 'hono/cookie'
+import { deleteCookie, getCookie } from 'hono/cookie'
 import { createMiddleware } from 'hono/factory'
 import * as v from 'valibot'
 
@@ -14,6 +14,10 @@ export const requireAuth = createMiddleware(async (c, next) => {
     const result = v.safeParse(sessionSchema, sessionData)
     if (result.success) {
       session = result.output
+    } else {
+      deleteCookie(c, 'sessionId', {
+        secure: true,
+      })
     }
   }
 

@@ -7,6 +7,7 @@ export const createSession = async (c: Context) => {
     httpOnly: true,
     secure: true,
     sameSite: 'Strict',
+    maxAge: 86400,
   })
   await c.env.KV.put(
     `session:${sessionId}`,
