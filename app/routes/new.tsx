@@ -9,10 +9,14 @@ export const POST = createRoute(requireAuth, async (c) => {
   const code = formData.get('code')
   const result = parseMarkdown(typeof code === 'string' ? code : '')
   if (!result.success) {
-    console.log(result.errors)
-    throw new HTTPException(400, { message: 'Markdoc validation error' })
+    const message =
+      result.errors === 'Bad Frontmatter'
+        ? 'Bad Frontmatter'
+        : 'Markdoc validation error'
+    throw new HTTPException(400, { message })
   }
   console.log(result.frontmatter)
+  console.log(code)
   return c.text('Post created successfully', 201)
 })
 

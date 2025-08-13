@@ -1,10 +1,6 @@
-import type { getTags } from '../services/db'
+import type { Tags } from '../services/db'
 
-export const TagList = ({
-  tags,
-}: {
-  tags: Awaited<ReturnType<typeof getTags>>
-}) => {
+export const TagList = ({ tags }: { tags: Tags }) => {
   return (
     <ul>
       {tags.map((tag) => (

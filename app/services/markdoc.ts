@@ -1,4 +1,10 @@
 import Markdoc, { type ValidateError } from '@markdoc/markdoc'
+import * as v from 'valibot'
+import { type FrontMatter, parseFrontmatter } from './db'
+
+type ParsedResult =
+  | { success: false; errors: ValidateError[] | 'Bad Frontmatter' }
+  | { success: true; frontmatter: FrontMatter }
 
 export const markdownToHtml = (markdown: string) => {
   const ast = Markdoc.parse(markdown)
@@ -7,11 +13,7 @@ export const markdownToHtml = (markdown: string) => {
   return html
 }
 
-export const parseMarkdown = (
-  markdown: string,
-):
-  | { success: false; errors: ValidateError[] }
-  | { success: true; frontmatter: any } => {
+export const parseMarkdown = (markdown: string): ParsedResult => {
   const ast = Markdoc.parse(markdown)
   const errors = Markdoc.validate(ast)
   if (errors.length > 0) {
@@ -20,9 +22,17 @@ export const parseMarkdown = (
       errors,
     }
   }
-  const frontmatter = ast.attributes.frontmatter
+  const result = v.safeParse(parseFrontmatter, ast.attributes.frontmatter)
+  if (!result.success) {
+    console.log(result.issues)
+    return {
+      success: false,
+      errors: 'Bad Frontmatter',
+    }
+  }
+
   return {
     success: true,
-    frontmatter,
+    frontmatter: result.output,
   }
 }

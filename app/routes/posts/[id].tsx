@@ -4,11 +4,7 @@ import { getPostByID } from '../../services/db'
 import { markdownToHtml } from '../../services/markdoc'
 
 export default createRoute(async (c) => {
-  const id_txt = c.req.param('id')
-  const id = parseInt(id_txt, 10)
-  if (Number.isNaN(id)) {
-    return c.notFound()
-  }
+  const id = c.req.param('id')
   const post = await getPostByID(c.env.DB, id)
   if (!post) {
     return c.notFound()

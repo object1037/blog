@@ -2,7 +2,7 @@ import { relations } from 'drizzle-orm'
 import { integer, primaryKey, sqliteTable, text } from 'drizzle-orm/sqlite-core'
 
 export const posts = sqliteTable('posts', {
-  id: integer('id').primaryKey(),
+  id: text('id').primaryKey(),
   title: text('title').notNull(),
   description: text('description').notNull(),
   public: integer('public', { mode: 'boolean' }),
@@ -16,7 +16,7 @@ export const postsRelations = relations(posts, ({ many }) => ({
 export const postsToTags = sqliteTable(
   'posts_to_tags',
   {
-    postId: integer('post_id')
+    postId: text('post_id')
       .notNull()
       .references(() => posts.id, { onDelete: 'cascade' }),
     tagName: text('tag_name').notNull(),
