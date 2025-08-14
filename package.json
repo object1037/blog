@@ -30,7 +30,6 @@
     "drizzle-valibot": "^0.4.2",
     "hono": "^4.9.0",
     "honox": "^0.1.43",
-    "js-yaml": "^4.1.0",
     "prismjs": "^1.30.0",
     "valibot": "^1.1.0"
   },
@@ -38,7 +37,6 @@
     "@biomejs/biome": "^2.1.4",
     "@hono/vite-build": "^1.7.0",
     "@hono/vite-dev-server": "^0.20.1",
-    "@types/js-yaml": "^4.0.9",
     "@types/node": "^24.2.1",
     "@types/prismjs": "^1.26.5",
     "better-sqlite3": "^12.2.0",

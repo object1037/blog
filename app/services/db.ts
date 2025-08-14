@@ -1,8 +1,8 @@
 import { and, count, desc, eq, inArray } from 'drizzle-orm'
 import { drizzle } from 'drizzle-orm/d1'
-import yaml from 'js-yaml'
 import * as v from 'valibot'
 import * as schema from '../lib/schema'
+import { parseYaml } from '../lib/yaml'
 
 const { posts, postsToTags } = schema
 
@@ -23,9 +23,7 @@ const frontmatterSchema = v.object({
 
 export const parseFrontmatter = v.pipe(
   v.string(),
-  v.transform((input) => {
-    return yaml.load(input)
-  }),
+  v.transform((input) => parseYaml(input)),
   frontmatterSchema,
   v.transform(({ id, ...rest }) => {
     return {
