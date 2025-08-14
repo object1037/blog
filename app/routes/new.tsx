@@ -1,38 +1,23 @@
 import { vValidator } from '@hono/valibot-validator'
-import type { ValidateError } from '@markdoc/markdoc'
 import { createRoute } from 'honox/factory'
 import * as v from 'valibot'
-import { Editor } from '../islands/editor'
+import { EditPage } from '../components/editPage'
 import { requireAuth } from '../middlewares/requireAuth'
 import { addPost } from '../services/db'
 import { parseMarkdown } from '../services/markdoc'
 
-const Page = ({
-  content,
-  errors,
-}: {
-  content: string
-  errors: ValidateError[]
-}) => {
-  return (
-    <>
-      <h1>New post</h1>
-      <Editor initialValue={content} />
-      {errors.length > 0 && (
-        <ul>
-          {errors.map(({ error }) => (
-            <li key={error.message}>
-              [{error.id}]: {error.message}
-            </li>
-          ))}
-        </ul>
-      )}
-    </>
-  )
-}
+const template = `---
+id: 
+title: 
+description: 
+tags: []
+public: false
+---
+
+`
 
 export default createRoute(requireAuth, (c) => {
-  return c.render(<Page content="" errors={[]} />)
+  return c.render(<EditPage content={template} errors={[]} />)
 })
 
 export const POST = createRoute(
@@ -43,7 +28,7 @@ export const POST = createRoute(
     const result = parseMarkdown(typeof content === 'string' ? content : '')
     if (!result.success) {
       console.log(result.errors)
-      return c.render(<Page content={content} errors={result.errors} />)
+      return c.render(<EditPage content={content} errors={result.errors} />)
     }
 
     const { tags, ...rest } = result.frontmatter

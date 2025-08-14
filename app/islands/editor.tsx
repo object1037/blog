@@ -100,7 +100,7 @@ export const Editor = ({ initialValue = '' }: { initialValue?: string }) => {
   }, [content])
 
   return (
-    <form method="post">
+    <form method="post" action="/new">
       <pre ref={codeBlockRef}>{content}</pre>
       <textarea
         name="content"

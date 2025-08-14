@@ -1,7 +1,7 @@
 import { createRoute } from 'honox/factory'
-import { TagList } from '../../components/tagList'
-import { getPostByID } from '../../services/db'
-import { markdownToHtml } from '../../services/markdoc'
+import { TagList } from '../../../components/tagList'
+import { getPostByID } from '../../../services/db'
+import { markdownToHtml } from '../../../services/markdoc'
 
 export default createRoute(async (c) => {
   const id = c.req.param('id')
