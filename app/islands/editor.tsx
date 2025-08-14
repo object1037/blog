@@ -66,7 +66,7 @@ const paintTokenHighlights = (
   }
 }
 
-const highlight = (codeBlock: HTMLElement | null, code: string) => {
+const highlight = (codeBlock: HTMLElement | null, content: string) => {
   if (!codeBlock) return
 
   const mdGrammer = Prism.languages.markdown
@@ -75,7 +75,7 @@ const highlight = (codeBlock: HTMLElement | null, code: string) => {
     console.log(Prism.languages)
     return
   }
-  const tokens = Prism.tokenize(code, mdGrammer)
+  const tokens = Prism.tokenize(content, mdGrammer)
 
   tokenTypes.forEach((tokenType) => {
     CSS.highlights.get(tokenType)?.clear()
@@ -84,25 +84,9 @@ const highlight = (codeBlock: HTMLElement | null, code: string) => {
   paintTokenHighlights(codeBlock, tokens)
 }
 
-const submitHandler = async (e: Event) => {
-  e.preventDefault()
-  const result = await fetch('/new', {
-    method: 'POST',
-    body: new FormData(e.target as HTMLFormElement),
-  })
-
-  if (result.status >= 400) {
-    console.error('Failed to create post')
-    return
-  }
-
-  console.log('Post created successfully')
-  // window.location.replace('/dashboard')
-}
-
-export const Editor = () => {
+export const Editor = ({ initialValue = '' }: { initialValue?: string }) => {
   const codeBlockRef = useRef<HTMLElement>(null)
-  const [code, setCode] = useState('')
+  const [content, setContent] = useState(initialValue)
 
   useEffect(() => {
     Prism.manual = true
@@ -112,16 +96,16 @@ export const Editor = () => {
   }, [])
 
   useEffect(() => {
-    highlight(codeBlockRef.current, code)
-  }, [code])
+    highlight(codeBlockRef.current, content)
+  }, [content])
 
   return (
-    <form method="post" onSubmit={submitHandler}>
-      <pre ref={codeBlockRef}>{code}</pre>
+    <form method="post">
+      <pre ref={codeBlockRef}>{content}</pre>
       <textarea
-        name="code"
-        value={code}
-        onChange={(e) => setCode((e.target as HTMLTextAreaElement).value)}
+        name="content"
+        value={content}
+        onChange={(e) => setContent((e.target as HTMLTextAreaElement).value)}
         rows={4}
         cols={40}
       />
