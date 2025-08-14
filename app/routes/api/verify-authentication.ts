@@ -1,3 +1,4 @@
+import { vValidator } from '@hono/valibot-validator'
 import {
   type AuthenticationResponseJSON,
   verifyAuthenticationResponse,
@@ -42,52 +43,51 @@ const getVerification = async (
   }
 }
 
-export const POST = createRoute(getCredentials, async (c) => {
-  let authenticationResponse: AuthenticationResponseJSON
-  try {
-    const body = await c.req.json()
-    authenticationResponse = v.parse(authenticationRespSchema, body)
-  } catch (e) {
-    console.error(e)
-    throw new HTTPException(400, { message: 'Invalid request body' })
-  }
+export const POST = createRoute(
+  vValidator('json', authenticationRespSchema),
+  getCredentials,
+  async (c) => {
+    const authenticationResponse = c.req.valid('json')
 
-  const credential = c.get('credential')
-  if (!credential) {
-    throw new HTTPException(400, { message: 'No credentials found' })
-  }
+    const credential = c.get('credential')
+    if (!credential) {
+      throw new HTTPException(400, { message: 'No credentials found' })
+    }
 
-  let verification: Awaited<ReturnType<typeof getVerification>>
-  try {
-    const authOptStr = await c.env.KV.get('authenticationOptions')
-    const { challenge } = v.parse(parseAuthOptSchema, authOptStr)
+    let verification: Awaited<ReturnType<typeof getVerification>>
+    try {
+      const authOptStr = await c.env.KV.get('authenticationOptions')
+      const { challenge } = v.parse(parseAuthOptSchema, authOptStr)
 
-    verification = await getVerification(
-      authenticationResponse,
-      challenge,
-      credential,
-      c.env.RP_ID,
-      c.env.ORIGIN_PORT,
-    )
-  } catch (e) {
-    console.error(e)
-    throw new HTTPException(500, { message: 'Failed to verify authentication' })
-  }
+      verification = await getVerification(
+        authenticationResponse,
+        challenge,
+        credential,
+        c.env.RP_ID,
+        c.env.ORIGIN_PORT,
+      )
+    } catch (e) {
+      console.error(e)
+      throw new HTTPException(500, {
+        message: 'Failed to verify authentication',
+      })
+    }
 
-  const { verified, authenticationInfo } = verification
+    const { verified, authenticationInfo } = verification
 
-  if (verified && authenticationInfo) {
-    const { counter: _c, ...rest } = credential
-    const credentialStr = v.parse(stringifyCredentialSchema, {
-      counter: authenticationInfo.newCounter,
-      ...rest,
-    })
+    if (verified && authenticationInfo) {
+      const { counter: _c, ...rest } = credential
+      const credentialStr = v.parse(stringifyCredentialSchema, {
+        counter: authenticationInfo.newCounter,
+        ...rest,
+      })
 
-    await Promise.all([
-      c.env.KV.put('credential', credentialStr),
-      createSession(c),
-    ])
-  }
+      await Promise.all([
+        c.env.KV.put('credential', credentialStr),
+        createSession(c),
+      ])
+    }
 
-  return c.json({ verified: verified })
-})
+    return c.json({ verified: verified })
+  },
+)

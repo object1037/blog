@@ -27,5 +27,6 @@ export const deleteSession = async (c: Context<Env>) => {
     secure: true,
   })
   if (!deletedCookie) return
-  await c.env.KV.delete(`session:${deletedCookie}`)
+  const sessionId = deletedCookie.split('.')[0]
+  await c.env.KV.delete(`session:${sessionId}`)
 }

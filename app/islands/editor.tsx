@@ -37,7 +37,7 @@ export const tokenTypes = [
   'url',
 ]
 
-const handleKeydown = (e: KeyboardEvent) => {
+const _handleKeydown = (e: KeyboardEvent) => {
   if (e.code === 'Tab') {
     document.execCommand('insertHTML', false, '  ')
     e.preventDefault()

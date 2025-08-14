@@ -1,3 +1,4 @@
+import { vValidator } from '@hono/valibot-validator'
 import {
   type RegistrationResponseJSON,
   verifyRegistrationResponse,
@@ -38,45 +39,41 @@ const getVerification = async (
   }
 }
 
-export const POST = createRoute(async (c) => {
-  let registrationResponse: RegistrationResponseJSON
-  try {
-    const body = await c.req.json()
-    registrationResponse = v.parse(registrationRespSchema, body)
-  } catch (e) {
-    console.error(e)
-    throw new HTTPException(400, { message: 'Invalid request body' })
-  }
+export const POST = createRoute(
+  vValidator('json', registrationRespSchema),
+  async (c) => {
+    const registrationResponse = c.req.valid('json')
 
-  let verification: Awaited<ReturnType<typeof getVerification>>
-  try {
-    const regOptStr = await c.env.KV.get('registrationOptions')
-    const { challenge } = v.parse(parseRegOptSchema, regOptStr)
+    let verification: Awaited<ReturnType<typeof getVerification>>
+    try {
+      const regOptStr = await c.env.KV.get('registrationOptions')
+      const { challenge } = v.parse(parseRegOptSchema, regOptStr)
 
-    verification = await getVerification(
-      registrationResponse,
-      challenge,
-      c.env.RP_ID,
-      c.env.ORIGIN_PORT,
-    )
-  } catch (e) {
-    console.error(e)
-    throw new HTTPException(500, { message: 'Failed to verify registration' })
-  }
+      verification = await getVerification(
+        registrationResponse,
+        challenge,
+        c.env.RP_ID,
+        c.env.ORIGIN_PORT,
+      )
+    } catch (e) {
+      console.error(e)
+      throw new HTTPException(500, { message: 'Failed to verify registration' })
+    }
 
-  const { verified, registrationInfo } = verification
+    const { verified, registrationInfo } = verification
 
-  if (verified && registrationInfo) {
-    const credentialStr = v.parse(
-      stringifyCredentialSchema,
-      registrationInfo.credential,
-    )
+    if (verified && registrationInfo) {
+      const credentialStr = v.parse(
+        stringifyCredentialSchema,
+        registrationInfo.credential,
+      )
 
-    await Promise.all([
-      c.env.KV.put('credential', credentialStr),
-      createSession(c),
-    ])
-  }
+      await Promise.all([
+        c.env.KV.put('credential', credentialStr),
+        createSession(c),
+      ])
+    }
 
-  return c.json({ verified: verified })
-})
+    return c.json({ verified: verified })
+  },
+)
