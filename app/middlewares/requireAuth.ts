@@ -1,5 +1,5 @@
 import type { Env } from 'hono'
-import { deleteCookie, getCookie } from 'hono/cookie'
+import { deleteCookie, getSignedCookie } from 'hono/cookie'
 import { createMiddleware } from 'hono/factory'
 import * as v from 'valibot'
 
@@ -10,9 +10,9 @@ const sessionSchema = v.object({
 
 export const requireAuth = createMiddleware<Env>(async (c, next) => {
   let session: v.InferInput<typeof sessionSchema> | undefined
-  const sessionCookie = getCookie(c, 'sessionId')
-  if (sessionCookie) {
-    const sessionData = await c.env.KV.get(`session:${sessionCookie}`, 'json')
+  const sessionId = await getSignedCookie(c, c.env.SECRET, 'sessionId')
+  if (sessionId) {
+    const sessionData = await c.env.KV.get(`session:${sessionId}`, 'json')
     const result = v.safeParse(sessionSchema, sessionData)
     if (result.success) {
       session = result.output
