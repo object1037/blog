@@ -25,6 +25,11 @@ const transportSchema = v.array(
   ]),
 )
 
+const attachmentSchema = v.union([
+  v.literal('platform'),
+  v.literal('cross-platform'),
+])
+
 const credentialCommonSchema = v.object({
   id: v.string(),
   transports: v.exactOptional(transportSchema),
@@ -85,7 +90,7 @@ const assertionResponseSchema = v.object({
 const respCommonSchema = v.object({
   id: v.string(),
   rawId: v.string(),
-  authenticatorAttachment: v.literal('platform'),
+  authenticatorAttachment: attachmentSchema,
   clientExtensionResults: v.object({
     appid: v.exactOptional(v.boolean()),
     credProps: v.exactOptional(
@@ -162,7 +167,7 @@ export const creationOptionSchema = v.object({
   excludeCredentials: v.exactOptional(v.array(publicKeyDescSchema)),
   authenticatorSelection: v.exactOptional(
     v.object({
-      authenticatorAttachment: v.literal('platform'),
+      authenticatorAttachment: attachmentSchema,
       requireResidentKey: v.exactOptional(v.boolean()),
       residentKey: v.literal('required'),
       userVerification: v.literal('required'),
@@ -183,7 +188,11 @@ export const requestOptionSchema = v.object({
   ...optionCommonSchema.entries,
   challenge: v.string(),
   rpId: v.exactOptional(v.string()),
-  allowCredentials: v.exactOptional(v.array(publicKeyDescSchema)),
+  allowCredentials: v.pipe(
+    v.array(publicKeyDescSchema),
+    v.minLength(1),
+    v.maxLength(1),
+  ),
   userVerification: v.literal('required'),
 }) satisfies v.GenericSchema<PublicKeyCredentialRequestOptionsJSON>
 

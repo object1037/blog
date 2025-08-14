@@ -19,6 +19,7 @@ export default createRoute(getCredentials, async (c) => {
       userVerification: 'required',
       authenticatorAttachment: 'platform',
     },
+    preferredAuthenticatorType: 'localDevice',
   })
 
   await c.env.KV.put('registrationOptions', JSON.stringify(options))
