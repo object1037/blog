@@ -25,6 +25,12 @@ export const parseFrontmatter = v.pipe(
   v.string(),
   v.transform((input) => parseYaml(input)),
   frontmatterSchema,
+  v.transform(({ public: isPublic, ...rest }) => {
+    return {
+      ...rest,
+      public: isPublic ?? true,
+    }
+  }),
 ) satisfies v.GenericSchema<string, FrontMatter>
 
 export const getPostByID = async (db_binding: D1Database, id: string) => {
