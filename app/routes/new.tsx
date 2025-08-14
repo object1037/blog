@@ -4,6 +4,7 @@ import { createRoute } from 'honox/factory'
 import * as v from 'valibot'
 import { Editor } from '../islands/editor'
 import { requireAuth } from '../middlewares/requireAuth'
+import { addPost } from '../services/db'
 import { parseMarkdown } from '../services/markdoc'
 
 const Page = ({
@@ -44,8 +45,16 @@ export const POST = createRoute(
       console.log(result.errors)
       return c.render(<Page content={content} errors={result.errors} />)
     }
-    console.log(result.frontmatter)
-    console.log(content)
+
+    const { tags, ...rest } = result.frontmatter
+
+    const post = {
+      ...rest,
+      content,
+    }
+
+    addPost(c.env.DB, post, tags)
+
     return c.redirect('/dashboard', 303)
   },
 )

@@ -1,4 +1,4 @@
-import { and, count, desc, eq, inArray } from 'drizzle-orm'
+import { and, count, desc, eq, inArray, notInArray } from 'drizzle-orm'
 import { drizzle } from 'drizzle-orm/d1'
 import * as v from 'valibot'
 import * as schema from '../lib/schema'
@@ -14,7 +14,7 @@ export type InsertPostsToTags = typeof postsToTags.$inferInsert
 export type FrontMatter = Omit<Post, 'content'> & { public?: boolean }
 
 const frontmatterSchema = v.object({
-  id: v.union([v.string(), v.number()]),
+  id: v.string(),
   title: v.string(),
   description: v.string(),
   public: v.exactOptional(v.boolean()),
@@ -25,12 +25,6 @@ export const parseFrontmatter = v.pipe(
   v.string(),
   v.transform((input) => parseYaml(input)),
   frontmatterSchema,
-  v.transform(({ id, ...rest }) => {
-    return {
-      id: String(id),
-      ...rest,
-    }
-  }),
 ) satisfies v.GenericSchema<string, FrontMatter>
 
 export const getPostByID = async (db_binding: D1Database, id: string) => {
@@ -71,6 +65,53 @@ export const getPublicPosts = async (db_binding: D1Database) => {
     .from(posts)
     .where(eq(posts.public, true))
     .orderBy(desc(posts.id))
+
+  return results
+}
+
+export const addPost = async (
+  db_binding: D1Database,
+  post: InsertPost,
+  tags: string[],
+) => {
+  const db = drizzle(db_binding, { schema })
+
+  const postTagDatas: InsertPostsToTags[] = tags.map((tag) => ({
+    postId: post.id,
+    tagName: tag,
+  }))
+
+  const updateTagQueries = [
+    db.insert(postsToTags).values(postTagDatas).onConflictDoNothing(),
+    db
+      .delete(postsToTags)
+      .where(
+        and(
+          eq(postsToTags.postId, post.id),
+          notInArray(postsToTags.tagName, tags),
+        ),
+      ),
+  ]
+  const deletePrivateTagQueries = [
+    db.delete(postsToTags).where(eq(postsToTags.postId, post.id)),
+  ]
+  const tagQueries = post.public ? updateTagQueries : deletePrivateTagQueries
+
+  const results = await db.batch([
+    db
+      .insert(posts)
+      .values(post)
+      .onConflictDoUpdate({ target: posts.id, set: post }),
+    ...tagQueries,
+  ])
+
+  return results
+}
+
+export const deletePost = async (db_binding: D1Database, id: string) => {
+  const db = drizzle(db_binding)
+
+  const results = await db.delete(posts).where(eq(posts.id, id))
 
   return results
 }

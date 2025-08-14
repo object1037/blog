@@ -40,7 +40,11 @@ export const parseYaml = (yaml: string) => {
             .split(',')
             .map((v) => stripQuotes(v.trim()))
         } else {
-          result[key] = stripQuotes(rawValue)
+          if (rawValue === 'true' || rawValue === 'false') {
+            result[key] = rawValue === 'true'
+          } else {
+            result[key] = stripQuotes(rawValue)
+          }
         }
         currentKey = undefined
         arrayBuffer = undefined
