@@ -44,10 +44,8 @@ const handleKeydown = (e: KeyboardEvent) => {
   }
 }
 
-const flattenTextNodes = (codeBlock: Node) => codeBlock.normalize()
-
 const paintTokenHighlights = (
-  codeBlock: HTMLPreElement,
+  codeBlock: HTMLElement,
   tokens: (string | Prism.Token)[],
 ) => {
   let pos = 0
@@ -68,13 +66,8 @@ const paintTokenHighlights = (
   }
 }
 
-const highlight = (
-  codeBlock: HTMLPreElement | null,
-  setCode: ReturnType<typeof useState<string>>[1],
-) => {
+const highlight = (codeBlock: HTMLElement | null, code: string) => {
   if (!codeBlock) return
-
-  flattenTextNodes(codeBlock)
 
   const mdGrammer = Prism.languages.markdown
   if (!mdGrammer) {
@@ -82,9 +75,7 @@ const highlight = (
     console.log(Prism.languages)
     return
   }
-  const innerText = codeBlock.innerText
-  setCode(innerText)
-  const tokens = Prism.tokenize(innerText, mdGrammer)
+  const tokens = Prism.tokenize(code, mdGrammer)
 
   tokenTypes.forEach((tokenType) => {
     CSS.highlights.get(tokenType)?.clear()
@@ -105,12 +96,14 @@ const submitHandler = async (e: Event) => {
     return
   }
 
-  window.location.replace('/dashboard')
+  console.log('Post created successfully')
+  // window.location.replace('/dashboard')
 }
 
 export const Editor = () => {
-  const codeBlockRef = useRef<HTMLPreElement>(null)
-  const [code, setCode] = useState<string>()
+  const codeBlockRef = useRef<HTMLElement>(null)
+  const [code, setCode] = useState('')
+
   useEffect(() => {
     Prism.manual = true
     tokenTypes.forEach((tokenType) => {
@@ -118,15 +111,20 @@ export const Editor = () => {
     })
   }, [])
 
+  useEffect(() => {
+    highlight(codeBlockRef.current, code)
+  }, [code])
+
   return (
     <form method="post" onSubmit={submitHandler}>
-      <pre
-        contenteditable="plaintext-only"
-        ref={codeBlockRef}
-        onKeyUp={() => highlight(codeBlockRef.current, setCode)}
-        onKeyDown={handleKeydown}
-      ></pre>
-      <input type="hidden" name="code" value={code} />
+      <pre ref={codeBlockRef}>{code}</pre>
+      <textarea
+        name="code"
+        value={code}
+        onChange={(e) => setCode((e.target as HTMLTextAreaElement).value)}
+        rows={4}
+        cols={40}
+      />
       <button type="submit">Submit</button>
     </form>
   )
