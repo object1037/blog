@@ -37,7 +37,7 @@ export const tokenTypes = [
   'url',
 ]
 
-const _handleKeydown = (e: KeyboardEvent) => {
+const handleKeydown = (e: KeyboardEvent) => {
   if (e.code === 'Tab') {
     document.execCommand('insertHTML', false, '  ')
     e.preventDefault()
@@ -106,6 +106,7 @@ export const Editor = ({ initialValue = '' }: { initialValue?: string }) => {
         name="content"
         value={content}
         onChange={(e) => setContent((e.target as HTMLTextAreaElement).value)}
+        onKeyDown={handleKeydown}
         rows={4}
         cols={40}
       />
