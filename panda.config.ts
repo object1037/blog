@@ -31,6 +31,37 @@ export default defineConfig({
     extend: {},
   },
 
+  patterns: {
+    extend: {
+      container: {
+        transform(props) {
+          return {
+            position: 'relative',
+            w: 'full',
+            maxWidth: '4xl',
+            mx: 'auto',
+            px: { base: '4', md: '6', lg: '8' },
+            ...props,
+          }
+        },
+      },
+      button: {
+        description: 'A simple button',
+        transform(props) {
+          return {
+            fontSize: 'sm',
+            fontWeight: 'medium',
+            rounded: 'sm',
+            _hover: { bg: 'neutral.200' },
+            transition: 'background',
+            cursor: 'pointer',
+            ...props,
+          }
+        },
+      },
+    },
+  },
+
   // The output directory for your css system
   outdir: 'styled-system',
 
