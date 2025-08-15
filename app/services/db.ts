@@ -28,7 +28,7 @@ export const parseFrontmatter = v.pipe(
   v.transform(({ public: isPublic, ...rest }) => {
     return {
       ...rest,
-      public: isPublic ?? true,
+      public: isPublic ?? false,
     }
   }),
 ) satisfies v.GenericSchema<string, FrontMatter>
