@@ -7,7 +7,6 @@ import { HTTPException } from 'hono/http-exception'
 import { createRoute } from 'honox/factory'
 import * as v from 'valibot'
 import {
-  parseRegOptSchema,
   registrationRespSchema,
   stringifyCredentialSchema,
 } from '../../lib/webauthn'
@@ -46,12 +45,19 @@ export const POST = createRoute(
 
     let verification: Awaited<ReturnType<typeof getVerification>>
     try {
-      const regOptStr = await c.env.KV.get('registrationOptions')
-      const { challenge } = v.parse(parseRegOptSchema, regOptStr)
+      const regChallenge = await c.env.KV.get('registrationChallenge')
+
+      if (!regChallenge) {
+        throw new HTTPException(500, {
+          message: 'No registration challenge found',
+        })
+      }
+
+      await c.env.KV.delete('registrationChallenge')
 
       verification = await getVerification(
         registrationResponse,
-        challenge,
+        regChallenge,
         c.env.RP_ID,
         c.env.ORIGIN_PORT,
       )

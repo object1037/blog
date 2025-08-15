@@ -9,7 +9,6 @@ import { createRoute } from 'honox/factory'
 import * as v from 'valibot'
 import {
   authenticationRespSchema,
-  parseAuthOptSchema,
   stringifyCredentialSchema,
 } from '../../lib/webauthn'
 import { getCredentials } from '../../middlewares/getCredentials'
@@ -56,12 +55,19 @@ export const POST = createRoute(
 
     let verification: Awaited<ReturnType<typeof getVerification>>
     try {
-      const authOptStr = await c.env.KV.get('authenticationOptions')
-      const { challenge } = v.parse(parseAuthOptSchema, authOptStr)
+      const authChallenge = await c.env.KV.get('authenticationChallenge')
+
+      if (!authChallenge) {
+        throw new HTTPException(500, {
+          message: 'No authentication challenge found',
+        })
+      }
+
+      await c.env.KV.delete('authenticationChallenge')
 
       verification = await getVerification(
         authenticationResponse,
-        challenge,
+        authChallenge,
         credential,
         c.env.RP_ID,
         c.env.ORIGIN_PORT,

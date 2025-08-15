@@ -18,7 +18,7 @@ export default createRoute(getCredentials, async (c) => {
     userVerification: 'required',
   })
 
-  await c.env.KV.put('authenticationOptions', JSON.stringify(options))
+  await c.env.KV.put('authenticationChallenge', options.challenge)
 
   return c.json(options)
 })

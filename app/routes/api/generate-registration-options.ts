@@ -22,7 +22,7 @@ export default createRoute(getCredentials, async (c) => {
     preferredAuthenticatorType: 'localDevice',
   })
 
-  await c.env.KV.put('registrationOptions', JSON.stringify(options))
+  await c.env.KV.put('registrationChallenge', options.challenge)
 
   return c.json(options)
 })
