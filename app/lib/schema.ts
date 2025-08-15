@@ -1,11 +1,24 @@
 import { relations } from 'drizzle-orm'
-import { integer, primaryKey, sqliteTable, text } from 'drizzle-orm/sqlite-core'
+import {
+  customType,
+  integer,
+  primaryKey,
+  sqliteTable,
+  text,
+} from 'drizzle-orm/sqlite-core'
+
+const primaryKeyRequired = customType<{
+  data: number
+  driverData: number
+  notNull: true
+  default: false // default value is required
+}>({ dataType: () => 'integer PRIMARY KEY NOT NULL' })
 
 export const posts = sqliteTable('posts', {
-  id: text('id').primaryKey(),
+  id: primaryKeyRequired('id'),
   title: text('title').notNull(),
   description: text('description').notNull(),
-  public: integer('public', { mode: 'boolean' }),
+  public: integer('public', { mode: 'boolean' }).notNull(),
   content: text('content').notNull(),
 })
 
@@ -16,7 +29,7 @@ export const postsRelations = relations(posts, ({ many }) => ({
 export const postsToTags = sqliteTable(
   'posts_to_tags',
   {
-    postId: text('post_id')
+    postId: integer('post_id')
       .notNull()
       .references(() => posts.id, { onDelete: 'cascade' }),
     tagName: text('tag_name').notNull(),

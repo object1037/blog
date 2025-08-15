@@ -11,29 +11,30 @@ export type Posts = Awaited<ReturnType<typeof getPublicPosts>>
 export type Tags = NonNullable<Awaited<ReturnType<typeof getTags>>>
 export type InsertPost = typeof posts.$inferInsert
 export type InsertPostsToTags = typeof postsToTags.$inferInsert
-export type FrontMatter = Omit<Post, 'content'> & { public?: boolean }
+export type FrontMatter = Omit<Post, 'content'> & { public: boolean }
 
 const frontmatterSchema = v.object({
-  id: v.string(),
+  id: v.number(),
   title: v.string(),
   description: v.string(),
-  public: v.exactOptional(v.boolean()),
+  public: v.boolean(),
   tags: v.array(v.string()),
 })
 
 export const parseFrontmatter = v.pipe(
   v.string(),
   v.transform((input) => parseYaml(input)),
-  frontmatterSchema,
-  v.transform(({ public: isPublic, ...rest }) => {
+  v.transform(({ id, public: isPublic, ...rest }) => {
     return {
       ...rest,
+      id: Number(id),
       public: isPublic ?? false,
     }
   }),
+  frontmatterSchema,
 ) satisfies v.GenericSchema<string, FrontMatter>
 
-export const getPostByID = async (db_binding: D1Database, id: string) => {
+export const getPostByID = async (db_binding: D1Database, id: number) => {
   const db = drizzle(db_binding, { schema })
   const result = await db.query.posts.findFirst({
     where: and(eq(posts.id, id), eq(posts.public, true)),
@@ -114,7 +115,7 @@ export const addPost = async (
   return results
 }
 
-export const deletePost = async (db_binding: D1Database, id: string) => {
+export const deletePost = async (db_binding: D1Database, id: number) => {
   const db = drizzle(db_binding)
 
   const results = await db.delete(posts).where(eq(posts.id, id))
