@@ -9,12 +9,7 @@ declare module 'hono' {
   interface Env {
     Variables: {
       credential: WebAuthnCredential | undefined
-      session:
-        | {
-            createdAt: number
-            userAgent: string
-          }
-        | undefined
+      session: boolean
     }
     Bindings: CloudflareEnv
   }
