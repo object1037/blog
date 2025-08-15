@@ -3,8 +3,9 @@
   "type": "module",
   "scripts": {
     "postinstall": "pnpm typegen",
-    "dev": "vite",
-    "build": "vite build --mode client && vite build",
+    "prepare": "panda codegen",
+    "dev": "concurrently \"vite\" \"panda --watch\"",
+    "build": "panda && vite build --mode client && vite build",
     "preview": "wrangler dev -e=preview",
     "deploy": "pnpm run build && wrangler deploy",
     "check": "biome ci ./app vite.config.ts",
@@ -37,11 +38,15 @@
     "@biomejs/biome": "^2.1.4",
     "@hono/vite-build": "^1.7.0",
     "@hono/vite-dev-server": "^0.20.1",
+    "@pandacss/dev": "^1.0.1",
+    "@pandacss/studio": "^1.0.1",
     "@types/node": "^24.2.1",
     "@types/prismjs": "^1.26.5",
     "better-sqlite3": "^12.2.0",
+    "concurrently": "^9.2.0",
     "drizzle-kit": "^0.31.4",
     "vite": "^7.1.1",
     "wrangler": "^4.28.1"
-  }
+  },
+  "packageManager": "pnpm@10.14.0+sha512.ad27a79641b49c3e481a16a805baa71817a04bbe06a38d17e60e2eaee83f6a146c6a688125f5792e48dd5ba30e7da52a5cda4c3992b9ccf333f9ce223af84748"
 }

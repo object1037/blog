@@ -1,6 +1,4 @@
-body {
-  border: red 1px solid;
-}
+@import "../styled-system/styles.css";
 
 /* From prism.css */
 ::highlight(parameter) {

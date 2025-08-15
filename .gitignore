@@ -34,3 +34,7 @@ lerna-debug.log*
 # misc
 .DS_Store
 pnpm-workspace.yaml
+
+## Panda
+styled-system
+styled-system-studio
