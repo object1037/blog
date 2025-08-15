@@ -14,11 +14,10 @@ export default createRoute(async (c) => {
 
   return c.render(
     <div>
-      <h1>Post {id}</h1>
-      <h2>{post.title}</h2>
       <TagList tags={post.tags.map((tag) => ({ name: tag, count: 0 }))} />
       {/** biome-ignore lint/security/noDangerouslySetInnerHtml: html is safe */}
       <div dangerouslySetInnerHTML={{ __html: parsed }} />
     </div>,
+    { heading: post.title },
   )
 })

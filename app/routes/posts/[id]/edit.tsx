@@ -10,5 +10,7 @@ export default createRoute(requireAuth, async (c) => {
     return c.notFound()
   }
 
-  return c.render(<EditPage content={post.content} errors={[]} />)
+  return c.render(<EditPage content={post.content} errors={[]} />, {
+    heading: `Edit Post: ${post.title}`,
+  })
 })

@@ -10,7 +10,6 @@ export const EditPage = ({
 }) => {
   return (
     <>
-      <h1>New post</h1>
       <Editor initialValue={content} />
       {errors.length > 0 && (
         <ul>

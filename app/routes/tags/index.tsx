@@ -8,8 +8,8 @@ export default createRoute(async (c) => {
   return c.render(
     <div>
       <title>Blog Tags</title>
-      <h1>Tags</h1>
       <TagList tags={tags} />
     </div>,
+    { heading: 'Tags' },
   )
 })

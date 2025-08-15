@@ -8,7 +8,6 @@ export default createRoute(async (c) => {
   return c.render(
     <div>
       <title>ゆるふわインターネット</title>
-      <h1>Posts</h1>
       <ul>
         {posts.map((post) => (
           <li key={post.id}>
@@ -17,5 +16,6 @@ export default createRoute(async (c) => {
         ))}
       </ul>
     </div>,
+    { heading: 'Posts' },
   )
 })

@@ -13,7 +13,6 @@ export default createRoute(async (c) => {
   return c.render(
     <div>
       <title>{tag}</title>
-      <h1>Tag: {tag}</h1>
       <ul>
         {postsWithTag.map((post) => (
           <li key={post.id}>
@@ -22,5 +21,6 @@ export default createRoute(async (c) => {
         ))}
       </ul>
     </div>,
+    { heading: tag },
   )
 })

@@ -17,7 +17,9 @@ public: false
 `
 
 export default createRoute(requireAuth, (c) => {
-  return c.render(<EditPage content={template} errors={[]} />)
+  return c.render(<EditPage content={template} errors={[]} />, {
+    heading: 'New Post',
+  })
 })
 
 export const POST = createRoute(
@@ -28,7 +30,9 @@ export const POST = createRoute(
     const result = parseMarkdown(typeof content === 'string' ? content : '')
     if (!result.success) {
       console.log(result.errors)
-      return c.render(<EditPage content={content} errors={result.errors} />)
+      return c.render(<EditPage content={content} errors={result.errors} />, {
+        heading: 'New Post',
+      })
     }
 
     const { tags, ...rest } = result.frontmatter

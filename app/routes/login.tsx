@@ -10,8 +10,8 @@ export default createRoute(requireAuth, (c) => {
 
   return c.render(
     <div>
-      <h1>Login</h1>
       <LoginWidget />
     </div>,
+    { heading: 'Login' },
   )
 })
