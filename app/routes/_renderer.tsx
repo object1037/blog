@@ -34,8 +34,10 @@ export default jsxRenderer(({ children, heading, isDashboard }) => {
         <Header dashboard={!!isDashboard} />
         <main class={containerStyle}>
           <div class={dividerStyle}></div>
-          <h1 class={headingStyle}>{heading}</h1>
-          {children}
+          <article>
+            <h1 class={headingStyle}>{heading}</h1>
+            {children}
+          </article>
         </main>
         <Footer />
       </body>

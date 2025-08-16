@@ -9,15 +9,11 @@ export default createRoute(async (c) => {
   return c.render(
     <>
       <Meta title="" description="object1037 Blog" url={c.req.url} />
-      <div>
-        <ul>
-          {posts.map((post) => (
-            <li key={post.id}>
-              <PostCard post={post} />
-            </li>
-          ))}
-        </ul>
-      </div>
+      {posts.map((post) => (
+        <article key={post.id}>
+          <PostCard post={post} />
+        </article>
+      ))}
     </>,
     { heading: 'Posts' },
   )

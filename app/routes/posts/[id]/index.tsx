@@ -30,11 +30,9 @@ export default createRoute(
           url={c.req.url}
           type="article"
         />
-        <div>
-          <TagList tags={post.tags.map((tag) => ({ name: tag, count: 0 }))} />
-          {/** biome-ignore lint/security/noDangerouslySetInnerHtml: html is safe */}
-          <div dangerouslySetInnerHTML={{ __html: parsed }} />
-        </div>
+        <TagList tags={post.tags.map((tag) => ({ name: tag, count: 0 }))} />
+        {/** biome-ignore lint/security/noDangerouslySetInnerHtml: html is safe */}
+        <div dangerouslySetInnerHTML={{ __html: parsed }} />
       </>,
       { heading: post.title },
     )
