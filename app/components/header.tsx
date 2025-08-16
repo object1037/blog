@@ -2,7 +2,7 @@ import { css } from '../../styled-system/css'
 import { button, container, hstack } from '../../styled-system/patterns'
 import { Icon } from './icon'
 
-export const Header = ({ dashboard }: { dashboard?: boolean }) => {
+export const Header = ({ dashboard }: { dashboard: boolean }) => {
   const headerStackStyle = hstack({
     justify: 'space-between',
     p: '2',
@@ -27,7 +27,7 @@ export const Header = ({ dashboard }: { dashboard?: boolean }) => {
     <header class={container()}>
       <nav class={headerStackStyle}>
         <a href={dashboard ? '/dashboard' : '/'} class={topLinkStyle}>
-          <Icon mono={!!dashboard} />
+          <Icon mono={dashboard} />
           <span class={topTextStyle}>{dashboard ? 'Dash' : 'Blog'}</span>
         </a>
         <a href="/tags" class={navTextStyle}>
