@@ -1,5 +1,6 @@
 import type { ValidateError } from '@markdoc/markdoc'
 import { Editor } from '../islands/editor'
+import { Meta } from './meta'
 
 export const EditPage = ({
   content,
@@ -10,6 +11,7 @@ export const EditPage = ({
 }) => {
   return (
     <>
+      <Meta title="Edit Post" />
       <Editor initialValue={content} />
       {errors.length > 0 && (
         <ul>

@@ -1,4 +1,5 @@
 import { createRoute } from 'honox/factory'
+import { Meta } from '../components/meta'
 import { LoginWidget } from '../islands/loginWidget'
 import { requireAuth } from '../middlewares/requireAuth'
 
@@ -9,9 +10,12 @@ export default createRoute(requireAuth, (c) => {
   }
 
   return c.render(
-    <div>
-      <LoginWidget />
-    </div>,
+    <>
+      <Meta title="Login" />
+      <div>
+        <LoginWidget />
+      </div>
+    </>,
     { heading: 'Login', isDashboard: true },
   )
 })

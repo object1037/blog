@@ -1,4 +1,5 @@
 import { createRoute } from 'honox/factory'
+import { Meta } from '../../components/meta'
 import { PostCard } from '../../components/postCard'
 import { getPostsWithTag } from '../../services/db'
 
@@ -11,16 +12,22 @@ export default createRoute(async (c) => {
   }
 
   return c.render(
-    <div>
-      <title>{tag}</title>
-      <ul>
-        {postsWithTag.map((post) => (
-          <li key={post.id}>
-            <PostCard post={post} />
-          </li>
-        ))}
-      </ul>
-    </div>,
+    <>
+      <Meta
+        title={`Tag: ${tag}`}
+        description={`"${tag}"に関する記事一覧`}
+        url={c.req.url}
+      />
+      <div>
+        <ul>
+          {postsWithTag.map((post) => (
+            <li key={post.id}>
+              <PostCard post={post} />
+            </li>
+          ))}
+        </ul>
+      </div>
+    </>,
     { heading: tag },
   )
 })

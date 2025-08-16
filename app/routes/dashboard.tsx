@@ -1,4 +1,5 @@
 import { createRoute } from 'honox/factory'
+import { Meta } from '../components/meta'
 import { requireAuth } from '../middlewares/requireAuth'
 import { getSessions } from '../services/session'
 
@@ -7,6 +8,7 @@ export default createRoute(requireAuth, async (c) => {
 
   return c.render(
     <>
+      <Meta title="Dashboard" />
       <h2>Sessions</h2>
       <ul>
         {sessions.map((session) => (

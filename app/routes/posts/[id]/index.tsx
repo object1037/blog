@@ -1,6 +1,7 @@
 import { vValidator } from '@hono/valibot-validator'
 import { createRoute } from 'honox/factory'
 import * as v from 'valibot'
+import { Meta } from '../../../components/meta'
 import { TagList } from '../../../components/tagList'
 import { getPostByID } from '../../../services/db'
 import { markdownToHtml } from '../../../services/markdoc'
@@ -22,11 +23,19 @@ export default createRoute(
     const parsed = markdownToHtml(post.content)
 
     return c.render(
-      <div>
-        <TagList tags={post.tags.map((tag) => ({ name: tag, count: 0 }))} />
-        {/** biome-ignore lint/security/noDangerouslySetInnerHtml: html is safe */}
-        <div dangerouslySetInnerHTML={{ __html: parsed }} />
-      </div>,
+      <>
+        <Meta
+          title={post.title}
+          description={post.description}
+          url={c.req.url}
+          type="article"
+        />
+        <div>
+          <TagList tags={post.tags.map((tag) => ({ name: tag, count: 0 }))} />
+          {/** biome-ignore lint/security/noDangerouslySetInnerHtml: html is safe */}
+          <div dangerouslySetInnerHTML={{ __html: parsed }} />
+        </div>
+      </>,
       { heading: post.title },
     )
   },
