@@ -24,13 +24,17 @@
   "private": true,
   "dependencies": {
     "@hono/valibot-validator": "^0.5.3",
-    "@markdoc/markdoc": "^0.5.4",
     "@simplewebauthn/browser": "^13.1.2",
     "@simplewebauthn/server": "^13.1.2",
+    "@types/markdown-it": "^14.1.2",
+    "@types/markdown-it-container": "^2.0.10",
     "drizzle-orm": "^0.44.4",
     "drizzle-valibot": "^0.4.2",
     "hono": "^4.9.2",
     "honox": "^0.1.44",
+    "markdown-it": "^14.1.0",
+    "markdown-it-anchor": "^9.2.0",
+    "markdown-it-container": "^4.0.0",
     "prismjs": "^1.30.0",
     "valibot": "^1.1.0"
   },

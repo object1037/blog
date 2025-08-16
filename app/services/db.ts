@@ -1,8 +1,8 @@
 import { and, count, desc, eq, inArray, notInArray } from 'drizzle-orm'
 import { drizzle } from 'drizzle-orm/d1'
 import * as v from 'valibot'
+import { parseYaml } from '../lib/frontmatter'
 import * as schema from '../lib/schema'
-import { parseYaml } from '../lib/yaml'
 
 const { posts, postsToTags } = schema
 

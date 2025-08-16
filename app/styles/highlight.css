@@ -1,5 +1,3 @@
-@import "../styled-system/styles.css";
-
 /* From prism.css */
 ::highlight(parameter) {
   color: #1a1a1a;

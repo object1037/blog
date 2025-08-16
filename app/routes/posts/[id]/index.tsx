@@ -4,7 +4,7 @@ import * as v from 'valibot'
 import { Meta } from '../../../components/meta'
 import { TagList } from '../../../components/tagList'
 import { getPostByID } from '../../../services/db'
-import { markdownToHtml } from '../../../services/markdoc'
+import { markdownToHtml } from '../../../services/markdown'
 
 export default createRoute(
   vValidator(
@@ -31,8 +31,11 @@ export default createRoute(
           type="article"
         />
         <TagList tags={post.tags.map((tag) => ({ name: tag, count: 0 }))} />
-        {/** biome-ignore lint/security/noDangerouslySetInnerHtml: html is safe */}
-        <div dangerouslySetInnerHTML={{ __html: parsed }} />
+        <div
+          class="markdown_wrapper"
+          /** biome-ignore lint/security/noDangerouslySetInnerHtml: html is safe */
+          dangerouslySetInnerHTML={{ __html: parsed }}
+        />
       </>,
       { heading: post.title },
     )

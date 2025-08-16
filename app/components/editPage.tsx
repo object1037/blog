@@ -1,4 +1,3 @@
-import type { ValidateError } from '@markdoc/markdoc'
 import { Editor } from '../islands/editor'
 import { Meta } from './meta'
 
@@ -7,7 +6,7 @@ export const EditPage = ({
   errors,
 }: {
   content: string
-  errors: ValidateError[]
+  errors: string[]
 }) => {
   return (
     <>
@@ -15,10 +14,8 @@ export const EditPage = ({
       <Editor initialValue={content} />
       {errors.length > 0 && (
         <ul>
-          {errors.map(({ error }) => (
-            <li key={error.message}>
-              [{error.id}]: {error.message}
-            </li>
+          {errors.map((message) => (
+            <li key={message}>{message}</li>
           ))}
         </ul>
       )}

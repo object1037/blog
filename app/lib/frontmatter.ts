@@ -54,3 +54,16 @@ export const parseYaml = (yaml: string) => {
 
   return result
 }
+
+export const extractFrontmatter = (markdown: string) => {
+  const fmRegex = /^---\s*\n([\s\S]*?)\n---\s*\n?/
+  const match = markdown.match(fmRegex)
+
+  if (!match) {
+    return { frontmatter: '', content: markdown }
+  }
+  return {
+    frontmatter: match[1] ?? '',
+    content: markdown.slice(match[0].length),
+  }
+}

@@ -4,7 +4,7 @@ import * as v from 'valibot'
 import { EditPage } from '../components/editPage'
 import { requireAuth } from '../middlewares/requireAuth'
 import { addPost } from '../services/db'
-import { parseMarkdown } from '../services/markdoc'
+import { parseMarkdown } from '../services/markdown'
 
 const template = `---
 id: 
