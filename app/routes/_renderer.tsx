@@ -3,7 +3,7 @@ import { Link, Script } from 'honox/server'
 import { Footer } from '../components/footer'
 import { Header } from '../components/header'
 
-export default jsxRenderer(({ children, heading }) => {
+export default jsxRenderer(({ children, heading, isDashboard }) => {
   return (
     <html lang="en">
       <head>
@@ -14,7 +14,7 @@ export default jsxRenderer(({ children, heading }) => {
         <Script src="/app/client.ts" async />
       </head>
       <body>
-        <Header />
+        <Header dashboard={!!isDashboard} />
         <main>
           <h1>{heading}</h1>
           {children}

@@ -22,6 +22,7 @@ export default createRoute(
 
     return c.render(<EditPage content={post.content} errors={[]} />, {
       heading: `Edit Post: ${post.title}`,
+      isDashboard: true,
     })
   },
 )

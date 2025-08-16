@@ -20,6 +20,6 @@ export default createRoute(requireAuth, async (c) => {
         <button type="submit">Logout</button>
       </form>
     </>,
-    { heading: 'Dashboard' },
+    { heading: 'Dashboard', isDashboard: true },
   )
 })

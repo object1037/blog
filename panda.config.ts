@@ -36,7 +36,6 @@ export default defineConfig({
       container: {
         transform(props) {
           return {
-            position: 'relative',
             w: 'full',
             maxWidth: '4xl',
             mx: 'auto',

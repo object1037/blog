@@ -3,6 +3,7 @@ import type {} from 'hono'
 
 type Head = {
   heading?: string
+  isDashboard?: boolean
 }
 
 declare module 'hono' {

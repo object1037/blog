@@ -12,6 +12,6 @@ export default createRoute(requireAuth, (c) => {
     <div>
       <LoginWidget />
     </div>,
-    { heading: 'Login' },
+    { heading: 'Login', isDashboard: true },
   )
 })
