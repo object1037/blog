@@ -36,6 +36,7 @@
     "markdown-it-anchor": "^9.2.0",
     "markdown-it-container": "^4.0.0",
     "prismjs": "^1.30.0",
+    "thumbhash": "^0.1.1",
     "valibot": "^1.1.0"
   },
   "devDependencies": {

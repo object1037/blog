@@ -1,5 +1,5 @@
 import { css, cx } from '../../styled-system/css'
-import { wrap } from '../../styled-system/patterns'
+import { hstack } from '../../styled-system/patterns'
 import { Editor } from '../islands/editor'
 import { ImageFinder } from '../islands/imageFinder'
 import { Meta } from './meta'
@@ -50,15 +50,16 @@ export const EditPage = ({
         caretColor: 'black',
         resize: 'none',
         overflow: 'hidden',
-        '&:focus-visible': {
+        _focusVisible: {
           outline: 'none',
         },
       }),
     ),
   }
   const imageFinderStyle = {
-    wrapper: wrap({
-      gap: '0',
+    wrapper: hstack({
+      justify: 'space-between',
+      p: '2',
     }),
     button: css({
       transition: 'colors',
@@ -71,7 +72,7 @@ export const EditPage = ({
       bg: { base: 'transparent', _hover: 'neutral.200' },
     }),
     copiedBg: css({
-      bg: { base: 'emerald.200', _hover: 'emerald.200' },
+      bg: { base: 'emerald.100', _hover: 'emerald.100' },
     }),
   }
 

@@ -1,4 +1,5 @@
 import { useState } from 'hono/jsx'
+import { convertToWebp } from '../lib/webp'
 
 const CopyButton = ({
   image,
@@ -43,13 +44,50 @@ export const ImageFinder = ({
   }
 }) => {
   const { wrapper, ...buttonStyle } = style
-  const images = ['image1.jpg', 'image2.jpg', 'image3.jpg']
+
+  const uploadHandler = async (e: Event) => {
+    const file = (e.target as HTMLInputElement).files?.[0]
+    if (!file) {
+      console.error('No file selected')
+      return
+    }
+
+    const webp = await convertToWebp(file)
+    if (!webp) {
+      console.error('Failed to convert to WebP')
+      return
+    }
+
+    const formData = new FormData()
+    formData.append('file', webp)
+    try {
+      const res = await fetch(`/images/${webp.name}`, {
+        method: 'POST',
+        body: formData,
+      })
+      if (!res.ok) {
+        throw new Error('Failed to upload image')
+      }
+    } catch (e) {
+      console.error(e)
+    }
+
+    await navigator.clipboard.writeText(webp.name)
+  }
 
   return (
     <div class={wrapper}>
-      {images.map((image) => (
-        <CopyButton key={image} image={image} style={buttonStyle} />
-      ))}
+      <div>Image</div>
+      <form>
+        <label for="fileInput">Add</label>
+        <input
+          name="file"
+          id="fileInput"
+          type="file"
+          accept="image/png, image/jpeg"
+          onChange={uploadHandler}
+        />
+      </form>
     </div>
   )
 }
