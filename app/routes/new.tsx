@@ -20,8 +20,16 @@ const head = {
   isDashboard: true,
 }
 
-export default createRoute(requireAuth, (c) => {
-  return c.render(<EditPage content={template} errors={[]} />, head)
+export default createRoute(requireAuth, async (c) => {
+  const { objects } = await c.env.BUCKET.list()
+  return c.render(
+    <EditPage
+      content={template}
+      errors={[]}
+      images={objects.map((obj) => obj.key)}
+    />,
+    head,
+  )
 })
 
 export const POST = createRoute(
@@ -32,8 +40,14 @@ export const POST = createRoute(
     const result = parseMarkdown(typeof content === 'string' ? content : '')
     if (!result.success) {
       console.log(result.errors)
+      const { objects } = await c.env.BUCKET.list()
+
       return c.render(
-        <EditPage content={content} errors={result.errors} />,
+        <EditPage
+          content={content}
+          errors={result.errors}
+          images={objects.map((obj) => obj.key)}
+        />,
         head,
       )
     }

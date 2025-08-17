@@ -7,9 +7,11 @@ import { Meta } from './meta'
 export const EditPage = ({
   content,
   errors,
+  images,
 }: {
   content: string
   errors: string[]
+  images: string[]
 }) => {
   const editorCommon = css({
     pos: 'absolute',
@@ -56,26 +58,46 @@ export const EditPage = ({
       }),
     ),
   }
+  const finderCommon = css({
+    p: '2',
+    w: 'full',
+    transition: 'colors',
+  })
   const imageWidgetStyle = {
     wrapper: hstack({
       justify: 'space-between',
+      alignItems: 'start',
     }),
     finder: css({
       flexGrow: '1',
     }),
-    searchBox: css({
-      p: '2',
-      w: 'full',
+    searchBox: cx(
+      finderCommon,
+      css({
+        rounded: 'lg',
+        borderWidth: '1px',
+        borderColor: { base: 'neutral.200', _focusVisible: 'neutral.400' },
+        _focusVisible: {
+          outline: 'none',
+        },
+      }),
+    ),
+    item: hstack({
+      gap: '0',
     }),
-    copyButton: css({
-      transition: 'colors',
+    copyButton: cx(
+      finderCommon,
+      css({
+        textAlign: 'left',
+        cursor: 'copy',
+      }),
+    ),
+    deleteButton: css({
       p: '2',
-      w: 'full',
-      textAlign: 'left',
-      cursor: 'copy',
+      bg: { _hover: 'red.200' },
     }),
     normalBg: css({
-      bg: { base: 'transparent', _hover: 'neutral.200' },
+      bg: { _hover: 'neutral.200' },
     }),
     copiedBg: css({
       bg: { base: 'emerald.100', _hover: 'emerald.100' },
@@ -103,7 +125,7 @@ export const EditPage = ({
           ))}
         </ul>
       )}
-      <ImageWidget style={imageWidgetStyle} />
+      <ImageWidget style={imageWidgetStyle} images={images} />
     </>
   )
 }

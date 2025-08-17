@@ -19,10 +19,18 @@ export default createRoute(
     if (!post) {
       return c.notFound()
     }
+    const { objects } = await c.env.BUCKET.list()
 
-    return c.render(<EditPage content={post.content} errors={[]} />, {
-      heading: `Edit: ${post.title}`,
-      isDashboard: true,
-    })
+    return c.render(
+      <EditPage
+        content={post.content}
+        errors={[]}
+        images={objects.map((obj) => obj.key)}
+      />,
+      {
+        heading: `Edit: ${post.title}`,
+        isDashboard: true,
+      },
+    )
   },
 )

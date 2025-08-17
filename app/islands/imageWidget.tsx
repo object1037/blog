@@ -1,15 +1,19 @@
+import { useState } from 'hono/jsx'
 import { convertToWebp } from '../lib/webp'
 import { ImageFinder, type ImageFinderStyle } from './imageFinder'
 
 export const ImageWidget = ({
+  images: initImages,
   style,
 }: {
+  images: string[]
   style: ImageFinderStyle & {
     wrapper: string
     uploadButton: string
   }
 }) => {
-  const images = ['hi', 'hu']
+  const [images, setImages] = useState(initImages)
+
   const { wrapper, uploadButton, ...searchStyle } = style
 
   const addImage = async (e: Event) => {
@@ -39,12 +43,13 @@ export const ImageWidget = ({
       console.error(e)
     }
 
-    await navigator.clipboard.writeText(webp.name)
+    setImages((prev) => [...prev, webp.name])
+    await navigator.clipboard.writeText(`/images/${webp.name}`)
   }
 
   return (
     <div class={wrapper}>
-      <ImageFinder style={searchStyle} images={images} />
+      <ImageFinder style={searchStyle} images={images} setImages={setImages} />
       <form>
         <label for="fileInput" class={uploadButton}>
           New Image

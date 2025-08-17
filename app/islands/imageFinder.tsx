@@ -4,17 +4,20 @@ import { CopyButton, type CopyButtonStyle } from './copyButton'
 export type ImageFinderStyle = CopyButtonStyle & {
   finder: string
   searchBox: string
+  item: string
 }
 
 export const ImageFinder = ({
   style,
   images,
+  setImages,
 }: {
   style: ImageFinderStyle
   images: string[]
+  setImages: (u: (c: string[]) => string[]) => void
 }) => {
   const [searchTerm, setSearchTerm] = useState('')
-  const { finder, searchBox, ...buttonStyle } = style
+  const { finder, searchBox, item, ...buttonStyle } = style
 
   return (
     <div class={finder}>
@@ -32,8 +35,12 @@ export const ImageFinder = ({
             image.toLowerCase().includes(searchTerm.toLowerCase()),
           )
           .map((image) => (
-            <li key={image}>
-              <CopyButton image={image} style={buttonStyle} />
+            <li key={image} class={item}>
+              <CopyButton
+                image={image}
+                style={buttonStyle}
+                setImages={setImages}
+              />
             </li>
           ))}
       </ul>

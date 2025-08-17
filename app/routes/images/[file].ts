@@ -1,4 +1,5 @@
 import { vValidator } from '@hono/valibot-validator'
+import { HTTPException } from 'hono/http-exception'
 import { createRoute } from 'honox/factory'
 import * as v from 'valibot'
 
@@ -20,7 +21,7 @@ export const POST = createRoute(
   vValidator(
     'param',
     v.object({
-      file: v.string(),
+      file: imageFileNameSchema,
     }),
   ),
   vValidator(
@@ -40,6 +41,25 @@ export const POST = createRoute(
     })
 
     return c.json(result)
+  },
+)
+
+export const DELETE = createRoute(
+  vValidator(
+    'param',
+    v.object({
+      file: imageFileNameSchema,
+    }),
+  ),
+  async (c) => {
+    const { file } = c.req.valid('param')
+
+    try {
+      await c.env.BUCKET.delete(file)
+    } catch {
+      throw new HTTPException(500, { message: 'Failed to delete image' })
+    }
+    return c.json({ success: true })
   },
 )
 
