@@ -32,6 +32,7 @@
     "drizzle-valibot": "^0.4.2",
     "hono": "^4.9.2",
     "honox": "^0.1.44",
+    "lucide": "^0.539.0",
     "markdown-it": "^14.1.0",
     "markdown-it-anchor": "^9.2.0",
     "markdown-it-container": "^4.0.0",
