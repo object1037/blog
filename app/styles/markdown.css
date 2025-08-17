@@ -96,6 +96,7 @@
   code,
   pre,
   img,
+  div.picture,
   .note {
     border-radius: 0.25rem;
   }
@@ -124,7 +125,7 @@
     display: block;
   }
 
-  picture + em {
+  div.picture + em {
     color: #404040;
     font-size: 0.875rem;
     padding-top: 0.5rem;

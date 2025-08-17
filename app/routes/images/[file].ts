@@ -5,11 +5,13 @@ import * as v from 'valibot'
 
 type imageFileName = `${string}-${string}-${number}:${number}.webp`
 
-const imageFileNameSchema = v.custom<imageFileName>((input) => {
+export const imageFileNameRegex = /^(.+)-([^:-]+)-(\d+):(\d+)\.webp$/
+
+export const imageFileNameSchema = v.custom<imageFileName>((input) => {
   if (typeof input !== 'string') {
     return false
   }
-  return /^(.+)-([^:-]+)-(\d+):(\d+)\.webp$/.test(input)
+  return imageFileNameRegex.test(input)
 })
 const imageFileSchema = v.pipe(
   v.file(),

@@ -1,3 +1,4 @@
+import { bufferToBase64URLString } from '@simplewebauthn/browser'
 import { rgbaToThumbHash } from 'thumbhash'
 
 const loadImg = (src: string): Promise<HTMLImageElement> => {
@@ -45,7 +46,7 @@ const getThumbHash = async (
   ctx.drawImage(img, 0, 0, w, h)
   const pixels = ctx.getImageData(0, 0, w, h)
   const hash = rgbaToThumbHash(w, h, pixels.data)
-  const thumbBase64 = btoa(String.fromCharCode(...hash)).replace(/=+$/, '')
+  const thumbBase64 = bufferToBase64URLString(new Uint8Array(hash).buffer)
 
   return thumbBase64
 }

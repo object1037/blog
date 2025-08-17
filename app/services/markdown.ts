@@ -1,9 +1,16 @@
+import { base64URLStringToBuffer } from '@simplewebauthn/browser'
 import MarkdownIt from 'markdown-it'
 import type { Token } from 'markdown-it/index.js'
 import anchor from 'markdown-it-anchor'
 import container from 'markdown-it-container'
+import { thumbHashToDataURL } from 'thumbhash'
 import * as v from 'valibot'
+import { css } from '../../styled-system/css'
 import { extractFrontmatter } from '../lib/frontmatter'
+import {
+  imageFileNameRegex,
+  imageFileNameSchema,
+} from '../routes/images/[file]'
 import { type FrontMatter, parseFrontmatter } from './db'
 
 const { escapeHtml } = MarkdownIt().utils
@@ -25,6 +32,38 @@ export const markdownToHtml = (markdown: string) => {
       }),
       tabIndex: false,
     })
+
+  md.renderer.rules.image = (tokens, idx, options, env, slf) => {
+    const token = tokens[idx]
+    if (!token) return ''
+
+    const src = token?.attrGet('src') || ''
+    const title = token?.attrGet('title') || ''
+    const alt = slf.renderInlineAsText(token.children ?? [], options, env)
+
+    const result = v.safeParse(imageFileNameSchema, src)
+    if (!result.success) {
+      return `<img src="${src}" alt="${alt}" title="${title}" loading="lazy" decoding="async" />`
+    }
+    const [_fileName, _imageName, hash, width, height] =
+      imageFileNameRegex.exec(result.output) ?? []
+
+    const hashBuffer = base64URLStringToBuffer(hash ?? '')
+    const placeholderUrl = thumbHashToDataURL(new Uint8Array(hashBuffer))
+
+    const wrapperStyle = css({
+      bgSize: 'cover',
+      bgPosition: 'center',
+    })
+    const imageStyle = css({
+      opacity: 0,
+      transition: 'opacity',
+    })
+
+    return `<div class="picture ${wrapperStyle}" style="background-image: url(${placeholderUrl})">
+  <img onload="this.classList.remove('${css({ opacity: 0 })}')" class="${imageStyle}" src="${src}" alt="${alt}" title="${title}" width="${width}" height="${height}" loading="lazy" decoding="async" />
+</div>`
+  }
 
   const { content } = extractFrontmatter(markdown)
 
