@@ -1,5 +1,5 @@
 import { useEffect, useRef, useState } from 'hono/jsx'
-import { highlight, initHighlighter } from '../lib/highlight'
+import { highlight, initHighlighter } from '../lib/highlight.client'
 
 const handleKeydown = (e: KeyboardEvent) => {
   if (e.code === 'Tab') {

@@ -1,5 +1,5 @@
 import { useState } from 'hono/jsx'
-import { convertToWebp } from '../lib/webp'
+import { convertToWebp } from '../lib/webp.client'
 import { ImageFinder, type ImageFinderStyle } from './imageFinder'
 
 export const ImageWidget = ({
