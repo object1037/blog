@@ -58,7 +58,7 @@ export const ImageWidget = ({
           name="file"
           id="fileInput"
           type="file"
-          accept="image/png, image/jpeg"
+          accept="image/png, image/jpeg, image/webp"
           onChange={addImage}
           hidden
         />
