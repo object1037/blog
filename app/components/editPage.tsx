@@ -1,4 +1,7 @@
+import { css, cx } from '../../styled-system/css'
+import { wrap } from '../../styled-system/patterns'
 import { Editor } from '../islands/editor'
+import { ImageFinder } from '../islands/imageFinder'
 import { Meta } from './meta'
 
 export const EditPage = ({
@@ -8,10 +11,74 @@ export const EditPage = ({
   content: string
   errors: string[]
 }) => {
+  const editorCommon = css({
+    pos: 'absolute',
+    inset: '0',
+    w: 'full',
+    h: 'full',
+    p: '4',
+    whiteSpace: 'pre-wrap',
+    wordWrap: 'break-word',
+    rounded: 'lg',
+    fontFamily: 'mono',
+  })
+  const editorStyle = {
+    container: css({
+      pos: 'relative',
+      w: 'full',
+      h: '3xl',
+      overflow: 'auto',
+      rounded: 'lg',
+      transition: 'colors',
+      borderWidth: '[1px]',
+      borderColor: 'neutral.200',
+      '&:has(textarea:focus-visible)': {
+        borderColor: 'neutral.400',
+      },
+    }),
+    pre: cx(
+      editorCommon,
+      css({
+        pointerEvents: 'none',
+      }),
+    ),
+    textarea: cx(
+      editorCommon,
+      css({
+        bg: 'transparent',
+        color: 'transparent',
+        caretColor: 'black',
+        resize: 'none',
+        overflow: 'hidden',
+        '&:focus-visible': {
+          outline: 'none',
+        },
+      }),
+    ),
+  }
+  const imageFinderStyle = {
+    wrapper: wrap({
+      gap: '0',
+    }),
+    button: css({
+      transition: 'colors',
+      p: '2',
+      w: 'full',
+      textAlign: 'left',
+      cursor: 'copy',
+    }),
+    normalBg: css({
+      bg: { base: 'transparent', _hover: 'neutral.200' },
+    }),
+    copiedBg: css({
+      bg: { base: 'emerald.200', _hover: 'emerald.200' },
+    }),
+  }
+
   return (
     <>
       <Meta title="Edit Post" />
-      <Editor initialValue={content} />
+      <Editor initialValue={content} style={editorStyle} />
       {errors.length > 0 && (
         <ul>
           {errors.map((message) => (
@@ -19,6 +86,7 @@ export const EditPage = ({
           ))}
         </ul>
       )}
+      <ImageFinder style={imageFinderStyle} />
     </>
   )
 }

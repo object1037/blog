@@ -4,7 +4,7 @@
   "scripts": {
     "postinstall": "pnpm typegen",
     "prepare": "panda codegen",
-    "dev": "concurrently \"vite\" \"panda --watch\"",
+    "dev": "vite",
     "build": "panda && vite build --mode client && vite build",
     "preview": "wrangler dev -e=preview",
     "deploy": "pnpm run build && wrangler deploy",
@@ -49,6 +49,7 @@
     "better-sqlite3": "^12.2.0",
     "concurrently": "^9.2.0",
     "drizzle-kit": "^0.31.4",
+    "postcss": "^8.5.6",
     "vite": "^7.1.2",
     "wrangler": "^4.30.0"
   },

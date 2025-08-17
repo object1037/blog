@@ -28,7 +28,6 @@ export const initHighlighter = () => {
   tokenTypes.forEach((tokenType) => {
     CSS.highlights.set(tokenType, new Highlight())
   })
-  console.log('Highlighter initialized')
 }
 
 export const highlight = (codeBlock: HTMLElement | null, content: string) => {
