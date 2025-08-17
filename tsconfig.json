@@ -8,7 +8,6 @@
     "types": ["vite/client", "./worker-configuration.d.ts"],
     "jsx": "react-jsx",
     "jsxImportSource": "hono/jsx",
-    "esModuleInterop": true,
 
     "strict": true,
     "noUnusedLocals": true,

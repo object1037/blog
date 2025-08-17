@@ -1,7 +1,7 @@
 import { css, cx } from '../../styled-system/css'
 import { hstack } from '../../styled-system/patterns'
 import { Editor } from '../islands/editor'
-import { ImageFinder } from '../islands/imageFinder'
+import { ImageWidget } from '../islands/imageWidget'
 import { Meta } from './meta'
 
 export const EditPage = ({
@@ -56,12 +56,18 @@ export const EditPage = ({
       }),
     ),
   }
-  const imageFinderStyle = {
+  const imageWidgetStyle = {
     wrapper: hstack({
       justify: 'space-between',
-      p: '2',
     }),
-    button: css({
+    finder: css({
+      flexGrow: '1',
+    }),
+    searchBox: css({
+      p: '2',
+      w: 'full',
+    }),
+    copyButton: css({
       transition: 'colors',
       p: '2',
       w: 'full',
@@ -73,6 +79,16 @@ export const EditPage = ({
     }),
     copiedBg: css({
       bg: { base: 'emerald.100', _hover: 'emerald.100' },
+    }),
+    uploadButton: css({
+      display: 'inline-block',
+      py: '2',
+      px: '4',
+      transition: 'colors',
+      borderWidth: '1px',
+      borderColor: { base: 'neutral.200', _hover: 'neutral.400' },
+      rounded: 'lg',
+      cursor: 'pointer',
     }),
   }
 
@@ -87,7 +103,7 @@ export const EditPage = ({
           ))}
         </ul>
       )}
-      <ImageFinder style={imageFinderStyle} />
+      <ImageWidget style={imageWidgetStyle} />
     </>
   )
 }
