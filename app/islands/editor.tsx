@@ -1,3 +1,4 @@
+import { css } from 'hono/css'
 import { useEffect, useRef, useState } from 'hono/jsx'
 import { highlight, initHighlighter } from '../lib/highlight.client'
 
@@ -8,18 +9,7 @@ const handleKeydown = (e: KeyboardEvent) => {
   }
 }
 
-export const Editor = ({
-  initialValue = '',
-  style,
-}: {
-  initialValue?: string
-  style: {
-    container: string
-    pre: string
-    textarea: string
-  }
-}) => {
-  const { container, pre, textarea } = style
+export const Editor = ({ initialValue = '' }: { initialValue?: string }) => {
   const codeBlockRef = useRef<HTMLElement>(null)
   const textareaRef = useRef<HTMLTextAreaElement>(null)
   const [content, setContent] = useState(initialValue)
@@ -40,10 +30,49 @@ export const Editor = ({
     target.style.height = `${target.scrollHeight}px`
   }
 
+  const container = css`
+    position: relative;
+    width: 100%;
+    height: 48rem;
+    overflow: auto;
+    border: 1px solid #e5e5e5;
+    border-radius: 0.5rem;
+    &:has(textarea:focus-visible) {
+      border-color: #a3a3a3;
+    }
+    transition: border-color 0.15s cubic-bezier(0.4, 0, 0.2, 1);
+  `
+  const editorCommonStyle = css`
+    position: absolute;
+    inset: 0;
+    width: 100%;
+    height: 100%;
+    padding: 1rem;
+    white-space: pre-wrap;
+    word-wrap: break-word;
+    border-radius: 0.5rem;
+    font-family: ui-monospace, SFMono-Regular, Menlo, Monaco, Consolas, "Liberation Mono", "Courier New", monospace;
+  `
+  const preStyle = css`
+    ${editorCommonStyle}
+    pointer-events: none;
+  `
+  const editorStyle = css`
+    ${editorCommonStyle}
+    background: transparent;
+    color: transparent;
+    caret-color: black;
+    resize: none;
+    overflow: hidden;
+    &:focus-visible {
+      outline: none;
+    }
+  `
+
   return (
     <form method="post" action="/new">
       <div class={container}>
-        <pre ref={codeBlockRef} class={pre}>
+        <pre ref={codeBlockRef} class={preStyle}>
           {content}
         </pre>
         <textarea
@@ -55,7 +84,7 @@ export const Editor = ({
             updateTextareaHeight()
           }}
           onKeyDown={handleKeydown}
-          class={textarea}
+          class={editorStyle}
         />
       </div>
       <button type="submit">Submit</button>

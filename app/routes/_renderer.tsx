@@ -1,3 +1,4 @@
+import { Style } from 'hono/css'
 import { jsxRenderer } from 'hono/jsx-renderer'
 import { Link, Script } from 'honox/server'
 import { css } from '../../styled-system/css'
@@ -29,6 +30,7 @@ export default jsxRenderer(({ children, heading, isDashboard }) => {
         <link rel="icon" href="/favicon.ico" />
         <Link href="/app/styles/index.css" rel="stylesheet" />
         <Script src="/app/client.ts" async />
+        <Style />
       </head>
       <body>
         <Header dashboard={!!isDashboard} />

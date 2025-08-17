@@ -1,23 +1,43 @@
+import { css, cx } from 'hono/css'
 import { useState } from 'hono/jsx'
-
-export type CopyButtonStyle = {
-  copyButton: string
-  deleteButton: string
-  normalBg: string
-  copiedBg: string
-}
 
 export const CopyButton = ({
   image,
-  style,
   setImages,
 }: {
   image: string
-  style: CopyButtonStyle
   setImages: (u: (c: string[]) => string[]) => void
 }) => {
   const [copied, setCopied] = useState(false)
-  const { copyButton, deleteButton, normalBg, copiedBg } = style
+
+  const transitionStyle = css`
+    transition: background-color 0.15s cubic-bezier(0.4, 0, 0.2, 1);
+  `
+  const copyBStyle = css`
+    padding: 0.5rem;
+    width: 100%;
+    text-align: left;
+    cursor: copy;
+    ${transitionStyle}
+  `
+  const deleteBStyle = css`
+    padding: 0.5rem;
+    &:hover {
+      background-color: #fecaca;
+    }
+    ${transitionStyle}
+  `
+  const normalBg = css`
+    &:hover {
+      background-color: #e5e5e5;
+    }
+  `
+  const copiedBg = css`
+    background-color: #d1fae5;
+    &:hover {
+      background-color: #d1fae5;
+    }
+  `
 
   const handleCopy = (image: string) => {
     navigator.clipboard.writeText(`/images/${image}`).then(() => {
@@ -40,14 +60,14 @@ export const CopyButton = ({
       <button
         type="button"
         onClick={() => handleCopy(image)}
-        class={`${copyButton} ${copied ? copiedBg : normalBg}`}
+        class={cx(copyBStyle, copied ? copiedBg : normalBg)}
       >
         {image}
       </button>
       <button
         type="button"
         onClick={() => handleDelete(image)}
-        class={deleteButton}
+        class={deleteBStyle}
       >
         x
       </button>

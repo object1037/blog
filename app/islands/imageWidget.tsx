@@ -1,20 +1,29 @@
+import { css } from 'hono/css'
 import { useState } from 'hono/jsx'
 import { convertToWebp } from '../lib/webp.client'
-import { ImageFinder, type ImageFinderStyle } from './imageFinder'
+import { ImageFinder } from './imageFinder'
 
-export const ImageWidget = ({
-  images: initImages,
-  style,
-}: {
-  images: string[]
-  style: ImageFinderStyle & {
-    wrapper: string
-    uploadButton: string
-  }
-}) => {
+export const ImageWidget = ({ images: initImages }: { images: string[] }) => {
   const [images, setImages] = useState(initImages)
 
-  const { wrapper, uploadButton, ...searchStyle } = style
+  const wrapperStyle = css`
+    display: flex;
+    align-items: center;
+    gap: 0.75rem;
+    justify-content: space-between;
+    align-items: start;
+  `
+  const uploadButtonStyle = css`
+    display: inline-block;
+    padding: 0.5rem 1rem;
+    border-radius: 0.5rem;
+    cursor: pointer;
+    border: 1px solid #e5e5e5;
+    &:hover {
+      border-color: #a3a3a3;
+    }
+    transition: border-color 0.15s cubic-bezier(0.4, 0, 0.2, 1);
+  `
 
   const addImage = async (e: Event) => {
     const file = (e.target as HTMLInputElement).files?.[0]
@@ -48,10 +57,10 @@ export const ImageWidget = ({
   }
 
   return (
-    <div class={wrapper}>
-      <ImageFinder style={searchStyle} images={images} setImages={setImages} />
+    <div class={wrapperStyle}>
+      <ImageFinder images={images} setImages={setImages} />
       <form>
-        <label for="fileInput" class={uploadButton}>
+        <label for="fileInput" class={uploadButtonStyle}>
           New Image
         </label>
         <input
