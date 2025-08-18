@@ -1,5 +1,17 @@
-import { bufferToBase64URLString } from '@simplewebauthn/browser'
 import { rgbaToThumbHash } from 'thumbhash'
+
+const bufferToBase64URLString = (buffer: ArrayBuffer): string => {
+  const bytes = new Uint8Array(buffer)
+  let str = ''
+
+  for (const charCode of bytes) {
+    str += String.fromCharCode(charCode)
+  }
+
+  const base64String = btoa(str)
+
+  return base64String.replace(/\+/g, '.').replace(/\//g, '_').replace(/=/g, '')
+}
 
 const loadImg = (src: string): Promise<HTMLImageElement> => {
   return new Promise((resolve, reject) => {
