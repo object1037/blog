@@ -59,7 +59,7 @@ export const POST = createRoute(
       content,
     }
 
-    addPost(c.env.DB, post, tags)
+    await addPost(c.env.DB, post, tags)
 
     return c.redirect('/dashboard', 303)
   },
