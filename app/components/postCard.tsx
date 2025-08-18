@@ -1,27 +1,14 @@
-import { Link } from '@remix-run/react'
+import { css, cx } from '../../styled-system/css'
+import { flex } from '../../styled-system/patterns'
+import type { Posts } from '../services/db'
 
-import { css, cx } from 'styled-system/css'
-import { flex } from 'styled-system/patterns'
-
-import type { getPosts } from '~/.server/db'
-
-export const PostCard = ({
-  post,
-  children,
-}: {
-  post: Awaited<ReturnType<typeof getPosts>>[number]
-  children?: React.ReactNode
-}) => {
+export const PostCard = ({ post }: { post: Posts[number] }) => {
   const itemStyle = flex({
     rounded: 'lg',
     borderWidth: '[1px]',
     borderColor: { base: 'neutral.200', _hover: 'neutral.400' },
-    mb: '6',
     transition: 'colors',
     overflow: 'hidden',
-  })
-  const linkStyle = flex({
-    grow: '1',
     justify: 'space-between',
     gap: '2',
     p: '4',
@@ -50,15 +37,12 @@ export const PostCard = ({
   })
 
   return (
-    <li className={cx('group', itemStyle)}>
-      <Link to={`/posts/${post.id}`} prefetch="viewport" className={linkStyle}>
-        <div>
-          <p className={titleStyle}>{post.title}</p>
-          <p>{post.description}</p>
-        </div>
-        <p className={idStyle}>{post.id}</p>
-      </Link>
-      {children}
-    </li>
+    <a href={`/posts/${post.id}`} class={cx('group', itemStyle)}>
+      <div>
+        <h2 class={titleStyle}>{post.title}</h2>
+        <p>{post.description}</p>
+      </div>
+      <p class={idStyle}>{post.id}</p>
+    </a>
   )
 }

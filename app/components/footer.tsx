@@ -1,10 +1,16 @@
-import type { ComponentPropsWithoutRef } from 'react'
+import type { JSX, PropsWithChildren } from 'hono/jsx'
+import { Github, type IconNode, Twitter } from 'lucide'
+import { css } from '../../styled-system/css'
+import { container, hstack } from '../../styled-system/patterns'
+import { LucideIcon, type WithRequired } from './lucideIcon'
 
-import { LuGithub, LuTwitter } from 'react-icons/lu'
-import { css } from 'styled-system/css'
-import { container, hstack } from 'styled-system/patterns'
-
-const IconLink = (props: ComponentPropsWithoutRef<'a'>) => {
+const IconLink = ({
+  icon,
+  title,
+  ...rest
+}: WithRequired<PropsWithChildren<JSX.IntrinsicElements['a']>, 'title'> & {
+  icon: IconNode
+}) => {
   const iconLinkStyle = css({
     py: '4',
     px: { base: '3', md: '4' },
@@ -14,13 +20,8 @@ const IconLink = (props: ComponentPropsWithoutRef<'a'>) => {
   })
 
   return (
-    <a
-      {...props}
-      target="_blank"
-      rel="noopener noreferrer"
-      className={iconLinkStyle}
-    >
-      {props.children}
+    <a {...rest} class={iconLinkStyle}>
+      <LucideIcon icon={icon} title={title} />
     </a>
   )
 }
@@ -39,17 +40,21 @@ export const Footer = () => {
   })
 
   return (
-    <footer className={container()}>
-      <div className={footerStackStyle}>
-        <div className={hstack()}>
-          <IconLink href="https://twitter.com/object1037">
-            <LuTwitter />
-          </IconLink>
-          <IconLink href="https://github.com/object1037">
-            <LuGithub />
-          </IconLink>
-        </div>
-        <p className={copyStyle}>&copy; object1037</p>
+    <footer class={container()}>
+      <div class={footerStackStyle}>
+        <address class={hstack()}>
+          <IconLink
+            href="https://github.com/object1037"
+            icon={Github}
+            title="GitHub"
+          />
+          <IconLink
+            href="https://twitter.com/object1037"
+            icon={Twitter}
+            title="Twitter"
+          />
+        </address>
+        <p class={copyStyle}>&copy; object1037</p>
       </div>
     </footer>
   )

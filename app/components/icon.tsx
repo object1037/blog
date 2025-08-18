@@ -4,13 +4,13 @@ export const Icon = ({ mono }: { mono?: boolean }) => {
       role="img"
       aria-label="icon"
       stroke="#000000"
-      strokeWidth={6}
+      stroke-width="6"
       fill="none"
       width="1em"
       height="1em"
       viewBox="19.5 19.5 201 201"
-      strokeLinecap="round"
-      strokeLinejoin="round"
+      stroke-linecap="round"
+      stroke-linejoin="round"
       xmlns="http://www.w3.org/2000/svg"
     >
       <path

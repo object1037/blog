@@ -1,11 +1,8 @@
-import { Form, Link } from '@remix-run/react'
-
-import { css } from 'styled-system/css'
-import { button, container, hstack } from 'styled-system/patterns'
-
+import { css } from '../../styled-system/css'
+import { button, container, hstack } from '../../styled-system/patterns'
 import { Icon } from './icon'
 
-export const Header = ({ dashboard }: { dashboard?: boolean }) => {
+export const Header = ({ dashboard }: { dashboard: boolean }) => {
   const headerStackStyle = hstack({
     justify: 'space-between',
     p: '2',
@@ -27,23 +24,15 @@ export const Header = ({ dashboard }: { dashboard?: boolean }) => {
   })
 
   return (
-    <header className={container()}>
-      <nav className={headerStackStyle}>
-        <Link to="/" prefetch="intent" className={topLinkStyle}>
-          <Icon mono={!!dashboard} />{' '}
-          <span className={topTextStyle}>{dashboard ? 'Dash' : 'Blog'}</span>
-        </Link>
-        {dashboard ? (
-          <Form action="/logout" method="POST">
-            <button type="submit" className={navTextStyle}>
-              Logout
-            </button>
-          </Form>
-        ) : (
-          <Link to="/tags" prefetch="intent" className={navTextStyle}>
-            Tags
-          </Link>
-        )}
+    <header class={container()}>
+      <nav class={headerStackStyle}>
+        <a href={dashboard ? '/dashboard' : '/'} class={topLinkStyle}>
+          <Icon mono={dashboard} />
+          <span class={topTextStyle}>{dashboard ? 'Dash' : 'Blog'}</span>
+        </a>
+        <a href="/tags" class={navTextStyle}>
+          Tags
+        </a>
       </nav>
     </header>
   )
