@@ -20,7 +20,7 @@ export const Editor = ({ initialValue = '' }: { initialValue?: string }) => {
   }, [])
 
   useEffect(() => {
-    highlight(codeBlockRef.current, content)
+    highlight(codeBlockRef.current, content, 'markdown')
   }, [content])
 
   const updateTextareaHeight = () => {

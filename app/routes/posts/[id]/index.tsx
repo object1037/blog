@@ -1,4 +1,5 @@
 import { vValidator } from '@hono/valibot-validator'
+import { html, raw } from 'hono/html'
 import { createRoute } from 'honox/factory'
 import * as v from 'valibot'
 import { Meta } from '../../../components/meta'
@@ -31,11 +32,7 @@ export default createRoute(
           type="article"
         />
         <TagList tags={post.tags.map((tag) => ({ name: tag, count: 0 }))} />
-        <div
-          class="markdown_wrapper"
-          /** biome-ignore lint/security/noDangerouslySetInnerHtml: html is safe */
-          dangerouslySetInnerHTML={{ __html: parsed }}
-        />
+        <div class="markdown_wrapper">{html`${raw(parsed)}`}</div>
       </>,
       { heading: post.title },
     )

@@ -1,5 +1,9 @@
 import Prism from 'prismjs'
 import 'prismjs/components/prism-markdown'
+import 'prismjs/components/prism-typescript'
+import 'prismjs/components/prism-jsx'
+import 'prismjs/components/prism-tsx'
+import 'prismjs/components/prism-c'
 
 const paintTokenHighlights = (
   codeBlock: HTMLElement,
@@ -30,20 +34,27 @@ export const initHighlighter = () => {
   })
 }
 
-export const highlight = (codeBlock: HTMLElement | null, content: string) => {
+export const highlight = (
+  codeBlock: HTMLElement | null,
+  content: string,
+  language: string,
+  reset: boolean = true,
+) => {
   if (!codeBlock) return
 
-  const mdGrammer = Prism.languages.markdown
-  if (!mdGrammer) {
-    console.error('Markdown grammar not found')
+  const grammar = Prism.languages[language]
+  if (!grammar) {
+    console.error(`${language} grammar not found`)
     console.log(Prism.languages)
     return
   }
-  const tokens = Prism.tokenize(content, mdGrammer)
+  const tokens = Prism.tokenize(content, grammar)
 
-  tokenTypes.forEach((tokenType) => {
-    CSS.highlights.get(tokenType)?.clear()
-  })
+  if (reset) {
+    tokenTypes.forEach((tokenType) => {
+      CSS.highlights.get(tokenType)?.clear()
+    })
+  }
 
   paintTokenHighlights(codeBlock, tokens)
 }
