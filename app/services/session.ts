@@ -1,11 +1,13 @@
 import type { Context, Env } from 'hono'
-import { deleteCookie, setSignedCookie } from 'hono/cookie'
+import { deleteCookie, getSignedCookie, setSignedCookie } from 'hono/cookie'
 import * as v from 'valibot'
 
 const sessionSchema = v.object({
   createdAt: v.number(),
   userAgent: v.string(),
 })
+
+export type Session = Awaited<ReturnType<typeof getSessions>>[number]
 
 export const createSession = async (c: Context<Env>) => {
   const sessionId = crypto.randomUUID()
@@ -27,13 +29,20 @@ export const createSession = async (c: Context<Env>) => {
   ])
 }
 
-export const deleteSession = async (c: Context<Env>) => {
-  const deletedCookie = deleteCookie(c, 'sessionId', {
-    secure: true,
-  })
-  if (!deletedCookie) return
-  const sessionId = deletedCookie.split('.')[0]
-  await c.env.KV.delete(`session:${sessionId}`)
+export const deleteSession = async (c: Context<Env>, id: string) => {
+  const cookieSessionId = await getSignedCookie(c, c.env.SECRET, 'sessionId')
+  if (cookieSessionId === id) {
+    await Promise.all([
+      deleteCookie(c, 'sessionId', {
+        secure: true,
+      }),
+      c.env.KV.delete(`session:${id}`),
+    ])
+    return { loggedOutSelf: true }
+  }
+
+  await c.env.KV.delete(`session:${id}`)
+  return { loggedOutSelf: false }
 }
 
 export const getSessions = async (c: Context<Env>) => {
