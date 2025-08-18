@@ -1,5 +1,7 @@
 import { css } from 'hono/css'
 import { useState } from 'hono/jsx'
+import { Upload } from 'lucide'
+import { LucideIcon } from '../components/lucideIcon'
 import { convertToWebp } from '../lib/webp.client'
 import { ImageFinder } from './imageFinder'
 
@@ -15,7 +17,8 @@ export const ImageWidget = ({ images: initImages }: { images: string[] }) => {
   `
   const uploadButtonStyle = css`
     display: inline-block;
-    padding: 0.5rem 1rem;
+    font-size: 1.25rem;
+    padding: 0.625rem;
     border-radius: 0.5rem;
     cursor: pointer;
     border: 1px solid #e5e5e5;
@@ -23,6 +26,11 @@ export const ImageWidget = ({ images: initImages }: { images: string[] }) => {
       border-color: #a3a3a3;
     }
     transition: border-color 0.15s cubic-bezier(0.4, 0, 0.2, 1);
+  `
+  const h2Style = css`
+    font-size: 1.5rem;
+    font-weight: bold;
+    margin-bottom: 0.5rem;
   `
 
   const addImage = async (e: Event) => {
@@ -57,21 +65,24 @@ export const ImageWidget = ({ images: initImages }: { images: string[] }) => {
   }
 
   return (
-    <div class={wrapperStyle}>
-      <ImageFinder images={images} setImages={setImages} />
-      <form>
-        <label for="fileInput" class={uploadButtonStyle}>
-          New Image
-        </label>
-        <input
-          name="file"
-          id="fileInput"
-          type="file"
-          accept="image/png, image/jpeg, image/webp"
-          onChange={addImage}
-          hidden
-        />
-      </form>
-    </div>
+    <>
+      <h2 class={h2Style}>Image</h2>
+      <div class={wrapperStyle}>
+        <ImageFinder images={images} setImages={setImages} />
+        <form>
+          <label for="fileInput" class={uploadButtonStyle}>
+            <LucideIcon icon={Upload} title="Add image" />
+          </label>
+          <input
+            name="file"
+            id="fileInput"
+            type="file"
+            accept="image/png, image/jpeg, image/webp"
+            onChange={addImage}
+            hidden
+          />
+        </form>
+      </div>
+    </>
   )
 }

@@ -1,5 +1,7 @@
 import { css, cx } from 'hono/css'
 import { useState } from 'hono/jsx'
+import { Trash } from 'lucide'
+import { LucideIcon } from '../components/lucideIcon'
 
 export const CopyButton = ({
   image,
@@ -15,13 +17,23 @@ export const CopyButton = ({
   `
   const copyBStyle = css`
     padding: 0.5rem;
+    padding-right: 2rem;
     width: 100%;
     text-align: left;
+    white-space: pre;
+    text-overflow: ellipsis;
+    overflow: hidden;
     cursor: copy;
+    border-radius: 0.5rem;
     ${transitionStyle}
   `
   const deleteBStyle = css`
+    position: absolute;
+    right: 0.25rem;
+    top: 0.25rem;
     padding: 0.5rem;
+    border-radius: 0.25rem;
+    background-color: #fafafa;
     &:hover {
       background-color: #fecaca;
     }
@@ -69,7 +81,7 @@ export const CopyButton = ({
         onClick={() => handleDelete(image)}
         class={deleteBStyle}
       >
-        x
+        <LucideIcon icon={Trash} title="Delete" />
       </button>
     </>
   )

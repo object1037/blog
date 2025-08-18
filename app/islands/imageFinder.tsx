@@ -13,9 +13,11 @@ export const ImageFinder = ({
 
   const wrapperStyle = css`
     flex-grow: 1;
+    min-width: 0;
   `
   const searchBoxStyle = css`
     padding: 0.5rem;
+    margin-bottom: 0.25rem;
     width: 100%;
     border-radius: 0.5rem;
     border: 1px solid #e5e5e5;
@@ -26,8 +28,7 @@ export const ImageFinder = ({
     transition: border-color 0.15s cubic-bezier(0.4, 0, 0.2, 1);
   `
   const itemStyle = css`
-    display: flex;
-    align-items: center;
+    position: relative;
   `
 
   return (
