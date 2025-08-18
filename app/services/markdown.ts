@@ -20,7 +20,12 @@ type ParsedResult =
   | { success: true; frontmatter: FrontMatter }
 
 export const markdownToHtml = (markdown: string) => {
+  let hasCodeBlock = false
   const md = MarkdownIt({
+    highlight() {
+      hasCodeBlock = true
+      return ''
+    },
     linkify: true,
   })
   md.use(container, 'note', noteOption)
@@ -69,7 +74,7 @@ export const markdownToHtml = (markdown: string) => {
 
   const html = md.render(content)
 
-  return html
+  return { html, hasCodeBlock }
 }
 
 export const parseMarkdown = (markdown: string): ParsedResult => {

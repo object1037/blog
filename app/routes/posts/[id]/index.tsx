@@ -33,8 +33,8 @@ export default createRoute(
           type="article"
         />
         <TagList tags={post.tags.map((tag) => ({ name: tag, count: 0 }))} />
-        <div class="markdown_wrapper">{html`${raw(parsed)}`}</div>
-        <Highlight />
+        <div class="markdown_wrapper">{html`${raw(parsed.html)}`}</div>
+        {parsed.hasCodeBlock && <Highlight />}
       </>,
       { heading: post.title },
     )
