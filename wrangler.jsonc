@@ -32,9 +32,8 @@
   ],
   "env": {
     "preview": {
-      "name": "blog-preview",
       "vars": {
-        "RP_ID": "preview-blog-preview.object1037.workers.dev"
+        "RP_ID": "preview-blog.object1037.workers.dev"
       },
       "d1_databases": [
         {
@@ -57,7 +56,6 @@
       ]
     },
     "production": {
-      "name": "blog-production",
       "vars": {
         "RP_ID": "blog.object1037.dev"
       },
