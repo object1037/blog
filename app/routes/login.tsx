@@ -4,8 +4,8 @@ import { LoginWidget } from '../islands/loginWidget'
 import { requireAuth } from '../middlewares/requireAuth'
 
 export default createRoute(requireAuth, (c) => {
-  const session = c.get('session')
-  if (session) {
+  const sessionId = c.get('sessionId')
+  if (sessionId) {
     return c.redirect('/dashboard')
   }
 

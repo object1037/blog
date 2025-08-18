@@ -7,9 +7,10 @@ import { Footer } from '../components/footer'
 import { Header } from '../components/header'
 
 export default jsxRenderer(({ children, heading, isDashboard }) => {
-  const containerStyle = container({
+  const mainStyle = container({
     maxWidth: '3xl',
     px: { base: '7', md: '8', lg: '10' },
+    mb: '4',
   })
   const dividerStyle = divider({
     color: 'neutral.700',
@@ -34,7 +35,7 @@ export default jsxRenderer(({ children, heading, isDashboard }) => {
       </head>
       <body>
         <Header dashboard={!!isDashboard} />
-        <main class={containerStyle}>
+        <main class={mainStyle}>
           <div class={dividerStyle}></div>
           <article>
             <h1 class={headingStyle}>{heading}</h1>

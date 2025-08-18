@@ -4,7 +4,10 @@ import {
   startAuthentication,
   startRegistration,
 } from '@simplewebauthn/browser'
+import { css } from 'hono/css'
+import { KeyRound } from 'lucide'
 import * as v from 'valibot'
+import { LucideIcon } from '../components/lucideIcon'
 import { creationOptionSchema, requestOptionSchema } from '../lib/webauthn'
 
 const verificationSchema = v.object({
@@ -107,20 +110,35 @@ const handleAuthentication = async () => {
   }
 }
 
-const handleLogin = async () => {
-  try {
-    await handleRegistration()
-    window.location.replace('/dashboard')
-  } catch (e) {
-    console.error('Error during login process:', e)
-  }
-}
-
 export const LoginWidget = () => {
+  const handleLogin = async () => {
+    try {
+      await handleRegistration()
+      window.location.replace('/dashboard')
+    } catch (e) {
+      console.error('Error during login process:', e)
+    }
+  }
+
+  const loginBStyle = css`
+    display: flex;
+    align-items: center;
+    font-weight: 500;
+    gap: 0.5rem;
+    padding: 0.5rem 1rem;
+    border-radius: 0.25rem;
+    cursor: pointer;
+    transition: background-color 0.15s cubic-bezier(0.4, 0, 0.2, 1);
+    &:hover {
+      background-color: #e5e5e5;
+    }
+  `
+
   return (
     <div>
-      <button onClick={handleLogin} type="button">
-        Login
+      <button onClick={handleLogin} type="button" class={loginBStyle}>
+        Login with
+        <LucideIcon icon={KeyRound} title="Key" />
       </button>
     </div>
   )

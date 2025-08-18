@@ -1,7 +1,7 @@
 import { vValidator } from '@hono/valibot-validator'
 import { createRoute } from 'honox/factory'
 import * as v from 'valibot'
-import { EditPage } from '../components/editPage'
+import { EditPage, head } from '../components/editPage'
 import { requireAuth } from '../middlewares/requireAuth'
 import { addPost } from '../services/db'
 import { parseMarkdown } from '../services/markdown'
@@ -15,10 +15,6 @@ public: false
 ---
 
 `
-const head = {
-  heading: 'New Post',
-  isDashboard: true,
-}
 
 export default createRoute(requireAuth, async (c) => {
   const { objects } = await c.env.BUCKET.list()
@@ -34,10 +30,11 @@ export default createRoute(requireAuth, async (c) => {
 
 export const POST = createRoute(
   requireAuth,
-  vValidator('form', v.object({ content: v.string() })),
+  vValidator('form', v.object({ content: v.string(), action: v.string() })),
   async (c) => {
-    const { content } = c.req.valid('form')
+    const { content, action } = c.req.valid('form')
     const result = parseMarkdown(typeof content === 'string' ? content : '')
+
     if (!result.success) {
       console.log(result.errors)
       const { objects } = await c.env.BUCKET.list()
@@ -46,6 +43,19 @@ export const POST = createRoute(
         <EditPage
           content={content}
           errors={result.errors}
+          images={objects.map((obj) => obj.key)}
+        />,
+        head,
+      )
+    }
+
+    if (action === 'preview') {
+      const { objects } = await c.env.BUCKET.list()
+
+      return c.render(
+        <EditPage
+          content={content}
+          errors={[]}
           images={objects.map((obj) => obj.key)}
         />,
         head,

@@ -16,8 +16,8 @@ export const requireAuth = createMiddleware<Env>(async (c, next) => {
     }
   }
 
-  if (session) {
-    c.set('session', session)
+  if (session && sessionId) {
+    c.set('sessionId', sessionId)
     return next()
   }
 
