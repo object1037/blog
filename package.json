@@ -8,7 +8,7 @@
     "build": "panda && vite build --mode client && vite build",
     "preview": "wrangler dev --env preview",
     "deploy": "wrangler deploy --env production",
-    "deploy:preview": "wrangler versions upload --env preview",
+    "deploy:preview": "wrangler versions upload --env preview --preview-alias preview",
     "check": "biome ci ./app vite.config.ts",
     "fmt": "biome format --write ./app vite.config.ts",
     "typegen": "wrangler types --env-interface=CloudflareEnv",

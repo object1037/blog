@@ -34,7 +34,7 @@
     "preview": {
       "name": "blog-preview",
       "vars": {
-        "RP_ID": "blog-preview.object1037.workers.dev"
+        "RP_ID": "preview-blog-preview.object1037.workers.dev"
       },
       "d1_databases": [
         {
