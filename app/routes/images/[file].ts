@@ -1,4 +1,5 @@
 import { vValidator } from '@hono/valibot-validator'
+import { etag } from 'hono/etag'
 import { HTTPException } from 'hono/http-exception'
 import { createRoute } from 'honox/factory'
 import * as v from 'valibot'
@@ -75,6 +76,7 @@ export default createRoute(
       file: imageFileNameSchema,
     }),
   ),
+  etag(),
   async (c) => {
     const { file } = c.req.valid('param')
 
