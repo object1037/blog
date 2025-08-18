@@ -1,0 +1,90 @@
+{
+  "name": "blog",
+  "main": "./dist/index.js",
+  "compatibility_date": "2025-08-08",
+  "compatibility_flags": ["nodejs_compat"],
+  "assets": {
+    "directory": "./dist"
+  },
+
+  "vars": {
+    "RP_ID": "localhost",
+    "ORIGIN_PORT": "5173"
+  },
+  "d1_databases": [
+    {
+      "binding": "DB",
+      "database_name": "blog-db",
+      "database_id": "fe62b702-8f6b-4b85-81c0-e315529e6ca7"
+    }
+  ],
+  "kv_namespaces": [
+    {
+      "binding": "KV",
+      "id": "d5a0fdf0da6541dabb9caac6bbc6b898"
+    }
+  ],
+  "r2_buckets": [
+    {
+      "binding": "BUCKET",
+      "bucket_name": "blog-images"
+    }
+  ],
+  "env": {
+    "preview": {
+      "vars": {
+        "RP_ID": "preview-blog.object1037.workers.dev"
+      },
+      "d1_databases": [
+        {
+          "binding": "DB",
+          "database_name": "blog-db",
+          "database_id": "fe62b702-8f6b-4b85-81c0-e315529e6ca7"
+        }
+      ],
+      "kv_namespaces": [
+        {
+          "binding": "KV",
+          "id": "d84d92fad17a46f482622226a8ea11e3"
+        }
+      ],
+      "r2_buckets": [
+        {
+          "binding": "BUCKET",
+          "bucket_name": "blog-images"
+        }
+      ]
+    },
+    "production": {
+      "vars": {
+        "RP_ID": "blog.object1037.dev"
+      },
+      "workers_dev": false,
+      "routes": [
+        {
+          "pattern": "blog.object1037.dev",
+          "custom_domain": true
+        }
+      ],
+      "d1_databases": [
+        {
+          "binding": "DB",
+          "database_name": "blog-db",
+          "database_id": "77f4589e-54f5-43ad-ab44-ccc96e048bfc"
+        }
+      ],
+      "kv_namespaces": [
+        {
+          "binding": "KV",
+          "id": "d5a0fdf0da6541dabb9caac6bbc6b898"
+        }
+      ],
+      "r2_buckets": [
+        {
+          "binding": "BUCKET",
+          "bucket_name": "blog-images"
+        }
+      ]
+    }
+  }
+}

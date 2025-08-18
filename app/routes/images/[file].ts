@@ -1,7 +1,9 @@
 import { vValidator } from '@hono/valibot-validator'
+import { etag } from 'hono/etag'
 import { HTTPException } from 'hono/http-exception'
 import { createRoute } from 'honox/factory'
 import * as v from 'valibot'
+import { requireAuth } from '../../middlewares/requireAuth'
 
 type imageFileName = `${string}-${string}-${number}:${number}.webp`
 
@@ -20,6 +22,7 @@ const imageFileSchema = v.pipe(
 )
 
 export const POST = createRoute(
+  requireAuth,
   vValidator(
     'param',
     v.object({
@@ -47,6 +50,7 @@ export const POST = createRoute(
 )
 
 export const DELETE = createRoute(
+  requireAuth,
   vValidator(
     'param',
     v.object({
@@ -72,6 +76,7 @@ export default createRoute(
       file: imageFileNameSchema,
     }),
   ),
+  etag(),
   async (c) => {
     const { file } = c.req.valid('param')
 

@@ -1,5 +1,5 @@
 import type { Context, Env } from 'hono'
-import { deleteCookie, getSignedCookie, setSignedCookie } from 'hono/cookie'
+import { deleteCookie, setSignedCookie } from 'hono/cookie'
 import * as v from 'valibot'
 
 const sessionSchema = v.object({
@@ -30,8 +30,8 @@ export const createSession = async (c: Context<Env>) => {
 }
 
 export const deleteSession = async (c: Context<Env>, id: string) => {
-  const cookieSessionId = await getSignedCookie(c, c.env.SECRET, 'sessionId')
-  if (cookieSessionId === id) {
+  const sessionId = c.get('sessionId')
+  if (sessionId === id) {
     await Promise.all([
       deleteCookie(c, 'sessionId', {
         secure: true,
