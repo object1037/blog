@@ -1,4 +1,4 @@
-import { css } from 'hono/css'
+import { css, cx } from 'hono/css'
 import { useState } from 'hono/jsx'
 import { Upload } from 'lucide'
 import { LucideIcon } from '../components/lucideIcon'
@@ -7,6 +7,7 @@ import { ImageFinder } from './imageFinder'
 
 export const ImageWidget = ({ images: initImages }: { images: string[] }) => {
   const [images, setImages] = useState(initImages)
+  const [copied, setCopied] = useState(false)
 
   const wrapperStyle = css`
     display: flex;
@@ -21,11 +22,20 @@ export const ImageWidget = ({ images: initImages }: { images: string[] }) => {
     padding: 0.625rem;
     border-radius: 0.5rem;
     cursor: pointer;
+    transition: border-color 0.15s cubic-bezier(0.4, 0, 0.2, 1);
+  `
+  const normalColor = css`
     border: 1px solid #e5e5e5;
     &:hover {
       border-color: #a3a3a3;
     }
-    transition: border-color 0.15s cubic-bezier(0.4, 0, 0.2, 1);
+  `
+  const copiedColor = css`
+    background-color: #d1fae5;
+    border: 1px solid #6ee7b7;
+    &:hover {
+      border-color: #6ee7b7;
+    }
   `
   const h2Style = css`
     font-size: 1.5rem;
@@ -62,6 +72,8 @@ export const ImageWidget = ({ images: initImages }: { images: string[] }) => {
 
     setImages((prev) => [...prev, webp.name])
     await navigator.clipboard.writeText(`/images/${webp.name}`)
+    setCopied(true)
+    setTimeout(() => setCopied(false), 1500)
   }
 
   return (
@@ -70,7 +82,10 @@ export const ImageWidget = ({ images: initImages }: { images: string[] }) => {
       <div class={wrapperStyle}>
         <ImageFinder images={images} setImages={setImages} />
         <form>
-          <label for="fileInput" class={uploadButtonStyle}>
+          <label
+            for="fileInput"
+            class={cx(uploadButtonStyle, copied ? copiedColor : normalColor)}
+          >
             <LucideIcon icon={Upload} title="Add image" />
           </label>
           <input

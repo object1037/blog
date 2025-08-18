@@ -1,6 +1,6 @@
 import { css } from 'hono/css'
 import { useState } from 'hono/jsx'
-import { CopyButton } from './copyButton'
+import { ImageItem } from './imageItem'
 
 export const ImageFinder = ({
   images,
@@ -48,7 +48,7 @@ export const ImageFinder = ({
           )
           .map((image) => (
             <li key={image} class={itemStyle}>
-              <CopyButton image={image} setImages={setImages} />
+              <ImageItem image={image} setImages={setImages} />
             </li>
           ))}
       </ul>

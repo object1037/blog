@@ -3,7 +3,7 @@ import { useState } from 'hono/jsx'
 import { Trash } from 'lucide'
 import { LucideIcon } from '../components/lucideIcon'
 
-export const CopyButton = ({
+export const ImageItem = ({
   image,
   setImages,
 }: {
@@ -51,13 +51,15 @@ export const CopyButton = ({
     }
   `
 
-  const handleCopy = (image: string) => {
-    navigator.clipboard.writeText(`/images/${image}`).then(() => {
-      setCopied(true)
-      setTimeout(() => setCopied(false), 1500)
-    })
+  const handleCopy = async (image: string) => {
+    await navigator.clipboard.writeText(`/images/${image}`)
+    setCopied(true)
+    setTimeout(() => setCopied(false), 1500)
   }
   const handleDelete = async (image: string) => {
+    if (!window.confirm(`Delete image ${image}?`)) {
+      return
+    }
     const res = await fetch(`/images/${image}`, {
       method: 'DELETE',
     })
