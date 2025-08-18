@@ -1,5 +1,5 @@
 {
-  "name": "blog-dev",
+  "name": "blog",
   "main": "./dist/index.js",
   "compatibility_date": "2025-08-08",
   "compatibility_flags": ["nodejs_compat"],
@@ -57,7 +57,7 @@
       ]
     },
     "production": {
-      "name": "blog",
+      "name": "blog-production",
       "vars": {
         "RP_ID": "blog.object1037.dev"
       },
