@@ -7,7 +7,11 @@ import * as schema from '../lib/schema'
 const { posts, postsToTags } = schema
 
 export type Post = NonNullable<Awaited<ReturnType<typeof getPostByID>>>
-export type Posts = Awaited<ReturnType<typeof getPublicPosts>>
+export type Posts = Array<
+  Awaited<ReturnType<typeof getPublicPosts>>[number] & {
+    public?: boolean
+  }
+>
 export type Tags = NonNullable<Awaited<ReturnType<typeof getTags>>>
 export type InsertPost = typeof posts.$inferInsert
 export type InsertPostsToTags = typeof postsToTags.$inferInsert
@@ -71,6 +75,21 @@ export const getPublicPosts = async (db_binding: D1Database) => {
     })
     .from(posts)
     .where(eq(posts.public, true))
+    .orderBy(desc(posts.id))
+
+  return results
+}
+
+export const getAllPosts = async (db_binding: D1Database) => {
+  const db = drizzle(db_binding, { schema })
+  const results = await db
+    .select({
+      id: posts.id,
+      title: posts.title,
+      description: posts.description,
+      public: posts.public,
+    })
+    .from(posts)
     .orderBy(desc(posts.id))
 
   return results
