@@ -28,7 +28,6 @@ const paintTokenHighlights = (
 }
 
 export const initHighlighter = () => {
-  Prism.manual = true
   tokenTypes.forEach((tokenType) => {
     CSS.highlights.set(tokenType, new Highlight())
   })

@@ -4,6 +4,7 @@ import { createRoute } from 'honox/factory'
 import * as v from 'valibot'
 import { Meta } from '../../../components/meta'
 import { TagList } from '../../../components/tagList'
+import { Highlight } from '../../../islands/highlight'
 import { getPostByID } from '../../../services/db'
 import { markdownToHtml } from '../../../services/markdown'
 
@@ -33,6 +34,7 @@ export default createRoute(
         />
         <TagList tags={post.tags.map((tag) => ({ name: tag, count: 0 }))} />
         <div class="markdown_wrapper">{html`${raw(parsed)}`}</div>
+        <Highlight />
       </>,
       { heading: post.title },
     )
