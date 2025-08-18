@@ -1,5 +1,7 @@
 import { css } from 'hono/css'
 import { useEffect, useRef, useState } from 'hono/jsx'
+import { ChevronRight, CloudUpload } from 'lucide'
+import { LucideIcon } from '../components/lucideIcon'
 import { highlight, initHighlighter } from '../lib/highlight.client'
 
 const handleKeydown = (e: KeyboardEvent) => {
@@ -51,6 +53,7 @@ export const Editor = ({ initialValue = '' }: { initialValue?: string }) => {
     white-space: pre-wrap;
     word-wrap: break-word;
     border-radius: 0.5rem;
+    font-size: 0.875rem;
     font-family: ui-monospace, SFMono-Regular, Menlo, Monaco, Consolas, "Liberation Mono", "Courier New", monospace;
   `
   const preStyle = css`
@@ -68,9 +71,56 @@ export const Editor = ({ initialValue = '' }: { initialValue?: string }) => {
       outline: none;
     }
   `
+  const buttonContainer = css`
+    position: absolute;
+    left: 50%;
+    top: 0.75rem;
+    transform: translateX(-50%);
+    display: flex;
+    flex-direction: column;
+    gap: 1.5rem;
+  `
+  const buttonStyle = css`
+    font-size: 1.25rem;
+    padding: 0.625rem;
+    border-radius: 50%;
+    border: 1px solid #a3a3a3;
+    cursor: pointer;
+    background-color: #fafafa;
+    &:hover {
+      background-color: #a3a3a3;
+      color: #fafafa;
+    }
+    transition-property: background-color color border-color;
+    transition-duration: 0.15s;
+    transition-timing-function: cubic-bezier(0.4, 0, 0.2, 1);
+  `
+  const submitBStyle = css`
+    ${buttonStyle}
+    &:hover {
+      background-color: #171717;
+      border-color: #171717;
+      color: #fafafa;
+    }
+  `
+
+  const submitHandler = (e: SubmitEvent) => {
+    const formData = new FormData(e.target as HTMLFormElement, e.submitter)
+    const action = formData.get('action')
+    if (
+      action === 'submit' &&
+      !window.confirm('Are you sure you want to submit?')
+    ) {
+      e.preventDefault()
+    }
+  }
 
   return (
-    <form method="post" action="/new">
+    <form
+      method="post"
+      action="/new"
+      onSubmit={(e) => submitHandler(e as SubmitEvent)}
+    >
       <div class={container}>
         <pre ref={codeBlockRef} class={preStyle}>
           {content}
@@ -87,7 +137,14 @@ export const Editor = ({ initialValue = '' }: { initialValue?: string }) => {
           class={editorStyle}
         />
       </div>
-      <button type="submit">Submit</button>
+      <div class={buttonContainer}>
+        <button type="submit" name="action" value="submit" class={submitBStyle}>
+          <LucideIcon icon={CloudUpload} title="Submit" />
+        </button>
+        <button type="submit" name="action" value="preview" class={buttonStyle}>
+          <LucideIcon icon={ChevronRight} title="Preview" />
+        </button>
+      </div>
     </form>
   )
 }
