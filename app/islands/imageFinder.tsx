@@ -27,6 +27,10 @@ export const ImageFinder = ({
     }
     transition: border-color 0.15s cubic-bezier(0.4, 0, 0.2, 1);
   `
+  const searchResultStyle = css`
+    max-height: 10rem;
+    overflow: auto;
+  `
   const itemStyle = css`
     position: relative;
   `
@@ -41,7 +45,7 @@ export const ImageFinder = ({
         value={searchTerm}
         onInput={(e) => setSearchTerm((e.target as HTMLInputElement).value)}
       />
-      <ul>
+      <ul class={searchResultStyle}>
         {images
           .filter((image) =>
             image.toLowerCase().includes(searchTerm.toLowerCase()),

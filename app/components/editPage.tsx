@@ -25,6 +25,7 @@ export const EditPage = ({
     left: '[50%]',
     transform: 'translateX(-50%)',
     columns: 2,
+    mb: '6',
   })
 
   return (

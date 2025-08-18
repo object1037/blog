@@ -10,6 +10,7 @@ export default jsxRenderer(({ children, heading, isDashboard }) => {
   const mainStyle = container({
     maxWidth: '3xl',
     px: { base: '7', md: '8', lg: '10' },
+    mb: '4',
   })
   const dividerStyle = divider({
     color: 'neutral.700',
