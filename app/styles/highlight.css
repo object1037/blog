@@ -1,71 +1,67 @@
-/* From prism.css */
+.markdown_wrapper {
+  pre {
+    color: #171717;
+    border: 1px solid #e5e5e5;
+  }
+}
+
 ::highlight(parameter) {
-  color: #1a1a1a;
+  color: #a35200;
 }
 
 ::highlight(comment),
 ::highlight(prolog),
 ::highlight(doctype),
 ::highlight(cdata) {
-  color: slategray;
+  color: #6a737d;
+}
+
+::highlight(string),
+::highlight(char),
+::highlight(attr-value),
+::highlight(url) {
+  color: #032f62;
+}
+
+::highlight(constant),
+::highlight(builtin),
+::highlight(number),
+::highlight(class-name) {
+  color: #005cc5;
 }
 
 ::highlight(punctuation) {
-  color: #999;
+  color: #24292e;
 }
 
-::highlight(property),
-::highlight(tag),
-::highlight(boolean),
-::highlight(number),
-::highlight(constant),
 ::highlight(symbol),
-::highlight(deleted),
-::highlight(class-name) {
-  color: #905;
-}
-
-::highlight(selector),
-::highlight(attr-name),
-::highlight(string),
-::highlight(char),
-::highlight(builtin),
-::highlight(inserted) {
-  color: #690;
-}
-
-::highlight(operator),
-::highlight(entity),
-::highlight(url) {
-  color: #a67f59;
-  background: hsla(0, 0%, 100%, 0.5);
+::highlight(boolean),
+::highlight(variable),
+::highlight(property),
+::highlight(inserted),
+::highlight(important) {
+  color: #e36209;
 }
 
 ::highlight(atrule),
-::highlight(attr-value),
-::highlight(keyword) {
-  color: #07a;
+::highlight(attr-name),
+::highlight(keyword),
+::highlight(operator) {
+  color: #d73a49;
 }
 
+::highlight(entity),
 ::highlight(function) {
-  color: #dd4a68;
+  color: #6f42c1;
 }
 
-::highlight(regex),
+::highlight(selector),
+::highlight(tag) {
+  color: #22863a;
+}
+
 ::highlight(important),
-::highlight(variable) {
-  color: #e90;
-}
-
-::highlight(important),
-::highlight(bold) {
-  font-weight: bold;
-}
-
-::highlight(italic) {
-  font-style: italic;
-}
-
-::highlight(entity) {
-  cursor: help;
+::highlight(bold),
+::highlight(url) {
+  text-decoration: underline;
 }
