@@ -6,7 +6,7 @@ import { getToC, type ToCEl } from '../lib/getToC.client'
 import { ToCSub } from './toc'
 
 export const ToCMobile = () => {
-  const [open, setOpen] = useState(true)
+  const [open, setOpen] = useState(false)
   const [toc, setToC] = useState<ToCEl[]>([])
 
   useEffect(() => {
