@@ -56,6 +56,7 @@
       ]
     },
     "production": {
+      "name": "blog",
       "vars": {
         "RP_ID": "blog.object1037.dev"
       },
