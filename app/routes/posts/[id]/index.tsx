@@ -7,6 +7,7 @@ import { Meta } from '../../../components/meta'
 import { TagList } from '../../../components/tagList'
 import { Highlight } from '../../../islands/highlight'
 import { ToC } from '../../../islands/toc'
+import { ToCMobile } from '../../../islands/tocMobile'
 import { getPostByID } from '../../../services/db'
 import { markdownToHtml } from '../../../services/markdown'
 
@@ -40,6 +41,13 @@ export default createRoute(
       top: '40',
       mb: '40',
     })
+    const tocMobileStyle = css({
+      hideFrom: 'xl',
+      position: 'fixed',
+      right: '[max(2rem, calc((100dvw - token(sizes.3xl)) / 2))]',
+      bottom: '20',
+      fontSize: 'sm',
+    })
 
     return c.render(
       <>
@@ -53,6 +61,9 @@ export default createRoute(
         <div class="markdown_wrapper">{html`${raw(parsed.html)}`}</div>
         <aside class={tocStyle}>
           <ToC />
+        </aside>
+        <aside class={tocMobileStyle}>
+          <ToCMobile />
         </aside>
         {parsed.hasCodeBlock && <Highlight />}
       </>,
