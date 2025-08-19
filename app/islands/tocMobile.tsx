@@ -27,7 +27,7 @@ export const ToCMobile = () => {
     transition: transform 0.1s cubic-bezier(0, 0, 0.2, 1);
     transform-origin: bottom right;
     @starting-style {
-      transform: scale(0.98);
+      transform: scale(0.93);
     }
   `
   const buttonStyle = css`
