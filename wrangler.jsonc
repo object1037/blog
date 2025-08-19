@@ -84,7 +84,7 @@
           "binding": "BUCKET",
           "bucket_name": "blog-images"
         }
-      ]
+      ],"name": "blog"
     }
   }
 }
