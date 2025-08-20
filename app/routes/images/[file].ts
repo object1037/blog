@@ -1,4 +1,5 @@
 import { vValidator } from '@hono/valibot-validator'
+import { cache } from 'hono/cache'
 import { etag } from 'hono/etag'
 import { HTTPException } from 'hono/http-exception'
 import { createRoute } from 'honox/factory'
@@ -77,6 +78,10 @@ export default createRoute(
     }),
   ),
   etag(),
+  cache({
+    cacheName: 'image-cache',
+    cacheControl: 'public, max-age=14400',
+  }),
   async (c) => {
     const { file } = c.req.valid('param')
 
@@ -86,7 +91,7 @@ export default createRoute(
     }
 
     return c.body(object.body, 200, {
-      'Content-Type': 'image/webp',
+      'Content-Type': object.httpMetadata?.contentType ?? 'image/webp',
       ETag: object.httpEtag,
     })
   },
