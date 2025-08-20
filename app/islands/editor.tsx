@@ -11,7 +11,13 @@ const handleKeydown = (e: KeyboardEvent) => {
   }
 }
 
-export const Editor = ({ initialValue = '' }: { initialValue?: string }) => {
+export const Editor = ({
+  initialValue = '',
+  id,
+}: {
+  initialValue?: string
+  id: number | undefined
+}) => {
   const codeBlockRef = useRef<HTMLElement>(null)
   const textareaRef = useRef<HTMLTextAreaElement>(null)
   const [content, setContent] = useState(initialValue)
@@ -145,6 +151,7 @@ export const Editor = ({ initialValue = '' }: { initialValue?: string }) => {
           <LucideIcon icon={ChevronRight} title="Preview" />
         </button>
       </div>
+      <input type="hidden" name="id" value={id} />
     </form>
   )
 }

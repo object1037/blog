@@ -23,6 +23,7 @@ export default createRoute(
 
     return c.render(
       <EditPage
+        id={id}
         content={post.content}
         errors={[]}
         images={objects.map((obj) => obj.key)}
