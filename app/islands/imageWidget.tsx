@@ -60,7 +60,7 @@ export const ImageWidget = ({ images: initImages }: { images: string[] }) => {
     formData.append('file', webp)
     try {
       const res = await fetch(`/images/${webp.name}`, {
-        method: 'POST',
+        method: 'PUT',
         body: formData,
       })
       if (!res.ok) {

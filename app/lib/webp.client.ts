@@ -61,11 +61,8 @@ export const convertToWebp = async (file: File) => {
   if (!ctx) {
     return
   }
-  const width = img.naturalWidth
-  const height = img.naturalHeight
-  const size = Math.max(width, height)
-  const w = Math.round((100 * width) / size)
-  const h = Math.round((100 * height) / size)
+  const { width, height } = limitImageDimensions(img, 3840)
+  const { width: w, height: h } = limitImageDimensions(img, 100)
 
   canvas.width = width
   canvas.height = height
@@ -77,4 +74,22 @@ export const convertToWebp = async (file: File) => {
   const webp = new File([webpBlob], fileName, { type: 'image/webp' })
 
   return webp
+}
+
+const limitImageDimensions = (img: HTMLImageElement, maxSize: number) => {
+  const originalWidth = img.naturalWidth
+  const originalHeight = img.naturalHeight
+  const size = Math.max(originalWidth, originalHeight)
+
+  if (originalWidth <= maxSize && originalHeight <= maxSize) {
+    return {
+      width: originalWidth,
+      height: originalHeight,
+    }
+  }
+
+  return {
+    width: Math.round((maxSize * originalWidth) / size),
+    height: Math.round((maxSize * originalHeight) / size),
+  }
 }

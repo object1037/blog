@@ -20,6 +20,6 @@ export default createRoute(async (c) => {
       />
       <PostList posts={postsWithTag} />
     </>,
-    { heading: tag },
+    { heading: `# ${tag}` },
   )
 })

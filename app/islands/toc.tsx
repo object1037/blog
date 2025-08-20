@@ -2,7 +2,13 @@ import { css, cx } from 'hono/css'
 import { useEffect, useState } from 'hono/jsx'
 import { getToC, type ToCEl } from '../lib/getToC.client'
 
-export const ToCSub = ({ toc }: { toc: ToCEl[] }) => {
+export const ToCSub = ({
+  toc,
+  setOpen,
+}: {
+  toc: ToCEl[]
+  setOpen?: ((open: boolean) => void) | undefined
+}) => {
   const tocLinkStyle = css`
     display: inline-block;
     padding: 0.25rem 0;
@@ -25,10 +31,13 @@ export const ToCSub = ({ toc }: { toc: ToCEl[] }) => {
               tocLinkStyle,
               heading.level === 2 ? h2LinkStyle : h3LinkStyle,
             )}
+            onClick={() => setOpen?.(false)}
           >
             {heading.text}
           </a>
-          {heading.children.length > 0 && <ToCSub toc={heading.children} />}
+          {heading.children.length > 0 && (
+            <ToCSub toc={heading.children} setOpen={setOpen} />
+          )}
         </li>
       ))}
     </ol>

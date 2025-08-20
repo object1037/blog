@@ -47,19 +47,18 @@ export const ToCMobile = () => {
     left: 50%;
     top: 50%;
     transform: translate(-50%, -50%);
-    transition: font-size 0.1s cubic-bezier(0, 0, 0.2, 1);
-    transition-delay: 0.025s;
+    transition: font-size 0.05s cubic-bezier(0, 0, 0.2, 1);
   `
   const hideStyle = css`
     font-size: 0;
-    transition-delay: 0s;
+    transition-duration: 0s;
   `
 
   return (
     <>
       {open && (
         <nav class={navStyle}>
-          <ToCSub toc={toc} />
+          <ToCSub toc={toc} setOpen={setOpen} />
         </nav>
       )}
       <button type="button" onClick={() => setOpen(!open)} class={buttonStyle}>
