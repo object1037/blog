@@ -38,10 +38,17 @@ export const parseFrontmatter = v.pipe(
   frontmatterSchema,
 ) satisfies v.GenericSchema<string, FrontMatter>
 
-export const getPostByID = async (db_binding: D1Database, id: number) => {
+export const getPostByID = async (
+  db_binding: D1Database,
+  id: number,
+  allowPrivate: boolean = false,
+) => {
   const db = drizzle(db_binding, { schema })
   const result = await db.query.posts.findFirst({
-    where: and(eq(posts.id, id), eq(posts.public, true)),
+    where: and(
+      eq(posts.id, id),
+      allowPrivate ? undefined : eq(posts.public, true),
+    ),
     columns: {
       public: false,
     },

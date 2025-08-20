@@ -29,7 +29,9 @@ const paintTokenHighlights = (
 
 export const initHighlighter = () => {
   tokenTypes.forEach((tokenType) => {
-    CSS.highlights.set(tokenType, new Highlight())
+    if (!CSS.highlights.has(tokenType)) {
+      CSS.highlights.set(tokenType, new Highlight())
+    }
   })
 }
 
@@ -51,7 +53,14 @@ export const highlight = (
 
   if (reset) {
     tokenTypes.forEach((tokenType) => {
-      CSS.highlights.get(tokenType)?.clear()
+      CSS.highlights.get(tokenType)?.forEach((range, key, parent) => {
+        if (
+          range.startContainer.parentElement?.nextElementSibling?.tagName ===
+          'TEXTAREA'
+        ) {
+          parent.delete(key)
+        }
+      })
     })
   }
 

@@ -20,6 +20,7 @@ export default createRoute(requireAuth, async (c) => {
   const { objects } = await c.env.BUCKET.list()
   return c.render(
     <EditPage
+      id={undefined}
       content={template}
       errors={[]}
       images={objects.map((obj) => obj.key)}
@@ -30,10 +31,22 @@ export default createRoute(requireAuth, async (c) => {
 
 export const POST = createRoute(
   requireAuth,
-  vValidator('form', v.object({ content: v.string(), action: v.string() })),
+  vValidator(
+    'form',
+    v.object({
+      content: v.string(),
+      action: v.string(),
+      id: v.union([
+        v.literal(''),
+        v.pipe(v.string(), v.transform(Number), v.number()),
+      ]),
+    }),
+  ),
   async (c) => {
-    const { content, action } = c.req.valid('form')
+    const { content, action, id: idUnion } = c.req.valid('form')
     const result = parseMarkdown(typeof content === 'string' ? content : '')
+
+    const id = idUnion === '' ? undefined : idUnion
 
     if (!result.success) {
       console.log(result.errors)
@@ -41,6 +54,7 @@ export const POST = createRoute(
 
       return c.render(
         <EditPage
+          id={id}
           content={content}
           errors={result.errors}
           images={objects.map((obj) => obj.key)}
@@ -54,6 +68,7 @@ export const POST = createRoute(
 
       return c.render(
         <EditPage
+          id={id}
           content={content}
           errors={[]}
           images={objects.map((obj) => obj.key)}
