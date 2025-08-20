@@ -110,11 +110,11 @@ const handleAuthentication = async () => {
   }
 }
 
-export const LoginWidget = () => {
+export const LoginWidget = ({ nextPath }: { nextPath: string | undefined }) => {
   const handleLogin = async () => {
     try {
       await handleRegistration()
-      window.location.replace('/dashboard')
+      window.location.replace(nextPath ? nextPath : '/dashboard')
     } catch (e) {
       console.error('Error during login process:', e)
     }

@@ -22,7 +22,8 @@ export const requireAuth = createMiddleware<Env>(async (c, next) => {
   }
 
   if (c.req.path !== '/login') {
-    return c.redirect('/login')
+    const nextPath = encodeURIComponent(c.req.path)
+    return c.redirect(`/login?nextPath=${nextPath}`)
   }
 
   return next()
