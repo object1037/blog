@@ -15,7 +15,7 @@ export default createRoute(
   ),
   async (c) => {
     const { id } = c.req.valid('param')
-    const post = await getPostByID(c.env.DB, id)
+    const post = await getPostByID(c.env.DB, id, true)
     if (!post) {
       return c.notFound()
     }
