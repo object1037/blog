@@ -80,7 +80,7 @@ export default createRoute(
   etag(),
   cache({
     cacheName: 'image-cache',
-    cacheControl: 'public, max-age=14400',
+    cacheControl: 'public, max-age=14400, s-maxage=86400',
   }),
   async (c) => {
     const { file } = c.req.valid('param')

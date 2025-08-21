@@ -21,8 +21,7 @@ export default createRoute(
   vValidator('param', paramSchema),
   cache({
     cacheName: 'post-cache',
-    cacheControl:
-      'public, max-age=30, stale-while-revalidate=600, stale-if-error=864000',
+    cacheControl: 'public, max-age=600, s-max-age=86400',
   }),
   async (c) => {
     const { id } = c.req.valid('param')
