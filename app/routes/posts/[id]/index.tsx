@@ -83,6 +83,6 @@ export const DELETE = createRoute(
   async (c) => {
     const { id } = c.req.valid('param')
     await deletePost(c.env.DB, id)
-    return c.redirect('/dashboard', 303)
+    return
   },
 )
