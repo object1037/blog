@@ -1,5 +1,6 @@
 import { css, cx } from '../../styled-system/css'
 import { flex } from '../../styled-system/patterns'
+import { getDatetime } from '../lib/getDatetime'
 import type { Posts } from '../services/db'
 
 export const PostCard = ({
@@ -65,6 +66,8 @@ export const PostCard = ({
     },
   })
 
+  const dateTime = getDatetime(post.id)
+
   return (
     <div
       class={cx(
@@ -78,7 +81,9 @@ export const PostCard = ({
           <h2 class={titleStyle}>{post.title}</h2>
           <p>{post.description}</p>
         </div>
-        <p class={idStyle}>{post.id}</p>
+        <time class={idStyle} datetime={dateTime}>
+          {post.id}
+        </time>
       </a>
       {dash && (
         <a href={`/posts/${post.id}/edit`} class={editButtonStyle}>
