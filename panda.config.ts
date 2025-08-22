@@ -5,6 +5,9 @@ const globalCss = defineGlobalStyles({
   'html, body': {
     bg: 'neutral.50',
     color: 'neutral.900',
+    '--global-font-body':
+      'ui-sans-serif, system-ui, -apple-system, BlinkMacSystemFont, Hiragino Kaku Gothic Pro, Noto Sans JP, sans-serif',
+    letterSpacing: '0.01em',
   },
   body: {
     display: 'grid',
