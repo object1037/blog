@@ -18,7 +18,33 @@ export type InsertPostsToTags = typeof postsToTags.$inferInsert
 export type FrontMatter = Omit<Post, 'content'> & { public: boolean }
 
 const frontmatterSchema = v.object({
-  id: v.number(),
+  id: v.pipe(
+    v.number(),
+    v.integer(),
+    v.custom((input) => {
+      if (typeof input !== 'number') {
+        return false
+      }
+      const str = input.toString()
+      return /^\d{8}$/.test(str)
+    }, 'Must be an 8-digit date like 20250101'),
+    v.custom((input) => {
+      if (typeof input !== 'number') {
+        return false
+      }
+      const str = input.toString()
+      const y = Number(str.slice(0, 4))
+      const m = Number(str.slice(4, 6)) - 1 // JS months are 0-based
+      const d = Number(str.slice(6, 8))
+      const date = new Date(y, m, d)
+
+      return (
+        date.getFullYear() === y &&
+        date.getMonth() === m &&
+        date.getDate() === d
+      )
+    }, 'Invalid date'),
+  ),
   title: v.string(),
   description: v.string(),
   public: v.boolean(),

@@ -8,6 +8,7 @@ export const DeletePostButton = ({ id }: { id: number }) => {
       await fetch(`/posts/${id}`, {
         method: 'DELETE',
       })
+      window.location.replace('/dashboard')
     }
   }
 

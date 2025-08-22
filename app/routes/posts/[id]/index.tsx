@@ -4,11 +4,13 @@ import { html, raw } from 'hono/html'
 import { createRoute } from 'honox/factory'
 import * as v from 'valibot'
 import { css } from '../../../../styled-system/css'
+import { hstack } from '../../../../styled-system/patterns'
 import { Meta } from '../../../components/meta'
 import { TagList } from '../../../components/tagList'
 import { Highlight } from '../../../islands/highlight'
 import { ToC } from '../../../islands/toc'
 import { ToCMobile } from '../../../islands/tocMobile'
+import { getDatetime } from '../../../lib/getDatetime'
 import { requireAuth } from '../../../middlewares/requireAuth'
 import { deletePost, getPostByID } from '../../../services/db'
 import { markdownToHtml } from '../../../services/markdown'
@@ -32,6 +34,11 @@ export default createRoute(
 
     const parsed = markdownToHtml(post.content)
 
+    const timeStyle = hstack({
+      fontSize: 'sm',
+      color: 'neutral.700',
+      mb: '4',
+    })
     const tocStyle = css({
       hideBelow: 'xl',
       position: 'fixed',
@@ -54,6 +61,12 @@ export default createRoute(
       fontSize: 'sm',
     })
 
+    const dateTime = getDatetime(post.id)
+    const now = new Date()
+    const today = new Date(now.getFullYear(), now.getMonth(), now.getDate())
+    const diffMs = today.getTime() - new Date(dateTime).getTime()
+    const diffYears = Math.round(diffMs / (1000 * 60 * 60 * 24 * 365))
+
     return c.render(
       <>
         <Meta
@@ -62,6 +75,14 @@ export default createRoute(
           url={c.req.url}
           type="article"
         />
+        <div class={timeStyle}>
+          <time dateTime={dateTime}>{dateTime}</time>
+          {diffYears >= 1 && (
+            <span class={css({ fontSize: 'xs', fontWeight: 'light' })}>
+              ({diffYears} year{diffYears > 1 ? 's' : ''} ago)
+            </span>
+          )}
+        </div>
         <TagList tags={post.tags.map((tag) => ({ name: tag, count: 0 }))} />
         <div class="markdown_wrapper">{html`${raw(parsed.html)}`}</div>
         <aside class={tocStyle}>
@@ -83,6 +104,6 @@ export const DELETE = createRoute(
   async (c) => {
     const { id } = c.req.valid('param')
     await deletePost(c.env.DB, id)
-    return c.redirect('/dashboard', 303)
+    return
   },
 )
