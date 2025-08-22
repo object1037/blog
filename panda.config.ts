@@ -8,6 +8,7 @@ const globalCss = defineGlobalStyles({
     '--global-font-body':
       'ui-sans-serif, system-ui, -apple-system, BlinkMacSystemFont, Hiragino Kaku Gothic Pro, Noto Sans JP, sans-serif',
     letterSpacing: '0.01em',
+    wordBreak: 'auto-phrase',
   },
   body: {
     display: 'grid',
