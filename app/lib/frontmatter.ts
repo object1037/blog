@@ -39,6 +39,7 @@ export const parseYaml = (yaml: string) => {
             .slice(1, -1)
             .split(',')
             .map((v) => stripQuotes(v.trim()))
+            .filter((v) => v !== '')
         } else {
           if (rawValue === 'true' || rawValue === 'false') {
             result[key] = rawValue === 'true'

@@ -148,7 +148,9 @@ export const addPost = async (
   }))
 
   const updateTagQueries = [
-    db.insert(postsToTags).values(postTagDatas).onConflictDoNothing(),
+    postTagDatas.length > 0
+      ? db.insert(postsToTags).values(postTagDatas).onConflictDoNothing()
+      : undefined,
     db
       .delete(postsToTags)
       .where(
@@ -157,7 +159,7 @@ export const addPost = async (
           notInArray(postsToTags.tagName, tags),
         ),
       ),
-  ]
+  ].filter((query) => query !== undefined)
   const deletePrivateTagQueries = [
     db.delete(postsToTags).where(eq(postsToTags.postId, post.id)),
   ]
