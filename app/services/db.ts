@@ -1,4 +1,4 @@
-import { and, count, desc, eq, inArray, notInArray } from 'drizzle-orm'
+import { and, count, desc, eq, inArray, lt, notInArray } from 'drizzle-orm'
 import { drizzle } from 'drizzle-orm/d1'
 import * as v from 'valibot'
 import { parseYaml } from '../lib/frontmatter'
@@ -98,7 +98,11 @@ export const getPostByID = async (
   }
 }
 
-export const getPublicPosts = async (db_binding: D1Database) => {
+export const getPublicPosts = async (
+  db_binding: D1Database,
+  pageSize = 5,
+  cursor?: number,
+) => {
   const db = drizzle(db_binding, { schema })
   const results = await db
     .select({
@@ -107,7 +111,10 @@ export const getPublicPosts = async (db_binding: D1Database) => {
       description: posts.description,
     })
     .from(posts)
-    .where(eq(posts.public, true))
+    .where(
+      and(eq(posts.public, true), cursor ? lt(posts.id, cursor) : undefined),
+    )
+    .limit(pageSize)
     .orderBy(desc(posts.id))
 
   return results
