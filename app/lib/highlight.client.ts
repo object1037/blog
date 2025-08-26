@@ -100,4 +100,5 @@ const tokenTypes = [
   'symbol',
   'tag',
   'url',
+  'prediction',
 ]
