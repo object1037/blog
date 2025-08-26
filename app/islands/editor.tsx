@@ -1,14 +1,48 @@
 import { css } from 'hono/css'
 import { useEffect, useRef, useState } from 'hono/jsx'
 import { ChevronRight, CloudUpload } from 'lucide'
+import * as v from 'valibot'
 import { LucideIcon } from '../components/lucideIcon'
 import { highlight, initHighlighter } from '../lib/highlight.client'
 
-const handleKeydown = (e: KeyboardEvent) => {
-  if (e.code === 'Tab') {
-    document.execCommand('insertHTML', false, '  ')
+const handleKeydown = (
+  e: KeyboardEvent,
+  isComposing: boolean,
+  prediction: string,
+  setPrediction: (pred: string) => void,
+) => {
+  if (e.code === 'Tab' && !isComposing) {
+    const insertText = prediction || '  '
+    document.execCommand('insertHTML', false, insertText)
+    if (prediction) {
+      setPrediction('')
+    }
     e.preventDefault()
   }
+}
+
+const getInsertedContent = (
+  content: string,
+  cursorPos: number | undefined,
+  prediction: string,
+) => {
+  const contentBeforeCursor = content.slice(0, cursorPos ?? content.length)
+  const contentAfterCursor = content.slice(cursorPos ?? content.length)
+  return `${contentBeforeCursor}${prediction}${contentAfterCursor}`
+}
+
+const highlightPrediction = (
+  codeBlock: HTMLElement | null,
+  cursorPos: number | undefined,
+  prediction: string,
+) => {
+  if (!codeBlock?.firstChild || cursorPos === undefined) {
+    return
+  }
+  const predRange = new Range()
+  predRange.setStart(codeBlock.firstChild, cursorPos)
+  predRange.setEnd(codeBlock.firstChild, cursorPos + prediction.length)
+  CSS.highlights.get('prediction')?.add(predRange)
 }
 
 export const Editor = ({
@@ -21,6 +55,9 @@ export const Editor = ({
   const codeBlockRef = useRef<HTMLElement>(null)
   const textareaRef = useRef<HTMLTextAreaElement>(null)
   const [content, setContent] = useState(initialValue)
+  const [cursorPos, setCursorPos] = useState<number | undefined>(undefined)
+  const [prediction, setPrediction] = useState<string>('')
+  const [isComposing, setIsComposing] = useState(false)
 
   useEffect(() => {
     initHighlighter()
@@ -28,14 +65,57 @@ export const Editor = ({
   }, [])
 
   useEffect(() => {
-    highlight(codeBlockRef.current, content, 'markdown')
-  }, [content])
+    highlight(
+      codeBlockRef.current,
+      getInsertedContent(content, cursorPos, prediction),
+      'markdown',
+    )
+    highlightPrediction(codeBlockRef.current, cursorPos, prediction)
+  }, [content, cursorPos, prediction])
+
+  useEffect(() => {
+    if (!isComposing && textareaRef.current) {
+      const contentBeforeCursor = content.slice(0, cursorPos)
+      const timeoutId = setTimeout(() => predict(contentBeforeCursor), 500)
+      return () => clearTimeout(timeoutId)
+    }
+    return
+  }, [content, isComposing, cursorPos])
 
   const updateTextareaHeight = () => {
     const target = textareaRef.current
     if (!target) return
     target.style.height = 'auto'
     target.style.height = `${target.scrollHeight}px`
+  }
+
+  const predict = async (content: string) => {
+    if (content !== initialValue) {
+      try {
+        const predictResult = await fetch('/api/get-prediction', {
+          method: 'POST',
+          headers: {
+            'Content-Type': 'application/json',
+          },
+          body: JSON.stringify({ content }),
+        })
+
+        const { response } = v.parse(
+          v.object({ response: v.string() }),
+          await predictResult.json(),
+        )
+
+        const splitted = response.split('\n')
+        if (splitted[0]) {
+          setPrediction(splitted[0])
+        }
+      } catch (e) {
+        console.error(e)
+        setPrediction('')
+      }
+    } else {
+      setPrediction('')
+    }
   }
 
   const container = css`
@@ -129,7 +209,7 @@ export const Editor = ({
     >
       <div class={container}>
         <pre ref={codeBlockRef} class={preStyle}>
-          {content}
+          {getInsertedContent(content, cursorPos, prediction)}
         </pre>
         <textarea
           name="content"
@@ -137,9 +217,14 @@ export const Editor = ({
           ref={textareaRef}
           onChange={(e) => {
             setContent((e.target as HTMLTextAreaElement).value)
+            setCursorPos((e.target as HTMLTextAreaElement).selectionStart)
             updateTextareaHeight()
           }}
-          onKeyDown={handleKeydown}
+          onKeyDown={(e) =>
+            handleKeydown(e, isComposing, prediction, setPrediction)
+          }
+          onCompositionStart={() => setIsComposing(true)}
+          onCompositionEnd={() => setIsComposing(false)}
           class={editorStyle}
         />
       </div>

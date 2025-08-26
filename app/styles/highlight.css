@@ -65,3 +65,7 @@
 ::highlight(url) {
   text-decoration: underline;
 }
+
+::highlight(prediction) {
+  color: #a3a3a3;
+}

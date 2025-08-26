@@ -30,6 +30,9 @@
       "bucket_name": "blog-images"
     }
   ],
+  "ai": {
+    "binding": "AI"
+  },
   "env": {
     "preview": {
       "vars": {
@@ -53,7 +56,10 @@
           "binding": "BUCKET",
           "bucket_name": "blog-images"
         }
-      ]
+      ],
+      "ai": {
+        "binding": "AI"
+      }
     },
     "production": {
       "name": "blog",
@@ -85,7 +91,10 @@
           "binding": "BUCKET",
           "bucket_name": "blog-images"
         }
-      ]
+      ],
+      "ai": {
+        "binding": "AI"
+      }
     }
   }
 }
