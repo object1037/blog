@@ -1,4 +1,4 @@
-import { ChevronRight } from 'lucide'
+import { ChevronFirst, ChevronRight } from 'lucide'
 import { css } from '../../styled-system/css'
 import { hstack, vstack } from '../../styled-system/patterns'
 import type { Posts } from '../services/db'
@@ -7,9 +7,13 @@ import { PostCard } from './postCard'
 
 export const PostList = ({
   posts,
+  hasMore = false,
+  isTop = true,
   dash = false,
 }: {
   posts: Posts
+  hasMore?: boolean
+  isTop?: boolean
   dash?: boolean
 }) => {
   const lastId = posts[posts.length - 1]?.id
@@ -33,11 +37,19 @@ export const PostList = ({
           </article>
         ))}
       </div>
-      <div class={hstack({ justify: 'space-around', mt: '8' })}>
-        <a href={lastId ? `/?cursor=${lastId}` : '/'} class={buttonStyle}>
-          <LucideIcon icon={ChevronRight} title="Next" />
-        </a>
-      </div>
+      {(hasMore || !isTop) && (
+        <div class={hstack({ justify: 'space-around', mt: '8' })}>
+          {hasMore ? (
+            <a href={lastId ? `/?cursor=${lastId}` : '/'} class={buttonStyle}>
+              <LucideIcon icon={ChevronRight} title="Next" />
+            </a>
+          ) : (
+            <a href="/" class={buttonStyle}>
+              <LucideIcon icon={ChevronFirst} title="Back to top" />
+            </a>
+          )}
+        </div>
+      )}
     </>
   )
 }

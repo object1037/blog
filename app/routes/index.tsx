@@ -16,16 +16,23 @@ export default createRoute(
   ),
   async (c) => {
     const { cursor } = c.req.valid('query')
-    const posts = await getPublicPosts(c.env.DB, 5, cursor)
+    const pageSize = 5
+    const posts = await getPublicPosts(c.env.DB, pageSize + 1, cursor)
+    const hasMore = posts.length === pageSize + 1
+    const isTop = cursor === undefined
 
-    if (posts.length === 0) {
+    if (posts.length === 0 && cursor) {
       return c.redirect('/')
     }
 
     return c.render(
       <>
         <Meta title="" description="object1037 Blog" url={c.req.url} />
-        <PostList posts={posts} />
+        <PostList
+          posts={posts.slice(0, pageSize)}
+          hasMore={hasMore}
+          isTop={isTop}
+        />
       </>,
       { heading: 'Posts' },
     )
