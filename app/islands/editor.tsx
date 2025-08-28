@@ -225,6 +225,7 @@ export const Editor = ({
           }
           onCompositionStart={() => setIsComposing(true)}
           onCompositionEnd={() => setIsComposing(false)}
+          onSelectionChange={() => setPrediction('')}
           class={editorStyle}
         />
       </div>
