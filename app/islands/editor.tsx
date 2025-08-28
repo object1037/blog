@@ -1,6 +1,6 @@
-import { css } from 'hono/css'
+import { css, cx } from 'hono/css'
 import { useEffect, useRef, useState } from 'hono/jsx'
-import { ChevronRight, CloudUpload } from 'lucide'
+import { Brain, ChevronRight, CloudUpload } from 'lucide'
 import * as v from 'valibot'
 import { LucideIcon } from '../components/lucideIcon'
 import { highlight, initHighlighter } from '../lib/highlight.client'
@@ -58,6 +58,7 @@ export const Editor = ({
   const [cursorPos, setCursorPos] = useState<number | undefined>(undefined)
   const [prediction, setPrediction] = useState<string>('')
   const [isComposing, setIsComposing] = useState(false)
+  const [predictionEnabled, setPredictionEnabled] = useState(true)
 
   useEffect(() => {
     initHighlighter()
@@ -74,7 +75,7 @@ export const Editor = ({
   }, [content, cursorPos, prediction])
 
   useEffect(() => {
-    if (!isComposing && textareaRef.current) {
+    if (!isComposing && textareaRef.current && predictionEnabled) {
       const contentBeforeCursor = content.slice(0, cursorPos)
       const timeoutId = setTimeout(() => predict(contentBeforeCursor), 500)
       return () => clearTimeout(timeoutId)
@@ -105,10 +106,8 @@ export const Editor = ({
           await predictResult.json(),
         )
 
-        const splitted = response.split('\n')
-        if (splitted[0]) {
-          setPrediction(splitted[0])
-        }
+        const replaced = response.replaceAll('\n', ' ').trim()
+        setPrediction(replaced)
       } catch (e) {
         console.error(e)
         setPrediction('')
@@ -189,6 +188,11 @@ export const Editor = ({
       color: #fafafa;
     }
   `
+  const disabledBStyle = css`
+    ${buttonStyle}
+    color: #d4d4d4;
+    border-color: #e5e5e5;
+  `
 
   const submitHandler = (e: SubmitEvent) => {
     const formData = new FormData(e.target as HTMLFormElement, e.submitter)
@@ -225,6 +229,7 @@ export const Editor = ({
           }
           onCompositionStart={() => setIsComposing(true)}
           onCompositionEnd={() => setIsComposing(false)}
+          onSelectionChange={() => setPrediction('')}
           class={editorStyle}
         />
       </div>
@@ -234,6 +239,13 @@ export const Editor = ({
         </button>
         <button type="submit" name="action" value="preview" class={buttonStyle}>
           <LucideIcon icon={ChevronRight} title="Preview" />
+        </button>
+        <button
+          type="button"
+          class={cx(predictionEnabled ? buttonStyle : disabledBStyle)}
+          onClick={() => setPredictionEnabled(!predictionEnabled)}
+        >
+          <LucideIcon icon={Brain} title="Toggle AI suggestion" />
         </button>
       </div>
       <input type="hidden" name="id" value={id} />
