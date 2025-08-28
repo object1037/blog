@@ -14,3 +14,4 @@ My blog built with [HonoX](https://github.com/honojs/honox).
   - D1 (blog posts)
   - KV (auth info)
   - R2 (images)
+  - AI (text prediction)
