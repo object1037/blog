@@ -28,17 +28,19 @@ export const PostList = ({
     },
   })
 
+  const showButton = hasMore || !isTop
+
   return (
     <>
-      <div class={vstack({ gap: '6' })}>
+      <div class={vstack({ gap: '6', mb: '8' })}>
         {posts.map((post) => (
           <article key={post.id} class={css({ w: 'full' })}>
             <PostCard post={post} dash={dash} />
           </article>
         ))}
       </div>
-      {(hasMore || !isTop) && (
-        <div class={hstack({ justify: 'space-around', mt: '8' })}>
+      {showButton && (
+        <div class={hstack({ justify: 'space-around' })}>
           {hasMore ? (
             <a href={lastId ? `/?cursor=${lastId}` : '/'} class={buttonStyle}>
               <LucideIcon icon={ChevronRight} title="Next" />
