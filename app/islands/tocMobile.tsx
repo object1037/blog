@@ -26,6 +26,7 @@ export const ToCMobile = () => {
     overflow-y: auto;
     transition: transform 0.1s cubic-bezier(0, 0, 0.2, 1);
     transform-origin: bottom right;
+    box-shadow: 0 4px 6px -1px rgb(0 0 0 / 0.1), 0 2px 4px -2px rgb(0 0 0 / 0.1);
     @starting-style {
       transform: scale(0.93);
     }
@@ -40,6 +41,7 @@ export const ToCMobile = () => {
     height: 3.5rem;
     font-size: 1.75rem;
     z-index: 50;
+    box-shadow: 0 10px 15px -3px rgb(0 0 0 / 0.1), 0 4px 6px -4px rgb(0 0 0 / 0.1);
     cursor: pointer;
   `
   const iconStyle = css`

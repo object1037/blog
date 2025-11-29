@@ -16,7 +16,7 @@ export default createRoute(
   ),
   async (c) => {
     const { cursor } = c.req.valid('query')
-    const pageSize = 5
+    const pageSize = 10
     const posts = await getPublicPosts(c.env.DB, pageSize + 1, cursor)
     const hasMore = posts.length === pageSize + 1
     const isTop = cursor === undefined
