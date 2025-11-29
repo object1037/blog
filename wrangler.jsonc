@@ -8,6 +8,7 @@
     "directory": "./dist"
   },
 
+  "preview_urls": true,
   "vars": {
     "RP_ID": "localhost",
     "ORIGIN_PORT": "5173"
