@@ -10,7 +10,7 @@ export default defineConfig({
   },
   plugins: [
     honox({
-      client: { input: ['./app/styles/index.css'] },
+      client: { input: ['./app/client.ts', './app/styles/index.css'] },
       devServer: {
         adapter,
         handleHotUpdate: ({ server, modules }) => {

@@ -1,12 +1,14 @@
 {
+  "$schema": "./node_modules/wrangler/config-schema.json",
   "name": "blog",
   "main": "./dist/index.js",
-  "compatibility_date": "2025-08-08",
+  "compatibility_date": "2025-11-29",
   "compatibility_flags": ["nodejs_compat"],
   "assets": {
     "directory": "./dist"
   },
 
+  "preview_urls": true,
   "vars": {
     "RP_ID": "localhost",
     "ORIGIN_PORT": "5173"
@@ -38,6 +40,7 @@
       "vars": {
         "RP_ID": "preview-blog.object1037.workers.dev"
       },
+      "workers_dev": true,
       "d1_databases": [
         {
           "binding": "DB",
