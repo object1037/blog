@@ -31,9 +31,6 @@ export const markdownToHtml = (markdown: string) => {
     .use(container, 'details', detailsOption)
     .use(anchor, {
       level: [1, 2, 3, 4],
-      permalink: anchor.permalink.ariaHidden({
-        symbol: '',
-      }),
       tabIndex: false,
     })
 

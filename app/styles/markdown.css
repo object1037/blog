@@ -43,7 +43,7 @@
   }
 
   a {
-    color: #df286c;
+    color: #e21352;
     &:hover {
       text-decoration: underline;
     }
@@ -81,13 +81,13 @@
 
   hr {
     margin: 2.5rem 0;
-    border-top: 1px solid #404040;
+    border-top: 1px solid #404040; /* neutral.700 */
   }
 
   blockquote {
-    border-left: solid 3px #e5e5e5;
+    border-left: solid 3px #e5e5e5; /* neutral.200 */
     padding: 0.125rem 1rem;
-    color: #737373;
+    color: #737373; /* neutral.500 */
     p {
       margin: 0.75rem 0;
     }
@@ -102,7 +102,7 @@
   }
 
   code {
-    background-color: #e5e5e5;
+    background-color: #e5e5e5; /* neutral.200 */
     padding: 0.2rem 0.375rem;
     font-family:
       ui-monospace, SFMono-Regular, Menlo, Monaco, Consolas, "Liberation Mono",
@@ -113,6 +113,7 @@
   pre {
     overflow-x: auto;
     padding: 1rem;
+    background-color: #f5f5f5; /* neutral.100 */
     code {
       padding: 0;
       background: transparent;
@@ -126,7 +127,7 @@
   }
 
   div.picture + em {
-    color: #404040;
+    color: #404040; /* neutral.700 */
     font-size: 0.875rem;
     padding-top: 0.5rem;
     display: inline-block;
