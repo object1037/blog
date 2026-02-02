@@ -42,11 +42,8 @@ export default createRoute(
     const tocStyle = css({
       hideBelow: 'xl',
       position: 'fixed',
-      px: '6',
       fontSize: 'sm',
       overflowY: 'auto',
-      borderLeftWidth: '1px',
-      borderColor: 'neutral.200',
       width: '56',
       maxHeight: '[calc(100dvh - token(sizes.80))]',
       left: '[calc(50% + token(sizes.3xl) / 2 + token(spacing.4))]',

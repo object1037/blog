@@ -19,7 +19,7 @@ export const ToCMobile = () => {
     right: 1.25rem;
     width: 11rem;
     max-height: calc(100dvh - 10rem);
-    padding: 1rem;
+    padding: 1rem 0;
     border: 1px solid #e5e5e5;
     border-radius: 0.5rem;
     background-color: #fafafa;
@@ -27,6 +27,7 @@ export const ToCMobile = () => {
     transition: transform 0.1s cubic-bezier(0, 0, 0.2, 1);
     transform-origin: bottom right;
     box-shadow: 0 4px 6px -1px rgb(0 0 0 / 0.1), 0 2px 4px -2px rgb(0 0 0 / 0.1);
+    scroll-target-group: auto;
     @starting-style {
       transform: scale(0.93);
     }
