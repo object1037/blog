@@ -13,12 +13,26 @@ export const ToCSub = ({
     display: inline-block;
     padding: 0.25rem 0;
     color: #404040;
+    width: 100%;
+    padding-right: 1.5rem;
+    border-left: 1px solid #d4d4d4;
+    &:target-before {
+      border-left: 1px solid #d4d4d4;
+    }
+    &:target-current {
+      border-left: 1px solid #a3a3a3;
+      background-color: #f5f5f5;
+    }
+    &:target-after {
+      border-left: 1px solid #e5e5e5;
+    }
   `
   const h2LinkStyle = css`
     font-weight: 500;
+    padding-left: 1.5rem;
   `
   const h3LinkStyle = css`
-    margin-left: 1rem;
+    padding-left: 2.5rem;
   `
 
   return (
@@ -54,14 +68,18 @@ export const ToC = () => {
   const tocHeadingStyle = css`
     position: sticky;
     top: 0;
-    padding-top: 1rem;
-    padding-bottom: 0.5rem;
+    padding: 1rem 1.5rem 0.5rem 1.5rem;
     background-color: #fafafa;
     font-weight: 600;
+    border-left: 1px solid #d4d4d4;
+  `
+  const navStyle = css`
+    padding-bottom: 0.5rem;
+    scroll-target-group: auto;
   `
 
   return (
-    <nav class={css`padding-bottom: 0.5rem;`}>
+    <nav class={navStyle}>
       <h5 className={tocHeadingStyle}>CONTENTS</h5>
       <ToCSub toc={toc} />
     </nav>
