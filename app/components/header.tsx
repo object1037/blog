@@ -7,25 +7,18 @@ export const Header = ({ dashboard }: { dashboard: boolean }) => {
     justify: 'space-between',
     p: '2',
   })
-  const topLinkStackStyle = hstack({
-    gap: '1',
-    py: '3',
+  const topLinkStyle = hstack({
+    gap: '4',
+    fontSize: '5xl',
+    py: '4',
     px: { base: '0', md: '2', lg: '4' },
   })
-  const hpLinkStyle = css({
-    fontSize: '5xl',
-    rounded: 'full',
-    p: '1',
-    ml: '-1',
-    _hover: { bg: '[#fff5f6]' },
-  })
-  const topLinkStyle = button({
+  const topTextStyle = css({
     fontSize: 'lg',
     fontWeight: 'medium',
     lineHeight: 'none',
-    p: '2',
   })
-  const navButtonStyle = button({
+  const navTextStyle = button({
     py: '2',
     px: { base: '3', md: '4' },
   })
@@ -33,15 +26,11 @@ export const Header = ({ dashboard }: { dashboard: boolean }) => {
   return (
     <header class={container()}>
       <nav class={headerStackStyle}>
-        <div class={topLinkStackStyle}>
-          <a href="https://object1037.dev" class={hpLinkStyle}>
-            <Icon mono={dashboard} />
-          </a>
-          <a href={dashboard ? '/dashboard' : '/'} class={topLinkStyle}>
-            <span>{dashboard ? 'Dash' : 'Blog'}</span>
-          </a>
-        </div>
-        <a href="/tags" class={navButtonStyle}>
+        <a href={dashboard ? '/dashboard' : '/'} class={topLinkStyle}>
+          <Icon mono={dashboard} />
+          <span class={topTextStyle}>{dashboard ? 'Dash' : 'Blog'}</span>
+        </a>
+        <a href="/tags" class={navTextStyle}>
           Tags
         </a>
       </nav>
