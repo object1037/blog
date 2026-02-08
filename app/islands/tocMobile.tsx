@@ -50,11 +50,9 @@ export const ToCMobile = () => {
     left: 50%;
     top: 50%;
     transform: translate(-50%, -50%);
-    transition: font-size 0.05s cubic-bezier(0, 0, 0.2, 1);
   `
   const hideStyle = css`
     font-size: 0;
-    transition-duration: 0s;
   `
 
   return (
