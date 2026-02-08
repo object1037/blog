@@ -10,10 +10,15 @@ export const Footer = () => {
     mb: { base: '8', md: '10', lg: '12' },
   })
   const copyStyle = css({
-    py: '4',
-    px: { base: '2', md: '4' },
+    mx: { base: '2', md: '4' },
     fontSize: 'xs',
     fontWeight: 'light',
+    transition: 'colors',
+    borderColor: 'neutral.200',
+    borderBottomWidth: '1px',
+    _hover: {
+      borderColor: 'neutral.400',
+    },
   })
   const iconLinkStyle = css({
     py: '4',
@@ -40,7 +45,9 @@ export const Footer = () => {
             class={iconLinkStyle}
           />
         </address>
-        <p class={copyStyle}>&copy; object1037</p>
+        <a href="https://object1037.dev" class={copyStyle}>
+          &copy; object1037
+        </a>
       </div>
     </footer>
   )
