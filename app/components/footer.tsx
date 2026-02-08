@@ -1,30 +1,7 @@
-import type { JSX, PropsWithChildren } from 'hono/jsx'
-import { Github, type IconNode, Twitter } from 'lucide'
+import { Github, Twitter } from 'lucide'
 import { css } from '../../styled-system/css'
 import { container, hstack } from '../../styled-system/patterns'
-import { LucideIcon, type WithRequired } from './lucideIcon'
-
-const IconLink = ({
-  icon,
-  title,
-  ...rest
-}: WithRequired<PropsWithChildren<JSX.IntrinsicElements['a']>, 'title'> & {
-  icon: IconNode
-}) => {
-  const iconLinkStyle = css({
-    py: '4',
-    px: { base: '3', md: '4' },
-    fontSize: '3xl',
-    _hover: { color: 'neutral.400' },
-    transition: 'colors',
-  })
-
-  return (
-    <a {...rest} class={iconLinkStyle}>
-      <LucideIcon icon={icon} title={title} />
-    </a>
-  )
-}
+import { IconLink } from './iconLink'
 
 export const Footer = () => {
   const footerStackStyle = hstack({
@@ -38,6 +15,13 @@ export const Footer = () => {
     fontSize: 'xs',
     fontWeight: 'light',
   })
+  const iconLinkStyle = css({
+    py: '4',
+    px: { base: '3', md: '4' },
+    fontSize: '3xl',
+    _hover: { color: 'neutral.400' },
+    transition: 'colors',
+  })
 
   return (
     <footer class={container()}>
@@ -47,11 +31,13 @@ export const Footer = () => {
             href="https://github.com/object1037"
             icon={Github}
             title="GitHub"
+            class={iconLinkStyle}
           />
           <IconLink
             href="https://twitter.com/object1037"
             icon={Twitter}
             title="Twitter"
+            class={iconLinkStyle}
           />
         </address>
         <p class={copyStyle}>&copy; object1037</p>
