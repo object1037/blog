@@ -7,6 +7,7 @@ export type ToCEl = {
 
 export const getToC = () => {
   const headings = Array.from(document.querySelectorAll('h2,h3'))
+  headings.pop() // Remove the heading for "Share"
   const headingsToC: ToCEl[] = headings.map((heading) => ({
     level: Number.parseInt(heading.tagName.slice(1), 10),
     text:

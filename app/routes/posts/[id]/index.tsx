@@ -8,6 +8,7 @@ import { hstack } from '../../../../styled-system/patterns'
 import { Meta } from '../../../components/meta'
 import { TagList } from '../../../components/tagList'
 import { Highlight } from '../../../islands/highlight'
+import { Share } from '../../../islands/share'
 import { ToC } from '../../../islands/toc'
 import { ToCMobile } from '../../../islands/tocMobile'
 import { getDatetime } from '../../../lib/getDatetime'
@@ -82,6 +83,7 @@ export default createRoute(
         </div>
         <TagList tags={post.tags.map((tag) => ({ name: tag, count: 0 }))} />
         <div class="markdown_wrapper">{html`${raw(parsed.html)}`}</div>
+        <Share title={post.title} url={c.req.url} />
         <aside class={tocStyle}>
           <ToC />
         </aside>
