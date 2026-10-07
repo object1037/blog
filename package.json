@@ -30,7 +30,7 @@
     "@types/markdown-it-container": "^4.0.1",
     "drizzle-orm": "^0.45.3",
     "drizzle-valibot": "^0.4.2",
-    "hono": "^4.13.13",
+    "hono": "4.11.7",
     "honox": "^0.1.61",
     "lucide": "^1.52.0",
     "markdown-it": "^14.3.2",
