@@ -1,6 +1,6 @@
 import build from '@hono/vite-build/cloudflare-workers'
 import adapter from '@hono/vite-dev-server/cloudflare'
-import { parse } from 'es-module-lexer'
+import { init, parse } from 'es-module-lexer'
 import honox from 'honox/vite'
 import { defineConfig, type Plugin } from 'vite'
 
@@ -36,13 +36,20 @@ function clientOnly(): Plugin {
       const clientFileRE = /\.client(\.[cm]?[jt]sx?)?$/
       const clientDirRE = /\/\.client\//
       if (clientFileRE.test(id) || clientDirRE.test(id)) {
-        const exports = parse(code)[1]
+        await init()
+        const names = new Set<string>()
+        for (const e of parse(code)[1]) {
+          // types do not exist at runtime; star-reexports have no single name
+          if ('name' in e && !e.typeOnly) {
+            names.add(e.name)
+          }
+        }
         return {
-          code: exports
-            .map(({ n }: { n: string }) =>
-              n === 'default'
+          code: [...names]
+            .map((name) =>
+              name === 'default'
                 ? 'export default undefined;'
-                : `export const ${n} = undefined;`,
+                : `export const ${name} = undefined;`,
             )
             .join('\n'),
           map: null,
