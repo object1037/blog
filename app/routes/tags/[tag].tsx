@@ -5,6 +5,9 @@ import { getPostsWithTag } from '../../services/db'
 
 export default createRoute(async (c) => {
   const tag = c.req.param('tag')
+  if (!tag) {
+    return c.notFound()
+  }
   const postsWithTag = await getPostsWithTag(c.env.DB, tag)
 
   if (postsWithTag.length === 0) {

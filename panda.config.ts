@@ -19,6 +19,8 @@ const globalCss = defineGlobalStyles({
 })
 
 export default defineConfig({
+  presets: ['@pandacss/preset-base', '@pandacss/preset-panda'],
+
   // Whether to use css reset
   preflight: true,
 
@@ -66,14 +68,19 @@ export default defineConfig({
     },
   },
 
-  hooks: {
-    'cssgen:done': ({ artifact, content }) => {
-      if (artifact === 'styles.css') {
-        return removeUnusedCssVars(removeUnusedKeyframes(content))
-      }
-      return content
+  plugins: [
+    {
+      name: 'local',
+      hooks: {
+        'cssgen:done': ({ artifact, content }) => {
+          if (artifact === 'styles.css') {
+            return removeUnusedCssVars(removeUnusedKeyframes(content))
+          }
+          return content
+        },
+      },
     },
-  },
+  ],
 
   // The output directory for your css system
   outdir: 'styled-system',

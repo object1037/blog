@@ -1,6 +1,7 @@
 import { css } from 'hono/css'
 import { useState } from 'hono/jsx'
-import { Check, Copy, Twitter } from 'lucide'
+import { Check, Copy } from 'lucide'
+import { TwitterIcon } from '../components/brandIcons'
 import { IconLink } from '../components/iconLink'
 import { LucideIcon } from '../components/lucideIcon'
 
@@ -46,7 +47,7 @@ export const Share = ({ title, url }: { title: string; url: string }) => {
       <h2 class={headingStyle}>SHARE</h2>
       <IconLink
         href={`https://twitter.com/intent/tweet?text=${encodeURIComponent(text)}&url=${encodeURIComponent(url)}`}
-        icon={Twitter}
+        icon={TwitterIcon}
         title="Post to Twitter"
         class={buttonStyle}
       />

@@ -1,6 +1,7 @@
 import MarkdownIt from 'markdown-it'
 import type { Token } from 'markdown-it/index.js'
 import anchor from 'markdown-it-anchor'
+import type { ContainerOpts } from 'markdown-it-container'
 import container from 'markdown-it-container'
 import { thumbHashToDataURL } from 'thumbhash'
 import * as v from 'valibot'
@@ -100,7 +101,7 @@ export const parseMarkdown = (markdown: string): ParsedResult => {
 }
 
 const detailsPattern = /^details\s+(.*)$/
-const detailsOption = {
+const detailsOption: ContainerOpts = {
   validate: (params: string) => {
     return detailsPattern.test(params.trim())
   },
@@ -115,7 +116,7 @@ const detailsOption = {
 }
 
 const notePattern = /^note\s*(info|warn|danger)?$/
-const noteOption = {
+const noteOption: ContainerOpts = {
   validate: (params: string) => {
     return notePattern.test(params.trim())
   },

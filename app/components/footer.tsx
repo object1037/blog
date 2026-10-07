@@ -1,6 +1,6 @@
-import { Github, Twitter } from 'lucide'
 import { css } from '../../styled-system/css'
 import { container, hstack } from '../../styled-system/patterns'
+import { GithubIcon, TwitterIcon } from './brandIcons'
 import { IconLink } from './iconLink'
 
 export const Footer = () => {
@@ -34,13 +34,13 @@ export const Footer = () => {
         <address class={hstack()}>
           <IconLink
             href="https://github.com/object1037"
-            icon={Github}
+            icon={GithubIcon}
             title="GitHub"
             class={iconLinkStyle}
           />
           <IconLink
             href="https://twitter.com/object1037"
-            icon={Twitter}
+            icon={TwitterIcon}
             title="Twitter"
             class={iconLinkStyle}
           />
