@@ -30,7 +30,7 @@ describe('getPostsWithTag', () => {
     await getPostsWithTag(fakeDb, 'tech')
 
     const sql = seen.join('\n')
-    assert.match(sql, /"public"/)
+    assert.match(sql, /"posts"\."public" = \?/)
   })
 })
 
@@ -41,6 +41,7 @@ describe('getTags', () => {
     await getTags(fakeDb)
 
     const sql = seen.join('\n')
-    assert.match(sql, /"public"/)
+    assert.match(sql, /inner join "posts"/)
+    assert.match(sql, /"posts"\."public" = \?/)
   })
 })
