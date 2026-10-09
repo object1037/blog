@@ -3,6 +3,7 @@ import { createRoute } from 'honox/factory'
 import * as v from 'valibot'
 import { EditPage, head } from '../components/editPage'
 import { requireAuth } from '../middlewares/requireAuth'
+import { purgePostCache } from '../services/cache'
 import { addPost } from '../services/db'
 import { parseMarkdown } from '../services/markdown'
 
@@ -85,6 +86,7 @@ export const POST = createRoute(
     }
 
     await addPost(c.env.DB, post, tags)
+    await purgePostCache()
 
     return c.redirect('/dashboard', 303)
   },

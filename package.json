@@ -9,8 +9,9 @@
     "preview": "wrangler dev --env preview",
     "deploy": "wrangler deploy --env production",
     "deploy:preview": "wrangler versions upload --env preview --preview-alias preview",
-    "check": "biome ci ./app vite.config.ts",
+    "check": "biome ci ./app vite.config.ts vitest.config.ts",
     "fmt": "biome format --write ./app vite.config.ts",
+    "test": "vitest run",
     "typegen": "wrangler types --env-interface=CloudflareEnv",
     "setLocalDB": "LOCAL_DB_PATH=$(find .wrangler/state/v3/d1/miniflare-D1DatabaseObject -type f -name '*.sqlite' -print -quit)",
     "setPreviewDB": "DB_ID='fe62b702-8f6b-4b85-81c0-e315529e6ca7'",
@@ -57,6 +58,7 @@
     "es-module-lexer": "^3.0.3",
     "postcss": "^8.5.29",
     "vite": "^8.3.3",
+    "vitest": "^5.0.3",
     "wrangler": "^4.148.0"
   },
   "packageManager": "pnpm@10.14.0+sha512.ad27a79641b49c3e481a16a805baa71817a04bbe06a38d17e60e2eaee83f6a146c6a688125f5792e48dd5ba30e7da52a5cda4c3992b9ccf333f9ce223af84748"

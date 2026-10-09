@@ -192,6 +192,8 @@ export const getTags = async (db_binding: D1Database) => {
       count: count(),
     })
     .from(postsToTags)
+    .innerJoin(posts, eq(postsToTags.postId, posts.id))
+    .where(eq(posts.public, true))
     .groupBy(postsToTags.tagName)
     .orderBy(desc(count()))
 
@@ -218,7 +220,7 @@ export const getPostsWithTag = async (
       description: posts.description,
     })
     .from(posts)
-    .where(inArray(posts.id, postIdQuery))
+    .where(and(eq(posts.public, true), inArray(posts.id, postIdQuery)))
     .orderBy(desc(posts.id))
 
   return results

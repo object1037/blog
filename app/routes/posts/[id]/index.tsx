@@ -13,6 +13,7 @@ import { ToC } from '../../../islands/toc'
 import { ToCMobile } from '../../../islands/tocMobile'
 import { getDatetime } from '../../../lib/getDatetime'
 import { requireAuth } from '../../../middlewares/requireAuth'
+import { purgePostCache } from '../../../services/cache'
 import { deletePost, getPostByID } from '../../../services/db'
 import { markdownToHtml } from '../../../services/markdown'
 
@@ -103,6 +104,7 @@ export const DELETE = createRoute(
   async (c) => {
     const { id } = c.req.valid('param')
     await deletePost(c.env.DB, id)
+    await purgePostCache()
     return
   },
 )
