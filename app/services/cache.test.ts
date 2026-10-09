@@ -36,4 +36,19 @@ describe('purgeImageCache', () => {
 
     expect(deleted).toEqual([IMAGE_CACHE_NAME])
   })
+
+  it('resolves when the cache backend is unavailable', async () => {
+    const failingCaches = {
+      delete: async (_name: string) => {
+        throw new Error("Failed to execute 'delete' on 'CacheStorage'")
+      },
+    }
+
+    await expect(purgePostCache(failingCaches)).resolves.toBeUndefined()
+    await expect(purgeImageCache(failingCaches)).resolves.toBeUndefined()
+  })
+
+  it('resolves when there is no caches global', async () => {
+    await expect(purgePostCache(undefined)).resolves.toBeUndefined()
+  })
 })

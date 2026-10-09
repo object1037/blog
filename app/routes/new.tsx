@@ -86,7 +86,7 @@ export const POST = createRoute(
     }
 
     await addPost(c.env.DB, post, tags)
-    await purgePostCache(caches)
+    await purgePostCache()
 
     return c.redirect('/dashboard', 303)
   },

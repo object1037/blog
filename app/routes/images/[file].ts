@@ -46,7 +46,7 @@ export const PUT = createRoute(
         contentType: 'image/webp',
       },
     })
-    await purgeImageCache(caches)
+    await purgeImageCache()
 
     return c.json(result)
   },
@@ -68,7 +68,7 @@ export const DELETE = createRoute(
     } catch {
       throw new HTTPException(500, { message: 'Failed to delete image' })
     }
-    await purgeImageCache(caches)
+    await purgeImageCache()
     return c.json({ success: true })
   },
 )

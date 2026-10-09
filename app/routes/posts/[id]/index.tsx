@@ -104,7 +104,7 @@ export const DELETE = createRoute(
   async (c) => {
     const { id } = c.req.valid('param')
     await deletePost(c.env.DB, id)
-    await purgePostCache(caches)
+    await purgePostCache()
     return
   },
 )
