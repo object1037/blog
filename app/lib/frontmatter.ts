@@ -23,9 +23,14 @@ export const parseYaml = (yaml: string) => {
       if (!currentKey || !arrayBuffer) {
         return {}
       }
-      arrayBuffer.push(stripQuotes(line.slice(1).trim()))
+      const item = stripQuotes(line.slice(1).trim())
+      if (item !== '') {
+        arrayBuffer.push(item)
+      }
     } else {
-      const [key, rawValue] = line.split(':').map((s) => s.trim())
+      const colon = line.indexOf(':')
+      const key = (colon === -1 ? line : line.slice(0, colon)).trim()
+      const rawValue = (colon === -1 ? '' : line.slice(colon + 1)).trim()
       if (!key) {
         return {}
       }
