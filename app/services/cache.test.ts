@@ -1,5 +1,4 @@
-import assert from 'node:assert/strict'
-import { describe, it } from 'node:test'
+import { describe, expect, it } from 'vitest'
 import {
   IMAGE_CACHE_NAME,
   POST_CACHE_NAME,
@@ -19,7 +18,7 @@ describe('purgePostCache', () => {
 
     await purgePostCache(fakeCaches)
 
-    assert.deepEqual(deleted, [POST_CACHE_NAME])
+    expect(deleted).toEqual([POST_CACHE_NAME])
   })
 })
 
@@ -35,6 +34,6 @@ describe('purgeImageCache', () => {
 
     await purgeImageCache(fakeCaches)
 
-    assert.deepEqual(deleted, [IMAGE_CACHE_NAME])
+    expect(deleted).toEqual([IMAGE_CACHE_NAME])
   })
 })

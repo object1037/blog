@@ -1,44 +1,40 @@
-import assert from 'node:assert/strict'
-import { describe, it } from 'node:test'
+import { describe, expect, it } from 'vitest'
 import { isSafeNextPath, resolveSafeNextPath } from './safeRedirect'
 
 describe('isSafeNextPath', () => {
   it('rejects absolute external URLs', () => {
-    assert.equal(isSafeNextPath('https://evil.example/phish'), false)
+    expect(isSafeNextPath('https://evil.example/phish')).toBe(false)
   })
 
   it('rejects protocol-relative URLs', () => {
-    assert.equal(isSafeNextPath('//evil.example/phish'), false)
+    expect(isSafeNextPath('//evil.example/phish')).toBe(false)
   })
 
   it('accepts same-origin paths', () => {
-    assert.equal(isSafeNextPath('/dashboard'), true)
+    expect(isSafeNextPath('/dashboard')).toBe(true)
   })
 
   it('rejects missing values', () => {
-    assert.equal(isSafeNextPath(undefined), false)
-    assert.equal(isSafeNextPath(''), false)
+    expect(isSafeNextPath(undefined)).toBe(false)
+    expect(isSafeNextPath('')).toBe(false)
   })
 
   it('rejects backslash and whitespace tricks', () => {
-    assert.equal(isSafeNextPath('/\\evil'), false)
-    assert.equal(isSafeNextPath('/dash board'), false)
+    expect(isSafeNextPath('/\\evil')).toBe(false)
+    expect(isSafeNextPath('/dash board')).toBe(false)
   })
 
   it('rejects scheme URLs', () => {
-    assert.equal(isSafeNextPath('javascript:alert(1)'), false)
+    expect(isSafeNextPath('javascript:alert(1)')).toBe(false)
   })
 
   it('accepts nested same-origin paths with query', () => {
-    assert.equal(isSafeNextPath('/posts/20250101?x=1'), true)
+    expect(isSafeNextPath('/posts/20250101?x=1')).toBe(true)
   })
 })
 
 describe('resolveSafeNextPath', () => {
   it('falls back to /dashboard for external URLs', () => {
-    assert.equal(
-      resolveSafeNextPath('https://evil.example/phish'),
-      '/dashboard',
-    )
+    expect(resolveSafeNextPath('https://evil.example/phish')).toBe('/dashboard')
   })
 })

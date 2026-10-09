@@ -1,5 +1,4 @@
-import assert from 'node:assert/strict'
-import { describe, it } from 'node:test'
+import { describe, expect, it } from 'vitest'
 import { getPostsWithTag, getTags } from './db'
 
 const collectSql = () => {
@@ -30,7 +29,7 @@ describe('getPostsWithTag', () => {
     await getPostsWithTag(fakeDb, 'tech')
 
     const sql = seen.join('\n')
-    assert.match(sql, /"posts"\."public" = \?/)
+    expect(sql).toMatch(/"posts"\."public" = \?/)
   })
 })
 
@@ -41,7 +40,7 @@ describe('getTags', () => {
     await getTags(fakeDb)
 
     const sql = seen.join('\n')
-    assert.match(sql, /inner join "posts"/)
-    assert.match(sql, /"posts"\."public" = \?/)
+    expect(sql).toMatch(/inner join "posts"/)
+    expect(sql).toMatch(/"posts"\."public" = \?/)
   })
 })
