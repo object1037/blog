@@ -8,6 +8,7 @@ import { css } from 'hono/css'
 import { KeyRound } from 'lucide'
 import * as v from 'valibot'
 import { LucideIcon } from '../components/lucideIcon'
+import { resolveSafeNextPath } from '../lib/safeRedirect'
 import { creationOptionSchema, requestOptionSchema } from '../lib/webauthn'
 
 const verificationSchema = v.object({
@@ -114,7 +115,7 @@ export const LoginWidget = ({ nextPath }: { nextPath: string | undefined }) => {
   const handleLogin = async () => {
     try {
       await handleRegistration()
-      window.location.replace(nextPath ? nextPath : '/dashboard')
+      window.location.replace(resolveSafeNextPath(nextPath))
     } catch (e) {
       console.error('Error during login process:', e)
     }
