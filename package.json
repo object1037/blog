@@ -48,7 +48,6 @@
     "@pandacss/dev": "^2.3.0",
     "@pandacss/preset-base": "^2.3.0",
     "@pandacss/preset-panda": "^2.3.0",
-    "@pandacss/studio": "^1.12.1",
     "@types/markdown-it": "14.1.2",
     "@types/node": "^26.6.5",
     "@types/prismjs": "^1.26.6",
